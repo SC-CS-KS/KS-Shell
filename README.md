@@ -2,13 +2,54 @@
 ```md
 Curated collection of useful Shell knowledge points or snippets that can study in five minutes or less. 
 ```
-## Basic
-### 变量
-#### 变量引用
+## 变量
+* $@ vs $*
+```sh
+#!/usr/bin/env bash
+function func1() {
+  echo '>> TEST $* OUTPUT: '
+  func2 $*
+  echo '>> TEST $@ OUTPUT: '
+  func2 $@
+  echo '>> TEST "$*" OUTPUT: '
+  func2 "$*"
+  echo '>> TEST "$@" OUTPUT: '
+  func2 "$@"
+}
 
+function func2() {
+  echo '$1 -> '"$1"
+  echo '$2 -> '"$2"
+  echo '$3 -> '"$3"
+}
 
-### 函数
-
+# Test
+func1 "1.1 1.2" "2.1"
+```
+```md
+$* $@ "$*" "$@" 作为参数传递的输出：
+>> TEST $* OUTPUT:
+$1 -> 1.1
+$2 -> 1.2
+$3 -> 2.1
+>> TEST $@ OUTPUT:
+$1 -> 1.1
+$2 -> 1.2
+$3 -> 2.1
+>> TEST "$*" OUTPUT:
+$1 -> 1.1 1.2 2.1
+$2 ->
+$3 ->
+>> TEST "$@" OUTPUT:
+$1 -> 1.1 1.2
+$2 -> 2.1
+$3 ->
+```
+```md
+总结：
+1. $* $@ 无区别，所有参数整体会按照 IFS指定分隔符(默认空格)分割，重新作为参数，
+2. "$*" "$@" 加双引号的引用才有意义，"$*"把参数作为整体传递，"$@" 仍按照原有参数传递。
+```
 
 ## Pitfall
 * 包含空格的参数传递
