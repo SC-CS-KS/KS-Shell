@@ -1,8 +1,5 @@
-# Knowledge System of Shell
+# Shell
 
-## [one-minutes-of-shell](one-minutes-of-shell/README.md)
-
-## Shell
 * [Linux Command](CMD/README.md)
 
 * [sed](/CMD/file&text/sed.md)
@@ -10,6 +7,3 @@
 
 ## [Bash](bash/README.md)
 
-
-## Reference
-* [awesome-shell](https://github.com/alebcay/awesome-shell)

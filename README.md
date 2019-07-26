@@ -1,7 +1,10 @@
-# [Shell 知识体系](KS-Shell/README.md)
+# [Shell Knowledge System](KS-Shell/README.md)
 ```md
 Knowledge System of Shell.
 ```
+
+# [awesome-shell](https://github.com/alebcay/awesome-shell)
+
 # five-minutes-of-Shell
 ```md
 Curated collection of useful Shell knowledge points or snippets that can study in five minutes or less. 
