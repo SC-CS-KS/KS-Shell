@@ -13,7 +13,7 @@ that can study in five minutes or less.
 
 ## 变量
 ### :sunny: $@与$*
-```sh
+```Bash
 #!/usr/bin/env bash
 function func1() {
   echo '>> TEST $* OUTPUT: '
@@ -62,8 +62,7 @@ $3 ->
 
 ## Pitfall
 ### :sunny: 包含空格的参数传递
-```sh
-#!/usr/bin/env bash
+```Bash
 function func1() {
   echo '$1 -> '$1
   echo '$2 -> '$2
