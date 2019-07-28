@@ -7,9 +7,9 @@ that can study in five minutes or less.
 
 ## 目录
 * [变量](#变量)
-  * [:smile:$@与$*](#与)
+  * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> $@与$*](#sunny-与)
 * [Pitfall](#pitfall)
-  * [:smile:包含空格的参数传递](#包含空格的参数传递)
+  * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> 包含空格的参数传递](#sunny-包含空格的参数传递)
 
 ## 变量
 ### :sunny: $@与$*
