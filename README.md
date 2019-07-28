@@ -9,13 +9,13 @@ Curated collection of useful Shell knowledge points or snippets that can study i
 ```
 ## 目录
 * [变量](#变量)
-  * [$@ vs $*](#$@ vs $*)
+  * [$@与$*](#$@与$*)
 
 * [Pitfall](#Pitfall)
   * [包含空格的参数传递](#包含空格的参数传递)
 
 ## 变量
-### $@ vs $*
+### $@与$*
 ```sh
 #!/usr/bin/env bash
 function func1() {
