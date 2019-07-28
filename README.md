@@ -1,7 +1,7 @@
 # [Shell Knowledge System](KS-Shell/README.md)
 Knowledge System of Shell.
 
-# five-minutes-of-Shell
+# two-minutes-of-Shell
 Curated collection of useful Shell knowledge points or snippets 
 that can study in five minutes or less. 
 
