@@ -8,9 +8,9 @@ Knowledge System of Shell.
 Curated collection of useful Shell knowledge points or snippets that can study in five minutes or less. 
 ```
 ## 目录
-* [变量](#变量)
+* [:sunny:变量](#变量)
   * [:smile:$@与$*](#与)
-* [Pitfall](#pitfall)
+* [:sunny:Pitfall](#pitfall)
   * [:smile:包含空格的参数传递](#包含空格的参数传递)
 
 ## 变量
