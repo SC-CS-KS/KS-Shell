@@ -9,6 +9,11 @@ Curated collection of useful Shell knowledge points or snippets that can study i
 ```
 ## 目录
 * [变量](#变量)
+  * [$@与$*](#与)
+* [Pitfall](#pitfall)
+  * [包含空格的参数传递](#包含空格的参数传递)
+
+* [变量](#变量)
   * [$@与$*](#$@与$*)
 
 * [Pitfall](#Pitfall)
@@ -97,7 +102,3 @@ $1 -> I'am Sunny!
 $2 ->
 ```
 ***变量作为参数传递时，变量的引用需要加双引号，以保证变量值作为整体传递***
-
-
-## References
-* [30-seconds-of-code](https://github.com/30-seconds/30-seconds-of-code) 
