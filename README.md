@@ -1,12 +1,10 @@
 # [Shell Knowledge System](KS-Shell/README.md)
-```md
 Knowledge System of Shell.
-```
 
 # five-minutes-of-Shell
-```md
-Curated collection of useful Shell knowledge points or snippets that can study in five minutes or less. 
-```
+Curated collection of useful Shell knowledge points or snippets 
+that can study in five minutes or less. 
+
 ## 目录
 * [变量](#变量)
   * [:smile:$@与$*](#与)
