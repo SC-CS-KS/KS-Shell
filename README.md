@@ -9,15 +9,9 @@ Curated collection of useful Shell knowledge points or snippets that can study i
 ```
 ## 目录
 * [变量](#变量)
-  * [$@与$*](#与)
+  * [:smile:$@与$*](#与)
 * [Pitfall](#pitfall)
-  * [包含空格的参数传递](#包含空格的参数传递)
-
-* [变量](#变量)
-  * [$@与$*](#$@与$*)
-
-* [Pitfall](#Pitfall)
-  * [包含空格的参数传递](#包含空格的参数传递)
+  * [:smile:包含空格的参数传递](#包含空格的参数传递)
 
 ## 变量
 ### $@与$*
