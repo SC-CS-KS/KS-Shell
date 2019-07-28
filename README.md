@@ -9,6 +9,9 @@ Knowledge System of Shell.
 ```md
 Curated collection of useful Shell knowledge points or snippets that can study in five minutes or less. 
 ```
+## 目录
+* [变量](#变量)
+
 ## 变量
 * $@ vs $*
 ```sh
