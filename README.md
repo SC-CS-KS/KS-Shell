@@ -1,5 +1,3 @@
-[toc]
-
 # [Shell Knowledge System](KS-Shell/README.md)
 ```md
 Knowledge System of Shell.
@@ -11,9 +9,13 @@ Curated collection of useful Shell knowledge points or snippets that can study i
 ```
 ## 目录
 * [变量](#变量)
+  * [$@ vs $*](#$@ vs $*)
+
+* [Pitfall](#Pitfall)
+  * [包含空格的参数传递](#包含空格的参数传递)
 
 ## 变量
-* $@ vs $*
+### $@ vs $*
 ```sh
 #!/usr/bin/env bash
 function func1() {
@@ -62,7 +64,7 @@ $3 ->
 ```
 
 ## Pitfall
-* 包含空格的参数传递
+### 包含空格的参数传递
 ```sh
 #!/usr/bin/env bash
 function func1() {
