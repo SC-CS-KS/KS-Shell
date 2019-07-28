@@ -1,9 +1,9 @@
+[toc]
+
 # [Shell Knowledge System](KS-Shell/README.md)
 ```md
 Knowledge System of Shell.
 ```
-
-# [awesome-shell](https://github.com/alebcay/awesome-shell)
 
 # five-minutes-of-Shell
 ```md

@@ -7,3 +7,6 @@
 
 ## [Bash](bash/README.md)
 
+
+## [awesome-shell](https://github.com/alebcay/awesome-shell)
+
