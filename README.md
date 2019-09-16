@@ -1,15 +1,22 @@
-# [Shell Knowledge System](KS-Shell/README.md)
-Knowledge System of Shell.
-
 # two-minutes-of-Shell
 Curated collection of useful Shell knowledge points or snippets 
 that can study in five minutes or less. 
 
-## 目录
-* [变量](#变量)
-  * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> $@与$*](#sunny-与)
-* [Pitfall](#pitfall)
-  * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> 包含空格的参数传递](#sunny-包含空格的参数传递)
+Table of Contents
+=================
+
+   * [two-minutes-of-Shell](#two-minutes-of-shell)
+      * [命令](#命令)
+      * [基础](#基础)
+      * [变量](#变量)
+         * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> $@与$*](#sunny-与)
+      * [Pitfall](#pitfall)
+         * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> 包含空格的参数传递](#sunny-包含空格的参数传递)
+      * [Bash](#bash)
+
+## 命令
+
+## 基础
 
 ## 变量
 ### :sunny: $@与$*
@@ -91,5 +98,9 @@ $1 -> I'am Sunny!
 $2 ->
 ```
 ***变量作为参数传递时，变量的引用需要加双引号，以保证变量值作为整体传递***
+
+
+## Bash
+
 
 --------------------------------
