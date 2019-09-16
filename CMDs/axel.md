@@ -1,25 +1,20 @@
-# axel
-
+# axel - 文件分段下载
 ```md
 Axel 通过打开多个 HTTP/FTP 连接来将一个文件进行分段下载，从而达到加速下载的目的。
-对于下载大文件，该工具将特别有用。
-常用 Axel 替代 wget。
+对于下载大文件，该工具将特别有用。常用 Axel 替代 wget。
 ```
-
-## install
+* 安装
 ```sh
 yum install axel
 ```
 ```sh
 brew install axel
 ```
-
-## /etc/axel/axelrc
+* /etc/axel/axelrc
 ```md
 axel的全局配置文件，以根据需要对axel进行定制。
 ```
-
-## 
+* 应用
 ```sh
 $axel -h
 Usage: axel [options] url1 [url2] [url...]
@@ -48,4 +43,3 @@ Visit https://github.com/axel-download-accelerator/axel/issues to report bugs
 ```sh
 axel -a -n 10 url
 ```
-

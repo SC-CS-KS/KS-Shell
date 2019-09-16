@@ -2,105 +2,39 @@
 Curated collection of useful Shell knowledge points or snippets 
 that can study in five minutes or less. 
 
-Table of Contents
-=================
-
-   * [two-minutes-of-Shell](#two-minutes-of-shell)
-      * [命令](#命令)
-      * [基础](#基础)
-      * [变量](#变量)
-         * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> $@与$*](#sunny-与)
-      * [Pitfall](#pitfall)
-         * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> 包含空格的参数传递](#sunny-包含空格的参数传递)
-      * [Bash](#bash)
-
 ## 命令
 
-## 基础
+## BASH_BUILTINS
+### alias unalias
+### builtin
+### command
+### enable
+### fc
+### set
+### source
+### trap
+### umask
+### wait
 
-## 变量
-### :sunny: $@与$*
-```Bash
-#!/usr/bin/env bash
-function func1() {
-  echo '>> TEST $* OUTPUT: '
-  func2 $*
-  echo '>> TEST $@ OUTPUT: '
-  func2 $@
-  echo '>> TEST "$*" OUTPUT: '
-  func2 "$*"
-  echo '>> TEST "$@" OUTPUT: '
-  func2 "$@"
-}
+## Miscs
+### xclip - 桌面剪贴板
+### nc - 功能强大的网络工具
+### axel - 文件分段下载
 
-function func2() {
-  echo '$1 -> '"$1"
-  echo '$2 -> '"$2"
-  echo '$3 -> '"$3"
-}
+## [常用命令行](chapters/CMD_Line.md)
 
-# Test
-func1 "1.1 1.2" "2.1"
-```
-$*、 $@、 "$*"、 "$@" 作为参数传递的输出：
-```md
->> TEST $* OUTPUT:
-$1 -> 1.1
-$2 -> 1.2
-$3 -> 2.1
->> TEST $@ OUTPUT:
-$1 -> 1.1
-$2 -> 1.2
-$3 -> 2.1
->> TEST "$*" OUTPUT:
-$1 -> 1.1 1.2 2.1
-$2 ->
-$3 ->
->> TEST "$@" OUTPUT:
-$1 -> 1.1 1.2
-$2 -> 2.1
-$3 ->
-```
-总结：
-1. $* $@ 无区别，所有参数整体会按照 IFS指定分隔符(默认空格)分割，重新作为参数，
-2. "$*" "$@" 加双引号的引用才有意义，"$*"把参数作为整体传递，"$@" 仍按照原有参数传递。
+## [AWK](chapters/AWK.md)
 
-## Pitfall
-### :sunny: 包含空格的参数传递
-```Bash
-function func1() {
-  echo '$1 -> '$1
-  echo '$2 -> '$2
-}
+## [变量](chapters/Variable.md)
+* $@与$*
 
-# Test
-var1="I'am Sunny!"
+## [Pitfall](chapters/Pitfall.md)
+* 包含空格的参数传递
 
-echo "TEST1: func1 \"I'am Sunny!\""
-func1 "I'am Sunny!"
+## [Bash](chapters/Bash.md)
 
-echo 'TEST2: func1 $var1'
-func1 $var1
-
-echo 'TEST3: func1 "$var1"'
-func1 "$var1"
-```
-输出：
-```md
-TEST1: func1 "I'am Sunny!"
-$1 -> I'am Sunny!
-$2 ->
-TEST2: func1 $var1
-$1 -> I'am
-$2 -> Sunny!
-TEST3: func1 "$var1"
-$1 -> I'am Sunny!
-$2 ->
-```
-***变量作为参数传递时，变量的引用需要加双引号，以保证变量值作为整体传递***
-
-
-## Bash
+## Reference
+* [Bash Reference Manual](http://www.gnu.org/software/bash/manual/bash.html)
 
 
 --------------------------------

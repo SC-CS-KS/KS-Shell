@@ -1,8 +1,6 @@
-# [The GNU Netcat - nc](http://netcat.sourceforge.net/)
+# nc
+* The GNU Netcat - nc](http://netcat.sourceforge.net/)
 
-## Usage
-
-## Utils
 * 调试基于HTTP协议的服务调用
 ```sh
 # while true; do nc -l 8888; done
@@ -35,8 +33,3 @@ scp 命令基于SSH协议，nc 可以绕过该协议传输文件。
 * Server2
 # nc  192.168.200.27 8118 
 ```
-
-
-
-
-

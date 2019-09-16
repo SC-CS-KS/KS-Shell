@@ -1,13 +1,16 @@
-# awk
+# AWK
+
+## AWK 基础
 ```md
-是一种专为文本处理而设计的编程语言，通常用作数据提取和报告工具。
+awk 是一种专为文本处理而设计的编程语言，通常用作数据提取和报告工具。
 它是大多数类Unix操作系统的标准功能。
 ```
 ```md
 awk [选项参数] 'script' var=value file(s)
 awk [选项参数] -f scriptfile var=value file(s)
 ```
-* 内建变量
+
+## 内建变量
 ```md
 $n	当前记录的第n个字段，字段间由FS分隔
 $0	完整的输入记录
@@ -31,4 +34,6 @@ RS	记录分隔符(默认是一个换行符)
 RSTART	由match函数所匹配的字符串的第一个位置
 SUBSEP	数组下标分隔符(默认值是/034)
 ```
+
+## Reference
 * [awk](http://www.runoob.com/linux/linux-comm-awk.html)
