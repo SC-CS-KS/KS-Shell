@@ -1,40 +1,31 @@
-# two-minutes-of-Shell
-Curated collection of useful Shell knowledge points or snippets 
-that can study in five minutes or less. 
+# KS-Shell
+Curated collection of useful Shell knowledge points.
 
-## 命令
+Table of Contents
+=================
 
-## BASH_BUILTINS
-### alias unalias
-### builtin
-### command
-### enable
-### fc
-### set
-### source
-### trap
-### umask
-### wait
+   * [命令](#命令)
+      * [BASH_BUILTINS](#bash_builtins)
+         * [alias unalias](#alias-unalias)
+         * [builtin](#builtin)
+         * [command](#command)
+         * [enable](#enable)
+         * [fc](#fc)
+         * [set](#set)
+         * [source](#source)
+         * [trap](#trap)
+         * [umask](#umask)
+         * [wait](#wait)
+      * [Miscs](#miscs)
+         * [xclip - 桌面剪贴板](#xclip---桌面剪贴板)
+         * [nc - 功能强大的网络工具](#nc---功能强大的网络工具)
+         * [axel - 文件分段下载](#axel---文件分段下载)
+   * [<a href="chapters/CMD_Line.md">常用命令行</a>](#常用命令行)
+   * [<a href="chapters/AWK.md">AWK</a>](#awk)
+   * [[Shell 基础]](chapters/Basis.md)](#shell-基础chaptersbasismd)
+      * [$@与$*](#与)
+   * [<a href="chapters/Pitfall.md">Pitfall</a>](#pitfall)
+      * [包含空格的参数传递](#包含空格的参数传递)
+   * [<a href="chapters/Bash.md">Bash</a>](#bash)
+      * [Expansion](#expansion)
 
-## Miscs
-### xclip - 桌面剪贴板
-### nc - 功能强大的网络工具
-### axel - 文件分段下载
-
-## [常用命令行](chapters/CMD_Line.md)
-
-## [AWK](chapters/AWK.md)
-
-## [变量](chapters/Variable.md)
-* $@与$*
-
-## [Pitfall](chapters/Pitfall.md)
-* 包含空格的参数传递
-
-## [Bash](chapters/Bash.md)
-
-## Reference
-* [Bash Reference Manual](http://www.gnu.org/software/bash/manual/bash.html)
-
-
---------------------------------
