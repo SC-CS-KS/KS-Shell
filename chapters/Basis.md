@@ -21,10 +21,12 @@ Table of Contents
 
 ## 变量
 ### PS 终端提示符
-* PS1—默认的交互提示符
+* PS1 默认的交互提示符
+```md
 默认情况下PS1为”\s-\v\$”，显示为:
 -bash-3.2$
-
+```
+```md
 转义字符代表的信息:
 \h--主机名
 \u--用户名
@@ -37,26 +39,29 @@ Table of Contents
 \$?--上以命令执行后的返回值，成功执行返回0，否则返回一个非零的数
 \!--该条命令在历史命令中的编号
 \#--该条命令在这个shell中的编号
-
-示例:
+```
 ```bash
+示例:
 PS1="\e[0;32m\u@\h \e[0;33m\t `if [ $? = 0 ]; then echo \e[32m^_^ \w\e[0m; else echo \e[31mO_O \w\e[0m; fi` \e[0;31m\]\n$\e[0;37m"
 ```
 
-* PS2—多行交互提示符
-当我们的输入一个超过一行的命令时，我们可以使用“\”符号将命令分割成几行来执行，当使用了‘\’之后在第二行会出现一个新的提示符
+* PS2 多行交互提示符
+```md
+当输入一个超过一行的命令时，可以使用“\”符号将命令分割成几行来执行，当使用了‘\’之后在第二行会出现一个新的提示符。
 PS2变量也支持PS1中的属性（\h,\t等）以及各种颜色设置。
+```
 
-示例
 ```bash
+示例：
 sunshine@0101 ~ 11:09 $ sudo apt-get install build-essential \
 > libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg62-dev \
 > libtiff4-dev cmake libswscale-dev libjasper-dev
 ```
 
-* PS3—select命令使用的提示符
+* PS3 select命令使用的提示符
 
-* PS4—调试输出追踪
+* PS4 调试输出追踪
+```md
 PS4变量定义的是在调试状态下执行shell脚本时的提示符
 当使用set -x追踪输出时，默认的"++"
 通过设置PS4变量就可以改变默认的”++”，输出一些对脚本调试有用的信息。
@@ -64,7 +69,7 @@ PS4变量定义的是在调试状态下执行shell脚本时的提示符
 PS4="$0 $LINENO+: "
 $0:脚本的名字
 $LINENO:显示当前命令在脚本中的行数
-
+```
 ### :sunny: $@与$*
 ```Bash
 #!/usr/bin/env bash

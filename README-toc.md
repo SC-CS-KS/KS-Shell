@@ -39,6 +39,8 @@
 
 # [AWK](chapters/AWK.md)
 
+# [Sed](chapters/Sed.md)
+
 # [Shell 基础](chapters/Basis.md)
 ## 变量
 ### PS 终端提示符
