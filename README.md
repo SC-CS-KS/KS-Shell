@@ -35,7 +35,6 @@ Table of Contents
       * [操作系统](#操作系统)
       * [输入输出](#输入输出)
       * [脚本编程](#脚本编程)
-      * [Resource](#resource)
    * [<a href="chapters/AWK.md">AWK</a>](#awk)
    * [[Shell 基础]](chapters/Basis.md)](#shell-基础chaptersbasismd)
       * [$@与$*](#与)
