@@ -1,26 +1,23 @@
-# Shell 基础
-
 Table of Contents
 =================
 
-   * [Shell 基础](#shell-基础)
-      * [变量](#变量)
-         * [PS 终端提示符](#ps-终端提示符)
-         * [<g-emoji class="g-emoji" alias="sunny" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2600.png">☀️</g-emoji> $@与$*](#sunny-与)
-      * [数组](#数组)
-      * [函数](#函数)
-      * [控制结构](#控制结构)
-         * [case](#case)
-         * [for](#for)
-         * [while、until](#whileuntil)
-         * [for/while 逐行处理文件](#forwhile-逐行处理文件)
-         * [for/while 逐行处理命令输出](#forwhile-逐行处理命令输出)
-      * [here doc](#here-doc)
-      * [数据运算](#数据运算)
-      * [Shell 解释过程](#shell-解释过程)
+   * [变量](#变量)
+      * [PS 终端提示符](#ps-终端提示符)
+      * [$@与$*](#sunny-与)
+   * [数组](#数组)
+   * [函数](#函数)
+   * [控制结构](#控制结构)
+      * [case](#case)
+      * [for](#for)
+      * [while、until](#whileuntil)
+      * [for/while 逐行处理文件](#forwhile-逐行处理文件)
+      * [for/while 逐行处理命令输出](#forwhile-逐行处理命令输出)
+   * [Here Doc](#here-doc)
+   * [数据运算](#数据运算)
+   * [Shell 解释过程](#shell-解释过程)
 
-## 变量
-### PS 终端提示符
+# 变量
+## PS 终端提示符
 * PS1 默认的交互提示符
 ```md
 默认情况下PS1为”\s-\v\$”，显示为:
@@ -70,7 +67,7 @@ PS4="$0 $LINENO+: "
 $0:脚本的名字
 $LINENO:显示当前命令在脚本中的行数
 ```
-### :sunny: $@与$*
+## :sunny: $@与$*
 ```Bash
 #!/usr/bin/env bash
 function func1() {
@@ -116,16 +113,15 @@ $3 ->
 1. $* $@ 无区别，所有参数整体会按照 IFS指定分隔符(默认空格)分割，重新作为参数，
 2. "$*" "$@" 加双引号的引用才有意义，"$*"把参数作为整体传递，"$@" 仍按照原有参数传递。
 
-## 数组
+# 数组
 
-## 函数
+# 函数
 
-## 控制结构
+# 控制结构
 
-### case
+## case
 
-### for
-
+## for
 * Shell中常用的是： 
 ```bash
 for((i=1;i<=10;i++))
@@ -203,7 +199,7 @@ $ grep -n "code:x:506:508::/home/code:/bin/bash" /etc/passwd
 39:code:x:506:508::/home/code:/bin/bash
 ```
 
-### while、until
+## while、until
 * while 形式
 ```md
 while 命令/条件
@@ -285,7 +281,7 @@ line:
 ```
 注：使用管道，会产生子进程，while循环再子进程中执行，变量的改变，不会影响父进程。
 
-### for/while 逐行处理文件
+## for/while 逐行处理文件
 * cat while read line
 ```bash
 function cat_while_read_line
@@ -335,7 +331,7 @@ read默认从标准输入读取，方法1可能会存在一个问题，即循环
 会导致本该只有read读取的输入，被该命令读取了。
 这里将文件关联到文件描述符3，read从文件描述符3中读取。
 
-### for/while 逐行处理命令输出
+## for/while 逐行处理命令输出
 ```bash
 while read LINE
 do
@@ -355,7 +351,7 @@ EOF
 ```
 使用here docment方法重定向输入。
 
-## Here Doc
+# Here Doc
 ```md
 shell脚本程序中，向一条命令传递输入的一种特殊方法是使用here文档。
 一个here document就是一段带有特殊目的的代码段。
@@ -381,6 +377,6 @@ SpecialString 用来界定命令序列的范围，
     最好考虑使用expect脚本语言，这种语言就是为了达到向交互程序添加输入的目的而量身定做的。
 ```
 
-## 数据运算
+# 数据运算
 
-## Shell 解释过程
+# Shell 解释过程

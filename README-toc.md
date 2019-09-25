@@ -1,5 +1,5 @@
 # 命令
-## [BASH_BUILTINS](CMDs/BASH_BUILTINS/README.md)
+## [BASH_BUILTINS](CMDs/BASH_BUILTINS.md)
 ### alias unalias
 ### builtin
 ### command
