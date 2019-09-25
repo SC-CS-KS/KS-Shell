@@ -355,27 +355,31 @@ EOF
 ```
 使用here docment方法重定向输入。
 
-## here doc
+## Here Doc
+```md
 shell脚本程序中，向一条命令传递输入的一种特殊方法是使用here文档。
 一个here document就是一段带有特殊目的的代码段。
-
+```
 * 格式：
+```md
 COMMAND <<SpecialString
 ...
-SpecialString
-
-SpecialString用来界定命令序列的范围，是一个特殊的字符序列，用来界定命令序列的范围，可自定义，但不能出现在传递命令的文档内容中。
-
+SpecialString 用来界定命令序列的范围，
+是一个特殊的字符序列，用来界定命令序列的范围，可自定义，但不能出现在传递命令的文档内容中。
+```
 * 应用
-	主要用于有大量文本输入的情况
-
+```md
+主要用于有大量文本输入的情况
+```
 * 注意
-a.某些工具是不能放入here document中运行的。
-b.结尾的limit string, 就是here document最后一行的limit string, 必须从第一个字符开始，它的前面不能够有任何前置的空白。
+```md
+1. 某些工具是不能放入here document中运行的。
+2. 结尾的limit string, 就是here document最后一行的limit string, 
+    必须从第一个字符开始，它的前面不能够有任何前置的空白。
     而在这个limit string后边的空白也会引起异常，空白将会阻止limit string的识别。
-c.对于那些使用"here document"，并且非常复杂的任务, 
+3. 对于那些使用"here document"，并且非常复杂的任务, 
     最好考虑使用expect脚本语言，这种语言就是为了达到向交互程序添加输入的目的而量身定做的。
-
+```
 
 ## 数据运算
 
