@@ -1,6 +1,6 @@
 # Pitfall
 
-### :sunny: 包含空格的参数传递
+## :sunny: 包含空格的参数传递
 ```Bash
 function func1() {
   echo '$1 -> '$1
