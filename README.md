@@ -36,7 +36,7 @@ Table of Contents
       * [输入输出](#输入输出)
       * [脚本编程](#脚本编程)
    * [<a href="chapters/AWK.md">AWK</a>](#awk)
-   * [<a href="chapters/Basis.md)">Shell 基础</a>](#shell-基础)
+   * [<a href="chapters/Basis.md">Shell 基础</a>](#shell-基础)
       * [$@与$*](#与)
    * [<a href="chapters/Pitfall.md">Pitfall</a>](#pitfall)
       * [包含空格的参数传递](#包含空格的参数传递)
