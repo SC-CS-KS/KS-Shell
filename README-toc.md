@@ -20,7 +20,7 @@
 
 # [AWK](chapters/AWK.md)
 
-# [Shell 基础]](chapters/Basis.md)
+# [Shell 基础](chapters/Basis.md)
 ## $@与$*
 
 # [Pitfall](chapters/Pitfall.md)
