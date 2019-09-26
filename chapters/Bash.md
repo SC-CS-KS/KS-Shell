@@ -12,9 +12,6 @@ Table of Contents
       * [trap](#trap)
       * [umask](#umask)
       * [wait](#wait)
-   * [.bashrc](#bashrc)
-      * [配置 alias 别名](#配置-alias-别名)
-      * [函数化](#函数化)
    * [Expansion](#expansion)
       * [Brace expansion](#brace-expansion)
       * [Tilde expansion](#tilde-expansion)
@@ -38,7 +35,6 @@ Table of Contents
 如：alias 'rm=rm -i' 指删除时，需要确认。
 Shell不会做递归的别名展开，所有此定义是合法的。
 ```
-
 ## builtin
 ```md
 Run a shell builtin.  
@@ -58,7 +54,6 @@ PROLOG
        (consult the corresponding Linux manual page for details of Linux behavior), or the interface may not  be  imple-
        mented on Linux.
 ```
-
 ## enable
 ```md
 Enable and disable builtin shell commands.  
@@ -69,13 +64,11 @@ Options
 	-n
 		The -n option displays a list of all disabled builtins.
 ```
-
 ## fc
 ```md
 fc is used to list or edit and re-execute commands from the history list.
 fc [-e ename] [-nlr] [first] [last] or fc -s [pat=rep] [cmd]
 ```
-
 ## set
 ```md
 set [--abefhkmnptuvxBCHP] [-o option] [arg ...]
@@ -139,7 +132,6 @@ Options
 	        -   Assign any remaining arguments to the positional parameters.
 		            The -x and -v options are turned off.
 ```
-
 ## source
 ```md
 Read and execute commands from FILENAME and return.  
@@ -147,13 +139,11 @@ Read and execute commands from FILENAME and return.
 	source命令(从 C Shell 而来)是bash shell的内置命令。点命令，(从Bourne Shell而来)是source的另一名称。
 source filename [arguments]
 ```
-
 ## trap
 ```md
 The command ARG is to be read and executed when the shell receives signal(s) SIGNAL_SPEC.  
 	trap [-lp] [arg signal_spec ...]
 ```
-
 ## umask
 ```md
 The user file-creation mask is set to MODE. 
@@ -164,7 +154,6 @@ Options
 	If `-p' is supplied, and MODE is omitted, the output is in a form that may be used as input.  
 	If MODE begins with a digit, it is interpreted as an octal number, otherwise it is a symbolic mode string like that accepted by chmod(1).
 ```
-
 ## wait
 ```md
 等待进程执行完后返回
@@ -175,74 +164,6 @@ wait [n]
 	If N is not given, all currently active child processes are waited for,and the return code is zero.  
 	N is a process ID; if it is not given, all child processes of the shell are waited for.
 ```
-
-# .bashrc
-## 配置 alias 别名
-* 设置
-```shell
-$ touch ~/.bash_aliases
-
-# ~/.bashrc 
-if [ -e $HOME/.bash_aliases ]; then
- source $HOME/.bash_aliases
-fi
-```
-* 常用别名
-```shell
-# 按文件大小排序
-alias lt='ls --human-readable --size -1 -S --classify'
-alias lt='du -sh * | sort -h' # MacOS、BSD
-
-# 按修改时间排序
-alias left='ls -t -1'
-
-# 文件计数
-alias count='find . -type f | wc -l'
-
-# 只查看挂载的驱动器
-alias mnt='mount | awk -F' ' '{ printf "%s\t%s\n",$1,$3; }' | column -t | egrep ^/dev/ | sort'
-alias mnt='mount | grep -E ^/dev | column -t' #MacOS
-
-# grep 历史中查找命令
-alias gh='history|grep'
-
-# 创建 Python 虚拟环境
-alias ve='python3 -m venv ./venv'
-alias va='source ./venv/bin/activate'
-
-# 增加一个复制进度条
-alias cpv='rsync -ah --info=progress2'
-
-# 避免意外删除
-alias tcn='mv --force -t ~/.local/share/Trash '
-
-# 简化 Git 工作流
-alias startgit='cd `git rev-parse --show-toplevel` && git checkout master && git pull' #查找 Git 项目的顶级目录
-alias cg='cd `git rev-parse --show-toplevel`' # 将你带到 Git 项目的顶部
-```
-## 函数化
-```bash
-touch ~/.bash_functions
-
-# 写.bashrc
-if [ -e $HOME/.bash_functions ]; then
- source $HOME/.bash_functions
-fi
-```
-```bash
-# 切换目录并同时查看目录内容
-function cl() {
- DIR="$*";
- # if no DIR given, go home
- if [ $# -lt 1 ]; then 
- DIR=$HOME;
- fi;
- builtin cd "${DIR}" && \
- # use your preferred ls command
- ls -F --color=auto
-}
-```
-
 # Expansion
 ## Brace expansion
 ```sh
