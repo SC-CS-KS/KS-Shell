@@ -561,8 +561,7 @@ BASH REMATCH 中下标为n的元素是字符串中与第 n 个括号里面的子
 ```
 # Expansion
 ```md
-命令行的扩展是在拆分成词之后进行的。
-有七种类型的扩展：  
+命令行的扩展是在拆分成词之后进行的，有七种类型的扩展：  
 brace expansion(花括号扩展),   
 tilde expansion(波浪线扩展), 
 parameter and variable expansion(参数和变量扩展), 
@@ -577,8 +576,7 @@ word  splitting,  最后是 pathname expansion.
 还有一种附加的扩展：
 process subtitution (进程替换) 只有在支持它的系统中有效(POSIX不支持)。  
        
-只有    brace   expansion,   word   splitting,   
-和   pathname   expansion  在扩展前后的词数会发生改变；
+只有 brace expansion, word splitting 和 pathname expansion 在扩展前后的词数会发生改变；
 其他扩展总是将一个词扩展为一个词。唯一的例外是  "$@"  和  "${name[@]}"  (参见PARAMETERS参数)。  
 ```
 ## Brace expansion

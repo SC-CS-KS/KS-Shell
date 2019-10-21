@@ -302,7 +302,7 @@ done  <<EOF
 $(command)
 EOF
 ```
-使用here docment方法重定向输入。
+使用here document方法重定向输入。
 
 # Here Doc
 ```md
