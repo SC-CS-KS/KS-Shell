@@ -28,8 +28,3 @@
 ## 目录操作
 ## 文件查找
 ## 文件属性
-
-
-* [pure bash bible -  A collection of pure POSIX sh alternatives to external processes](https://github.com/dylanaraps/pure-bash-bible#ranges)
-
-* [Bash Reference Manual](http://www.gnu.org/software/bash/manual/bash.html)
