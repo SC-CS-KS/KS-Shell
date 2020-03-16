@@ -1,0 +1,145 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red79\green129\blue189;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid300369241
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\b\i\fs28}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid337035970}
+{\list\listtemplateid1257379788\listsimple1
+{\listlevel\levelnfc0\leveljc0\li1380\fi-420\jclisttab\tx1380\levelstartat1{\leveltext\'02\'00);}{\levelnumbers\'01;}\f3\b\i\fs24\cf4}
+\listid1902652160}
+}
+{\*\listoverridetable
+{\listoverride\listid337035970\listoverridecount0\ls1}
+{\listoverride\listid1902652160\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 type online_help
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20\cf1 type: 
+\par \plain \f1\fs20\cf1 type [-afptP] name [name ...]
+\par For each NAME, indicate how it would be interpreted if used as a command name.
+\par \plain \f1\b\fs20\cf2 -------------------------------------------------------------------------------------
+\par \plain \f1\fs20 If the -t option is used, `type' outputs a single word which is one of `alias', `keyword', `function', `builtin', `file' or `', if NAME is an alias, shell reserved word, shell function, shell builtin, disk file,or unfound, respectively.
+\par \~\~\~\~
+\par If the -p flag is used, `type' either returns the name of the disk file that would be executed, or nothing if `type -t NAME' would no return `file'.
+\par \~\~\~\~
+\par If the -a flag is used, `type' displays all of the places that contain an executable named `file'.\~ This includes aliases, builtins, and functions, if and only if the -p flag is not also used.
+\par \~\~\~\~
+\par The -f flag suppresses shell function lookup.
+\par \~\~\~\~
+\par The -P flag forces a PATH search for each NAME, even if it is an alias,builtin, or function, and returns the name of the disk file that would be executed.
+\par \plain \f1\b\fs20\cf2 ---------------------------------------------
+\par \plain \f1\fs20\cf1 typeset: 
+\par \plain \f1\fs20\cf-1 typeset [-afFirtx] [-p] name[=value] ...
+\par \plain \f1\fs20\cf1 Obsolete(\uc2\u24223 \'b7\'cf\u24323 \'c6\'fa\u30340 \'b5\'c4)\uc1\plain \f1\fs20 .\~ See `declare'.
+\par \plain \f1\b\fs20\cf2 --------------------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20 TYPE(P)                                                                                                                                    TYPE(P)
+\par 
+\par NAME
+\par        type - write a description of command type
+\par 
+\par SYNOPSIS
+\par        type name...
+\par 
+\par DESCRIPTION
+\par        The type utility shall indicate how each argument would be interpreted if used as a command name.
+\par 
+\par OPTIONS
+\par        None.
+\par 
+\par OPERANDS
+\par        The following operand shall be supported:
+\par        name   A name to be interpreted.
+\par 
+\par STDIN
+\par        Not used.
+\par 
+\par INPUT FILES
+\par        None.
+\par 
+\par ENVIRONMENT VARIABLES
+\par        The following environment variables shall affect the execution of type:
+\par 
+\par        LANG   Provide  a  default  value  for  the  internationalization  variables  that  are  unset or null. (See the Base Definitions volume of
+\par               IEEE Std 1003.1-2001, Section 8.2, Internationalization Variables for the  precedence  of  internationalization  variables  used  to
+\par               determine the values of locale categories.)
+\par 
+\par        LC_ALL If set to a non-empty string value, override the values of all the other internationalization variables.
+\par 
+\par        LC_CTYPE
+\par               Determine the locale for the interpretation of sequences of bytes of text data as characters (for example, single-byte as opposed to
+\par               multi-byte characters in arguments).
+\par 
+\par        LC_MESSAGES
+\par               Determine the locale that should be used to affect the format and contents of diagnostic messages written to standard error.
+\par 
+\par        NLSPATH
+\par               Determine the location of message catalogs for the processing of LC_MESSAGES .
+\par 
+\par        PATH   Determine the location of name, as described in the Base Definitions volume of IEEE Std 1003.1-2001, Chapter  8,  Environment  Vari-
+\par               ables.
+\par 
+\par ASYNCHRONOUS EVENTS
+\par        Default.
+\par 
+\par STDOUT
+\par        The standard output of type contains information about each operand in an unspecified format. The information provided typically identifies
+\par        the operand as a shell built-in, function, alias, or keyword, and where applicable, may display the operand's pathname.
+\par 
+\par STDERR
+\par        The standard error shall be used only for diagnostic messages.
+\par 
+\par OUTPUT FILES
+\par        None.
+\par 
+\par EXTENDED DESCRIPTION
+\par        None.
+\par 
+\par EXIT STATUS
+\par        The following exit values shall be returned:
+\par 
+\par         0     Successful completion.
+\par 
+\par        >0     An error occurred.
+\par 
+\par CONSEQUENCES OF ERRORS
+\par        Default.
+\par 
+\par        The following sections are informative.
+\par 
+\par APPLICATION USAGE
+\par        Since type must be aware of the contents of the current shell execution environment (such as the lists of commands, functions,  and  built-
+\par        ins  processed  by  hash),  it is always provided as a shell regular built-in. If it is called in a separate utility execution environment,
+\par        such as one of the following:
+\par 
+\par               nohup type writer
+\par               find . -type f | xargs type
+\par        it might not produce accurate results.
+\par 
+\par EXAMPLES
+\par        None.
+\par 
+\par RATIONALE
+\par        None.
+\par 
+\par FUTURE DIRECTIONS
+\par        None.
+\par 
+\par SEE ALSO
+\par        command , hash
+\par 
+\par COPYRIGHT
+\par        Portions of this text are reprinted and reproduced in electronic form from IEEE Std 1003.1, 2003 Edition, Standard for Information Technol-
+\par        ogy -- Portable Operating System Interface (POSIX), The Open Group Base Specifications Issue 6, Copyright (C) 2001-2003 by the Institute of
+\par        Electrical and Electronics Engineers, Inc and The Open Group. In the event of any discrepancy between this version and  the  original  IEEE
+\par        and  The  Open Group Standard, the original IEEE and The Open Group Standard is the referee document. The original Standard can be obtained
+\par        online at http://www.opengroup.org/unix/online.html .
+\par 
+\par POSIX                                                                  2003                                                                TYPE(P)
+\par \plain \f1\b\fs20\cf2 --------------------------------------------------------------------------------------------------------------------\par}

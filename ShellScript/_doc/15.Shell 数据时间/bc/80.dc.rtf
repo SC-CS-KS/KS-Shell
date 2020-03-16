@@ -1,0 +1,232 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid493054499\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1187750579}
+}
+{\*\listoverridetable
+{\listoverride\listid1187750579\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 80.dc
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 dc(1)                                                                    dc(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        dc - an arbitrary precision calculator
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        dc [-V] [--version] [-h] [--help]
+\par \plain \f1\fs20\cf1           [-e scriptexpression] [--expression=scriptexpression]
+\par \plain \f1\fs20           \plain \f1\fs20\cf1 [-f scriptfile] [--file=scriptfile]
+\par           [file ...]
+\par \plain \f1\fs20 
+\par DESCRIPTION
+\par dc  is  a  \plain \f1\fs20\cf2 reverse-polish  desk  calculator\plain \f1\fs20  which\plain \f1\fs20\cf2  supports unlimited precision arithmetic.\plain \f1\fs20   \plain \f1\fs20\cf2 It also allows you todefine and call macros\plain \f1\fs20 .  
+\par Normally dc reads from the standard input; if any command arguments  are  given  to  it, they  are filenames, 
+\par \plain \f1\fs20\cf1 and dc reads and executes the contents of the files before reading from standard input.  
+\par \plain \f1\fs20 All normal output is to standard output; all error output is to standard error.
+\par 
+\par \plain \f1\fs20\cf1 A reverse-polish calculator stores numbers on a stack\plain \f1\fs20 .  Entering a number pushes it  on  the  stack.   
+\par Arithmetic operations pop arguments off the stack and push the results.
+\par 
+\par To  enter  a  number  in  dc, type the digits (using upper case letters A through F as "digits" when working with  input bases greater than ten), with an optional decimal point.  Exponential notation is not supported.  To  enter a  negative  number,  begin the number with \lquote \lquote _\rquote \rquote .  \lquote \lquote -\rquote \rquote  cannot be used for this, as it is a binary operator for  subtraction instead.  To enter two numbers in succession, separate them with spaces or newlines.  These  have  no  meaning as commands.
+\par 
+\par OPTIONS
+\par        dc may be invoked with the following command-line options:
+\par 
+\par        -V --version
+\par               Print out the version of dc that is being run and a copyright notice, then exit.
+\par 
+\par        -h  --help 
+\par        Print  a  usage message briefly summarizing these command-line options and the bug-reporting address, then  exit.
+\par 
+\par \plain \f1\fs20\cf1        -e script  --expression=script
+\par \plain \f1\fs20               Add the commands in script to the set of commands to be run while processing the input.
+\par 
+\par \plain \f1\fs20\cf1        -f script-file  --file=script-file
+\par \plain \f1\fs20               Add the commands contained in the file script-file to the set of commands to be run while  processing  the  input.
+\par 
+\par        If  any  command-line parameters remain after processing the above, these parameters are interpreted as the names
+\par        of input files to be processed.  A file name of - refers to the standard input stream.  The standard  input  will
+\par        processed if no script files or expressions are specified.
+\par 
+\par Printing Commands
+\par \plain \f1\fs20\cf1        p      Prints  the  value  on  the  top of the stack, without altering the stack.  A newline is printed after the value.
+\par \plain \f1\fs20 
+\par        n      Prints the value on the top of the stack, popping it off, and does not print a newline after.
+\par 
+\par        P      Pops off the value on top of the stack.  If it it a string, it is simply printed without a  trailing  new-
+\par               line.   Otherwise  it is a number, and the integer portion of its absolute value is printed out as a "base
+\par               (UCHAR_MAX+1)" byte stream.  Assuming that (UCHAR_MAX+1) is 256 (as it is  on  most  machines  with  8-bit
+\par               bytes),  the  sequence  KSK0k1/_1Ss  [ls*]Sxd0>x  [256~Ssd0<x]dsxxsx[q]Sq[Lsd0>qaPlxx] dsxxsx0sqLqsxLxLK+k
+\par               could also accomplish this function.  (Much of the complexity of the above native-dc code is due to the  ~
+\par               computing  the  characters  backwards,  and  the desire to ensure that all registers wind up back in their
+\par               original states.)
+\par 
+\par        f      Prints the entire contents of the stack without altering anything.  This is a good command to use  if  you
+\par               are lost or want to figure out what the effect of some command has been.
+\par 
+\par Arithmetic
+\par        +      Pops  two  values  off the stack, adds them, and pushes the result.  The precision of the result is deter-
+\par               mined only by the values of the arguments, and is enough to be exact.
+\par 
+\par        -      Pops two values, subtracts the first one popped from the second one popped, and pushes the result.
+\par 
+\par        *      Pops two values, multiplies them, and pushes the result.  The number of  fraction  digits  in  the  result
+\par               depends on the current precision value and the number of fraction digits in the two arguments.
+\par 
+\par        /      Pops two values, divides the second one popped from the first one popped, and pushes the result.  The num-
+\par               ber of fraction digits is specified by the precision value.
+\par 
+\par        %      Pops two values, computes the remainder of the division that the / command would do, and pushes that.  The
+\par               value computed is the same as that computed by the sequence Sd dld/ Ld*- .
+\par 
+\par        ~      Pops  two  values, divides the second one popped from the first one popped.  The quotient is pushed first,
+\par               and the remainder is pushed next.  The number of fraction digits used in the division is specified by  the
+\par               precision  value.   (The sequence SdSn lnld/ LnLd% could also accomplish this function, with slightly dif-
+\par               ferent error checking.)
+\par 
+\par        ^      Pops two values and exponentiates, using the first value popped as the exponent and the second  popped  as
+\par               the  base.   The  fraction  part  of the exponent is ignored.  The precision value specifies the number of
+\par               fraction digits in the result.
+\par 
+\par        |      Pops three values and computes a modular exponentiation.  The first value popped is used as the  reduction
+\par               modulus; this value must be a non-zero number, and should be an integer.  The second popped is used as the
+\par               exponent; this value must be a non-negative number, and any fractional  part  of  this  exponent  will  be
+\par               ignored.   The  third  value popped is the base which gets exponentiated, which should be an integer.  For
+\par               small integers this is like the sequence Sm^Lm%, but, unlike ^, this command will  work  with  arbitrarily
+\par               large exponents.
+\par 
+\par        v      Pops  one  value,  computes its square root, and pushes that.  The precision value specifies the number of
+\par               fraction digits in the result.
+\par 
+\par        Most arithmetic operations are affected by the \lquote \lquote precision value\rquote \rquote , which you can set with the  k  command.   The
+\par        default  precision  value  is  zero, which means that all arithmetic except for addition and subtraction produces
+\par        integer results.
+\par 
+\par Stack Control
+\par        c      Clears the stack, rendering it empty.
+\par 
+\par        d      Duplicates the value on the top of the stack, pushing another copy  of  it.   Thus,  \lquote \lquote 4d*p\rquote \rquote   computes  4
+\par               squared and prints it.
+\par 
+\par        r      Reverses  the  order  of (swaps) the top two values on the stack.  (This can also be accomplished with the
+\par               sequence SaSbLaLb.)
+\par 
+\par Registers
+\par        dc provides at least 256 memory registers, each named by a single character.  You can store a number or a  string
+\par        in a register and retrieve it later.
+\par 
+\par        sr     Pop the value off the top of the stack and store it into register r.
+\par 
+\par        lr     Copy the value in register r and push it onto the stack.  This does not alter the contents of r.
+\par 
+\par        Each register also contains its own stack.  The current register value is the top of the register\rquote s stack.
+\par 
+\par        Sr     Pop  the  value  off  the  top of the (main) stack and push it onto the stack of register r.  The previous
+\par               value of the register becomes inaccessible.
+\par 
+\par        Lr     Pop the value off the top of register r\rquote s stack and push it onto the main stack.  The  previous  value  in
+\par               register r\rquote s stack, if any, is now accessible via the lr command.
+\par 
+\par Parameters
+\par        dc  has  three  parameters that control its operation: the precision, the input radix, and the output radix.  The
+\par        precision specifies the number of fraction digits to keep in the result of most arithmetic operations.  The input
+\par        radix  controls the interpretation of numbers typed in; all numbers typed in use this radix.  The output radix is
+\par        used for printing numbers.
+\par 
+\par        The input and output radices are separate parameters; you can make them unequal, which can be useful  or  confus-
+\par        ing.   The  input  radix must be between 2 and 16 inclusive.  The output radix must be at least 2.  The precision
+\par        must be zero or greater.  The precision is always measured in decimal digits, regardless of the current input  or
+\par        output radix.
+\par 
+\par        i      Pops the value off the top of the stack and uses it to set the input radix.
+\par 
+\par        o      Pops the value off the top of the stack and uses it to set the output radix.
+\par 
+\par        k      Pops the value off the top of the stack and uses it to set the precision.
+\par 
+\par        I      Pushes the current input radix on the stack.
+\par 
+\par        O      Pushes the current output radix on the stack.
+\par 
+\par        K      Pushes the current precision on the stack.
+\par 
+\par Strings
+\par        dc has a limited ability to operate on strings as well as on numbers; the only things you can do with strings are
+\par        print them and execute them as macros (which means that the contents of the string are processed as dc commands).
+\par        All  registers and the stack can hold strings, and dc always knows whether any given object is a string or a num-
+\par        ber.  Some commands such as arithmetic operations demand numbers as arguments and print errors if given  strings.
+\par        Other  commands  can  accept either a number or a string; for example, the p command can accept either and prints
+\par        the object according to its type.
+\par 
+\par        [characters]
+\par               Makes a string containing characters (contained between balanced [ and ] characters), and pushes it on the
+\par               stack.  For example, [foo]P prints the characters foo (with no newline).
+\par 
+\par        a      The  top-of-stack is popped.  If it was a number, then the low-order byte of this number is converted into
+\par               a string and pushed onto the stack.  Otherwise the top-of-stack was a string, and the first  character  of
+\par               that string is pushed back.
+\par 
+\par        x      Pops a value off the stack and executes it as a macro.  Normally it should be a string; if it is a number,
+\par               it is simply pushed back onto the stack.  For example, [1p]x executes the macro 1p which pushes 1  on  the
+\par               stack and prints 1 on a separate line.
+\par 
+\par        Macros are most often stored in registers; [1p]sa stores a macro to print 1 into register a, and lax invokes this
+\par        macro.
+\par 
+\par        >r     Pops two values off the stack and compares them assuming they are numbers, executing the contents of  reg-
+\par               ister r as a macro if the original top-of-stack is greater.  Thus, 1 2>a will invoke register a\rquote s contents
+\par               and 2 1>a will not.
+\par 
+\par        !>r    Similar but invokes the macro if the original top-of-stack is not greater than (less  than  or  equal  to)
+\par               what was the second-to-top.
+\par 
+\par        <r     Similar but invokes the macro if the original top-of-stack is less.
+\par 
+\par        !<r    Similar  but  invokes  the  macro if the original top-of-stack is not less than (greater than or equal to)
+\par               what was the second-to-top.
+\par 
+\par        =r     Similar but invokes the macro if the two numbers popped are equal.
+\par 
+\par        !=r    Similar but invokes the macro if the two numbers popped are not equal.
+\par 
+\par        ?      Reads a line from the terminal and executes it.  This command allows a macro to  request  input  from  the
+\par               user.
+\par 
+\par        q      exits  from  a  macro  and  also from the macro which invoked it.  If called from the top level, or from a
+\par               macro which was called directly from the top level, the q command will cause dc to exit.
+\par 
+\par        Q      Pops a value off the stack and uses it as a count of levels of macro execution to  be  exited.   Thus,  3Q
+\par               exits three levels.  The Q command will never cause dc to exit.
+\par 
+\par Status Inquiry
+\par        Z      Pops  a  value  off the stack, calculates the number of digits it has (or number of characters, if it is a
+\par               string) and pushes that number.  The digit count for a number does not include any leading zeros, even  if
+\par               those appear to the right of the radix point.
+\par 
+\par        X      Pops  a value off the stack, calculates the number of fraction digits it has, and pushes that number.  For
+\par               a string, the value pushed is 0.
+\par 
+\par        z      Pushes the current stack depth: the number of objects on the stack before the execution of the z  command.
+\par 
+\par Miscellaneous
+\par        !      Will  run the rest of the line as a system command.  Note that parsing of the !<, !=, and !> commands take
+\par               precedence, so if you want to run a command starting with <, =, or > you will need to add  a  space  after
+\par               the !.
+\par 
+\par        #      Will interpret the rest of the line as a comment.
+\par 
+\par        :r     Will  pop the top two values off of the stack.  The old second-to-top value will be stored in the array r,
+\par               indexed by the old top-of-stack value.
+\par 
+\par        ;r     Pops the top-of-stack and uses it as an index into the array r.  The selected value is  then  pushed  onto
+\par               the stack.
+\par 
+\par        Note that each stacked instance of a register has its own array associated with it.  Thus 1 0:a 0Sa 2 0:a La 0;ap
+\par        will print 1, because the 2 was stored in an instance of 0:a that was later popped.
+\par 
+\par BUGS
+\par        Email bug reports to bug-dc@gnu.org.
+\par 
+\par GNU Project                       2006-06-11                             dc(1)\par}

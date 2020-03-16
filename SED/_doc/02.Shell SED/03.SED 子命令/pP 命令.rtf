@@ -1,0 +1,58 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1058971181\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1721290469}
+{\list\listtemplateid1994318976\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1815411332}
+{\list\listtemplateid1851898523\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1090589963}
+}
+{\*\listoverridetable
+{\listoverride\listid1721290469\listoverridecount0\ls1}
+{\listoverride\listid1815411332\listoverridecount0\ls2}
+{\listoverride\listid1090589963\listoverridecount0\ls3}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 p/P \uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf1        p      Print the current pattern space.
+\par \plain \f1\fs20        P      Print up to the first embedded newline of the current pattern space.
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 p\uc2\u25171 \'b4\'f2\u21360 \'d3\'a1\u24403 \'b5\'b1\u21069 \'c7\'b0\u27169 \'c4\'a3\u24335 \'ca\'bd\u31354 \'bf\'d5\u38388 \'bc\'e4\u20869 \'c4\'da\u23481 \'c8\'dd\u65292 \'a3\'ac\u36861 \'d7\'b7\u21152 \'bc\'d3\u21040 \'b5\'bd\u40664 \'c4\'ac\u35748 \'c8\'cf\u36755 \'ca\'e4\u20986 \'b3\'f6\u20043 \'d6\'ae\u21518 \'ba\'f3\u12290 \'a1\'a3\uc1
+\par P\uc2\u25171 \'b4\'f2\u21360 \'d3\'a1\u24403 \'b5\'b1\u21069 \'c7\'b0\u27169 \'c4\'a3\u24335 \'ca\'bd\u31354 \'bf\'d5\u38388 \'bc\'e4\u24320 \'bf\'aa\u31471 \'b6\'cb\u33267 \'d6\'c1\\n\u30340 \'b5\'c4\u20869 \'c4\'da\u23481 \'c8\'dd\u65292 \'a3\'ac\u24182 \'b2\'a2\u36861 \'d7\'b7\u21152 \'bc\'d3\u21040 \'b5\'bd\u40664 \'c4\'ac\u35748 \'c8\'cf\u36755 \'ca\'e4\u20986 \'b3\'f6\u20043 \'d6\'ae\u21069 \'c7\'b0\u12290 \'a1\'a3\uc1
+\par 
+\par \plain \f1\fs20\cf4 $cat chen.t 
+\par chenguang01
+\par chenguang02
+\par chenguang03
+\par \plain \f1\fs20\cf1 
+\par $sed '/chen/p'  chen.t 
+\par \plain \f1\fs20\cf4 chenguang01
+\par chenguang01
+\par chenguang02
+\par chenguang02
+\par chenguang03
+\par chenguang03
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20 sed\uc2\u24182 \'b2\'a2\u19981 \'b2\'bb\u23545 \'b6\'d4\u27599 \'c3\'bf\u34892 \'d0\'d0\u26411 \'c4\'a9\u23614 \'ce\'b2\\n\u36827 \'bd\'f8\u34892 \'d0\'d0\u22788 \'b4\'a6\u29702 \'c0\'ed\u65292 \'a3\'ac\u20294 \'b5\'ab\u26159 \'ca\'c7\u23545 \'b6\'d4N\u21629 \'c3\'fc\u20196 \'c1\'ee\u36861 \'d7\'b7\u21152 \'bc\'d3\u30340 \'b5\'c4\u34892 \'d0\'d0\u38388 \'bc\'e4\\n\u36827 \'bd\'f8\u34892 \'d0\'d0\u22788 \'b4\'a6\u29702 \'c0\'ed\u65292 \'a3\'ac\u22240 \'d2\'f2\u20026 \'ce\'aa\u27492 \'b4\'cb\u26102 \'ca\'b1sed\u23558 \'bd\'ab\u20004 \'c1\'bd\u34892 \'d0\'d0\u30475 \'bf\'b4\u20570 \'d7\'f6\u19968 \'d2\'bb\u34892 \'d0\'d0\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 $sed '/chen/\{N;P\}'  chen.t 
+\par \plain \f1\fs20 chenguang01
+\par chenguang01
+\par chenguang02
+\par chenguang03
+\par 
+\par \plain \f1\fs20\cf1 $sed '/chen/\{N;p\}'  chen.t  
+\par \plain \f1\fs20 chenguang01
+\par chenguang02
+\par chenguang01
+\par chenguang02
+\par chenguang03
+\par 
+\par #\uc2\u24403 \'b5\'b1\u21069 \'c7\'b0\u27169 \'c4\'a3\u24335 \'ca\'bd\u31354 \'bf\'d5\u38388 \'bc\'e4\u20013 \'d6\'d0\u20869 \'c4\'da\u23481 \'c8\'dd\u26159 \'ca\'c7\uc1
+\par chenguang01
+\par chenguang02
+\par 
+\par \plain \f1\fs20\cf3 P\uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\u21482 \'d6\'bb\u25171 \'b4\'f2\u21360 \'d3\'a1\u31532 \'b5\'da\u19968 \'d2\'bb\u34892 \'d0\'d0\u65292 \'a3\'ac\u22240 \'d2\'f2\u20026 \'ce\'aa\u26368 \'d7\'ee\u21518 \'ba\'f3\u26159 \'ca\'c7\u25442 \'bb\'bb\u34892 \'d0\'d0\u31526 \'b7\'fb\uc1
+\par p\uc2\u25171 \'b4\'f2\u21360 \'d3\'a1\u20840 \'c8\'ab\u37096 \'b2\'bf\uc1\par}

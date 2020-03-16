@@ -1,0 +1,239 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil Arial;}{\f2\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue128;\red128\green0\blue0;\red0\green128\blue0;\red0\green128\blue128;\red0\green0\blue0;\red79\green129\blue189;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1649094587
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\b\i\fs28}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid234151596}
+{\list\listtemplateid1643989854\listsimple1
+{\listlevel\levelnfc0\leveljc0\li1380\fi-420\jclisttab\tx1380\levelstartat1{\leveltext\'02\'00);}{\levelnumbers\'01;}\f3\b\i\fs24\cf7}
+\listid1472689370}
+}
+{\*\listoverridetable
+{\listoverride\listid234151596\listoverridecount0\ls1}
+{\listoverride\listid1472689370\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f0\b\fs24\cf6 umask
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f2\fs20 umask: 
+\par \plain \f2\fs20\cf1 umask [-p] [-S] [mode]
+\par \plain \f2\fs20 
+\par \plain \f2\fs20\cf1 The user file-creation mask is set to MODE.\plain \f2\fs20   
+\par If MODE is omitted, or if `-S' is supplied, the current value of the mask is printed. 
+\par The `-S' option makes the output symbolic; otherwise an octal number is output.
+\par If `-p' is supplied, and MODE is omitted, the output is in a form that may be used as input.  
+\par If MODE begins with a digit, it is interpreted as an octal number, otherwise it is a symbolic mode string like that accepted by chmod(1).
+\par \plain \f2\fs20\cf5 ------------------------------------------------------------------------------------------------------------------------------------------
+\par \plain \f2\fs20 NAME
+\par \plain \f2\fs20\cf1        umask - get or set the file mode creation mask
+\par \plain \f2\fs20 SYNOPSIS
+\par \plain \f2\fs20\cf1        umask [-S][mask]
+\par \plain \f2\fs20 DESCRIPTION
+\par        The  umask  utility shall set the file mode creation mask of the current shell execution environment (see Shell Execution
+\par        Environment ) to the value specified by the mask operand. This mask shall affect the initial value of the file permission
+\par        bits  of  subsequently created files. If umask is called in a subshell or separate utility execution environment, such as
+\par        one of the following:
+\par \plain \f2\fs20\cf1 
+\par               (umask 002)
+\par               nohup umask ...
+\par               find . -exec umask ... \\;
+\par \plain \f2\fs20 
+\par        it shall not affect the file mode creation mask of the caller's environment.
+\par 
+\par        If the mask operand is not specified, the umask utility shall write to standard output the value of the invoking process'
+\par        file mode creation mask.
+\par 
+\par OPTIONS
+\par        The  umask  utility  shall  conform  to the Base Definitions volume of IEEE Std 1003.1-2001, Section 12.2, Utility Syntax
+\par        Guidelines.
+\par 
+\par        The following option shall be supported:
+\par 
+\par        -S     Produce symbolic output.
+\par 
+\par 
+\par        The default output style is unspecified, but shall be recognized on a subsequent invocation of umask on the  same  system
+\par        as a mask operand to restore the previous file mode creation mask.
+\par 
+\par OPERANDS
+\par        The following operand shall be supported:
+\par 
+\par        mask   A  string  specifying  the  new file mode creation mask. The string is treated in the same way as the mode operand
+\par               described in the EXTENDED DESCRIPTION section for chmod.
+\par 
+\par        For a symbolic_mode value, the new value of the file mode creation mask shall be the logical complement of the file  per-
+\par        mission bits portion of the file mode specified by the symbolic_mode string.
+\par 
+\par        In  a  symbolic_mode  value,  the permissions op characters '+' and '-' shall be interpreted relative to the current file
+\par        mode creation mask; '+' shall cause the bits for the indicated permissions to be cleared in the mask; '-' shall cause the
+\par        bits for the indicated permissions to be set in the mask.
+\par 
+\par        The interpretation of mode values that specify file mode bits other than the file permission bits is unspecified.
+\par 
+\par        In the octal integer form of mode, the specified bits are set in the file mode creation mask.
+\par 
+\par        The file mode creation mask shall be set to the resulting numeric value.
+\par 
+\par        The  default  output of a prior invocation of umask on the same system with no operand also shall be recognized as a mask
+\par        operand.
+\par 
+\par 
+\par STDIN
+\par        Not used.
+\par 
+\par INPUT FILES
+\par        None.
+\par 
+\par ENVIRONMENT VARIABLES
+\par        The following environment variables shall affect the execution of umask:
+\par 
+\par        LANG   Provide a default value for the internationalization variables that are unset or null. (See the  Base  Definitions
+\par               volume  of  IEEE Std 1003.1-2001, Section 8.2, Internationalization Variables for the precedence of international-
+\par               ization variables used to determine the values of locale categories.)
+\par 
+\par        LC_ALL If set to a non-empty string value, override the values of all the other internationalization variables.
+\par 
+\par        LC_CTYPE
+\par               Determine the locale for the interpretation of sequences of bytes of text data as characters (for example, single-
+\par               byte as opposed to multi-byte characters in arguments).
+\par 
+\par        LC_MESSAGES
+\par               Determine the locale that should be used to affect the format and contents of diagnostic messages written to stan-
+\par               dard error.
+\par 
+\par        NLSPATH
+\par               Determine the location of message catalogs for the processing of LC_MESSAGES .
+\par 
+\par 
+\par ASYNCHRONOUS EVENTS
+\par        Default.
+\par 
+\par STDOUT
+\par        When the mask operand is not specified, the umask utility shall write a message to standard output that can later be used
+\par        as a umask mask operand.
+\par 
+\par        If -S is specified, the message shall be in the following format:
+\par 
+\par 
+\par               "u=%s,g=%s,o=%s\\n", <owner permissions>, <group permissions>,
+\par                   <other permissions>
+\par 
+\par        where  the three values shall be combinations of letters from the set \{ r, w, x\}; the presence of a letter shall indicate
+\par        that the corresponding bit is clear in the file mode creation mask.
+\par 
+\par        If a mask operand is specified, there shall be no output written to standard output.
+\par 
+\par STDERR
+\par        The standard error shall be used only for diagnostic messages.
+\par 
+\par OUTPUT FILES
+\par        None.
+\par 
+\par EXTENDED DESCRIPTION
+\par        None.
+\par 
+\par EXIT STATUS
+\par        The following exit values shall be returned:
+\par 
+\par         0     The file mode creation mask was successfully changed, or no mask operand was supplied.
+\par 
+\par        >0     An error occurred.
+\par 
+\par 
+\par CONSEQUENCES OF ERRORS
+\par        Default.
+\par 
+\par        The following sections are informative.
+\par 
+\par APPLICATION USAGE
+\par        Since umask affects the current shell execution environment, it is generally provided as a shell regular built-in.
+\par 
+\par        In contrast to the negative permission logic provided by the file mode creation mask and the octal  number  form  of  the
+\par        mask argument, the symbolic form of the mask argument specifies those permissions that are left alone.
+\par 
+\par EXAMPLES
+\par        Either of the commands:
+\par 
+\par 
+\par               umask a=rx,ug+w
+\par 
+\par 
+\par               umask 002
+\par 
+\par        sets the mode mask so that subsequently created files have their S_IWOTH bit cleared.
+\par 
+\par        After  setting  the  mode  mask with either of the above commands, the umask command can be used to write out the current
+\par        value of the mode mask:
+\par 
+\par 
+\par               $ umask
+\par               0002
+\par 
+\par        (The output format is unspecified, but historical implementations use the octal integer mode format.)
+\par 
+\par 
+\par               $ umask -S
+\par               u=rwx,g=rwx,o=rx
+\par 
+\par        Either of these outputs can be used as the mask operand to a subsequent invocation of the umask utility.
+\par 
+\par        Assuming the mode mask is set as above, the command:
+\par 
+\par 
+\par               umask g-w
+\par 
+\par        sets the mode mask so that subsequently created files have their S_IWGRP and S_IWOTH bits cleared.
+\par 
+\par        The command:
+\par 
+\par 
+\par               umask -- -w
+\par 
+\par        sets the mode mask so that subsequently created files have all their write bits cleared. Note that mask operands -r,  -w,
+\par        -x or anything beginning with a hyphen, must be preceded by "--" to keep it from being interpreted as an option.
+\par 
+\par RATIONALE
+\par        Since  umask affects the current shell execution environment, it is generally provided as a shell regular built-in. If it
+\par        is called in a subshell or separate utility execution environment, such as one of the following:
+\par 
+\par 
+\par               (umask 002)
+\par               nohup umask ...
+\par               find . -exec umask ... \\;
+\par 
+\par        it does not affect the file mode creation mask of the environment of the caller.
+\par 
+\par        The description of the historical utility was modified to allow it to use the symbolic modes of chmod. The -s option used
+\par        in  early  proposals  was  changed  to -S because -s could be confused with a symbolic_mode form of mask referring to the
+\par        S_ISUID and S_ISGID bits.
+\par 
+\par        The default output style is implementation-defined to permit implementors to provide migration to the new symbolic  style
+\par        at  the time most appropriate to their users. A -o flag to force octal mode output was omitted because the octal mode may
+\par        not be sufficient to specify all of the information that may be present in the file mode creation mask when  more  secure
+\par        file access permission checks are implemented.
+\par 
+\par        It  has  been  suggested that trusted systems developers might appreciate ameliorating the requirement that the mode mask
+\par        "affects" the file access permissions, since it seems access control lists might replace the mode mask  to  some  degree.
+\par        The  wording  has been changed to say that it affects the file permission bits, and it leaves the details of the behavior
+\par        of  how  they  affect  the  file  access  permissions  to  the  description  in   the   System   Interfaces   volume   of
+\par        IEEE Std 1003.1-2001.
+\par 
+\par FUTURE DIRECTIONS
+\par        None.
+\par 
+\par SEE ALSO
+\par        Shell Command Language, chmod, the System Interfaces volume of IEEE Std 1003.1-2001, umask()
+\par 
+\par COPYRIGHT
+\par        Portions  of  this  text are reprinted and reproduced in electronic form from IEEE Std 1003.1, 2003 Edition, Standard for
+\par        Information Technology -- Portable Operating System Interface (POSIX), The Open Group Base Specifications Issue 6,  Copy-
+\par        right (C) 2001-2003 by the Institute of Electrical and Electronics Engineers, Inc and The Open Group. In the event of any
+\par        discrepancy between this version and the original IEEE and The Open Group Standard, the original IEEE and The Open  Group
+\par        Standard   is   the   referee   document.   The   original   Standard   can   be   obtained  online  at  http://www.open-
+\par        group.org/unix/online.html .\par}

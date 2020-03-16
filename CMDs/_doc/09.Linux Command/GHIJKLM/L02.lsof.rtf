@@ -1,0 +1,1788 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red218\green239\blue239;}{\*\listtable{\list\listtemplateid513174781\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid18028790}
+{\list\listtemplateid1509070544\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid369669653}
+{\list\listtemplateid1220191339\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid734848540}
+{\list\listtemplateid378220686\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid842641099}
+}
+{\*\listoverridetable
+{\listoverride\listid18028790\listoverridecount0\ls1}
+{\listoverride\listid369669653\listoverridecount0\ls2}
+{\listoverride\listid734848540\listoverridecount0\ls3}
+{\listoverride\listid842641099\listoverridecount0\ls4}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 L02.lsof
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 LSOF(8)                                                                                                                                    LSOF(8)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        lsof - list open files
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        lsof  [  -?abChlnNOPRstUvVX ] [ -A A ] [ -c c ] [ +c c ] [ +|-d d ] [ +|-D D ] [ +|-f [cfgGn] ] [ -F [f] ] [ -g [s] ] [ -i [i] ] [ -k k ] [
+\par        +|-L [l] ] [ +|-m m ] [ +|-M ] [ -o [o] ] [ -p s ] [ +|-r [t] ] [ -S [t] ] [ -T [t] ] [ -u s ] [ +|-w ] [ -x [fl] ] [  -z  [z]  ]  [  --  ]
+\par        [names]
+\par 
+\par DESCRIPTION
+\par        Lsof revision 4.72 lists information about files opened by processes for the following UNIX dialects:
+\par 
+\par             AIX 4.3.2, 5L, and 5.[12]
+\par             Apple Darwin 6.x and 7.x for Power Macintosh systems
+\par             BSDI BSD/OS 4.3.1 for x86-based systems
+\par             DEC OSF/1, Digital UNIX, Tru64 UNIX 4.0, and 5.[01]
+\par             FreeBSD 4.[2-9], 4.10 and 5.[012] for x86-based systems
+\par             FreeBSD 5.[012] for Alpha, AMD64 and Sparc64 based systems
+\par             HP-UX 11.00 and 11.11
+\par             Linux 2.1.72 and above for x86-based systems
+\par             NetBSD 1.[456] and 2.0 for Alpha, x86, and SPARC-based systems
+\par             NEXTSTEP 3.[13] for NEXTSTEP architectures
+\par             OpenBSD 2.[89] and 3.[012345] for x86-based systems
+\par             OPENSTEP 4.x
+\par             Caldera OpenUNIX 8
+\par             SCO OpenServer Release 5.0.[46] for x86-based systems
+\par             SCO|Caldera UnixWare 7.1.[134] for x86-based systems
+\par             Solaris 2.6, 8, 9 and 10
+\par 
+\par        (See the DISTRIBUTION section of this manual page for information on how to obtain the latest lsof revision.)
+\par 
+\par        An  open file may be a regular file, a directory, a block special file, a character special file, an executing text reference, a library, a
+\par        stream or a network file (Internet socket, NFS file or UNIX domain socket.)  A specific file or all the files  in  a  file  system  may  be
+\par        selected by path.
+\par 
+\par        Instead  of  a  formatted  display, lsof will produce output that can be parsed by other programs.  See the -F, option description, and the
+\par        OUTPUT FOR OTHER PROGRAMS section for more information.
+\par 
+\par        In addition to producing a single output list, lsof will run in repeat mode.  In repeat mode it will produce output, delay, then repeat the
+\par        output operation until stopped with an interrupt or quit signal.  See the +|-r [t] option description for more information.
+\par 
+\par OPTIONS
+\par        In the absence of any options, lsof lists all open files belonging to all active processes.
+\par 
+\par        If  any  list request option is specified, other list requests must be specifically requested - e.g., if -U is specified for the listing of
+\par        UNIX socket files, NFS files won't be listed unless -N is also specified; or if a user list is specified with the -u  option,  UNIX  domain
+\par        socket files, belonging to users not in the list, won't be listed unless the -U option is also specified.
+\par 
+\par        Normally  list  options that are specifically stated are ORed - i.e., specifying the -i option without an address and the -ufoo option pro-
+\par        duces a listing of all network files OR files belonging to processes owned by user ''foo''.  One exception is the '^' (negated) login  name
+\par        or user ID (UID) specified with the -u option.  Since it is an exclusion, it is applied without ORing or ANDing and takes effect before any
+\par        other selection criteria are applied.
+\par 
+\par        The -a option may be used to AND the selections.  For example, specifying -a, -U, and -ufoo produces a listing of only  UNIX  socket  files
+\par        that belong to processes owned by user ''foo''.
+\par 
+\par        Caution:  the  -a  option  causes  all  list selection options to be ANDed; it can't be used to cause ANDing of selected pairs of selection
+\par        options by placing it between them, even though its placement there is acceptable.  Wherever -a is placed, it  causes  the  ANDing  of  all
+\par        selection options.
+\par 
+\par        Items  of  the same selection set - command names, file descriptors, network addresses, process identifiers, user identifiers, zone names -
+\par        are joined in a single ORed set and applied  before  the  result  participates  in  ANDing.   Thus,  for  example,  specifying  -i@aaa.bbb,
+\par        -i@ccc.ddd,  -a, and -ufff,ggg will select the listing of files that belong to either login ''fff'' OR ''ggg'' AND have network connections
+\par        to either host aaa.bbb OR ccc.ddd.
+\par 
+\par        Options may be grouped together following a single prefix -- e.g., the option set ''-a -b -C'' may be stated as -abC.  However, since  val-
+\par        ues  are optional following +|-f, -F, -g, -i, +|-L, -o, +|-r, -S, -T, -x and -z.  when you have no values for them be careful that the fol-
+\par        lowing character isn't ambiguous.  For example, -Fn might represent the -F and -n options, or it might represent  the  n  field  identifier
+\par        character  following  the  -F  option.  When ambiguity is possible, start a new option with a '-' character - e.g., ''-F -n''.  If the next
+\par        option is a file name, follow the possibly ambiguous option with ''--'' - e.g., ''-F -- name''.
+\par 
+\par        Either the '+' or the '-' prefix may be applied to a group of options.  Options that don't take on separate  meanings  for  each  prefix  -
+\par        e.g.,  -i  - may be grouped under either prefix.  Thus, for example, ''+M -i'' may be stated as ''+Mi'' and the group means the same as the
+\par        separate options.  Be careful of prefix grouping when one or more options in the group does take on separate meanings under different  pre-
+\par        fixes - e.g., +|-M; ''-iM'' is not the same request as ''-i +M''.  When in doubt, use separate options with appropriate prefixes.
+\par 
+\par        -? -h    These  two equivalent options select a usage (help) output list.  Lsof displays a shortened form of this output when it detects an
+\par                 error in the options supplied to it, after it has displayed messages explaining each error.  (Escape the  '?'  character  as  your
+\par                 shell requires.)
+\par 
+\par        -a       This option causes list selection options to be ANDed, as described above.
+\par 
+\par        -A A     This  option  is  available on systems configured for AFS whose AFS kernel code is implemented via dynamic modules.  It allows the
+\par                 lsof user to specify A as an alternate name list file where the kernel addresses of the dynamic modules might be found.   See  the
+\par                 lsof  FAQ  (The  FAQ  section gives its location.)  for more information about dynamic modules, their symbols, and how they affect
+\par                 lsof.
+\par 
+\par        -b       This option causes lsof to avoid kernel functions that might block - lstat(2), readlink(2), and stat(2).
+\par 
+\par                 See the BLOCKS AND TIMEOUTS and AVOIDING KERNEL BLOCKS sections for information on using this option.
+\par 
+\par        -c c     This option selects the listing of files for processes executing the command that begins with the characters of c.  Multiple  com-
+\par                 mands may be specified, using multiple -c options.  They are joined in a single ORed set before participating in AND option selec-
+\par                 tion.
+\par 
+\par                 If c begins and ends with a slash ('/'), the characters between the  slashes  is  interpreted  as  a  regular  expression.   Shell
+\par                 meta-characters  in  the regular expression must be quoted to prevent their interpretation by the shell.  The closing slash may be
+\par                 followed by these modifiers:
+\par 
+\par                      b    the regular expression is a basic one.
+\par                      i    ignore the case of letters.
+\par                      x    the regular expression is an extended one
+\par                           (default).
+\par 
+\par                 See the lsof FAQ (The FAQ section gives its location.)  for more information on basic and extended regular expressions.
+\par 
+\par                 The simple command specification is tested first.  If that test fails, the command regular expression is applied.  If  the  simple
+\par                 command  test  succeeds,  the command regular expression test isn't made.  This may result in ''no command found for regex:'' mes-
+\par                 sages when lsof's -V option is specified.
+\par 
+\par        +c w     This option defines the maximum number of initial characters of the name of the UNIX command  associated  with  a  process  to  be
+\par                 printed in the COMMAND column.  (The default is nine.)
+\par 
+\par                 If w is zero ('0'), all command characters will be printed.
+\par 
+\par                 If w is less than the length of the column title, ''COMMAND'', it will be raised to that length.
+\par 
+\par        -C       This  option  disables  the reporting of any path name components from the kernel's name cache.  See the KERNEL NAME CACHE section
+\par                 for more information.
+\par 
+\par        +d s     This option causes lsof to search for all open instances of directory s and the files and  directories  it  contains  at  its  top
+\par                 level.   This  option  does  NOT  descend  the directory tree, rooted at s.  The +D D option may be used to request a full-descent
+\par                 directory tree search, rooted at directory D.
+\par 
+\par                 Processing of the +d option does not follow symbolic links within s unless the -x or -x  l option is also specified.  Nor does  it
+\par                 search for open files on file system mount points on subdirectories of s unless the -x or -x  f option is also specified.
+\par 
+\par                 Note:  the  authority of the user of this option limits it to searching for files that the user has permission to examine with the
+\par                 system stat(2) function.
+\par 
+\par        -d s     This option specifies a list of file descriptors (FDs) to exclude from or include in the output listing.  The file descriptors are
+\par                 specified in the comma-separated set s - e.g., ''cwd,1,3'', ''^6,^2''.  (There should be no spaces in the set.)
+\par 
+\par                 The  list  is  an  exclusion  list if all entries of the set begin with '^'.  It is an inclusion list if no entry begins with '^'.
+\par                 Mixed lists are not permitted.
+\par 
+\par                 A file descriptor number range may be in the set as long as neither member is empty, both members are numbers, and the ending mem-
+\par                 ber  is larger than the starting one - e.g., ''0-7'' or ''3-10''.  Ranges may be specified for exclusion if they have the '^' pre-
+\par                 fix - e.g., ''^0-7'' excludes all file descriptors 0 through 7.
+\par 
+\par                 Multiple file descriptor numbers are joined in a single ORed set before participating in AND option selection.
+\par 
+\par                 When there are exclusion and inclusion members in the set, lsof reports them as errors and exits with a non-zero return code.
+\par 
+\par                 See the description of File Descriptor (FD) output values in the OUTPUT section for more information on file descriptor names.
+\par 
+\par        +D D     This option causes lsof to search for all open instances of directory D and all the files and directories it contains to its  com-
+\par                 plete depth.
+\par 
+\par                 Processing  of the +D option does not follow symbolic links within D unless the -x or -x  l option is also specified.  Nor does it
+\par                 search for open files on file system mount points on subdirectories of D unless the -x or -x  f option is also specified.
+\par 
+\par                 Note: the authority of the user of this option limits it to searching for files that the user has permission to examine  with  the
+\par                 system stat(2) function.
+\par 
+\par                 Further  note: lsof may process this option slowly and require a large amount of dynamic memory to do it.  This is because it must
+\par                 descend the entire directory tree, rooted at D, calling stat(2) for each file and directory, building a list of all the  files  it
+\par                 finds,  and searching that list for a match with every open file.  When directory D is large, these steps can take a long time, so
+\par                 use this option prudently.
+\par 
+\par        -D D     This option directs lsof's use of the device cache file.  The use of this option is sometimes restricted.  See  the  DEVICE  CACHE
+\par                 FILE section and the sections that follow it for more information on this option.
+\par 
+\par                 -D  must  be  followed by a function letter; the function letter may optionally be followed by a path name.  Lsof recognizes these
+\par                 function letters:
+\par 
+\par                      ? - report device cache file paths
+\par                      b - build the device cache file
+\par                      i - ignore the device cache file
+\par                      r - read the device cache file
+\par                      u - read and update the device cache file
+\par 
+\par                 The b, r, and u functions, accompanied by a path name, are sometimes restricted.  When these functions are restricted,  they  will
+\par                 not  appear  in  the description of the -D option that accompanies -h or -?  option output.  See the DEVICE CACHE FILE section and
+\par                 the sections that follow it for more information on these functions and when they're restricted.
+\par 
+\par                 The ?  function reports the read-only and write paths that lsof can use for the device cache file, the names  of  any  environment
+\par                 variables  whose  values  lsof  will examine when forming the device cache file path, and the format for the personal device cache
+\par                 file path.  (Escape the '?' character as your shell requires.)
+\par 
+\par                 When available, the b, r, and u functions may be followed by the device cache file's path.  The standard default is .lsof_hostname
+\par                 in  the  home directory of the real user ID that executes lsof, but this could have been changed when lsof was configured and com-
+\par                 piled.  (The output of the -h and -?  options show the current default prefix - e.g., ''.lsof''.)  The suffix,  hostname,  is  the
+\par                 first component of the host's name returned by gethostname(2).
+\par 
+\par                 When available, the b function directs lsof to build a new device cache file at the default or specified path.
+\par 
+\par                 The  i  function directs lsof to ignore the default device cache file and obtain its information about devices via direct calls to
+\par                 the kernel.
+\par 
+\par                 The r function directs lsof to read the device cache at the default or specified path, but prevents it from creating a new  device
+\par                 cache  file  when  none  exists or the existing one is improperly structured.  The r function, when specified without a path name,
+\par                 prevents lsof from updating an incorrect or outdated device cache file, or creating a new one in its place.   The  r  function  is
+\par                 always available when it is specified without a path name argument; it may be restricted by the permissions of the lsof process.
+\par 
+\par                 When  available,  the  u function directs lsof to read the device cache file at the default or specified path, if possible, and to
+\par                 rebuild it, if necessary.  This is the default device cache file function when no -D option has been specified.
+\par 
+\par        +|-f [cfgGn]
+\par                 f by itself clarifies how path name arguments are to be interpreted.  When followed by c, f, g, G, or  n  in  any  combination  it
+\par                 specifies that the listing of kernel file structure information is to be enabled ('+') or inhibited ('-').
+\par 
+\par                 Normally a path name argument is taken to be a file system name if it matches a mounted-on directory name reported by mount(8), or
+\par                 if it represents a block device, named in the mount output and associated with a mounted directory name.  When  +f  is  specified,
+\par                 all  path  name  arguments  will be taken to be file system names, and lsof will complain if any are not.  This can be useful, for
+\par                 example, when the file system name (mounted-on device) isn't a block device.  This happens for some CD-ROM file systems.
+\par 
+\par                 When -f is specified by itself, all path name arguments will be taken to be simple files.  Thus,  for  example,  the  ''-f --  /''
+\par                 arguments direct lsof to search for open files with a '/' path name, not all open files in the '/' (root) file system.
+\par 
+\par                 Be  careful  to  make  sure +f and -f are properly terminated and aren't followed by a character (e.g., of the file or file system
+\par                 name) that might be taken as a parameter.  For example, use ''--'' after +f and -f as in these examples.
+\par 
+\par                      $ lsof +f -- /file/system/name
+\par                      $ lsof -f -- /file/name
+\par 
+\par                 The listing of information from kernel file structures, requested with the +f [cfgGn] option form, is normally inhibited,  and  is
+\par                 not  available  for  some dialects - e.g., /proc-based Linux.  When the prefix to f is a plus sign ('+'), these characters request
+\par                 file structure information:
+\par 
+\par                      c    file structure use count
+\par                      f    file structure address
+\par                      g    file flag abbreviations
+\par                      G    file flags in hexadecimal
+\par                      n    file structure node address
+\par 
+\par                 When the prefix is minus ('-') the same characters disable the listing of the indicated values.
+\par 
+\par                 File structure addresses, use counts, flags, and node addresses may be used to detect more readily identical  files  inherited  by
+\par                 child processes and identical files in use by different processes.  Lsof column output can be sorted by output columns holding the
+\par                 values and listed to identify identical file use, or lsof field output can be parsed by an AWK or Perl post-filter script, or by a
+\par                 C program.
+\par 
+\par        -F f     This option specifies a character list, f, that selects the fields to be output for processing by another program, and the charac-
+\par                 ter that terminates each output field.  Each field to be output is specified with a single character in f.  The  field  terminator
+\par                 defaults to NL, but may be changed to NUL (000).  See the OUTPUT FOR OTHER PROGRAMS section for a description of the field identi-
+\par                 fication characters and the field output process.
+\par 
+\par                 When the field selection character list is empty, all standard fields are selected (except the raw device field and zone field for
+\par                 compatibility reasons) and the NL field terminator is used.
+\par 
+\par                 When  the field selection character list contains only a zero ('0'), all fields are selected (except the raw device field for com-
+\par                 patibility reasons) and the NUL terminator character is used.
+\par 
+\par                 Other combinations of fields and their associated field terminator character must be set with explicit entries in f, as  described
+\par                 in the OUTPUT FOR OTHER PROGRAMS section.
+\par 
+\par                 When  a field selection character identifies an item lsof does not normally list - e.g., PPID, selected with -R - specification of
+\par                 the field character - e.g., ''-FR'' - also selects the listing of the item.
+\par 
+\par                 When the field selection character list contains the single character '?', lsof will display a help list of the field  identifica-
+\par                 tion characters.  (Escape the '?' character as your shell requires.)
+\par 
+\par        -g [s]   This  option  selects the listing of files for the processes whose optional process group IDentification (PGID) numbers are in the
+\par                 comma-separated set s - e.g., ''123'' or ''123,456''.  (There should be no spaces in the set.)
+\par 
+\par                 Multiple PGID numbers are joined in a single ORed set before participating in AND option selection.
+\par 
+\par                 The -g option also enables the output display of PGID numbers.  When specified without a PGID set that's all it does.
+\par 
+\par        -i [i]   This option selects the listing of files any of whose Internet address matches the address specified in i.  If no address is spec-
+\par                 ified, this option selects the listing of all Internet and x.25 (HP-UX) network files.
+\par 
+\par                 If  -i4  or  -i6 is specified with no following address, only files of the indicated IP version, IPv4 or IPv6, are displayed.  (An
+\par                 IPv6 specification may be used only if the dialects supports IPv6, as indicated by ''[46]'' and ''IPv[46]'' in  lsof's  -h  or  -?
+\par                 output.)  Sequentially specifying -i4, followed by -i6 is the same as specifying -i, and vice-versa.  Specifying -i4, or -i6 after
+\par                 -i is the same as specifying -i4 or -i6 by itself.
+\par 
+\par                 Multiple addresses (up to a limit of 100) may be specified with multiple -i options.  (A port number  or  service  name  range  is
+\par                 counted as one address.)  They are joined in a single ORed set before participating in AND option selection.
+\par 
+\par                 An Internet address is specified in the form (Items in square brackets are optional.):
+\par 
+\par                 [46][protocol][@hostname|hostaddr][:service|port]
+\par 
+\par                 where:
+\par                      46 specifies the IP version, IPv4 or IPv6
+\par                           that applies to the following address.
+\par                           '6' may be be specified only if the UNIX
+\par                           dialect supports IPv6.  If neither '4' nor
+\par                           '6' is specified, the following address
+\par                           applies to all IP versions.
+\par                      protocol is a protocol name - TCP or UDP.
+\par                      hostname is an Internet host name.  Unless a
+\par                           specific IP version is specified, open
+\par                           network files associated with host names
+\par                           of all versions will be selected.
+\par                      hostaddr is a numeric Internet IPv4 address in
+\par                           dot form; or an IPv6 numeric address in
+\par                           colon form, enclosed in brackets, if the
+\par                           UNIX dialect supports IPv6.  When an IP
+\par                           version is selected, only its numeric
+\par                           addresses may be specified.
+\par                      service is an /etc/services name - e.g., smtp -
+\par                           or a list of them.
+\par                      port is a port number, or a list of them.
+\par 
+\par                 IPv6 options may be used only if the UNIX dialect supports IPv6.  To see if the dialect supports IPv6, run lsof and specify the -h
+\par                 or -?  (help) option.  If the displayed description of the -i option contains ''[46]'' and ''IPv[46]'', IPv6 is supported.
+\par 
+\par                 IPv4 host names and addresses may not be specified if network file selection is limited to IPv6 with -i 6.  IPv6  host  names  and
+\par                 addresses  may  not be specified if network file selection is limited to IPv4 with -i 4.  When an open IPv4 network file's address
+\par                 is mapped in an IPv6 address, the open file's type will be IPv6, not IPv4, and its display will be selected by '6', not '4'.
+\par 
+\par                 At least one address component - 4, 6, protocol, ,IR hostname , hostaddr, or service - must be supplied.  The '@' character, lead-
+\par                 ing  the  host  specification,  is  always  required;  as  is the ':', leading the port specification.  Specify either hostname or
+\par                 hostaddr.  Specify either service name list or port number list.  If a service name list is specified, the protocol may also  need
+\par                 to be specified if the TCP and UDP port numbers for the service name are different.  Use any case - lower or upper - for protocol.
+\par 
+\par                 Service names and port numbers may be combined in a list whose entries are separated by commas and whose numeric range entries are
+\par                 separated  by  minus  signs.  There may be no embedded spaces, and all service names must belong to the specified protocol.  Since
+\par                 service names may contain embedded minus signs, the staring entry of a range can't be a service name; it can  be  a  port  number,
+\par                 however.
+\par 
+\par                 Here are some sample addresses:
+\par 
+\par                      -i6 - IPv6 only
+\par                      TCP:25 - TCP and port 25
+\par                      @1.2.3.4 - Internet IPv4 host address 1.2.3.4
+\par                      @[3ffe:1ebc::1]:1234 - Internet IPv6 host address
+\par                           3ffe:1ebc::1, port 1234
+\par                      UDP:who - UDP who service port
+\par                      TCP@lsof.itap:513 - TCP, port 513 and host name lsof.itap
+\par                      tcp@foo:1-10,smtp,99 - TCP, ports 1 through 10,
+\par                           service name smtp, port 99, host name foo
+\par                      tcp@bar:smtp-nameserver - TCP, ports smtp through
+\par                           nameserver, host bar
+\par                      :time - either TCP or UDP time service port
+\par 
+\par        -k k     This  option specifies a kernel name list file, k, in place of /vmunix, /mach, etc.  This option is not available under AIX on the
+\par                 IBM RISC/System 6000.
+\par 
+\par        -l       This option inhibits the conversion of user ID numbers to login names.  It is also  useful  when  login  name  lookup  is  working
+\par                 improperly or slowly.
+\par 
+\par        +|-L [l] This  option  enables ('+') or disables ('-') the listing of file link counts, where they are available - e.g., they aren't avail-
+\par                 able for sockets, or most FIFOs and pipes.
+\par 
+\par                 When +L is specified without a following number, all link counts will be listed.  When -L is  specified  (the  default),  no  link
+\par                 counts will be listed.
+\par 
+\par                 When  +L is followed by a number, only files having a link count less than that number will be listed.  (No number may follow -L.)
+\par                 A specification of the form ''+L1'' will select open files that have been unlinked.  A specification of the form ''+aL1 <file_sys-
+\par                 tem>'' will select unlinked open files on the specified file system.
+\par 
+\par                 For other link count comparisons, use field output (-F) and a post-processing script or program.
+\par 
+\par        +|-m m   This option specifies an alternate kernel memory file or activates mount table supplement processing.
+\par 
+\par                 The option form -m m specifies a kernel memory file, m, in place of /dev/kmem or /dev/mem - e.g., a crash dump file.
+\par 
+\par                 The  option  form +m requests that a mount supplement file be written to the standard output file.  All other options are silently
+\par                 ignored.
+\par 
+\par                 There will be a line in the mount supplement file for each mounted file system, containing the mounted file system directory, fol-
+\par                 lowed by a single space, followed by the device number in hexadecimal "0x" format - e.g.,
+\par 
+\par                      / 0x801
+\par 
+\par                 Lsof can use the mount supplement file to get device numbers for file systems when it can't get them via stat(2) or lstat(2).
+\par 
+\par                 The option form +m m identifies m as a mount supplement file.
+\par 
+\par                 Note:  the  +m and +m m options are not available for all supported dialects.  Check the output of lsof's -h or -?  options to see
+\par                 if the +m and +m m options are available.
+\par 
+\par        +|-M     Enables (+) or disables (-) the reporting of portmapper registrations for local TCP and UDP ports.  The default reporting mode  is
+\par                 set  by  the  lsof  builder  with  the HASPMAPENABLED #define in the dialect's machine.h header file; lsof is distributed with the
+\par                 HASPMAPENABLED #define deactivated, so portmapper reporting is disabled by default and must  be  requested  with  +M.   Specifying
+\par                 lsof's  -h  or -?  option will report the default mode.  Disabling portmapper registration when it is already disabled or enabling
+\par                 it when already enabled is acceptable.  in a warning.
+\par 
+\par                 When portmapper registration reporting is enabled, lsof displays the portmapper registration (if any) for local TCP or  UDP  ports
+\par                 in square brackets immediately following the port numbers or service names - e.g., '':1234[name]'' or '':name[100083]''.  The reg-
+\par                 istration information may be a name or number, depending on what the registering program supplied to the portmapper when it regis-
+\par                 tered the port.
+\par 
+\par                 When  portmapper  registration  reporting  is enabled, lsof may run a little more slowly or even become blocked when access to the
+\par                 portmapper becomes congested or stopped.  Reverse the reporting mode to determine if portmapper registration reporting is  slowing
+\par                 or blocking lsof.
+\par 
+\par                 For  purposes of portmapper registration reporting lsof considers a TCP or UDP port local if: it is found in the local part of its
+\par                 containing kernel structure; or if it is located in the foreign part of its containing kernel structure and the local and  foreign
+\par                 Internet addresses are the same; or if it is located in the foreign part of its containing kernel structure and the foreign Inter-
+\par                 net address is INADDR_LOOPBACK (127.0.0.1).  This rule may make lsof ignore some foreign ports on machines  with  multiple  inter-
+\par                 faces when the foreign Internet address is on a different interface from the local one.
+\par 
+\par                 See the lsof FAQ (The FAQ section gives its location.)  for further discussion of portmapper registration reporting issues.
+\par 
+\par        -n       This  option  inhibits the conversion of network numbers to host names for network files.  Inhibiting conversion may make lsof run
+\par                 faster.  It is also useful when host name lookup is not working properly.
+\par 
+\par        -N       This option selects the listing of NFS files.
+\par 
+\par        -o       This option directs lsof to display file offset at all times.  It causes the SIZE/OFF output column title to be changed to OFFSET.
+\par                 Note:  on  some UNIX dialects lsof can't obtain accurate or consistent file offset information from its kernel data sources, some-
+\par                 times just for particular kinds of files (e.g., socket files.)  Consult the lsof FAQ (The FAQ section gives  its  location.)   for
+\par                 more information.
+\par 
+\par                 The  -o  and  -s  options are mutually exclusive; they can't both be specified.  When neither is specified, lsof displays whatever
+\par                 value - size or offset - is appropriate and available for the type of the file.
+\par 
+\par        -o o     This option defines the number of decimal digits (o) to be printed after the ''0t'' for a file offset before the form is  switched
+\par                 to ''0x...''.  An o value of zero (unlimited) directs lsof to use the ''0t'' form for all offset output.
+\par 
+\par                 This  option  does NOT direct lsof to display offset at all times; specify -o (without a trailing number) to do that.  This option
+\par                 only specifies the number of digits after ''0t'' in either mixed size and offset or offset-only output.   Thus,  for  example,  to
+\par                 direct lsof to display offset at all times with a decimal digit count of 10, use:
+\par 
+\par                      -o -o 10
+\par                 or
+\par                      -oo10
+\par 
+\par                 The  default  number  of  digits  allowed  after ''0t'' is normally 8, but may have been changed by the lsof builder.  Consult the
+\par                 description of the -o o option in the output of the -h or -?  option to determine the default that is in effect.
+\par 
+\par        -O       This option directs lsof to bypass the strategy it uses to avoid being blocked by some kernel operations -  i.e.,  doing  them  in
+\par                 forked child processes.  See the BLOCKS AND TIMEOUTS and AVOIDING KERNEL BLOCKS sections for more information on kernel operations
+\par                 that may block lsof.
+\par 
+\par                 While use of this option will reduce lsof startup overhead, it may also cause lsof to hang when the kernel doesn't  respond  to  a
+\par                 function.  Use this option cautiously.
+\par 
+\par        -p s     This  option  selects  the listing of files for the processes whose ID numbers are in the comma-separated set s - e.g., ''123'' or
+\par                 ''123,456''.  (There should be no spaces in the set.)
+\par 
+\par                 Multiple process ID numbers are joined in a single ORed set before participating in AND option selection.
+\par 
+\par        -P       This option inhibits the conversion of port numbers to port names for network files.  Inhibiting the conversion may make lsof  run
+\par                 a little faster.  It is also useful when host name lookup is not working properly.
+\par 
+\par        +|-r [t] This  option  puts  lsof in repeat mode.  There lsof lists open files as selected by other options, delays t seconds (default fif-
+\par                 teen), then repeats the listing, delaying and listing repetitively until stopped by a condition  defined  by  the  prefix  to  the
+\par                 option.
+\par 
+\par                 If the prefix is a '-', repeat mode is endless.  Lsof must be terminated with an interrupt or quit signal.
+\par 
+\par                 If  the  prefix is '+', repeat mode will end the first cycle no open files are listed - and of course when lsof is stopped with an
+\par                 interrupt or quit signal.  When repeat mode ends because no files are listed, the process exit code will be zero if any open files
+\par                 were ever listed; one, if none were ever listed.
+\par 
+\par                 Lsof  marks the end of each listing: if field output is in progress (the -F, option has been specified), the marker is 'm'; other-
+\par                 wise the marker is ''========''.  The marker is followed by a NL character.
+\par 
+\par                 Repeat mode reduces lsof startup overhead, so it is more efficient to use this mode than to call lsof repetitively  from  a  shell
+\par                 script, for example.
+\par 
+\par                 To  use  repeat  mode most efficiently, accompany +|-r with specification of other lsof selection options, so the amount of kernel
+\par                 memory access lsof does will be kept to a minimum.  Options that filter at the process level - e.g., -c, -g, -p, -u - are the most
+\par                 efficient selectors.
+\par 
+\par                 Repeat mode is useful when coupled with field output (see the -F, option description) and a supervising awk or Perl script, or a C
+\par                 program.
+\par 
+\par        -R       This option directs lsof to list the Parent Process IDentification number in the PPID column.
+\par 
+\par        -s       This option directs lsof to display file size at all times.  It causes the SIZE/OFF output column title to be changed to SIZE.  If
+\par                 the file does not have a size, nothing is displayed.
+\par 
+\par                 The  -o  (without a following decimal digit count) and -s options are mutually exclusive; they can't both be specified.  When nei-
+\par                 ther is specified, lsof displays whatever value - size or offset - is appropriate and available for the type of file.
+\par 
+\par                 Since some types of files don't have true sizes - sockets, FIFOs, pipes, etc. - lsof displays for their sizes the content  amounts
+\par                 in their associated kernel buffers, if possible.
+\par 
+\par        -S [t]   This  option  specifies  an optional time-out seconds value for kernel functions - lstat(2), readlink(2), and stat(2) - that might
+\par                 otherwise deadlock.  The minimum for t is two; the default, fifteen; when no value is specified, the default is used.
+\par 
+\par                 See the BLOCKS AND TIMEOUTS section for more information.
+\par 
+\par        -T [t]   This option controls the reporting of some TCP/TPI information, also reported by netstat(1), following the network addresses.   In
+\par                 normal  output  the information appears in parentheses, each item except state identified by a keyword, followed by '=', separated
+\par                 from others by a single space:
+\par 
+\par                      <TCP or TPI state name>
+\par                      QR=<read queue length>
+\par                      QS=<send queue length>
+\par                      SO=<socket options and values>
+\par                      SS=<socket states>
+\par                      TF=<TCP flags and values>
+\par                      WR=<window read length>
+\par                      WW=<window write length>
+\par 
+\par                 Not all values are reported for all UNIX dialects.  Items values (when available) are reported after the item name and '='.
+\par 
+\par                 When the field output mode is in effect (See OUTPUT FOR OTHER PROGRAMS.)  each item appears as a field with a 'T' leading  charac-
+\par                 ter.
+\par 
+\par                 -T with no following key characters disables TCP/TPI information reporting.
+\par 
+\par                 -T with following characters selects the reporting of specific TCP/TPI information:
+\par 
+\par                      f    selects reporting of socket options,
+\par                           states and values, and TCP flags and
+\par                           values.
+\par                      q    selects queue length reporting.
+\par                      s    selects connection state reporting.
+\par                      w    selects window size reporting.
+\par 
+\par                 Not all selections are enabled for some UNIX dialects.  State may be selected for all dialects and is reported by default.  The -h
+\par                 or -?  help output for the -T option will show what selections may be used with the UNIX dialect.
+\par 
+\par                 When -T is used to select information - i.e., it is followed by one or more selection characters - the displaying of state is dis-
+\par                 abled  by  default,  and  it  must  be explicitly selected again in the characters following -T.  (In effect, then, the default is
+\par                 equivalent to -Ts.)  For example, if queue lengths and state are desired, use -Tqs.
+\par 
+\par                 Socket options, socket states, some socket values, TCP flags and one TCP value  may  be  reported  (when  available  in  the  UNIX
+\par                 dialect)  in  the  form  of the names that commonly appear after SO_, so_, SS_, TCP_  and TF_ in the dialect's header files - most
+\par                 often <sys/socket.h>, <sys/socketvar.h> and <netinet/tcp_var.h>.  Consult those  header  files  for  the  meaning  of  the  flags,
+\par                 options, states and values.
+\par 
+\par                 ''SO='' precedes socket options and values; ''SS='', socket states; and ''TF='', TCP flags and values.
+\par 
+\par                 If  a  flag  or  option  has  a  value,  the  value  will  follow  an  '='  and  the name -- e.g., ''SO=LINGER=5'', ''SO=QLIM=5'',
+\par                 ''TF=MSS=512''.  The following seven values may be reported:
+\par 
+\par                      Name
+\par                      Reported  Description (Common Symbol)
+\par 
+\par                      KEEPALIVE keep alive time (SO_KEEPALIVE)
+\par                      LINGER    linger time (SO_LINGER)
+\par                      MSS       maximum segment size (TCP_MAXSEG)
+\par                      QLEN      listen queue length
+\par                      QLIM      listen queue limit
+\par                      RCVBUF    receive buffer length (SO_RCVBUF)
+\par                      SNDBUF    send buffer length (SO_SNDBUF)
+\par 
+\par                 Details on what socket options and values, socket states, and TCP flags and values may be displayed for particular  UNIX  dialects
+\par                 may  be  found  in  the  answer  to  the  ''Why doesn't lsof report socket options, socket states, and TCP flags and values for my
+\par                 dialect?''  question in the lsof FAQ (The FAQ section gives its location.)
+\par 
+\par        -t       This option specifies that lsof should produce terse output with process identifiers only and no header - e.g., so that the output
+\par                 may be piped to kill(1).  This option selects the -w option.
+\par 
+\par        -u s     This  option  selects  the  listing  of files for the user whose login names or user ID numbers are in the comma-separated set s -
+\par                 e.g., ''abe'', or ''548,root''.  (There should be no spaces in the set.)
+\par 
+\par                 Multiple login names or user ID numbers are joined in a single ORed set before participating in AND option selection.
+\par 
+\par                 If a login name or user ID is preceded by a '^', it becomes a negation - i.e., files of processes owned by the login name or  user
+\par                 ID will never be listed.  A negated login name or user ID selection is neither ANDed nor ORed with other selections; it is applied
+\par                 before all other selections and absolutely excludes the listing of the files of the process.   For  example,  to  direct  lsof  to
+\par                 exclude the listing of files belonging to root processes, specify ''-u^root'' or ''-u^0''.
+\par 
+\par        -U       This option selects the listing of UNIX domain socket files.
+\par 
+\par        -v       This option selects the listing of lsof version information, including: revision number; when the lsof binary was constructed; who
+\par                 constructed the binary and where; the name of the compiler used to construct the lsof binary; the version number of  the  compiler
+\par                 when  readily  available;  the  compiler and loader flags used to construct the lsof binary; and system information, typically the
+\par                 output of uname's -a option.
+\par 
+\par        -V       This option directs lsof to indicate the items it was asked to list and failed to find  -  command  names,  file  names,  Internet
+\par                 addresses or files, login names, NFS files, PIDs, PGIDs, and UIDs.
+\par 
+\par                 When  other  options  are ANDed to search options, or compile-time options restrict the listing of some files, lsof may not report
+\par                 that it failed to find a search item when an ANDed option or compile-time option prevents the listing of the open file  containing
+\par                 the located search item.
+\par 
+\par                 For  example,  ''lsof -V -iTCP@foobar -a -d 999'' may not report a failure to locate open files at ''TCP@foobar'' and may not list
+\par                 any, if none have a file descriptor number of 999.  A similar situtation arises when HASSECURITY and HASNOSOCKSECURITY are defined
+\par                 at compile time and they prevent the listing of open files.
+\par 
+\par        +|-w     Enables (+) or disables (-) the suppression of warning messages.
+\par 
+\par                 The  lsof  builder may choose to have warning messages disabled or enabled by default.  The default warning message state is indi-
+\par                 cated in the output of the -h or -?  option.  Disabling warning messages when they are already  disabled  or  enabling  them  when
+\par                 already enabled is acceptable.
+\par 
+\par                 The -t option selects the -w option.
+\par 
+\par        -x  [fl] This  option  may accompany the +d and +D options to direct their processing to cross over symbolic links and|or file system mount
+\par                 points encountered when scanning the directory (+d) or directory tree (+D).
+\par 
+\par                 If -x is specified by itself without a following parameter, cross-over processing of both symbolic links  and  file  system  mount
+\par                 points is enabled.  Note that when -x is specified without a parameter, the next argument must begin with '-' or '+'.
+\par 
+\par                 The optional 'f' parameter enables file system mount point cross-over processing; 'l', symbolic link cross-over processing.
+\par 
+\par                 The -x option may not be supplied without also supplying a +d or +D option.
+\par 
+\par        -X       This is a dialect-specific option.
+\par 
+\par            AIX:
+\par                 This IBM AIX RISC/System 6000 option requests the reporting of executed text file and shared library references.
+\par 
+\par                 WARNING:  because this option uses the kernel readx() function, its use on a busy AIX system might cause an application process to
+\par                 hang so completely that it can neither be killed nor stopped.  I have never seen this happen or had a report of its happening, but
+\par                 I think there is a remote possibility it could happen.
+\par 
+\par                 By  default  use  of  readx()  is  disabled.  On AIX 5L and above lsof may need setuid-root permission to perform the actions this
+\par                 option requests.
+\par 
+\par                 The lsof builder may specify that the -X option be restricted to processes whose real UID is root.  If that has been done, the  -X
+\par                 option  will  not appear in the -h or -?  help output unless the real UID of the lsof process is root.  The default lsof distribu-
+\par                 tion allows any UID to specify -X, so by default it will appear in the help output.
+\par 
+\par                 When AIX readx() use is disabled, lsof may not be able to report information for all text and loader file references, but  it  may
+\par                 also avoid exacerbating an AIX kernel directory search kernel error, known as the Stale Segment ID bug.
+\par 
+\par                 The  readx()  function,  used by lsof or any other program to access some sections of kernel virtual memory, can trigger the Stale
+\par                 Segment ID bug.  It can cause the kernel's dir_search() function to believe erroneously that part of an in-memory copy of  a  file
+\par                 system  directory  has  been zeroed.  Another application process, distinct from lsof, asking the kernel to search the directory -
+\par                 e.g., by using open(2) - can cause dir_search() to loop forever, thus hanging the application process.
+\par 
+\par                 Consult the lsof FAQ (The FAQ section gives its location.)  and the 00README file of the lsof distribution  for  a  more  complete
+\par                 description of the Stale Segment ID bug, its APAR, and methods for defining readx() use when compiling lsof.
+\par 
+\par        -z [z]   specifies how Solaris 10 and higher zone information is to be handled.
+\par 
+\par                 Without a following argument - e.g., NO z - the option specifies that zone names are to be listed in the ZONE output column.
+\par 
+\par                 The  -z  option may be followed by a zone name, z.  That causes lsof to list only open files for processes in that zone.  Multiple
+\par                 -z z option and argument pairs may be specified to form a list of named zones.  Any open file of any process in any of  the  zones
+\par                 will be listed, subject to other conditions specified by other options and arguments.
+\par 
+\par        --       The  double  minus sign option is a marker that signals the end of the keyed options.  It may be used, for example, when the first
+\par                 file name begins with a minus sign.  It may also be used when the absence of a value for the last keyed option must  be  signified
+\par                 by the presence of a minus sign in the following option and before the start of the file names.
+\par 
+\par        names    These are path names of specific files to list.  Symbolic links are resolved before use.  The first name may be separated from the
+\par                 preceding options with the ''--'' option.
+\par 
+\par                 If a name is the mounted-on directory of a file system or the device of the file system, lsof will list all the files open on  the
+\par                 file  system.   To  be  considered a file system, the name must match a mounted-on directory name in mount(8) output, or match the
+\par                 name of a block device associated with a mounted-on directory name.  The +|-f option may be used to force lsof to consider a  name
+\par                 a file system identifier (+f) or a simple file (-f).
+\par 
+\par                 If  name is a path to a directory that is not the mounted-on directory name of a file system, it is treated just as a regular file
+\par                 is treated - i.e., its listing is restricted to processes that have it open as a file or as a process-specific directory, such  as
+\par                 the  root  or  current working directory.  To request that lsof look for open files inside a directory name, use the +d s and +D D
+\par                 options.
+\par 
+\par                 If a name is the base name of a family of multiplexed files - e. g, AIX's /dev/pt[cs] - lsof will list all the  associated  multi-
+\par                 pled files on the device that are open - e.g., /dev/pt[cs]/1, /dev/pt[cs]/2, etc.
+\par 
+\par                 If  a  name is a UNIX domain socket name, lsof will search for it by the characters of the name alone - exactly as it is specified
+\par                 and is recorded in the kernel socket structure.  Specifying a relative path - e.g., ./file - in place of the file's absolute  path
+\par                 -  e.g.,  /tmp/file  -  won't work because lsof must match the characters you specify with what it finds in the kernel UNIX domain
+\par                 socket structures.
+\par 
+\par                 If a name is none of the above, lsof will list any open files whose device and inode match that of the specified path name.
+\par 
+\par                 If you have also specified the -b option, the only names you may safely specify are file systems for which your mount  table  sup-
+\par                 plies alternate device numbers.  See the AVOIDING KERNEL BLOCKS and ALTERNATE DEVICE NUMBERS sections for more information.
+\par 
+\par                 Multiple file names are joined in a single ORed set before participating in AND option selection.
+\par 
+\par AFS
+\par        Lsof supports the recognition of AFS files for these dialects (and AFS versions):
+\par 
+\par             AIX 4.1.4 (AFS 3.4a)
+\par             HP-UX 9.0.5 (AFS 3.4a)
+\par             Linux 1.2.13 (AFS 3.3)
+\par             Solaris 2.[56] (AFS 3.4a)
+\par 
+\par        It  may  recognize AFS files on other versions of these dialects, but has not been tested there.  Depending on how AFS is implemented, lsof
+\par        may recognize AFS files in other dialects, or may have difficulties recognizing AFS files in the supported dialects.
+\par 
+\par        Lsof may have trouble identifying all aspects of AFS files in supported dialects when AFS kernel support is implemented via dynamic modules
+\par        whose  addresses  do not appear in the kernel's variable name list.  In that case, lsof may have to guess at the identity of AFS files, and
+\par        might not be able to obtain volume information from the kernel that is needed for calculating AFS volume node  numbers.   When  lsof  can't
+\par        compute volume node numbers, it reports blank in the NODE column.
+\par 
+\par        The  -A  A  option  is  available  in  some  dialect  implementations of lsof for specifying the name list file where dynamic module kernel
+\par        addresses may be found.  When this option is available, it will be listed in the lsof help output, presented in response to the -h or -?
+\par 
+\par        See the lsof FAQ (The FAQ section gives its location.)  for more information about dynamic modules, their symbols, and how they affect lsof
+\par        options.
+\par 
+\par        Because  AFS path lookups don't seem to participate in the kernel's name cache operations, lsof can't identify path name components for AFS
+\par        files.
+\par 
+\par SECURITY
+\par        Lsof has three features that may cause security concerns.  First, its default compilation mode allows anyone to list all  open  files  with
+\par        it.   Second, by default it creates a user-readable and user-writable device cache file in the home directory of the real user ID that exe-
+\par        cutes lsof.  (The list-all-open-files and device cache features may be disabled when lsof is compiled.)  Third, its -k and -m options  name
+\par        alternate kernel name list or memory files.
+\par 
+\par        Restricting the listing of all open files is controlled by the compile-time HASSECURITY and HASNOSOCKSECURITY options.  When HASSECURITY is
+\par        defined, lsof will allow only the root user to list all open files.  The non-root user may list only open files of processes with the  same
+\par        user IDentification number as the real user ID number of the lsof process (the one that its user logged on with).
+\par 
+\par        However,  if  HASSECURITY and HASNOSOCKSECURITY are both defined, anyone may list open socket files, provided they are selected with the -i
+\par        option.
+\par 
+\par        When HASSECURITY is not defined, anyone may list all open files.
+\par 
+\par        Help output, presented in response to the -h or -?  option, gives the status of the HASSECURITY and HASNOSOCKSECURITY definitions.
+\par 
+\par        See the Security section of the 0README file of the lsof distribution for information on building lsof with the HASSECURITY and  HASNOSOCK-
+\par        SECURITY options enabled.
+\par 
+\par        Creation and use of a user-readable and user-writable device cache file is controlled by the compile-time HASDCACHE option.  See the DEVICE
+\par        CACHE FILE section and the sections that follow it for details on how its path is formed.  For security considerations it is  important  to
+\par        note that in the default lsof distribution, if the real user ID under which lsof is executed is root, the device cache file will be written
+\par        in root's home directory - e.g., / or /root.  When HASDCACHE is not defined, lsof does not write or attempt to read a device cache file.
+\par 
+\par        When HASDCACHE is defined, the lsof help output, presented in response to the -h, -D?, or -?  options, will provide device cache file  han-
+\par        dling information.  When HASDCACHE is not defined, the -h or -?  output will have no -D option description.
+\par 
+\par        Before  you decide to disable the device cache file feature - enabling it improves the performance of lsof by reducing the startup overhead
+\par        of examining all the nodes in /dev (or /devices) - read the discussion of it in the 00DCACHE file of the lsof distribution and the lsof FAQ
+\par        (The FAQ section gives its location.)
+\par 
+\par        WHEN IN DOUBT, YOU CAN TEMPORARILY DISABLE THE USE OF THE DEVICE CACHE FILE WITH THE -Di OPTION.
+\par 
+\par        When  lsof  user  declares  alternate kernel name list or memory files with the -k and -m options, lsof checks the user's authority to read
+\par        them with access(2).  This is intended to prevent whatever special power lsof's modes might confer on it from letting  it  read  files  not
+\par        normally accessible via the authority of the real user ID.
+\par 
+\par OUTPUT
+\par        This section describes the information lsof lists for each open file.  See the OUTPUT FOR OTHER PROGRAMS section for additional information
+\par        on output that can be processed by another program.
+\par 
+\par        Lsof only outputs printable (declared so by isprint(3)) ASCII characters.  Non-printable characters are printed in one of three forms:  the
+\par        C  ''\\[bfrnt]''  form;  the  control  character  '^'  form  (e.g.,  ''^@''); or hexadecimal leading ''\\x'' form (e.g., ''\\xab'').  Space is
+\par        non-printable in the COMMAND column (''\\x20'') and printable elsewhere.
+\par 
+\par        Lsof dynamically sizes the output columns each time it runs, guaranteeing that each column is a minimum size.  It also guarantees that each
+\par        column is separated from its predecessor by at least one space.
+\par 
+\par        COMMAND    contains the first nine characters of the name of the UNIX command associated with the process.  If a non-zero w value is speci-
+\par                   fied to the +c w option, the column contains the first w characters of the name of the UNIX command associated with the process.
+\par 
+\par                   If w is less than the length of the column title, ''COMMAND'', it will be raised to that length.
+\par 
+\par                   If  a zero w value is specified to the +c w option, the column contains all the characters of the name of the UNIX command asso-
+\par                   ciated with the process.
+\par 
+\par                   All command name characters maintained by the kernel in its structures are displayed in  field  output  when  the  command  name
+\par                   descriptor  ('c')  is  specified.   See  the OUTPUT FOR OTHER COMMANDS section for information on selecting field output and the
+\par                   associated command name descriptor.
+\par 
+\par        PID        is the Process IDentification number of the process.
+\par 
+\par        ZONE       is the Solaris 10 and higher zone name.  This column must be selected with the -z option.
+\par 
+\par        PPID       is the Parent Process IDentification number of the process.  It is only displayed when the -R option has been specified.
+\par 
+\par        PGID       is the process group IDentification number associated with the process.  It is only displayed when the -g option has been speci-
+\par                   fied.
+\par 
+\par        USER       is the user ID number or login name of the user to whom the process belongs, usually the same as reported by ps(1).  However, on
+\par                   Linux USER is the user ID number or login that owns the directory in /proc where lsof finds information about the process.  Usu-
+\par                   ally  that  is the same value reported by ps(1), but may differ when the process has changed its effective user ID.  (See the -l
+\par                   option description for information on when a user ID number or login name is displayed.)
+\par 
+\par        FD         is the File Descriptor number of the file or:
+\par 
+\par                        cwd  current working directory;
+\par                        Lnn  library references (AIX);
+\par                        jld  jail directory (FreeBSD);
+\par                        ltx  shared library text (code and data);
+\par                        Mxx  hex memory-mapped type number xx.
+\par                        m86  DOS Merge mapped file;
+\par                        mem  memory-mapped file;
+\par                        mmap memory-mapped device;
+\par                        pd   parent directory;
+\par                        rtd  root directory;
+\par                        tr   kernel trace file (OpenBSD);
+\par                        txt  program text (code and data);
+\par                        v86  VP/ix mapped file;
+\par 
+\par                   FD is followed by one of these characters, describing the mode under which the file is open:
+\par 
+\par                        r for read access;
+\par                        w for write access;
+\par                        u for read and write access;
+\par                        space if mode unknown and no lock
+\par                             character follows;
+\par                        '-' if mode unknown and lock
+\par                             character follows.
+\par 
+\par                   The mode character is followed by one of these lock characters, describing the type of lock applied to the file:
+\par 
+\par                        N for a Solaris NFS lock of unknown type;
+\par                        r for read lock on part of the file;
+\par                        R for a read lock on the entire file;
+\par                        w for a write lock on part of the file;
+\par                        W for a write lock on the entire file;
+\par                        u for a read and write lock of any length;
+\par                        U for a lock of unknown type;
+\par                        x for an SCO OpenServer Xenix lock on part      of the file;
+\par                        X for an SCO OpenServer Xenix lock on the      entire file;
+\par                        space if there is no lock.
+\par 
+\par                   See the LOCKS section for more information on the lock information character.
+\par 
+\par                   The FD column contents constitutes a single field for parsing in post-processing scripts.
+\par 
+\par        TYPE       is the type of the node associated with the file - e.g., GDIR, GREG, VDIR, VREG, etc.
+\par 
+\par                   or ''IPv4'' for an IPv4 socket;
+\par 
+\par                   or ''IPv6'' for an open IPv6 network file - even if its address is IPv4, mapped in an IPv6 address;
+\par 
+\par                   or ''ax25'' for a Linux AX.25 socket;
+\par 
+\par                   or ''inet'' for an Internet domain socket;
+\par 
+\par                   or ''lla'' for a HP-UX link level access file;
+\par 
+\par                   or ''rte'' for an AF_ROUTE socket;
+\par 
+\par                   or ''sock'' for a socket of unknown domain;
+\par 
+\par                   or ''unix'' for a UNIX domain socket;
+\par 
+\par                   or ''x.25'' for an HP-UX x.25 socket;
+\par 
+\par                   or ''BLK'' for a block special file;
+\par 
+\par                   or ''CHR'' for a character special file;
+\par 
+\par                   or ''DEL'' for a Linux map file that has been deleted;
+\par 
+\par                   or ''DIR'' for a directory;
+\par 
+\par                   or ''DOOR'' for a VDOOR file;
+\par 
+\par                   or ''FIFO'' for a FIFO special file;
+\par 
+\par                   or ''KQUEUE'' for a BSD style kernel event queue file;
+\par 
+\par                   or ''LINK'' for a symbolic link file;
+\par 
+\par                   or ''MPB'' for a multiplexed block file;
+\par 
+\par                   or ''MPC'' for a multiplexed character file;
+\par 
+\par                   or ''NOFD'' for a Linux /proc/<PID>/fd directory that can't be opened -- the directory path appears in the NAME column, followed
+\par                   by an error message;
+\par 
+\par                   or ''PAS'' for a /proc/as file;
+\par 
+\par                   or ''PAXV'' for a /proc/auxv file;
+\par 
+\par                   or ''PCRE'' for a /proc/cred file;
+\par 
+\par                   or ''PCTL'' for a /proc control file;
+\par 
+\par                   or ''PCUR'' for the current /proc process;
+\par 
+\par                   or ''PCWD'' for a /proc current working directory;
+\par 
+\par                   or ''PDIR'' for a /proc directory;
+\par 
+\par                   or ''PETY'' for a /proc executable type (etype);
+\par 
+\par                   or ''PFD'' for a /proc file descriptor;
+\par 
+\par                   or ''PFDR'' for a /proc file descriptor directory;
+\par 
+\par                   or ''PFIL'' for an executable /proc file;
+\par 
+\par                   or ''PFPR'' for a /proc FP register set;
+\par 
+\par                   or ''PGD'' for a /proc/pagedata file;
+\par 
+\par                   or ''PGID'' for a /proc group notifier file;
+\par 
+\par                   or ''PIPE'' for pipes;
+\par 
+\par                   or ''PLC'' for a /proc/lwpctl file;
+\par 
+\par                   or ''PLDR'' for a /proc/lpw directory;
+\par 
+\par                   or ''PLDT'' for a /proc/ldt file;
+\par 
+\par                   or ''PLPI'' for a /proc/lpsinfo file;
+\par 
+\par                   or ''PLST'' for a /proc/lstatus file;
+\par 
+\par                   or ''PLU'' for a /proc/lusage file;
+\par 
+\par                   or ''PLWG'' for a /proc/gwindows file;
+\par 
+\par                   or ''PLWI'' for a /proc/lwpsinfo file;
+\par 
+\par                   or ''PLWS'' for a /proc/lwpstatus file;
+\par 
+\par                   or ''PLWU'' for a /proc/lwpusage file;
+\par 
+\par                   or ''PLWX'' for a /proc/xregs file'
+\par 
+\par                   or ''PMAP'' for a /proc map file (map);
+\par 
+\par                   or ''PMEM'' for a /proc memory image file;
+\par 
+\par                   or ''PNTF'' for a /proc process notifier file;
+\par 
+\par                   or ''POBJ'' for a /proc/object file;
+\par 
+\par                   or ''PODR'' for a /proc/object directory;
+\par 
+\par                   or ''POLP'' for an old format /proc light weight process file;
+\par 
+\par                   or ''POPF'' for an old format /proc PID file;
+\par 
+\par                   or ''POPG'' for an old format /proc page data file;
+\par 
+\par                   or ''PORT'' for a SYSV named pipe;
+\par 
+\par                   or ''PREG'' for a /proc register file;
+\par 
+\par                   or ''PRMP'' for a /proc/rmap file;
+\par 
+\par                   or ''PRTD'' for a /proc root directory;
+\par 
+\par                   or ''PSGA'' for a /proc/sigact file;
+\par 
+\par                   or ''PSIN'' for a /proc/psinfo file;
+\par 
+\par                   or ''PSTA'' for a /proc status file;
+\par 
+\par                   or ''PSXSEM'' for a POSIX sempahore file;
+\par 
+\par                   or ''PSXSHM'' for a POSIX shared memory file;
+\par 
+\par                   or ''PUSG'' for a /proc/usage file;
+\par 
+\par                   or ''PW'' for a /proc/watch file;
+\par 
+\par                   or ''PXMP'' for a /proc/xmap file;
+\par 
+\par                   or ''REG'' for a regular file;
+\par 
+\par                   or ''SMT'' for a shared memory transport file;
+\par 
+\par                   or ''STSO'' for a stream socket;
+\par 
+\par                   or ''UNNM'' for an unnamed type file;
+\par 
+\par                   or ''XNAM'' for an OpenServer Xenix special file of unknown type;
+\par 
+\par                   or ''XSEM'' for an OpenServer Xenix semaphore file;
+\par 
+\par                   or ''XSD'' for an OpenServer Xenix shared data file.
+\par 
+\par        FILE-ADDR  contains the kernel file structure address when f has been specified to +f;
+\par 
+\par        FCT        contains the file reference count from the kernel file structure when c has been specified to +f;
+\par 
+\par        FILE-FLAG  when  g or G has been specified to +f, this field contains the contents of the f_flag[s] member of the kernel file structure and
+\par                   the kernel's per-process open file flags (if available); 'G' causes them to be displayed  in  hexadecimal;  'g',  as  short-hand
+\par                   names; two lists may be displayed with entries separated by commas, the lists separated by a semicolon (';'); the first list may
+\par                   contain short-hand names for f_flag[s] values from the following table:
+\par 
+\par                        AIO       asynchronous I/O (e.g., FAIO)
+\par                        AP        append
+\par                        ASYN      asynchronous I/O (e.g., FASYNC)
+\par                        BAS       block, test, and set in use
+\par                        BKIU      block if in use
+\par                        BL        use block offsets
+\par                        BSK       block seek
+\par                        CA        copy avoid
+\par                        CLON      clone
+\par                        CLRD      CL read
+\par                        CR        create
+\par                        DF        defer
+\par                        DFI       defer IND
+\par                        DFLU      data flush
+\par                        DIR       direct
+\par                        DLY       delay
+\par                        DOCL      do clone
+\par                        DSYN      data-only integrity
+\par                        EX        open for exec
+\par                        EXCL      exclusive open
+\par                        FSYN      synchronous writes
+\par                        GCDF      defer during unp_gc() (AIX)
+\par                        GCMK      mark during unp_gc() (AIX)
+\par                        GTTY      accessed via /dev/tty
+\par                        HUP       HUP in progress
+\par                        KERN      kernel
+\par                        KIOC      kernel-issued ioctl
+\par                        LCK       has lock
+\par                        LG        large file
+\par                        MBLK      stream message block
+\par                        MK        mark
+\par                        MNT       mount
+\par                        MSYN      multiplex synchronization
+\par                        NB        non-blocking I/O
+\par                        NBDR      no BDRM check
+\par                        NBIO      SYSV non-blocking I/O
+\par                        NBF       n-buffering in effect
+\par                        NC        no cache
+\par                        ND        no delay
+\par                        NDSY      no data synchronization
+\par                        NET       network
+\par                        NMFS      NM file system
+\par                        NOTO      disable background stop
+\par                        NSH       no share
+\par                        NTTY      no controlling TTY
+\par                        OLRM      OLR mirror
+\par                        PAIO      POSIX asynchronous I/O
+\par                        PP        POSIX pipe
+\par                        R         read
+\par                        RC        file and record locking cache
+\par                        REV       revoked
+\par                        RSH       shared read
+\par                        RSYN      read synchronization
+\par                        SL        shared lock
+\par                        SOCK      socket
+\par                        SQSH      Sequent shared set on open
+\par                        SQSV      Sequent SVM set on open
+\par                        SQR       Sequent set repair on open
+\par                        SQS1      Sequent full shared open
+\par                        SQS2      Sequent partial shared open
+\par                        STPI      stop I/O
+\par                        SWR       synchronous read
+\par                        SYN       file integrity while writing
+\par                        TCPM      avoid TCP collision
+\par                        TR        truncate
+\par                        W         write
+\par                        WKUP      parallel I/O synchronization
+\par                        WTG       parallel I/O synchronization
+\par                        VH        vhangup pending
+\par                        VTXT      virtual text
+\par                        XL        exclusive lock
+\par 
+\par                   this list of names was derived from F* #define's in dialect header files <fcntl.h>,  <linux</fs.h>,  <sys/fcntl.c>,  <sys/fcntl-
+\par                   com.h>,  and  <sys/file.h>;  see the lsof.h header file for a list showing the correspondence between the above short-hand names
+\par                   and the header file definitions;
+\par 
+\par                   the second list (after the semicolon) may contain short-hand names for kernel per-process open file flags from this table:
+\par 
+\par                        ALLC      allocated
+\par                        BR        the file has been read
+\par                        BHUP      activity stopped by SIGHUP
+\par                        BW        the file has been written
+\par                        CLSG      closing
+\par                        CX        close-on-exec (see fcntl(F_SETFD))
+\par                        MP        memory-mapped
+\par                        LCK       lock was applied
+\par                        RSVW      reserved wait
+\par                        SHMT      UF_FSHMAT set (AIX)
+\par                        USE       in use (multi-threaded)
+\par 
+\par        NODE-ID    (or INODE-ADDR for some dialects) contains a unique identifier for the file node (usually the kernel vnode or inode address, but
+\par                   also occasionally a concatenation of device and node number) when n has been specified to +f;
+\par 
+\par        DEVICE     contains the device numbers, separated by commas, for a character special, block special, regular, directory or NFS file;
+\par 
+\par                   or ''memory'' for a memory file system node under DEC OSF/1, Digital UNIX, or Tru64 UNIX;
+\par 
+\par                   or the address of the private data area of a Solaris socket stream;
+\par 
+\par                   or a kernel reference address that identifies the file (The kernel reference address may be used for FIFO's, for example.);
+\par 
+\par                   or the base address or device name of a Linux AX.25 socket device.
+\par 
+\par                   Usually only the lower thirty two bits of DEC OSF/1, Digital UNIX, or Tru64 UNIX kernel addresses are displayed.
+\par 
+\par        SIZE, SIZE/OFF, or OFFSET
+\par                   is  the  size  of the file or the file offset in bytes.  A value is displayed in this column only if it is available.  Lsof dis-
+\par                   plays whatever value - size or offset - is appropriate for the type of the file and the version of lsof.
+\par 
+\par                   On some UNIX dialects lsof can't obtain accurate or consistent file offset information from its kernel data  sources,  sometimes
+\par                   just  for  particular  kinds of files (e.g., socket files.)  In other cases, files don't have true sizes - e.g., sockets, FIFOs,
+\par                   pipes - so lsof displays for their sizes the content amounts it finds in their kernel buffer descriptors  (e.g.,  socket  buffer
+\par                   size counts or TCP/IP window sizes.)  Consult the lsof FAQ (The FAQ section gives its location.)  for more information.
+\par 
+\par                   The file size is displayed in decimal; the offset is normally displayed in decimal with a leading ''0t'' if it contains 8 digits
+\par                   or less; in hexadecimal with a leading ''0x'' if it is longer than 8 digits.  (Consult the -o o option description for  informa-
+\par                   tion on when 8 might default to some other value.)
+\par 
+\par                   Thus  the leading ''0t'' and ''0x'' identify an offset when the column may contain both a size and an offset (i.e., its title is
+\par                   SIZE/OFF).
+\par 
+\par                   If the -o option is specified, lsof always displays the file offset (or nothing if no offset is available) and labels the column
+\par                   OFFSET.  The offset always begins with ''0t'' or ''0x'' as described above.
+\par 
+\par                   The  lsof user can control the switch from ''0t'' to ''0x'' with the -o o option.  Consult its description for more information.
+\par 
+\par                   If the -s option is specified, lsof always displays the file size (or nothing if no size is available)  and  labels  the  column
+\par                   SIZE.  The -o and -s options are mutually exclusive; they can't both be specified.
+\par 
+\par                   For  files  that don't have a fixed size - e.g., don't reside on a disk device - lsof will display appropriate information about
+\par                   the current size or position of the file if it is available in the kernel structures that define the file.
+\par 
+\par        NODE       is the node number of a local file;
+\par 
+\par                   or the inode number of an NFS file in the server host;
+\par 
+\par                   or the Internet protocol type - e. g, ''TCP'';
+\par 
+\par                   or ''STR'' for a stream;
+\par 
+\par                   or ''CCITT'' for an HP-UX x.25 socket;
+\par 
+\par                   or the IRQ or inode number of a Linux AX.25 socket device.
+\par 
+\par        NAME       is the name of the mount point and file system on which the file resides;
+\par 
+\par                   or the name of a file specified in the names option (after any symbolic links have been resolved);
+\par 
+\par                   or the name of a character special or block special device;
+\par 
+\par                   or the local and remote Internet addresses of a network file; the local host name or IP number is followed by a colon (':'), the
+\par                   port,  ''->'', and the two-part remote address; IP addresses may be reported as numbers or names, depending on the +|-M, -n, and
+\par                   -P options; colon-separated IPv6 numbers are enclosed in square  brackets;  IPv4  INADDR_ANY  and  IPv6  IN6_IS_ADDR_UNSPECIFIED
+\par                   addresses,  and  zero port numbers are represented by an asterisk ('*'); a UDP destination address may be followed by the amount
+\par                   of time elapsed since the last packet was sent to the destination; TCP and UDP remote  addresses  may  be  followed  by  TCP/TPI
+\par                   information  in parentheses - state (e.g., ''(ESTABLISHED)'', ''(Unbound)''), queue sizes, and window sizes (not all dialects) -
+\par                   in a fashion similar to what netstat(1) reports; see the -T option description or the description of the TCP/TPI field in OUTPUT
+\par                   FOR OTHER PROGRAMS for more information on state, queue size, and window size;
+\par 
+\par                   or the address or name of a UNIX domain socket, possibly including a stream clone device name, a file system object's path name,
+\par                   local and foreign kernel addresses, socket pair information, and a bound vnode address;
+\par 
+\par                   or the local and remote mount point names of an NFS file;
+\par 
+\par                   or ''STR'', followed by the stream name;
+\par 
+\par                   or a stream character device name, followed by ''->'' and the stream name or a list of stream module names, separated by ''->'';
+\par 
+\par                   or ''STR:'' followed by the SCO OpenServer stream device and module names, separated by ''->'';
+\par 
+\par                   or  system  directory  name,  ''  -- '', and as many components of the path name as lsof can find in the kernel's name cache for
+\par                   selected dialects (See the KERNEL NAME CACHE section for more information.);
+\par 
+\par                   or ''PIPE->'', followed by a Solaris kernel pipe destination address;
+\par 
+\par                   or ''COMMON:'', followed by the vnode device information structure's device name, for a Solaris common vnode;
+\par 
+\par                   or the address family, followed by a slash ('/'), followed by fourteen  comma-separated  bytes  of  a  non-Internet  raw  socket
+\par                   address;
+\par 
+\par                   or the HP-UX x.25 local address, followed by the virtual connection number (if any), followed by the remote address (if any);
+\par 
+\par                   or  ''(dead)''  for disassociated DEC OSF/1, Digital UNIX, or Tru64 UNIX files - typically terminal files that have been flagged
+\par                   with the TIOCNOTTY ioctl and closed by daemons;
+\par 
+\par                   or ''rd=<offset>'' and ''wr=<offset>'' for the values of the read and write offsets of a FIFO;
+\par 
+\par                   or ''clone n:/dev/event'' for SCO OpenServer file clones of the /dev/event device, where n is the minor  device  number  of  the
+\par                   file;
+\par 
+\par                   or ''(socketpair: n)'' for a Solaris 2.6, 8, 9  or 10 UNIX domain socket, created by the socketpair(3N) network function;
+\par 
+\par                   or ''no PCB'' for socket files that do not have a protocol block associated with them, optionally followed by '', CANTSENDMORE''
+\par                   if sending on the socket has been disabled, or '', CANTRCVMORE'' if receiving on the socket has  been  disabled  (e.g.,  by  the
+\par                   shutdown(2) function);
+\par 
+\par                   or  the  local and remote addresses of a Linux IPX socket file in the form <net>:[<node>:]<port>, followed in parentheses by the
+\par                   transmit and receive queue sizes, and the connection state;
+\par 
+\par                   or ''dgram'' or ''stream'' for the type UnixWare 7.1.1 and above in-kernel UNIX domain sockets, followed by a  colon  (':')  and
+\par                   the  local  path  name  when available, followed by ''->'' and the remote path name or kernel socket address in hexadecimal when
+\par                   available.
+\par 
+\par        For dialects that support a ''namefs'' file system, allowing  one  file  to  be  attached  to  another  with  fattach(3C),  lsof  will  add
+\par        ''(FA:<address1><direction><address2>)''  to the NAME column.  <address1> and <address2> are hexadecimal vnode addresses.  <direction> will
+\par        be ''<-'' if <address2> has been fattach'ed to this vnode whose address is <address1>; and ''->'' if <address1>, the vnode address of  this
+\par        vnode, has been fattach'ed to <address2>.  <address1> may be omitted if it already appears in the DEVICE column.
+\par 
+\par LOCKS
+\par        Lsof can't adequately report the wide variety of UNIX dialect file locks in a single character.  What it reports in a single character is a
+\par        compromise between the information it finds in the kernel and the limitations of the reporting format.
+\par 
+\par        Moreover, when a process holds several byte level locks on a file, lsof only reports the status of the first lock it encounters.  If it  is
+\par        a  byte level lock, then the lock character will be reported in lower case - i.e., 'r', 'w', or 'x' - rather than the upper case equivalent
+\par        reported for a full file lock.
+\par 
+\par        Generally lsof can only report on locks held by local processes on local files.  When a local process sets a lock  on  a  remotely  mounted
+\par        (e.g.,  NFS)  file,  the remote server host usually records the lock state.  One exception is Solaris - at some patch levels of 2.3, and in
+\par        all versions above 2.4, the Solaris kernel records information on remote locks in local structures.
+\par 
+\par        Lsof has trouble reporting locks for some UNIX dialects.  Consult the BUGS section of this manual page or the lsof  FAQ  (The  FAQ  section
+\par        gives its location.)  for more information.
+\par 
+\par OUTPUT FOR OTHER PROGRAMS
+\par        When the -F option is specified, lsof produces output that is suitable for processing by another program - e.g, an awk or Perl script, or a
+\par        C program.
+\par 
+\par        Each unit of information is output in a field that is identified with a leading character and terminated by a NL (012) (or a NUL  (000)  if
+\par        the  0 (zero) field identifier character is specified.)  The data of the field follows immediately after the field identification character
+\par        and extends to the field terminator.
+\par 
+\par        It is possible to think of field output as process and file sets.  A process set begins with a field whose identifier is 'p'  (for  process
+\par        IDentifier  (PID)).   It  extends  to  the beginning of the next PID field or the beginning of the first file set of the process, whichever
+\par        comes first.  Included in the process set are fields that identify the command, the process group IDentification  (PGID)  number,  and  the
+\par        user ID (UID) number or login name.
+\par 
+\par        A  file  set  begins  with  a field whose identifier is 'f' (for file descriptor).  It is followed by lines that describe the file's access
+\par        mode, lock state, type, device, size, offset, inode, protocol, name and stream module names.  It extends to the beginning of the next  file
+\par        or process set, whichever comes first.
+\par 
+\par        When  the  NUL  (000)  field terminator has been selected with the 0 (zero) field identifier character, lsof ends each process and file set
+\par        with a NL (012) character.
+\par 
+\par        Lsof always produces one field, the PID ('p') field.  All other fields may be declared optionally in the field  identifier  character  list
+\par        that follows the -F option.  When a field selection character identifies an item lsof does not normally list - e.g., PPID, selected with -R
+\par        - specification of the field character - e.g., ''-FR'' - also selects the listing of the item.
+\par 
+\par        It is entirely possible to select a set of fields that cannot easily be parsed - e.g., if the field descriptor field is  not  selected,  it
+\par        may  be  difficult  to  identify  file  sets.  To help you avoid this difficulty, lsof supports the -F option; it selects the output of all
+\par        fields with NL terminators (the -F0 option pair selects the output of all fields with NUL terminators).  For compatibility reasons  neither
+\par        -F nor -F0 select the raw device field.
+\par 
+\par        These are the fields that lsof will produce.  The single character listed first is the field identifier.
+\par 
+\par             a    file access mode
+\par             c    process command name (all characters from proc or
+\par                  user structure)
+\par             C    file structure share count
+\par             d    file's device character code
+\par             D    file's major/minor device number (0x<hexadecimal>)
+\par             f    file descriptor
+\par             F    file structure address (0x<hexadecimal>)
+\par             G    file flaGs (0x<hexadecimal>; names if +fg follows)
+\par             i    file's inode number
+\par             k    link count
+\par             l    file's lock status
+\par             L    process login name
+\par             m    marker between repeated output
+\par             n    file name, comment, Internet address
+\par             N    node identifier (ox<hexadecimal>
+\par             o    file's offset (decimal)
+\par             p    process ID (always selected)
+\par             g    process group ID
+\par             P    protocol name
+\par             r    raw device number (0x<hexadecimal>)
+\par             R    parent process ID
+\par             s    file's size (decimal)
+\par             S    file's stream identification
+\par             t    file's type
+\par             T    TCP/TPI information, identified by prefixes (the
+\par                  '=' is part of the prefix):
+\par                      QR=<read queue size>
+\par                      QS=<send queue size>
+\par                      SO=<socket options and values> (not all dialects)
+\par                      SS=<socket states> (not all dialects)
+\par                      ST=<connection state>
+\par                      TF=<TCP flags and values> (not all dialects)
+\par                      WR=<window read size>  (not all dialects)
+\par                      WW=<window write size>  (not all dialects)
+\par                  (TCP/TPI information isn't reported for all supported
+\par                    UNIX dialects. The -h or -? help output for the
+\par                    -T option will show what TCP/TPI reporting can be
+\par                    requested.)
+\par             u    process user ID
+\par             z    Solaris 10 and higher zone name
+\par             0    use NUL field terminator character in place of NL
+\par             1-9  dialect-specific field identifiers (The output
+\par                  of -F? identifies the information to be found
+\par                  in dialect-specific fields.)
+\par 
+\par        You  can get on-line help information on these characters and their descriptions by specifying the -F?  option pair.  (Escape the '?' char-
+\par        acter as your shell requires.)  Additional information on field content can be found in the OUTPUT section.
+\par 
+\par        As an example, ''-F pcfn'' will select the process ID ('p'), command name ('c'), file descriptor ('f') and file name ('n') fields  with  an
+\par        NL field terminator character; ''-F pcfn0'' selects the same output with a NUL (000) field terminator character.
+\par 
+\par        Lsof  doesn't  produce  all  fields for every process or file set, only those that are available.  Some fields are mutually exclusive: file
+\par        device characters and file major/minor device numbers; file inode number and protocol name; file name and stream identification; file  size
+\par        and offset.  One or the other member of these mutually exclusive sets will appear in field output, but not both.
+\par 
+\par        Normally lsof ends each field with a NL (012) character.  The 0 (zero) field identifier character may be specified to change the field ter-
+\par        minator character to a NUL (000).  A NUL terminator may be easier to process with xargs (1), for example, or with  programs  whose  quoting
+\par        mechanisms  may  not easily cope with the range of characters in the field output.  When the NUL field terminator is in use, lsof ends each
+\par        process and file set with a NL (012).
+\par 
+\par        Three aids to producing programs that can process lsof field output are included in the lsof distribution.  The first is a C  header  file,
+\par        lsof_fields.h,  that contains symbols for the field identification characters, indexes for storing them in a table, and explanation strings
+\par        that may be compiled into programs.  Lsof uses this header file.
+\par 
+\par        The second aid is a set of sample scripts that process field output, written in awk, Perl 4, and Perl 5.  They're located  in  the  scripts
+\par        subdirectory of the lsof distribution.
+\par 
+\par        The  third aid is the C library used for the lsof test suite.  The test suite is written in C and uses field output to validate the correct
+\par        operation of lsof.  The library can be found in the tests/LTlib.c file of the lsof distribution.  The  library  uses  the  first  aid,  the
+\par        lsof_fields.h header file.
+\par 
+\par BLOCKS AND TIMEOUTS
+\par        Lsof can be blocked by some kernel functions that it uses - lstat(2), readlink(2), and stat(2).  These functions are stalled in the kernel,
+\par        for example, when the hosts where mounted NFS file systems reside become inaccessible.
+\par 
+\par        Lsof attempts to break these blocks with timers and child processes, but the techniques are not wholly reliable.  When lsof does manage  to
+\par        break a block, it will report the break with an error message.  The messages may be suppressed with the -t and -w options.
+\par 
+\par        The  default  timeout value may be displayed with the -h or -?  option, and it may be changed with the -S [t] option.  The minimum for t is
+\par        two seconds, but you should avoid small values, since slow system responsiveness can cause short timeouts to expire unexpectedly  and  per-
+\par        haps stop lsof before it can produce any output.
+\par 
+\par        When  lsof has to break a block during its access of mounted file system information, it normally continues, although with less information
+\par        available to display about open files.
+\par 
+\par        Lsof can also be directed to avoid the protection of timers and child processes when using the kernel functions that might block by  speci-
+\par        fying  the  -O option.  While this will allow lsof to start up with less overhead, it exposes lsof completely to the kernel situations that
+\par        might block it.  Use this option cautiously.
+\par 
+\par AVOIDING KERNEL BLOCKS
+\par        You can use the -b option to tell lsof to avoid using kernel functions that would block.  Some cautions apply.
+\par 
+\par        First, using this option usually requires that your system supply alternate device numbers in place of the device numbers that  lsof  would
+\par        normally obtain with the lstat(2) and stat(2) kernel functions.  See the ALTERNATE DEVICE NUMBERS section for more information on alternate
+\par        device numbers.
+\par 
+\par        Second, you can't specify names for lsof to locate unless they're file system names.  This is because lsof needs to  know  the  device  and
+\par        inode  numbers  of  files listed with names in the lsof options, and the -b option prevents lsof from obtaining them.  Moreover, since lsof
+\par        only has device numbers for the file systems that have alternates, its ability to locate files on file systems depends  completely  on  the
+\par        availability  and  accuracy of the alternates.  If no alternates are available, or if they're incorrect, lsof won't be able to locate files
+\par        on the named file systems.
+\par 
+\par        Third, if the names of your file system directories that lsof obtains from your system's mount table are symbolic links, lsof won't be able
+\par        to  resolve  the  links.   This  is  because the -b option causes lsof to avoid the kernel readlink(2) function it uses to resolve symbolic
+\par        links.
+\par 
+\par        Finally, using the -b option causes lsof to issue warning messages when it needs to use the kernel functions that the -b option directs  it
+\par        to  avoid.  You can suppress these messages by specifying the -w option, but if you do, you won't see the alternate device numbers reported
+\par        in the warning messages.
+\par 
+\par ALTERNATE DEVICE NUMBERS
+\par        On some dialects, when lsof has to break a block because it can't get information about a mounted file system via the lstat(2) and  stat(2)
+\par        kernel functions, or because you specified the -b option, lsof can obtain some of the information it needs - the device number and possibly
+\par        the file system type - from the system mount table.  When that is possible, lsof will report the device number it obtained.  (You can  sup-
+\par        press the report by specifying the -w option.)
+\par 
+\par        You can assist this process if your mount table is supported with an /etc/mtab or /etc/mnttab file that contains an options field by adding
+\par        a ''dev=xxxx'' field for mount points that do not have one in their options strings.  Note: you must be able to edit the file - i.e.,  some
+\par        mount tables like recent Solaris /etc/mnttab or Linux /proc/mounts are read-only and can't be modified.
+\par 
+\par        You may also be able to supply device numbers using the +m and +m m options, provided they are supported by your dialect.  Check the output
+\par        of lsof's -h or -?  options to see if the +m and +m m options are available.
+\par 
+\par        The ''xxxx'' portion of the field is the hexadecimal value of the file system's device number.  (Consult the st_dev field of the output  of
+\par        the lstat(2) and stat(2) functions for the appropriate values for your file systems.)  Here's an example from a Sun Solaris 2.6 /etc/mnttab
+\par        for a file system remotely mounted via NFS:
+\par 
+\par             nfs  ignore,noquota,dev=2a40001
+\par 
+\par        There's an advantage to having ''dev=xxxx'' entries in your mount table file, especially for file systems that are mounted from remote  NFS
+\par        servers.   When  a  remote  server crashes and you want to identify its users by running lsof on one of its clients, lsof probably won't be
+\par        able to get output from the lstat(2) and stat(2) functions for the file system.  If it can obtain the file system's device number from  the
+\par        mount table, it will be able to display the files open on the crashed NFS server.
+\par 
+\par        Some  dialects that do not use an ASCII /etc/mtab or /etc/mnttab file for the mount table may still provide an alternative device number in
+\par        their internal mount tables.  This includes AIX, Apple Darwin, DEC OSF/1, Digital UNIX, FreeBSD, NetBSD, OpenBSD,  and  Tru64  UNIX.   Lsof
+\par        knows how to obtain the alternative device number for these dialects and uses it when its attempt to lstat(2) or stat(2) the file system is
+\par        blocked.
+\par 
+\par        If you're not sure your dialect supplies alternate device numbers for file systems from its mount table, use this lsof incantation  to  see
+\par        if it reports any alternate device numbers:
+\par 
+\par               lsof -b
+\par 
+\par        Look for standard error file warning messages that begin ''assuming "dev=xxxx" from ...''.
+\par 
+\par KERNEL NAME CACHE
+\par        Lsof  is  able  to examine the kernel's name cache or use other kernel facilities (e.g., the ADVFS 4.x tag_to_path() function under Digital
+\par        UNIX or Tru64 UNIX) on some dialects for most file system types, excluding AFS, and extract recently used path  name  components  from  it.
+\par        (AFS file system path lookups don't use the kernel's name cache.)
+\par 
+\par        Lsof  reports the complete paths it finds in the NAME column.  If lsof can't report all components in a path, it reports in the NAME column
+\par        the file system name, followed by a space, two '-' characters, another space, and the name components it has located, separated by the  '/'
+\par        character.
+\par 
+\par        When  lsof is run in repeat mode - i.e., with the -r option specified - the extent to which it can report path name components for the same
+\par        file may vary from cycle to cycle.  That's because other running processes can cause the kernel to remove entries from its name  cache  and
+\par        replace them with others.
+\par 
+\par        Lsof's  use  of  the  kernel name cache to identify the paths of files can lead it to report incorrect components under some circumstances.
+\par        This can happen when the kernel name cache uses device and node number as a key (e.g., Linux and SCO OpenServer) and a  key  on  a  rapidly
+\par        changing  file  system is reused.  If the UNIX dialect's kernel doesn't purge the name cache entry for a file when it is unlinked, lsof may
+\par        find a reference to the wrong entry in the cache.  The lsof FAQ (The FAQ section gives its location.)  has more information on this  situa-
+\par        tion.
+\par 
+\par        Lsof can report path name components for these dialects:
+\par 
+\par             BSDI BSD/OS
+\par             DEC OSF/1, Digital UNIX, Tru64 UNIX
+\par             FreeBSD
+\par             HP-UX
+\par             Linux
+\par             NetBSD
+\par             NEXTSTEP
+\par             OpenBSD
+\par             OPENSTEP
+\par             Caldera OpenUNIX
+\par             SCO OpenServer
+\par             SCO|Caldera UnixWare
+\par             Solaris
+\par 
+\par        Lsof can't report path name components for these dialects:
+\par 
+\par             AIX
+\par 
+\par        If you want to know why lsof can't report path name components for some dialects, see the lsof FAQ (The FAQ section gives its location.)
+\par 
+\par DEVICE CACHE FILE
+\par        Examining  all members of the /dev (or /devices) node tree with stat(2) functions can be time consuming.  What's more, the information that
+\par        lsof needs - device number, inode number, and path - rarely changes.
+\par 
+\par        Consequently, lsof normally maintains an ASCII text file of cached /dev (or /devices) information (exception: the  /proc-based  Linux  lsof
+\par        where it's not needed.)  The local system administrator who builds lsof can control the way the device cache file path is formed, selecting
+\par        from these options:
+\par 
+\par             Path from the -D option;
+\par             Path from an environment variable;
+\par             System-wide path;
+\par             Personal path (the default);
+\par             Personal path, modified by an environment variable.
+\par 
+\par        Consult the output of the -h, -D? , or -?  help options for the current state of device cache support.  The help output lists  the  default
+\par        read-mode  device  cache  file  path  that is in effect for the current invocation of lsof.  The -D?  option output lists the read-only and
+\par        write device cache file paths, the names of any applicable environment variables, and the personal device cache path format.
+\par 
+\par        Lsof can detect that the current device cache file has been accidentally or maliciously modified by integrity checks, including the  compu-
+\par        tation  and  verification of a sixteen bit Cyclic Redundancy Check (CRC) sum on the file's contents.  When lsof senses something wrong with
+\par        the file, it issues a warning and attempts to remove the current cache file and create a new copy, but only to a path that the process  can
+\par        legitimately write.
+\par 
+\par        The  path  from  which  a lsof process may attempt to read a device cache file may not be the same as the path to which it can legitimately
+\par        write.  Thus when lsof senses that it needs to update the device cache file, it may choose a different path for writing it  from  the  path
+\par        from which it read an incorrect or outdated version.
+\par 
+\par        If  available,  the  -Dr  option will inhibit the writing of a new device cache file.  (It's always available when specified without a path
+\par        name argument.)
+\par 
+\par        When a new device is added to the system, the device cache file may need to be recreated.  Since lsof compares  the  mtime  of  the  device
+\par        cache  file with the mtime and ctime of the /dev (or /devices) directory, it usually detects that a new device has been added; in that case
+\par        lsof issues a warning message and attempts to rebuild the device cache file.
+\par 
+\par        Whenever lsof writes a device cache file, it sets its ownership to the real UID of the executing process, and its permission modes to 0600,
+\par        this restricting its reading and writing to the file's owner.
+\par 
+\par LSOF PERMISSIONS THAT AFFECT DEVICE CACHE FILE ACCESS
+\par        Two permissions of the lsof executable affect its ability to access device cache files.  The permissions are set by the local system admin-
+\par        istrator when lsof is installed.
+\par 
+\par        The first and rarer permission is setuid-root.  It comes into effect when lsof is executed; its effective UID is then root, while its  real
+\par        (i.e., that of the logged-on user) UID is not.  The lsof distribution recommends that versions for these dialects run setuid-root.
+\par 
+\par             HP-UX 11.11
+\par             Linux
+\par 
+\par        The  second  and  more  common permission is setgid.  It comes into effect when the effective group IDentification number (GID) of the lsof
+\par        process is set to one that can access kernel memory devices - e.g., ''kmem'', ''sys'', or ''system''.
+\par 
+\par        An lsof process that has setgid permission usually surrenders the permission after it has accessed the kernel memory devices.  When it does
+\par        that, lsof can allow more liberal device cache path formations.  The lsof distribution recommends that versions for these dialects run set-
+\par        gid and be allowed to surrender setgid permission.
+\par 
+\par             AIX 4.3.2, 5L, and 5.[12]
+\par             Apple Darwin 6.x and 7.x for Power Macintosh systems
+\par             BSDI BSD/OS 4.3.1 for x86-based systems
+\par             DEC OSF/1, Digital UNIX, Tru64 UNIX 4.0, and 5.[01]
+\par             FreeBSD 4.[1-9], 4.10 and 5.[012] for x86-based systems
+\par             FreeBSD 5.[012] for Alpha, AMD64 and Sparc64 based systems
+\par             HP-UX 11.00
+\par             NetBSD 1.[456] and 2.0 for Alpha, x86, and SPARC-based systems
+\par             NEXTSTEP 3.[13] for NEXTSTEP architectures
+\par             OpenBSD 2.[89] and 3.[012345] for x86-based systems
+\par             OPENSTEP 4.x
+\par             Caldera OpenUNIX 8
+\par             SCO OpenServer Release 5.0.[46] for x86-based systems
+\par             SCO|Caldera UnixWare 7.1.[134] for x86-based systems
+\par             Solaris 2.6, 8, 9 and 10
+\par 
+\par        (Note: lsof for AIX 5L and above needs setuid-root permission if its -X option is used.)
+\par 
+\par        Lsof for these dialects does not support a device cache, so the permissions given to the executable don't apply to the device cache file.
+\par 
+\par             Linux
+\par 
+\par DEVICE CACHE FILE PATH FROM THE -D OPTION
+\par        The -D option provides limited means for specifying the device cache file path.  Its ?  function will report the read-only and write device
+\par        cache file paths that lsof will use.
+\par 
+\par        When the -D b, r, and u functions are available, you can use them to request that the cache file be built in a specific location (b[path]);
+\par        read but not rebuilt (r[path]); or read and rebuilt (u[path]).  The b, r, and u functions are restricted under some conditions.   They  are
+\par        restricted when the lsof process is setuid-root.  The path specified with the r function is always read-only, even when it is available.
+\par 
+\par        The b, r, and u functions are also restricted when the lsof process runs setgid and lsof doesn't surrender the setgid permission.  (See the
+\par        LSOF PERMISSIONS THAT AFFECT DEVICE CACHE FILE ACCESS section for a list of implementations that normally don't surrender their setgid per-
+\par        mission.)
+\par 
+\par        A further -D function, i (for ignore), is always available.
+\par 
+\par        When  available,  the  b  function tells lsof to read device information from the kernel with the stat(2) function and build a device cache
+\par        file at the indicated path.
+\par 
+\par        When available, the r function tells lsof to read the device cache file, but not update it.  When a path argument accompanies -Dr, it names
+\par        the  device cache file path.  The r function is always available when it is specified without a path name argument.  If lsof is not running
+\par        setuid-root and surrenders its setgid permission, a path name argument may accompany the r function.
+\par 
+\par        When available, the u function tells lsof to attempt to read and use the device cache file.  If it can't read the file, or if it finds  the
+\par        contents of the file incorrect or outdated, it will read information from the kernel, and attempt to write an updated version of the device
+\par        cache file, but only to a path it considers legitimate for the lsof process effective and real UIDs.
+\par 
+\par DEVICE CACHE PATH FROM AN ENVIRONMENT VARIABLE
+\par        Lsof's second choice for the device cache file is the contents of the LSOFDEVCACHE environment variable.  It avoids this choice if the lsof
+\par        process is setuid-root, or the real UID of the process is root.
+\par 
+\par        A  further  restriction  applies to a device cache file path taken from the LSOFDEVCACHE environment variable: lsof will not write a device
+\par        cache file to the path if the lsof process doesn't surrender its setgid permission.  (See the LSOF PERMISSIONS  THAT  AFFECT  DEVICE  CACHE
+\par        FILE ACCESS section for information on implementations that don't surrender their setgid permission.)
+\par 
+\par        The local system administrator can disable the use of the LSOFDEVCACHE environment variable or change its name when building lsof.  Consult
+\par        the output of -D?  for the environment variable's name.
+\par 
+\par SYSTEM-WIDE DEVICE CACHE PATH
+\par        The local system administrator may choose to have a system-wide device cache file when building lsof.  That file  will  generally  be  con-
+\par        structed  by  a  special  system  administration procedure when the system is booted or when the contents of /dev or /devices) changes.  If
+\par        defined, it is lsof's third device cache file path choice.
+\par 
+\par        You can tell that a system-wide device cache file is in effect for your local installation by examining the lsof help option output - i.e.,
+\par        the output from the -h or -?  option.
+\par 
+\par        Lsof will never write to the system-wide device cache file path by default.  It must be explicitly named with a -D function in a root-owned
+\par        procedure.  Once the file has been written, the procedure must change its permission modes to 0644 (owner-read and owner-write, group-read,
+\par        and other-read).
+\par 
+\par PERSONAL DEVICE CACHE PATH (DEFAULT)
+\par        The  default  device  cache  file  path  of the lsof distribution is one recorded in the home directory of the real UID that executes lsof.
+\par        Added to the home directory is a second path component of the form .lsof_hostname.
+\par 
+\par        This is lsof's fourth device cache file path choice, and is usually the default.  If a system-wide device cache file path was defined  when
+\par        lsof was built, this fourth choice will be applied when lsof can't find the system-wide device cache file.  This is the only time lsof uses
+\par        two paths when reading the device cache file.
+\par 
+\par        The hostname part of the second component is the base name of the executing host, as returned by gethostname(2).  The base name is  defined
+\par        to be the characters preceding the first '.'  in the gethostname(2) output, or all the gethostname(2) output if it contains no '.'.
+\par 
+\par        The  device  cache file belongs to the user ID and is readable and writable by the user ID alone - i.e., its modes are 0600.  Each distinct
+\par        real user ID on a given host that executes lsof has a distinct device cache file.  The hostname part of the path distinguishes device cache
+\par        files in an NFS-mounted home directory into which device cache files are written from several different hosts.
+\par 
+\par        The  personal  device cache file path formed by this method represents a device cache file that lsof will attempt to read, and will attempt
+\par        to write should it not exist or should its contents be incorrect or outdated.
+\par 
+\par        The -Dr option without a path name argument will inhibit the writing of a new device cache file.
+\par 
+\par        The -D?  option will list the format specification for constructing the personal device cache file.  The conversions  used  in  the  format
+\par        specification are described in the 00DCACHE file of the lsof distribution.
+\par 
+\par MODIFIED PERSONAL DEVICE CACHE PATH
+\par        If  this  option  is  defined by the local system administrator when lsof is built, the LSOFPERSDCPATH environment variable contents may be
+\par        used to add a component of the personal device cache file path.
+\par 
+\par        The LSOFPERSDCPATH variable contents are inserted in the path at the place marked by the local system administrator with the ''%p'' conver-
+\par        sion  in  the  HASPERSDC  format  specification of the dialect's machine.h header file.  (It's placed right after the home directory in the
+\par        default lsof distribution.)
+\par 
+\par        Thus, for example, if LSOFPERSDCPATH contains ''LSOF'', the home directory is ''/Homes/abe'', the host  name  is  ''lsof.itap.purdue.edu'',
+\par        and the HASPERSDC format is the default (''%h/%p.lsof_%L''), the modified personal device cache file path is:
+\par 
+\par             /Homes/abe/LSOF/.lsof_vic
+\par 
+\par        The LSOFPERSDCPATH environment variable is ignored when the lsof process is setuid-root or when the real UID of the process is root.
+\par 
+\par        Lsof  will  not write to a modified personal device cache file path if the lsof process doesn't surrender setgid permission.  (See the LSOF
+\par        PERMISSIONS THAT AFFECT DEVICE CACHE FILE ACCESS section for a list of implementations that normally don't surrender their  setgid  permis-
+\par        sion.)
+\par 
+\par        If, for example, you want to create a sub-directory of personal device cache file paths by using the LSOFPERSDCPATH environment variable to
+\par        name it, and lsof doesn't surrender its setgid permission, you will have to allow lsof to create device cache files at  the  standard  per-
+\par        sonal path and move them to your subdirectory with shell commands.
+\par 
+\par        The local system administrator may: disable this option when lsof is built; change the name of the environment variable from LSOFPERSDCPATH
+\par        to something else; change the HASPERSDC format to include the personal path component in another place; or exclude the personal path compo-
+\par        nent entirely.  Consult the output of the -D?  option for the environment variable's name and the HASPERSDC format specification.
+\par 
+\par DIAGNOSTICS
+\par        Errors are identified with messages on the standard error file.
+\par 
+\par        Lsof  returns  a one (1) if any error was detected, including the failure to locate command names, file names, Internet addresses or files,
+\par        login names, NFS files, PIDs, PGIDs, or UIDs it was asked to list.  If the -V option is specified, lsof will indicate the search  items  it
+\par        failed to list.
+\par 
+\par        It returns a zero (0) if no errors were detected and if it was able to list some information about all the specified search arguments.
+\par 
+\par        When  lsof  cannot  open  access  to /dev (or /devices) or one of its subdirectories, or get information on a file in them with stat(2), it
+\par        issues a warning message and continues.  That lsof will issue warning messages about inaccessible files in /dev (or /devices) is  indicated
+\par        in its help output - requested with the -h or >B -?  options -  with the message:
+\par 
+\par             Inaccessible /dev warnings are enabled.
+\par 
+\par        The  warning message may be suppressed with the -w option.  It may also have been suppressed by the system administrator when lsof was com-
+\par        piled by the setting of the WARNDEVACCESS definition.  In this case, the output from the help options will include the message:
+\par 
+\par             Inaccessible /dev warnings are disabled.
+\par 
+\par        Inaccessible device warning messages usually disappear after lsof has created a working device cache file.
+\par 
+\par EXAMPLES
+\par        For a more extensive set of examples, documented more fully, see the 00QUICKSTART file of the lsof distribution.
+\par 
+\par        To list all open files, use:
+\par 
+\par               lsof
+\par 
+\par        To list all open Internet, x.25 (HP-UX), and UNIX domain files, use:
+\par 
+\par               lsof -i -U
+\par 
+\par        To list all open IPv4 network files in use by the process whose PID is 1234, use:
+\par 
+\par               lsof -i 4 -a -p 1234
+\par 
+\par        Presuming the UNIX dialect supports IPv6, to list only open IPv6 network files, use:
+\par 
+\par               lsof -i 6
+\par 
+\par        To list all files using any protocol on ports 513, 514, or 515 of host wonderland.cc.purdue.edu, use:
+\par 
+\par               lsof -i @wonderland.cc.purdue.edu:513-515
+\par 
+\par        To list all files using any protocol on any port of mace.cc.purdue.edu (cc.purdue.edu is the default domain), use:
+\par 
+\par               lsof -i @mace
+\par 
+\par        To list all open files for login name ''abe'', or user ID 1234, or process 456, or process 123, or process 789, use:
+\par 
+\par               lsof -p 456,123,789 -u 1234,abe
+\par 
+\par        To list all open files on device /dev/hd4, use:
+\par 
+\par               lsof /dev/hd4
+\par 
+\par        To find the process that has /u/abe/foo open, use:
+\par 
+\par               lsof /u/abe/foo
+\par 
+\par        To send a SIGHUP to the processes that have /u/abe/bar open, use:
+\par 
+\par               kill -HUP 'lsof -t /u/abe/bar'
+\par 
+\par        To find any open file, including an open UNIX domain socket file, with the name /dev/log, use:
+\par 
+\par               lsof /dev/log
+\par 
+\par        To find processes with open files on the NFS file system named /nfs/mount/point whose server is inaccessible, and presuming your mount  ta-
+\par        ble supplies the device number for /nfs/mount/point, use:
+\par 
+\par               lsof -b /nfs/mount/point
+\par 
+\par        To do the preceding search with warning messages suppressed, use:
+\par 
+\par               lsof -bw /nfs/mount/point
+\par 
+\par        To ignore the device cache file, use:
+\par 
+\par               lsof -Di
+\par 
+\par        To  obtain  PID and command name field output for each process, file descriptor, file device number, and file inode number for each file of
+\par        each process, use:
+\par 
+\par               lsof -FpcfDi
+\par 
+\par        To list the files at descriptors 1 and 3 of every process running the lsof command for login ID ''abe'' every 10 seconds, use:
+\par 
+\par               lsof -c lsof -a -d 1 -d 3 -u abe -r10
+\par 
+\par        To list the current working directory of processes running a command that is exactly four characters long and has an 'o' or 'O' in  charac-
+\par        ter three, use this regular expression form of the -c c option:
+\par 
+\par               lsof -c /^..o.$/i -a -d cwd
+\par 
+\par        To find an IP version 4 socket file by its associated numeric dot-form address, use:
+\par 
+\par               lsof -i@128.210.15.17
+\par 
+\par        To find an IP version 6 socket file (when the UNIX dialect supports IPv6) by its associated numeric colon-form address, use:
+\par 
+\par               lsof -i@[0:1:2:3:4:5:6:7]
+\par 
+\par        To  find  an  IP  version 6 socket file (when the UNIX dialect supports IPv6) by an associated numeric colon-form address that has a run of
+\par        zeroes in it - e.g., the loop-back address - use:
+\par 
+\par               lsof -i@[::1]
+\par 
+\par BUGS
+\par        Since lsof reads kernel memory in its search for open files, rapid changes in kernel memory may produce unpredictable results.
+\par 
+\par        When a file has multiple record locks, the lock status character (following the file descriptor) is derived from a test of the  first  lock
+\par        structure, not from any combination of the individual record locks that might be described by multiple lock structures.
+\par 
+\par        Lsof  can't search for files with restrictive access permissions by name unless it is installed with root set-UID permission.  Otherwise it
+\par        is limited to searching for files to which its user or its set-GID group (if any) has access permission.
+\par 
+\par        The display of the destination address of a raw socket (e.g., for ping) depends on the UNIX operating system.  Some dialects store the des-
+\par        tination address in the raw socket's protocol control block, some do not.
+\par 
+\par        Lsof  can't  always represent Solaris device numbers in the same way that ls(1) does.  For example, the major and minor device numbers that
+\par        the lstat(2) and stat(2) functions report for the directory on which CD-ROM files are mounted (typically /cdrom) are not the  same  as  the
+\par        ones that it reports for the device on which CD-ROM files are mounted (typically /dev/sr0).  (Lsof reports the directory numbers.)
+\par 
+\par        The support for /proc file systems is available only for BSD, DEC OSF/1, Digital UNIX, and Tru64 UNIX dialects, Linux, and dialects derived
+\par        from SYSV R4 - e.g., FreeBSD, NetBSD, OpenBSD, Solaris, UnixWare.
+\par 
+\par        Some /proc file items - device number, inode number, and file size - are unavailable in some dialects.  Searching for files in a /proc file
+\par        system may require that the full path name be specified.
+\par 
+\par        No text (txt) file descriptors are displayed for Linux processes.  All entries for files other than the current working directory, the root
+\par        directory, and numerical file descriptors are labeled mem descriptors.
+\par 
+\par        Lsof can't search for DEC OSF/1, Digital UNIX, and Tru64 UNIX named pipes by name, because their kernel implementation of lstat(2)  returns
+\par        an improper device number for a named pipe.
+\par 
+\par        Lsof  can't  report fully or correctly on HP-UX 9.01, 10.20, and 11.00 locks because of insufficient access to kernel data or errors in the
+\par        kernel data.  See the lsof FAQ (The FAQ section gives its location.)  for details.
+\par 
+\par        The AIX SMT file type is a fabrication.  It's made up for file structures whose type (15) isn't defined in the AIX  /usr/include/sys/file.h
+\par        header file.  One way to create such file structures is to run X clients with the DISPLAY variable set to '':0.0''.
+\par 
+\par        The +|-f[cfgGn] option is not supported under /proc-based Linux lsof, because it doesn't read kernel structures from kernel memory.
+\par 
+\par ENVIRONMENT
+\par        Lsof may access these environment variables.
+\par 
+\par        LSOFDEVCACHE      defines  the path to a device cache file.  See the DEVICE CACHE PATH FROM AN ENVIRONMENT VARIABLE section for more infor-
+\par                          mation.
+\par 
+\par        LSOFPERSDCPATH    defines the middle component of a modified personal device cache file path.  See the MODIFIED PERSONAL DEVICE CACHE  PATH
+\par                          section for more information.
+\par 
+\par FAQ
+\par        Frequently-asked questions and their answers (an FAQ) are available in the 00FAQ file of the lsof distribution.
+\par 
+\par        That file is also available via anonymous ftp from lsof.itap.purdue.edu at pub/tools/unix/lsofFAQ.  The URL is:
+\par 
+\par               ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/FAQ
+\par 
+\par FILES
+\par        /dev/kmem         kernel virtual memory device
+\par 
+\par        /dev/mem          physical memory device
+\par 
+\par        /dev/swap         system paging device
+\par 
+\par        .lsof_hostname    lsof's device cache file (The suffix, hostname, is the first component of the host's name returned by gethostname(2).)
+\par 
+\par AUTHORS
+\par        Lsof  was  written  by Victor A. Abell <abe@purdue.edu> of Purdue University.  Many others have contributed to lsof.  They're listed in the
+\par        00CREDITS file of the lsof distribution.
+\par 
+\par DISTRIBUTION
+\par        The latest distribution of lsof is available via anonymous ftp from the host lsof.itap.purdue.edu.  You'll find the  lsof  distribution  in
+\par        the pub/tools/unix/lsof directory.
+\par 
+\par        You can also use this URL:
+\par 
+\par               ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof
+\par 
+\par        Lsof  is  also mirrored elsewhere.  When you access lsof.itap.purdue.edu and change to its pub/tools/unix/lsof directory, you'll be given a
+\par        list of some mirror sites.  The pub/tools/unix/lsof directory also contains a more complete list in its mirrors  file.   Use  mirrors  with
+\par        caution - not all mirrors always have the latest lsof revision.
+\par 
+\par        Some  pre-compiled  Lsof  executables are available on lsof.itap.purdue.edu, but their use is discouraged - it's better that you build your
+\par        own from the sources.  If you feel you must use a pre-compiled executable, please read the cautions that appear in the README files of  the
+\par        pub/tools/unix/lsof/binaries subdirectories and in the 00* files of the distribution.
+\par 
+\par        More  information  on the lsof distribution can be found in its README.lsof_<version> file.  If you intend to get the lsof distribution and
+\par        build it, please read README.lsof_<version> and the other 00* files of the distribution before sending questions to the author.
+\par 
+\par SEE ALSO
+\par        Not all the following manual pages may exist in every UNIX dialect to which lsof has been ported.
+\par 
+\par        access(2), awk(1), crash(1), fattach(3C), ff(1), fstat(8), fuser(1), gethostname(2), isprint(3), kill(1), lstat(2),  modload(8),  mount(8),
+\par        netstat(1), ofiles(8L), perl(1), ps(1), readlink(2), stat(2), uname(1).
+\par 
+\par                                                                    Revision-4.72                                                           LSOF(8)\par}

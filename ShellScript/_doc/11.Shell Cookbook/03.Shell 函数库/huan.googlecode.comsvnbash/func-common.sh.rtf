@@ -1,0 +1,1729 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1677512676\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid2051958139}
+}
+{\*\listoverridetable
+{\listoverride\listid2051958139\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 func-common.sh
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf1 #http://huan.googlecode.com/svn/bash/func-common.sh
+\par \plain \f1\fs20 ## ---------------------------------------------------------\'0a#
+\par ## common functions\'0a#
+\par ## author:   samli AT tencent.com | huanlf AT gmail.com\'0a#
+\par ## usage:    source "./func-common.sh"\'0a#
+\par ## last mod: 2009-07-10\'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par \'0a#
+\par ## ---------------- classical usage ------------------------\'0a#
+\par ## export WORKDIR=$( cd ` dirname $0 ` && pwd )\'0a#
+\par ## \'0a#
+\par ## if [[ ! -r "$WORKDIR/func-common.sh" ]]; then\'0a#
+\par ##     echo "[$WORKDIR/func-common.sh] NOT FOUND"\'0a#
+\par ##     exit 1\'0a#
+\par ## fi\'0a#
+\par ## \'0a#
+\par ## . "$WORKDIR/func-common.sh" || exit 1\'0a#
+\par ## \'0a#
+\par ## cd "$WORKDIR" || exit 1\'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par \'0a#
+\par ## set -x \'0a#
+\par ## set -e     ## Sorry, can not set -e here, fix later\'0a\'0a
+\par \'0a#
+\par ## -------------------- GLOBAL VAR -------------------------\'0a\'0a
+\par \'0a#
+\par ## some vars initialized in the end of this file, check it\'0a\'0a
+\par \'0a#
+\par ## make sure we will find commands needed\'0ae
+\par export PATH=/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:$PATH\'0a\'0a
+\par \'0a#
+\par ## just a var to keep the val from get_localip\'0a#
+\par ## use a strange var name to avoid collision\'0ae
+\par export LLLOCALIP\'0a\'0a
+\par \'0a#
+\par ## the dir we are working in\'0ae
+\par export WORKDIR\'0a\'0a
+\par \'0a#
+\par ## some addictional logs may redirected to here\'0a#
+\par ## such as: make >> $LLLOG && make install >> $LLLOG\'0a#
+\par ## use a strange var name to avoid collision\'0ae
+\par export LLLOG\'0ae
+\par export LLLOGDIR\'0a\'0a
+\par \'0a#
+\par ## set locale as POSIX, to work around with i180-ed apps\'0ae
+\par export LANG=C\'0ae
+\par export LC_ALL=C\'0a\'0a
+\par \'0a#
+\par ## set umask to 022 to avoid wrong access mode\'0au
+\par umask 022\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par \'0a#
+\par ## -------------------- colourful print --------------------\'0a\'0a
+\par \'0a#
+\par ## ANSI Foreground color codes:\'0a#
+\par ## 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white 39=default\'0a#
+\par ## ANSI Background color codes:\'0a#
+\par ## 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white 49=default\'0a\'0a
+\par \'0aC
+\par COLOR_RED=$(    echo -e "\\e[31;49m" ) \'0aC
+\par COLOR_GREEN=$(  echo -e "\\e[32;49m" )\'0aC
+\par COLOR_YELLO=$(  echo -e "\\e[33;49m" )\'0aC
+\par COLOR_BLUE=$(   echo -e "\\e[34;49m" )\'0aC
+\par COLOR_MAGENTA=$(echo -e "\\e[35;49m" )\'0aC
+\par COLOR_CYAN=$(   echo -e "\\e[36;49m" )\'0aC
+\par COLOR_RESET=$(  echo -e "\\e[0m"     )\'0a\'0a
+\par \'0a#
+\par ## *msg argv: "$str"\'0am
+\par msg()  \{ gmsg "$@";                               \}\'0ar
+\par rmsg() \{ echo "$\{COLOR_RED\}$*$\{COLOR_RESET\}";     \}\'0ag
+\par gmsg() \{ echo "$\{COLOR_GREEN\}$*$\{COLOR_RESET\}";   \}\'0ay
+\par ymsg() \{ echo "$\{COLOR_YELLO\}$*$\{COLOR_RESET\}";   \}\'0ab
+\par bmsg() \{ echo "$\{COLOR_BLUE\}$*$\{COLOR_RESET\}";    \}\'0am
+\par mmsg() \{ echo "$\{COLOR_MAGENTA\}$*$\{COLOR_RESET\}"; \}\'0ac
+\par cmsg() \{ echo "$\{COLOR_CYAN\}$*$\{COLOR_RESET\}";    \}\'0a\'0a
+\par \'0a#
+\par # colourful print without "\\n"\'0am
+\par msg_()  \{  msg "$@" | tr -d '\\n'; \}\'0ar
+\par rmsg_() \{ rmsg "$@" | tr -d '\\n'; \}\'0ag
+\par gmsg_() \{ gmsg "$@" | tr -d '\\n'; \}\'0ay
+\par ymsg_() \{ ymsg "$@" | tr -d '\\n'; \}\'0ab
+\par bmsg_() \{ bmsg "$@" | tr -d '\\n'; \}\'0am
+\par mmsg_() \{ mmsg "$@" | tr -d '\\n'; \}\'0ac
+\par cmsg_() \{ cmsg "$@" | tr -d '\\n'; \}\'0a\'0a
+\par \'0a#
+\par ## normal message print and log\'0al
+\par logmsg()\'0a\{
+\par \{\'0a 
+\par     local t=$( date '+%F %T' )\'0a\'0a
+\par 
+\par     gmsg "[$t $LLLOCALIP]: $*"\'0a\'0a
+\par 
+\par     ## no color in logs\'0a 
+\par     mkdir -p "$LLLOGDIR" || \{ rmsg "can not create $LLLOGDIR"; exit 1; \}\'0a 
+\par     echo "[$t $ip]: $*" >> "$LLLOG"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## normal message print and log, without "\\n"\'0al
+\par logmsg_()\'0a\{
+\par \{\'0a 
+\par     local t=$( date '+%F %T' )\'0a\'0a
+\par 
+\par     gmsg_ "[$t $LLLOCALIP]: $*"\'0a\'0a
+\par 
+\par     ## no color in logs\'0a 
+\par     mkdir -p "$LLLOGDIR" || \{ rmsg "can not create $LLLOGDIR"; exit 1; \}\'0a 
+\par     echo -n "[$t $ip]: $*" >> "$LLLOG"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## warning\'0aw
+\par warn()\'0a\{
+\par \{\'0a 
+\par     local t=$( date '+%F %T' )\'0a\'0a
+\par 
+\par     ## write to STDERR\'0a 
+\par     mmsg "[$t $LLLOCALIP]WARNING: $*" >&2\'0a\'0a
+\par 
+\par     mkdir -p "$LLLOGDIR" || \{ rmsg "can not create $LLLOGDIR"; exit 1; \}\'0a 
+\par     echo "[$t $ip]WARNING: $*" >> "$LLLOG"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## fatal, will exit with code 1\'0ad
+\par die()\'0a\{
+\par \{\'0a 
+\par     local t=$( date '+%F %T' )\'0a\'0a
+\par 
+\par     ## write to STDERR\'0a 
+\par     rmsg "[$t $LLLOCALIP]FATAL: $*" >&2\'0a\'0a
+\par 
+\par     mkdir -p "$WORKDIR/log.d" || \{ rmsg "can not create $WORKDIR/log.d"; exit 1; \}\'0a 
+\par     echo "[$t $ip]FATAL: $*" >> "$LLLOG"\'0a\'0a
+\par 
+\par     exit 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par \'0a#
+\par ## ---------------------- IP / NIC  ------------------------\'0a\'0a
+\par \'0a#
+\par ## get all interfaces ip addr, but default lo\'0ag
+\par get_ipaddr()\'0a\{
+\par \{\'0a 
+\par     local ipall=$(\'0a 
+\par         /sbin/ifconfig | \'0a 
+\par           awk '/inet addr:/ \{ if ($2 !~ /127.0.0.1/) \{ print substr($2,6)\} \} '\'0a 
+\par     )\'0a\'0a
+\par 
+\par     ipall=$( echo $ipall )  ## trim spaces, blank charachers\'0a 
+\par 
+\par     if [[ -n $ipall ]]; then\'0a 
+\par         echo $ipall\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get all lan ipaddr. not strict\'0ag
+\par get_localip_all()\'0a\{
+\par \{\'0a 
+\par     local ip ipall\'0a\'0a
+\par 
+\par     for ip in $( get_ipaddr ); do\'0a 
+\par        case $ip in\'0a 
+\par            172.*|192.*|10.*)\'0a 
+\par                ## should deal with the newline symbol '\\n' by yourself\'0a 
+\par                ipall="$ipall $ip"\'0a 
+\par                ;;\'0a 
+\par        esac\'0a 
+\par     done\'0a\'0a
+\par 
+\par     ipall=$( echo $ipall )  ## trim spaces, blank charachers\'0a\'0a
+\par 
+\par     if [[ -n $ipall ]]; then\'0a 
+\par         echo $ipall\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get login ip from ssh env val, useful if we have mutilple NICs\'0a#
+\par ## this func is not very reliable, use get_localip instead\'0ag
+\par get_loginip()\'0a\{
+\par \{\'0a 
+\par     local ip\'0a\'0a
+\par 
+\par     for ip in $( echo $SSH2_CLIENT    | awk '\{ print $3 \}' ) \\\'0a 
+\par               $( echo $SSH_CONNECTION | awk '\{ print $3 \}' ) \\\'0a 
+\par               $( echo $SSH_CLIENT     | awk '\{ print $1 \}' ) ; do\'0a 
+\par         if [[ -n $ip ]]; then  ## never failed ?\'0a 
+\par             echo $ip\'0a 
+\par             return 0\'0a 
+\par         fi\'0a 
+\par     done\'0a\'0a
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get a lan ipaddr, must be an private IP, the ip we login is prefered\'0ag
+\par get_localip()\'0a\{
+\par \{\'0a 
+\par     ## to speed up, this func may be called frequently\'0a 
+\par     ## maybe we should use $LLLOCALIP directlly instead of callin get_localip\'0a 
+\par     [[ -n "$LLLOCALIP" ]] && \{ echo $LLLOCALIP;  return 0; \}\'0a\'0a
+\par 
+\par     local default_ip=127.0.0.1  ## make sure we return an "IP"\'0a 
+\par     local ipall=$( get_localip_all )\'0a 
+\par     local ip\'0a\'0a
+\par 
+\par     for ip in $( get_loginip ) $ipall; do\'0a 
+\par        case $ip in      ## check if a private IP, need more strict checking ?\'0a 
+\par            172.*|192.*|10.*)\'0a 
+\par                 # make sure we find the ip on local host\'0a 
+\par                 # result from get_login may not correct\'0a 
+\par                 # note that we do not get '127.0.0.1' from get_localip_all\'0a 
+\par                 if echo $ipall | grep -wq $ip; then\'0a 
+\par                     LLLOCALIP=$ip \'0a 
+\par                     break\'0a 
+\par                 fi\'0a 
+\par             ;;\'0a 
+\par         esac\'0a 
+\par     done\'0a\'0a
+\par 
+\par     if [[ -n "$LLLOCALIP" ]]; then\'0a 
+\par         echo $LLLOCALIP\'0a 
+\par         return 0\'0a 
+\par     else\'0a 
+\par         echo $default_ip\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return the the ip on the given interface\'0a#
+\par ## argv: $interface\'0a#
+\par ## example: get_ip_for_interface "eth0"\'0ag
+\par get_ip_for_interface()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a\'0a
+\par 
+\par     ## /sbin/ifconfig "$iface" 2>/dev/null |\'0a 
+\par     /sbin/ifconfig "$iface" |\'0a 
+\par        awk '/inet addr:/ \{ print substr($2,6) \} '\'0a\'0a
+\par 
+\par     # return the status of ifconfig\'0a 
+\par     return $\{PIPESTATUS[0]\}\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## include sub interface's ip\'0ag
+\par get_all_ip_for_interface()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a 
+\par     local ipall=$( \'0a 
+\par         \{   \'0a 
+\par             ## physical interface\'0a 
+\par             /sbin/ifconfig | grep -A1 -E "^$iface[[:space:]]+"\'0a 
+\par             ## sub interface, such as eth0:0\'0a 
+\par             /sbin/ifconfig | grep -A1 -E "^$iface:[0-9]+[[:space:]]+"\'0a 
+\par         \} |\'0a 
+\par         awk '/inet addr:/ \{ print substr($2,6) \} '\'0a 
+\par     )\'0a\'0a
+\par 
+\par     ipall=$( echo $ipall )  ## trim spaces, blank charachers\'0a\'0a
+\par 
+\par     if [[ -n $ipall ]]; then\'0a 
+\par         echo $ipall\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par 
+\par \'0a#
+\par ## return the netmask for an interface\'0a#
+\par ## argv: $interface\'0a#
+\par ## example: get_netmask_for_interface "eth0"\'0ag
+\par get_netmask_for_interface()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a 
+\par     [[ -n $iface ]] || return 1\'0a\'0a
+\par 
+\par     /sbin/ifconfig "$iface" | awk -F: '/Mask:/ \{ print $NF \}'\'0a\'0a
+\par 
+\par     ## return the status of ifconfig\'0a 
+\par     return $\{PIPESTATUS[0]\}\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## 2009-01-12, get mtu for an interface\'0a#
+\par ## argv: $interface\'0a#
+\par ## example: get_mtu_for_interface "eth0"\'0ag
+\par get_mtu_for_interface()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a 
+\par     ## mtu on the sub ifc is the same with the physical ifc\'0a 
+\par     ## local iface=$\{1%%:*\}\'0a\'0a
+\par 
+\par     /sbin/ifconfig "$iface" | \'0a 
+\par       awk '/MTU:/ \{\'0a 
+\par       if ( $3 ~ /RUNNING/ ) \{\'0a 
+\par           print substr($5,5)\'0a 
+\par       \}\'0a 
+\par       else \{\'0a 
+\par           print substr($4,5)\'0a 
+\par       \}  \}'\'0a\'0a
+\par 
+\par     ## return the status of ifconfig\'0a 
+\par     return $\{PIPESTATUS[0]\}\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return the interface name having the "$ip"\'0a#
+\par ## maybe a sub interface or a real physical interface\'0ag
+\par get_interface_by_ip()\'0a\{
+\par \{\'0a 
+\par     local ip=$1\'0a 
+\par     local ifc\'0a\'0a
+\par 
+\par     ifc=$(\'0a 
+\par         ## use -a to prevent that the iface is down by ip not cleared\'0a 
+\par         /sbin/ifconfig -a | grep -B1 -w "$ip" |\'0a 
+\par         awk ' NR == 1 \{ print $1 \} ' \'0a 
+\par     )\'0a\'0a
+\par 
+\par     if [[ -n $ifc ]]; then\'0a 
+\par         echo $ifc\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return a real physical interface even if the ip is on a sub interface\'0ag
+\par get_real_interface_by_ip()\'0a\{
+\par \{\'0a 
+\par     local ip=$1\'0a 
+\par     local r_ifc\'0a\'0a
+\par 
+\par     r_ifc=$( get_interface_by_ip "$ip" | sed 's/:[0-9]\\+//' )\'0a\'0a
+\par 
+\par     if [[ -n $r_ifc ]]; then\'0a 
+\par         echo $r_ifc\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return the interface with local ip\'0ag
+\par get_local_iface()\'0a\{
+\par \{\'0a 
+\par     local ip\'0a 
+\par     local ifcall=$( \'0a 
+\par         for ip in $( get_localip_all ); do\'0a 
+\par             get_interface_by_ip "$ip"\'0a 
+\par         done\'0a 
+\par     )\'0a\'0a
+\par 
+\par     if [[ -n $ifcall ]]; then\'0a 
+\par         echo $ifcall\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return the interface with wan ip, actually, with not lan ip\'0ag
+\par get_wan_iface()\'0a\{
+\par \{\'0a 
+\par     local wanall\'0a 
+\par     ## one interface per line\'0a 
+\par     get_local_iface | xargs -n1 > /tmp/local.iface\'0a 
+\par     /sbin/ifconfig | grep -B1 'addr:[0-9]' |\'0a 
+\par       awk '/^(eth|wlan|ppp)/ \{ print $1 \}' > /tmp/all.iface\'0a\'0a
+\par 
+\par     wanall=$( grep -xvf /tmp/local.iface /tmp/all.iface )\'0a 
+\par     ## /bin/rm "/tmp/local.iface" "/tmp/all.iface"\'0a\'0a
+\par 
+\par     if [[ -n $wanall ]]; then\'0a 
+\par         echo $wanall\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return physical iface with local ip\'0ag
+\par get_real_local_iface()\'0a\{
+\par \{\'0a 
+\par     get_local_iface | xargs -n1 | sed 's/:.*//' | sort -u\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return physical iface with wan ip\'0ag
+\par get_real_wan_iface()\'0a\{
+\par \{\'0a 
+\par     get_wan_iface   | xargs -n1 | sed 's/:.*//' | sort -u\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return the interface without a ip configured on it\'0ag
+\par get_free_iface()\'0a\{
+\par \{\'0a 
+\par     local ifcall=$(\'0a 
+\par         /sbin/ifconfig -a |\'0a 
+\par           grep -w 'BROADCAST' -B1 |\'0a 
+\par           awk '/^[a-z\\.]+/ \{ print $1 \}'\'0a 
+\par     )\'0a\'0a
+\par 
+\par     if [[ -n $ifcall ]]; then\'0a 
+\par         echo $ifcall\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## if we have eth0, this fun may return eth0:0\'0a#
+\par ## if we have eth:0, may return eth0:1 ....\'0ag
+\par get_a_free_subname_on()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a 
+\par     local i=0\'0a 
+\par     local ip=\'0a 
+\par 
+\par     while (( i < 100 )); do\'0a 
+\par         ip=$( get_ip_for_interface "$\{iface\}:$i" )\'0a 
+\par         if [[ -z $ip ]]; then   ## no ip, so it's free\'0a 
+\par             echo "$\{iface\}:$i"\'0a 
+\par             return 0    ## return directly, not use break\'0a 
+\par         fi\'0a 
+\par 
+\par         (( i++ ))\'0a 
+\par     done\'0a 
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if we have at least a sub interface, may used on lvs box\'0a#
+\par ## return true / false\'0ah
+\par has_sub_iface()\'0a\{
+\par \{\'0a 
+\par     /sbin/ifconfig | grep -m1 -Eq '^eth[0-9]+:[0-9]+'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## call this fun two times, the increment is the flux\'0a#
+\par ## argv: $interface\'0ag
+\par get_current_transmit_flux_for()\'0a\{
+\par \{\'0a 
+\par     local dev=$1\'0a 
+\par     local NETDEV="/proc/net/dev"\'0a\'0a
+\par 
+\par     grep -w "$dev" "$NETDEV" | awk -F: '\{ print $2; \}' | awk '\{ print $9; \}'\'0a\'0a
+\par 
+\par     return $\{PIPESTATUS[0]\}\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## try to find default gw, return the most used ip if default gw not found\'0a#
+\par ## this func check gw ip loosely, check following code\'0ag
+\par get_gateway_ip()\'0a\{
+\par \{\'0a 
+\par     /bin/netstat -nr | perl -lnwe '\'0a 
+\par         ( $dest, $gw ) = (split)[0,1];\'0a 
+\par         if ( $dest eq "0.0.0.0" ) \{\'0a 
+\par             $default_gw = $gw;\'0a 
+\par         \}\'0a 
+\par         else \{  \'0a 
+\par             $rec\{ $gw \}++; \'0a 
+\par         \}\'0a\'0a
+\par 
+\par         END \{\'0a 
+\par         if ( defined $default_gw ) \{\'0a 
+\par             print $default_gw;\'0a 
+\par             exit 0;\'0a 
+\par         \}\'0a 
+\par 
+\par         $max = 0;\'0a 
+\par         for $g ( keys %rec ) \{\'0a 
+\par             if ( $rec\{ $g \} > $max ) \{\'0a 
+\par                 $max = $rec\{ $g \};\'0a 
+\par                 $default_gw = $g;\'0a 
+\par             \}\'0a 
+\par         \}\'0a 
+\par         print "$default_gw";\'0a 
+\par     \}'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## this func check DEFAULT gw ip, may return more than one ip !\'0ag
+\par get_default_gateway_ip_on_interface()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a\'0a
+\par 
+\par     /bin/netstat -nr |\'0a 
+\par     awk -vifc="$iface" '\{ if ($1 == "0.0.0.0" && $NF == ifc) \{ print $2 \} \}'  \'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## may return more than 1 ip, check it by yourself !\'0a#
+\par ## this func check gwip loosely, check following code\'0ag
+\par get_gateway_ip_on_interface()\'0a\{
+\par \{   \'0a 
+\par     local ifc=$1\'0a\'0a
+\par 
+\par     if [[ -z $ifc ]]; then\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     netstat -nr | perl -lne '\'0a 
+\par         BEGIN\{ $ifc = pop @ARGV; \}\'0a\'0a
+\par 
+\par         next unless /^\\d/;\'0a\'0a
+\par 
+\par         if (/^0\\.0\\.0\\.0\\s+(\\d+\\.\\d+\\.\\d+\\.\\d+).*$ifc\\s*$/) \{\'0a 
+\par             $found=1;\'0a 
+\par             print $1;\'0a 
+\par             exit 0;\'0a 
+\par         \}\'0a 
+\par         elsif (/^\\d+\\.\\d+\\.\\d+\\.\\d+\\s+(\\d+\\.\\d+\\.\\d+\\.\\d+).*$ifc\\s*$/) \{\'0a 
+\par             next if $1 eq "0.0.0.0";\'0a 
+\par             $gw\{$1\}++;\'0a\'0a
+\par 
+\par             ## print "found [$_]"\'0a 
+\par         \}\'0a\'0a
+\par 
+\par         END \{\'0a 
+\par             unless ( $found ) \{\'0a 
+\par                 for ( sort keys %gw ) \{\'0a 
+\par                     ## print "$_\\t$gw\{$_\}";\'0a 
+\par                     print $_;\'0a 
+\par                 \}\'0a 
+\par             \}\'0a 
+\par         \}\'0a\'0a
+\par 
+\par     ' "$ifc"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if a host online\'0a#
+\par ## return true / false\'0ai
+\par is_host_online()\'0a\{
+\par \{\'0a 
+\par     local host=$1\'0a 
+\par     local try=2\'0a\'0a
+\par 
+\par     [[ -n $host ]] || return 1\'0a\'0a
+\par 
+\par     ## some old versions of nmap seems more slowly when dest unreachable\'0a 
+\par     while (( try >= 0 )); do\'0a 
+\par         if ping -c2 -w2 "$host" 2>/dev/null | grep -q ' [12] received'; then\'0a 
+\par             return 0\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         (( try-- ))\'0a 
+\par     done\'0a\'0a
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return true / false\'0ai
+\par is_a_valid_port()\'0a\{
+\par \{\'0a 
+\par     local port=$1\'0a 
+\par     local p=$( echo $port | tr -d '0-9' )\'0a\'0a
+\par 
+\par     ## having non-digit character\'0a 
+\par     if [[ -n "$p" ]]; then\'0a 
+\par         return 1\'0a 
+\par     fi\'0a 
+\par 
+\par     if (( port >= 1 )) && (( port <= 65535 )); then\'0a 
+\par         return 0\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return true / false\'0ai
+\par is_an_valid_ip()\'0a\{
+\par \{\'0a 
+\par     local ip=$1\'0a\'0a
+\par 
+\par     ## simple checking\'0a 
+\par     if [[ "$ip" == "0.0.0.0" ]] || [[ "$ip" == "255.255.255.255" ]]; then\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     ## not perfect checking ...\'0a 
+\par     echo "$ip" | grep -qE '^[0-9]\{1,3\}\\.[0-9]\{1,3\}\\.[0-9]\{1,3\}\\.[0-9]\{1,3\}$'\'0a\}
+\par \}\'0a\'0a
+\par \'0ai
+\par ifdown_an_ip()\'0a\{
+\par \{\'0a 
+\par     local ip=$1\'0a 
+\par 
+\par     [[ -n $ip ]] || return 1\'0a\'0a
+\par 
+\par     local iface=$( get_interface_by_ip "$ip" )\'0a 
+\par     if [[ -z $iface ]]; then\'0a 
+\par         return 1    ## no-op\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     ifdown_an_iface "$iface"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## dangerous to down a phycal interface, use "force" as argv[2] if you know what you are doing\'0ai
+\par ifdown_an_iface()\'0a\{
+\par \{\'0a 
+\par     local iface=$1\'0a 
+\par     local downall=$2\'0a\'0a
+\par 
+\par     local ip_cnt\'0a\'0a
+\par 
+\par     [[ -n $iface ]] || return 1\'0a\'0a
+\par 
+\par     case $iface in\'0a 
+\par     *:[0-9]*)   ## sub interface, just clear the ip configured\'0a 
+\par         /sbin/ifconfig "$iface" 0 &> /dev/null || :\'0a 
+\par         ;;\'0a 
+\par     *)  ## physical interface, if there is only one ip, down the nic\'0a 
+\par         ## else just clear the ip configured\'0a 
+\par         ip_cnt=$( get_all_ip_for_interface "$iface" | xargs -n1 | wc -l )\'0a 
+\par         if (( ip_cnt > 1 )); then\'0a 
+\par             if [[ $downall == "force" ]]; then\'0a 
+\par                 /sbin/ifconfig "$iface" 0 down &> /dev/null || :\'0a 
+\par             else\'0a 
+\par                 /sbin/ifconfig "$iface" 0      &> /dev/null || :\'0a 
+\par             fi\'0a 
+\par         ## no mare than 1 ip on it, safe\'0a 
+\par         else\'0a 
+\par             /sbin/ifconfig "$iface" 0 down     &> /dev/null || :\'0a 
+\par         fi\'0a 
+\par         ;;\'0a 
+\par     esac\'0a\'0a
+\par 
+\par     if [[ -z $( get_ip_for_interface "$iface" ) ]]; then\'0a 
+\par         return 0\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0au
+\par use_ip_2ping()\'0a\{
+\par \{\'0a 
+\par     local src_ip=$1\'0a 
+\par     local dest_ip=$2\'0a\'0a
+\par 
+\par     local cnt=3\'0a\'0a
+\par 
+\par     while (( cnt >= 0 )); do\'0a 
+\par         ping -c1 -w1 -I "$src_ip" "$dest_ip" 2>/dev/null | \'0a 
+\par          grep -q '[[:blank:]]0% packet loss'\'0a\'0a
+\par 
+\par         (( $? == 0 )) && return 0\'0a 
+\par         (( cnt-- ))\'0a 
+\par     done\'0a\'0a
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## ------------------- dir /path / --------------------------\'0a\'0a
+\par \'0a#
+\par ## get the working dir name, may return the dirname of the script we are running\'0a#
+\par ## actually, we may have to find the workdir first to source this file -_-!\'0a#
+\par ## anyway, var LLLOG needs this\'0ag
+\par get_workdir()\'0a\{
+\par \{\'0a 
+\par     local d\'0a\'0a
+\par 
+\par     ## may be I should check $0 ~ *.sh simplly\'0a 
+\par     case $- in\'0a 
+\par         *i*)    ## sourced in an interactive-bash ?\'0a 
+\par             d=$( pwd )\'0a 
+\par             ;;\'0a 
+\par         *)\'0a 
+\par             d=$( cd `dirname "$0"` && pwd )\'0a 
+\par             ;;\'0a 
+\par     esac\'0a\'0a
+\par 
+\par     echo "$d"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## rename a file or dir to make sure the filename or dirname would be OK to reuse\'0a#
+\par ## if "abc" exits, it will be renamed as "abc.old"\'0a#
+\par ## argv: $pathname\'0a#
+\par ## example: remove_old "/usr/local/apache" && ./configure --prefix=/usr/local/apache\'0ar
+\par remove_old()\'0a\{
+\par \{\'0a 
+\par     local name="$1"\'0a 
+\par     local oldname="$\{name\}.old"\'0a\'0a
+\par 
+\par     if ! [[ -e "$name" || -L "$name" ]]; then\'0a 
+\par         return\'0a 
+\par     fi\'0a 
+\par 
+\par     ## never rename '/', $1 must be an error argv\'0a 
+\par     [[ "$name" == "/" ]] && die "you really rename / ?"\'0a\'0a
+\par 
+\par     [[ -e "$oldname"  ]] && rm -rf "$oldname"\'0a 
+\par     [[ -L "$oldname"  ]] && rm -rf "$oldname"\'0a\'0a
+\par 
+\par     /bin/mv "$name" "$oldname"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## a simple mktemp. some old os have no /bin/mktemp, to create uniq temp file/dir\'0a#
+\par ## the command on slk and suse behaves differently, so re-write it\'0a#
+\par ## argv1: -d / -f\'0a#
+\par ## argv2: $path\'0a#
+\par ## example: mktemp -f /tmp/\'0am
+\par mktemp()\'0a\{
+\par \{\'0a 
+\par     local opt=$1        ## file or dir\'0a 
+\par     local dir=$2        ## base path\'0a 
+\par     local tmp\'0a\'0a
+\par 
+\par     ## make sure we find a uniq file / dir name\'0a 
+\par     while :; do\'0a 
+\par         if [[ -n "$dir" ]]; then\'0a 
+\par             tmp="$dir/$( date +%s ).$$.$RANDOM"\'0a 
+\par         elif [[ -n "$WORKDIR" ]]; then\'0a 
+\par             tmp="$WORKDIR/$( date +%s ).$$.$RANDOM"\'0a 
+\par         else\'0a 
+\par             tmp="./$$.$RANDOM.$( date +%s )"\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         [[ -e $tmp ]] || break\'0a 
+\par     done\'0a\'0a
+\par 
+\par     if [[ $opt == "-d" ]]; then\'0a 
+\par         mkdir -p "$tmp" || return 1\'0a 
+\par     else\'0a 
+\par         mkdir -p "$( dirname $tmp )" || return 1\'0a 
+\par         touch "$tmp"    || return 1\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     echo $tmp\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## essential files/dirs must be there\'0a#
+\par ## argv: $pathname\'0a#
+\par ## example: must_exist "$WORKDIR/mysql.tar.bz"\'0am
+\par must_exist()\'0a\{
+\par \{\'0a 
+\par     local t\'0a 
+\par     local flag=0\'0a\'0a
+\par 
+\par     for t; do\'0a 
+\par         if [[ -e "$t" ]]; then\'0a 
+\par             logmsg "[$t] FOUND, OK"\'0a 
+\par         else\'0a 
+\par             flag=1\'0a 
+\par             warn "[$t] NOT FOUND, NOTOK"\'0a 
+\par         fi\'0a 
+\par     done\'0a\'0a
+\par 
+\par     (( flag != 0 )) && die "FILES NOT FOUND, ABORTING ..."\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## try to find the mountpoint for a pathname\'0ag
+\par get_mountpoint_for_pathname()\'0a\{
+\par \{\'0a 
+\par     local path=$1\'0a 
+\par 
+\par     [[ -n $path ]] || return 1\'0a 
+\par     [[ -e $path ]] || return 1\'0a\'0a
+\par 
+\par     df "$path" 2>/dev/null | awk 'NR == 2 \{ print $NF \}'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## try to find the mountpoint for a pathname\'0ag
+\par get_devname_for_mountpoint()\'0a\{
+\par \{\'0a 
+\par     local path=$1\'0a\'0a
+\par 
+\par     [[ -n $path ]] || return 1\'0a 
+\par     [[ -d $path ]] || return 1\'0a\'0a
+\par 
+\par     df "$path" 2>/dev/null | awk 'NR == 2 \{ print $1 \}'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## --------------------- OS / HW info ----------------------\'0a\'0a
+\par \'0a#
+\par ## check if running on SUSE OS\'0a#
+\par ## return true / false\'0ac
+\par check_suseos()\'0a\{
+\par \{\'0a 
+\par     if [[ -f "/etc/SuSE-release" ]]; then\'0a 
+\par         grep -wqF 'SUSE' /etc/SuSE-release && return 0\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     [[ -x /sbin/yast2 ]]  && return 0 || :\'0a 
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if running on Slackware OS\'0a#
+\par ## return true / false\'0ac
+\par check_slkos()\'0a\{
+\par \{\'0a 
+\par     if [[ -f "/etc/slackware-version" ]]; then\'0a 
+\par         grep -wqF 'Slackware' /etc/slackware-version &>/dev/null && return 0\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     [[ -x /sbin/installpkg ]]  && return 0 || :\'0a\'0a
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if running on RedHat OS\'0a#
+\par ## return true / false\'0ac
+\par check_rhos()\'0a\{
+\par \{\'0a 
+\par     if [[ -f /etc/redhat-release ]]; then\'0a 
+\par         grep -wqi red /etc/redhat-release &>/dev/null && return 0\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## print OS info, now just os version \'0ag
+\par get_osinfo()\'0a\{
+\par \{\'0a 
+\par     ## use xargs to delete '\\n', I love xargs!\'0a 
+\par     if check_suseos; then\'0a 
+\par         xargs < /etc/SuSE-release\'0a 
+\par     elif check_slkos; then\'0a 
+\par         xargs < /etc/slackware-version\'0a 
+\par     elif check_rhos; then\'0a 
+\par         xargs < /etc/redhat-release\'0a 
+\par     else\'0a 
+\par         ## lsb_release may be found on ubuntu, debian, etc.\'0a 
+\par         lsb_release -d 2>/dev/null || echo 'UNKNOWD OS'\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## print OS name\'0ag
+\par get_osname()\'0a\{
+\par \{\'0a 
+\par     if check_suseos; then\'0a 
+\par         echo SUSE\'0a 
+\par     elif check_slkos; then\'0a 
+\par         echo SLK\'0a 
+\par     elif check_rhos; then\'0a 
+\par         echo RH\'0a 
+\par     else\'0a 
+\par         echo UNKNOWN\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## with bit flag\'0ag
+\par get_osname2()\'0a\{
+\par \{\'0a 
+\par     echo $( get_osver )_$( get_cputype )\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return 32/64, based on OS but not hardware\'0ag
+\par get_cputype()\'0a\{
+\par \{\'0a 
+\par     if uname -a | grep -Fq 'x86_64'; then\'0a 
+\par         echo 64\'0a 
+\par     else\'0a 
+\par         echo 32\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0ag
+\par get_osver()\'0a\{
+\par \{\'0a 
+\par     if grep -Eq 'Slackware[[:blank:]]+8\\.[0-9]'  /etc/slackware-version; then\'0a 
+\par         echo slk8\'0a 
+\par     elif grep -Eq 'Slackware[[:blank:]]+10\\.[0-9]'  /etc/slackware-version; then\'0a 
+\par         echo slk10\'0a 
+\par     elif check_suseos; then\'0a 
+\par         echo "suse$( get_cputype )"\'0a 
+\par     elif check_rhos; then\'0a 
+\par         echo "rh$( get_cputype   )"\'0a 
+\par     else\'0a 
+\par         echo "UNKNOWN"\'0a 
+\par     fi 2>/dev/null\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## return kernel version: 2.4 / 2.6\'0ag
+\par get_kernver()\'0a\{
+\par \{\'0a 
+\par     /sbin/kernelversion 2>/dev/null ||\'0a 
+\par         uname -r | grep -o '^2\\..'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get free capacity of a partition by a filename/pathname\'0ag
+\par get_free_cap()\'0a\{
+\par \{\'0a 
+\par     local path=$1\'0a\'0a
+\par 
+\par     if [[ ! -e "$path" ]]; then\'0a 
+\par         echo 0B\'0a 
+\par         return\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     ## df so cool!\'0a 
+\par     df -h "$path" | awk 'NR==2 \{ print $4 \}'\'0a\}
+\par \}\'0a\'0a
+\par 
+\par \'0a#
+\par ## get the size of files by du\'0a#
+\par ## example: get_file_size "/var/log"\'0ag
+\par get_file_size()\'0a\{
+\par \{\'0a 
+\par     ## do not quote [$file], may contain more than one filename\'0a 
+\par     local file=$1\'0a 
+\par     local size=$( du -sh $file 2>/dev/null | awk '\{ print $1; exit \}' || echo 0B )\'0a\'0a
+\par 
+\par     echo $\{size: -1\} | grep -q '^[0-9]$' && size=$\{size\}B\'0a 
+\par     echo $\{size:-0B\}\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get the size of physical mem\'0ag
+\par get_mem_size()\'0a\{
+\par \{\'0a 
+\par     local unit=$1\'0a 
+\par     local resut dividend\'0a\'0a
+\par 
+\par     case $unit in \'0a 
+\par     k|K)\'0a 
+\par         dividend=1\'0a 
+\par         ;;\'0a 
+\par     m|M)\'0a 
+\par         dividend=1000\'0a 
+\par         ;;\'0a 
+\par     g|G)\'0a 
+\par         dividend=1000000\'0a 
+\par         ;;\'0a 
+\par     t|T)\'0a 
+\par         dividend=1000000000\'0a 
+\par         ;;\'0a 
+\par     *)\'0a 
+\par         dividend=1  ## default, K\'0a 
+\par         ;;\'0a 
+\par     esac\'0a\'0a
+\par 
+\par     resut=$( awk '/^MemTotal/ \{ print $2 \}' /proc/meminfo )\'0a 
+\par     calculate2 "$resut / $dividend"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get the size of all hard disks\'0ag
+\par get_hdd_size()\'0a\{
+\par \{\'0a 
+\par     local unit=$1\'0a 
+\par     local resut dividend\'0a\'0a
+\par 
+\par     case $unit in \'0a 
+\par     k|K)\'0a 
+\par         dividend=1\'0a 
+\par         ;;\'0a 
+\par     m|M)\'0a 
+\par         dividend=1000\'0a 
+\par         ;;\'0a 
+\par     g|G)\'0a 
+\par         dividend=1000000\'0a 
+\par         ;;\'0a 
+\par     t|T)\'0a 
+\par         dividend=1000000000\'0a 
+\par         ;;\'0a 
+\par     *)\'0a 
+\par         dividend=1  ## default, K\'0a 
+\par         ;;\'0a 
+\par     esac\'0a\'0a
+\par 
+\par     ## check /proc/partitions, fdisk -l not reliable\'0a 
+\par     resut=$( \'0a 
+\par         awk 'BEGIN\{ total = 0 \}\'0a 
+\par         \{\'0a 
+\par             if ( $1 !~ /^[[:space:]]*[0-9]+/ ) \{\'0a 
+\par                 next\'0a 
+\par             \}\'0a 
+\par 
+\par             if ( $NF ~ /cciss\\/c[0-9]d[0-9][[:space:]]*$/ || $NF ~ /[sh]d[a-z][[:space:]]*$/ ) \{\'0a 
+\par                 total += $3\'0a 
+\par             \}\'0a 
+\par         \}\'0a 
+\par         END \{ printf("%d", total) \}' /proc/partitions\'0a 
+\par     )\'0a\'0a
+\par 
+\par     calculate2 "$resut / $dividend"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get cpu name: intel/amd x $core_num\'0ag
+\par get_cpu_name()\'0a\{
+\par \{\'0a 
+\par     awk 'BEGIN\{ num = 0; name = "unknow"; FS = ":" \}\'0a 
+\par     \{\'0a 
+\par         if ( $1 !~ /^model name/ ) \{\'0a 
+\par             next\'0a 
+\par         \}\'0a 
+\par         if ( $0 ~ /[Ii]ntel/ ) \{\'0a 
+\par             name = "Intel"\'0a 
+\par         \}\'0a 
+\par         else if ( $0 ~ /AMD/ ) \{\'0a 
+\par             name = "Amd"\'0a 
+\par         \}\'0a 
+\par         else \{\'0a 
+\par             name = 'unknow'\'0a 
+\par         \}\'0a 
+\par         num++\'0a 
+\par     \}\'0a 
+\par     END \{ print name"x"num \}' /proc/cpuinfo\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get cpu cache sizes\'0ag
+\par get_cpu_cachesize()\'0a\{
+\par \{\'0a 
+\par     awk 'BEGIN\{ num = 0; size = 0; FS = ":"; \}\'0a 
+\par     \{\'0a 
+\par         if ( $1 ~ /^cache size/ ) \{\'0a 
+\par             num++\'0a 
+\par             size = $2 + 0\'0a 
+\par         \}\'0a 
+\par     \}\'0a 
+\par     END \{ print size"Kx"num \}' /proc/cpuinfo\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## 2009-01-14 samli, check if a partition readonly\'0a#
+\par ## argv: $mountpoint / $pathname\'0a#
+\par ## return true / false\'0ai
+\par is_partition_readonly()\'0a\{
+\par \{\'0a 
+\par     local p=$1\'0a 
+\par     local mountpoint\'0a 
+\par     local rw_flag\'0a 
+\par 
+\par     mountpoint=$( get_mountpoint_for_pathname "$p" )\'0a\'0a
+\par 
+\par     ## rw_flag: ro / rw\'0a 
+\par     rw_flag=$(\'0a 
+\par       awk -vp=$mountpoint '\'0a 
+\par       \{\'0a 
+\par           if ( $1 != "/dev/root" && $2 == p ) \{\'0a 
+\par               str=$4\'0a 
+\par               gsub(",.*", "", str)\'0a 
+\par               print str\'0a 
+\par               exit\'0a 
+\par           \}\'0a 
+\par       \}' /proc/mounts )\'0a 
+\par 
+\par       if [[ $rw_flag == "ro" ]]; then\'0a 
+\par           return 0\'0a 
+\par       else\'0a 
+\par           return 1\'0a 
+\par       fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## 2009-01-14 samli, check if a partition no space left\'0a#
+\par ## argv: $mountpoint / $pathname\'0a#
+\par ## return true / false\'0ai
+\par is_partition_full()\'0a\{
+\par \{\'0a 
+\par     local p=$1\'0a 
+\par     local full_flag\'0a\'0a
+\par 
+\par     case $p in\'0a 
+\par     /*)\'0a 
+\par         ;;\'0a 
+\par     *)\'0a 
+\par         return 1\'0a 
+\par         ;;\'0a 
+\par     esac\'0a 
+\par 
+\par     ## check inode and data area\'0a 
+\par     full_flag=$( \'0a 
+\par       \{ df -Pi "$p"; df -Pk "$p"; \} |\'0a 
+\par        awk '! /^Filesystem/ \{\'0a 
+\par          usage = $(NF-1) + 0\'0a 
+\par          if ( usage == 100 ) \{\'0a 
+\par            print "Y"\'0a 
+\par            exit\'0a 
+\par          \}\'0a 
+\par        \}'\'0a 
+\par      )\'0a\'0a
+\par 
+\par     if [[ $full_flag == "Y" ]]; then\'0a
+\par     return 0\'0a 
+\par     else\'0a
+\par     return 1\'0a 
+\par     fi\'0a\}
+\par \}  \'0a\'0a
+\par \'0a#
+\par ## find the username we added manually\'0a#
+\par ## see man shadow to find the detail of the policy\'0af
+\par find_non_sys_user()\'0a\{
+\par \{\'0a\'0a
+\par 
+\par     # need root privilege to access '/etc/shadow'\'0a 
+\par     (( UID == 0 )) || return 1\'0a\'0a
+\par 
+\par     perl -we '\'0a 
+\par     use strict;\'0a 
+\par     my @users;\'0a 
+\par     my $fd;\'0a 
+\par     my ( $user, $pass, $uid );\'0a 
+\par 
+\par     ## find the username having password\'0a 
+\par     open ($fd, "<", "/etc/shadow") or die "Can not open /etc/shadow\\n";\'0a 
+\par     while (<$fd>) \{\'0a 
+\par         ($user, $pass ) = (split ":")[0,1];\'0a 
+\par         next if $user eq "root";\'0a 
+\par 
+\par         if ( $pass =~ m\{ [a-zA-Z0-9/\\$] \}x ) \{\'0a 
+\par             push @users, $user;\'0a 
+\par         \}            \'0a 
+\par         elsif ( $pass eq "" ) \{\'0a 
+\par             push @users, $user;\'0a 
+\par         \}\'0a 
+\par     \}\'0a 
+\par     close $fd or die "Can not close $fd\\n";\'0a\'0a
+\par 
+\par     ## find the username having uid >= normal uid\'0a 
+\par     open ($fd, "<", "/etc/passwd") or die "Can not open /etc/passwd\\n";\'0a 
+\par     while (<$fd>) \{\'0a 
+\par         ($user, $uid ) = (split ":")[0,2];\'0a 
+\par         next if $user eq "root";\'0a 
+\par         next if $user eq "nobody";\'0a 
+\par 
+\par         if ( $uid >= 1000 ) \{ ## should  read this val from /etc/login.defs\'0a 
+\par             push @users, $user unless grep \{ /\\b$user\\b/ \}  @users;\'0a 
+\par         \}\'0a 
+\par         elsif ( $uid == 0 ) \{ ## make sure dangerous user with uid = 0\'0a 
+\par             push @users, $user unless grep \{ /\\b$user\\b/ \}  @users;\'0a 
+\par         \}\'0a 
+\par     \}\'0a 
+\par     close $fd or die "Can not close $fd\\n";\'0a\'0a
+\par 
+\par     for my $u (sort @users) \{\'0a 
+\par         print "$u", " ";\'0a 
+\par     \}\'0a 
+\par     '\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## ------------------------ KERNELL ------------------------\'0a#
+\par ## check if kernel supports iptables\'0a#
+\par ## return true / false\'0ak
+\par kernel_support_iptables()\'0a\{
+\par \{\'0a 
+\par     iptables -L -n &> /dev/null\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if kernel supports ip conntrack\'0a#
+\par ## return true / false\'0ak
+\par kernel_support_state()\'0a\{
+\par \{\'0a 
+\par     ## [[ -f /proc/sys/net/ipv4/ip_conntrack_max ]]\'0a 
+\par     [[ -f /proc/net/ip_conntrack ]]\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if kernel supports lvs-rs by checking tunl interface \'0a#
+\par ## return true / false\'0ak
+\par kernel_support_rs()\'0a\{
+\par \{\'0a 
+\par     /sbin/ifconfig tunl0 &> /dev/null\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if kernel supports lvs-ld\'0a#
+\par ## return true / false\'0ak
+\par kernel_support_ld()\'0a\{
+\par \{\'0a 
+\par     kernel_support_rs        || return 1\'0a 
+\par     [[ -f /proc/net/ip_vs ]] || return 1\'0a\'0a
+\par 
+\par     return 0\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## 2009-03-25, get the label name of stateful kernel from lilo.conf\'0a#
+\par #+ but do not change 2.4->2.6 or 2.6->2.4 unthinkingly, nic name may change after reboot\'0a#
+\par ## argv: 2.4 / 2.6\'0ag
+\par get_state_label_for_slk()\'0a\{
+\par \{\'0a 
+\par     ver=$1\'0a\'0a
+\par 
+\par     case $ver in\'0a 
+\par         2.4)    ##\'0a 
+\par             grep -m1 -E 'vmlinuz-2\\.4.*STATE' /etc/lilo.conf -A4 |\'0a 
+\par               awk -F= '/label/\{ print $2 \}'                      |\'0a 
+\par               trim\'0a 
+\par             ;;\'0a 
+\par         2.6)\'0a 
+\par             grep -m1 -E 'vmlinuz-2\\.6.*STATE' /etc/lilo.conf -A4 |\'0a 
+\par               awk -F= '/label/\{ print $2 \}'                      |\'0a 
+\par               trim\'0a 
+\par             ;;\'0a 
+\par         *)\'0a 
+\par             return 1\'0a 
+\par             ;;\'0a 
+\par     esac\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## ------------------------ tarball ------------------------\'0a\'0a
+\par \'0a#
+\par ## get tarball dirname,  /1/2/3/abc.tar.bz -> abc\'0a#
+\par ## argv: $path_to_tarballname\'0a#
+\par ## return dirname\'0ag
+\par get_tarball_dirname()\'0a\{
+\par \{\'0a 
+\par     local tb="$1"\'0a 
+\par     case $tb in\'0a 
+\par         *.tar.bz2|*.tar.gz)\'0a 
+\par             echo $tb | sed -e 's@.*/@@g' -e 's@\\.tar\\.\\(bz2\\|gz\\)$@@'\'0a 
+\par             ;;\'0a 
+\par         *.tgz|*.tbz)\'0a 
+\par             echo $tb | sed -e 's@.*/@@g' -e 's@\\.\\(tbz\\|tgz\\)$@@'\'0a 
+\par             ;;\'0a 
+\par         *.tar)\'0a 
+\par             echo $tb | sed -e 's@.*/@@g' -e 's@\\.tar$@@'\'0a 
+\par             ;;\'0a 
+\par         *)\'0a 
+\par             echo $tb\'0a 
+\par             return 1\'0a 
+\par             ;;\'0a 
+\par     esac\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## argv: $path_to_tarballname\'0a#
+\par ## return bzip2 / gzip / tar\'0ag
+\par get_tarball_type()\'0a\{
+\par \{\'0a 
+\par     if file   "$1" | grep -Fq 'bzip2 compressed data'; then\'0a 
+\par         echo bzip2 \'0a 
+\par     elif file "$1" | grep -Fq 'gzip compressed data'; then\'0a 
+\par         echo gzip\'0a 
+\par     elif file "$1" | grep -Fq "POSIX tar archive"; then\'0a 
+\par         echo tar\'0a 
+\par     else\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## --------------------------- NUM -------------------------\'0a\'0a
+\par \'0a#
+\par ## a simple int calculater\'0a#
+\par ## argv: "$math_expression"\'0a#
+\par ## example: calculate "10 / 2"\'0ac
+\par calculate()\'0a\{
+\par \{\'0a 
+\par     local expr=$@\'0a\'0a
+\par 
+\par     if which bc &>/dev/null; then\'0a 
+\par         echo "scale = 0; $expr" | bc\'0a 
+\par     elif which perl &>/dev/null; then\'0a 
+\par         echo "$expr" | perl -lne ' print int (eval) '\'0a 
+\par     else\'0a 
+\par         echo $(( $expr ))\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## support float\'0ac
+\par calculate2()\'0a\{
+\par \{\'0a 
+\par     local expr=$@\'0a\'0a
+\par 
+\par     if which bc &>/dev/null; then\'0a 
+\par         echo "scale = 2; $expr" | bc\'0a 
+\par     elif which perl &>/dev/null; then\'0a 
+\par         echo "$expr" | perl -lne ' printf ("%0.2f",  (eval) ) '\'0a 
+\par     else    ## may try awk here\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\}
+\par \}\'0a#
+\par ## check if argv1 >= argv2\'0a#
+\par ## argv1: $num_1\'0a#
+\par ## argv2: $num_2\'0ac
+\par compare_two_num()\'0a\{
+\par \{\'0a 
+\par     if (( $# != 2 )); then\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     ## hope perl is install in every OS ...\'0a 
+\par     perl -we ' my ($v1, $v2) = @ARGV; exit ( $v1 >= $v2 ? 0 : 1 ) ' $1 $2\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get a random num\'0a#
+\par ## argv: $max, optionall\'0ag
+\par get_a_random_num()\'0a\{
+\par \{\'0a 
+\par     local max=$1\'0a 
+\par     local rand=0\'0a\'0a
+\par 
+\par     if [[ -z $max ]]; then\'0a 
+\par         echo $(( RANDOM + 1 ))   ## 1 ~ 32768, see man bash\'0a 
+\par     else\'0a 
+\par         # echo $RANDOM$RANDOM % $1 | perl -lne ' print eval '\'0a 
+\par         while (( rand == 0 )); do\'0a 
+\par             ## 3276732767 < ( 2^32 = 4294967296 )\'0a 
+\par             rand=$( calculate "( $RANDOM$RANDOM + $RANDOM + $RANDOM ) % $max" )\'0a 
+\par         done\'0a 
+\par         echo $rand\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get ntp time offset\'0a#
+\par ## sorry to hear that ntpdate is deprecated in opensuse 11.1\'0ag
+\par get_ntp_offset()\'0a\{
+\par \{\'0a 
+\par     local NTP_SERVER="pool.ntp.org"\'0a 
+\par     local offset\'0a\'0a
+\par 
+\par     ## to speed up, just query one server every time\'0a 
+\par     ## so , the ntp server must be reliable\'0a 
+\par     for srv in $NTP_SERVER; do\'0a 
+\par         offset=$( \'0a 
+\par             /usr/sbin/ntpdate -q $NTP_SERVER 2> /dev/null  |\'0a 
+\par             awk '/time server.*sec$/ \{ print $( NF -1 ) \}' |\'0a 
+\par             sed 's/-//' ## get abs val\'0a 
+\par         )\'0a\'0a
+\par 
+\par         if [[ -n $offset ]]; then\'0a 
+\par             echo $offset\'0a 
+\par             return 0\'0a 
+\par         fi\'0a 
+\par     done\'0a\'0a
+\par 
+\par     return 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## ------------------------- MISC --------------------------\'0a\'0a
+\par \'0ad
+\par dump_cron()\'0a\{
+\par \{\'0a 
+\par     local user=$1\'0a\'0a
+\par 
+\par     local user_flag\'0a\'0a
+\par 
+\par     if [[ -n $user ]]; then\'0a 
+\par         if (( UID != 0 )); then\'0a 
+\par             return 1\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         user_flag="-u $user"\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     crontab $user_flag -l | \'0a 
+\par      perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' \'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## add a cron jobs line to crontab, with 'force' arg to add a comment line\'0a#
+\par ## example: add_cron "### sync clock every hour" "force"\'0a#
+\par ## example: add_cron "30 * * * * /usr/sbin/ntpdate 172.23.32.142 &> /dev/null"\'0a#
+\par ## example: add_cron "30 * * * * /usr/sbin/ntpdate 172.23.32.142 &> /dev/null" "mqq"\'0aa
+\par add_cron()\'0a\{
+\par \{\'0a 
+\par     local cmd=$1\'0a 
+\par     local force=$2\'0a 
+\par     local user=$3\'0a 
+\par     local key\'0a 
+\par     local is_comment\'0a\'0a
+\par 
+\par     local user_flag\'0a\'0a
+\par 
+\par     if [[ -n $user ]]; then\'0a 
+\par         if (( UID != 0 )); then\'0a 
+\par             return 1\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         user_flag="-u $user"\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     # good to use absolute path in crontab\'0a 
+\par     local c\'0a 
+\par     for c in $cmd; do\'0a 
+\par         case $c in\'0a 
+\par             /*)\'0a 
+\par                 ## key=$( basename $c )\'0a 
+\par                 key=$c\'0a 
+\par                 break\'0a 
+\par                 ;;\'0a 
+\par         esac\'0a 
+\par     done\'0a\'0a
+\par 
+\par     if ! [[ $force == "force" || $force == "FORCE" ]]; then\'0a 
+\par         if [[ -z "$key" ]]; then\'0a 
+\par             warn "failed, [$cmd] not use abs_path to command"\'0a 
+\par             return 1\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         if [[ ! -x "$c" ]]; then\'0a 
+\par             warn "failed, [$c] not executable"\'0a 
+\par             return 1\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         if crontab $user_flag -l | grep -F -v '#' | grep -Fqw -- "$key"; then\'0a 
+\par             warn "failed, keyword [$key] found in crontab already"\'0a 
+\par             return 1\'0a 
+\par         fi\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     if echo "$cmd" | grep -Eq '^[[:blank:]]+#'; then\'0a 
+\par         is_comment=yes\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     # update crontab\'0a 
+\par     # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |\'0a 
+\par     dump_cron "$user" |\'0a 
+\par     \{   \'0a 
+\par       cat \'0a 
+\par       [[ $is_comment == "yes" ]] || echo "## DO NOT DELETE! [ $key ] added by AMC at $(date '+%F %T')"\'0a 
+\par       echo  "$cmd"\'0a 
+\par     \} | crontab - $user_flag\'0a\}
+\par \}    \'0a\'0a
+\par \'0ac
+\par comment_cron()\'0a\{
+\par \{\'0a 
+\par     local key=$1\'0a 
+\par     local user=$2\'0a\'0a
+\par 
+\par     local user_flag\'0a\'0a
+\par 
+\par     [[ -n $key ]] || return 1\'0a\'0a
+\par 
+\par     if [[ -n $user ]]; then\'0a 
+\par         if (( UID != 0 )); then\'0a 
+\par             return 1\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         user_flag="-u $user"\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |\'0a 
+\par     dump_cron "$user" |\'0a 
+\par      sed "/$key/ s/^/## /" | crontab - $user_flag\'0a\}
+\par \}\'0a\'0a
+\par \'0ad
+\par del_cron()\'0a\{
+\par \{\'0a 
+\par     local key=$1\'0a 
+\par     local user=$2\'0a\'0a
+\par 
+\par     local user_flag\'0a\'0a
+\par 
+\par     [[ -n $key ]] || return 1\'0a\'0a
+\par 
+\par     if [[ -n $user ]]; then\'0a 
+\par         if (( UID != 0 )); then\'0a 
+\par             return 1\'0a 
+\par         fi\'0a\'0a
+\par 
+\par         user_flag="-u $user"\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     ## nonsense 3 lines header\'0a 
+\par     # crontab $user_flag -l | perl -lne ' print if ( ( $. > 3 ) || ( $. <= 3 && /^[^#] /) ) ' |\'0a 
+\par     dump_cron "$user" |\'0a 
+\par      grep -v -- "$key" | crontab - $user_flag\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## trim leading space and tailing space\'0a#
+\par ## example: iptables -nvL | trim\'0a#
+\par ## example: trim < file\'0at
+\par trim()\'0a\{
+\par \{\'0a 
+\par     sed -e 's/^[[:space:]]\\+//' -e 's/[[:space:]]\\+$//'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## check if a string already in a file which is not commented\'0a#
+\par ## argv1: $str\'0a#
+\par ## argv2: $filename\'0a#
+\par ## return true / false\'0ai
+\par is_str_infile()\'0a\{
+\par \{\'0a 
+\par     local str="$1"\'0a 
+\par     local file="$2"\'0a\'0a
+\par 
+\par     grep -Fv '#' "$file" | grep -Fwq -- "$str"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## kill a process if it's running\'0a#
+\par ## argv: $app_name\'0at
+\par try_kill_proc()\'0a\{
+\par \{\'0a 
+\par     local proc="$1"\'0a\'0a
+\par 
+\par     if killall -0 "$proc" &>/dev/null; then\'0a 
+\par         if killall -9 "$proc"; then\'0a 
+\par             logmsg "found old "$proc" running, kill OK"\'0a 
+\par         else\'0a 
+\par             die "found old "$proc" running, kill FAILED"\'0a 
+\par         fi\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## to grep multipul times, supposed to be used after a pipe or with read redirection\'0a#
+\par ## example: ps -ef | mgrep samli ssh\'0am
+\par mgrep()\'0a\{
+\par \{\'0a 
+\par     local key="$1"\'0a 
+\par     local opt=\'0a\'0a
+\par 
+\par     if [[ -z "$key" ]]; then\'0a 
+\par         cat     \'0a 
+\par         return  \'0a 
+\par     fi\'0a\'0a
+\par 
+\par     while [[ $\{key:0:1\} == '-' ]]; do\'0a 
+\par         opt="$opt $key"\'0a 
+\par         shift\'0a 
+\par         key="$1"\'0a 
+\par     done\'0a\'0a
+\par 
+\par     shift   \'0a 
+\par     grep $opt $key | mgrep "$@"\'0a\}
+\par \}\'0a\'0a
+\par 
+\par \'0a#
+\par ## thanks kangkang \'0ad
+\par dectobin()\'0a\{
+\par \{\'0a 
+\par     local s=$1\'0a 
+\par     local n \'0a\'0a
+\par 
+\par     while (( $s != 0 )); do\'0a 
+\par         n=$(( s % 2 ))$n\'0a 
+\par         s=$(( s / 2 ))\'0a 
+\par     done    \'0a\'0a
+\par 
+\par     echo $n \'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## thanks kangkang \'0ac
+\par cidr_mask()\'0a\{
+\par \{\'0a 
+\par     local i\'0a 
+\par     local mask=$1\'0a 
+\par     local out\'0a\'0a
+\par 
+\par     for i in $( echo $mask | tr '.' ' ' ); do\'0a 
+\par         out=$out$(dectobin $i)\'0a 
+\par     done\'0a 
+\par 
+\par     out=$(echo $out | sed 's/0*$//g' )\'0a\'0a
+\par 
+\par     if echo $out | grep -q 0; then\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     echo -n $out | wc -c\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## xor op, usring P$1" \'0a#
+\par ## argv[1]: key to xor with\'0a#
+\par ## argv[2]: str to xor\'0am
+\par myxor()\'0a\{
+\par \{\'0a 
+\par     local key=$1\'0a 
+\par     local str=$2\'0a\'0a
+\par 
+\par     perl -lwe ' \'0a 
+\par         my $key = shift;\'0a 
+\par         $_ = shift;\'0a 
+\par         my @new;\'0a 
+\par         for my $s ( split( "" ) ) \{\'0a 
+\par             push @new, chr( (ord $s) ^ $key );\'0a 
+\par         \}\'0a 
+\par         print join "", @new;\'0a 
+\par     ' "$key" "$str"\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## get_name_of_pid()\'0a#
+\par ## \{\'0a#
+\par ##     local pid=$1\'0a#
+\par ## \'0a#
+\par ##     /bin/ls -l "/proc/$pid/exe" 2>/dev/null\'0a#
+\par ## \}\'0a\'0a
+\par \'0ai
+\par is_dos_file()\'0a\{
+\par \{\'0a 
+\par     local file=$1\'0a\'0a
+\par 
+\par     file "$file" | grep -q 'with CRLF line terminators'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## dos2unix is lost on some servers -_-!\'0am
+\par my_dos2unix()\'0a\{
+\par \{\'0a 
+\par     local file=$1\'0a\'0a
+\par 
+\par     if which dos2unix ; then\'0a 
+\par         dos2unix "$file"\'0a 
+\par     else\'0a 
+\par         perl -pi -e 's/\\r$//' "$file"\'0a 
+\par     fi &> /dev/null\'0a\}
+\par \}\'0a\'0a
+\par \'0ad
+\par dos2unix_if_necessary()\'0a\{
+\par \{\'0a 
+\par     local file=$1\'0a\'0a
+\par 
+\par     [[ -f $file ]] || return 1\'0a\'0a
+\par 
+\par     if is_dos_file "$file"; then\'0a 
+\par         my_dos2unix "$file"\'0a 
+\par     else\'0a 
+\par         return 0\'0a 
+\par     fi\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## find the java dirname without unpacking jdk*.bin\'0a#
+\par ## we may return [jdk1.5.0_06] for [jdk-1_5_0_06-linux-i586.bin]\'0ag
+\par get_javadir_from_javabin()\'0a\{
+\par \{\'0a 
+\par     javabin=$1  ## such as [jdk-1_5_0_06-linux-i586.bin]\'0a\'0a
+\par 
+\par     if [[ -z $javabin ]] || [[ ! -f $javabin ]]; then\'0a 
+\par         return 1\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     grep -m1 -a '^javahome=jdk.*' "$javabin" |\'0a 
+\par       awk -F= '\{ print $2 \}'\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\'0a\'0a
+\par 
+\par 
+\par 
+\par \'0a#
+\par ## ----------------------- PROCESS -------------------------\'0a\'0a
+\par \'0a#
+\par ## check if a given pid/appname running\'0a#
+\par ## argv: pid / appname\'0ai
+\par is_app_running()\'0a\{
+\par \{\'0a 
+\par     local $p=$1\'0a 
+\par     local RC\'0a\'0a
+\par 
+\par     [[ -n $p ]] || return 1\'0a 
+\par 
+\par     ## pid\'0a 
+\par     if [[ -z $( echo $p | tr -d '[0-9]') ]]; then\'0a 
+\par         kill -0 "$p" &> /dev/null\'0a 
+\par         RC=$?\'0a 
+\par     ## app name\'0a 
+\par     else\'0a 
+\par         killall -0 "$p" &> /dev/null\'0a 
+\par         RC=$?\'0a 
+\par     fi\'0a\'0a
+\par 
+\par     return $RC\'0a\}
+\par \}\'0a\'0a
+\par \'0al
+\par lock_on()\'0a\{
+\par \{\'0a 
+\par     local f=$1\'0a 
+\par     local freefd=6  ## do not use fd 5\'0a\'0a
+\par 
+\par     ## make sure the file be there\'0a 
+\par     mkdir -p "$( dirname $f )"\'0a 
+\par     touch "$f"\'0a\'0a
+\par 
+\par     ## find a free fd\'0a 
+\par     while (( freefd <= 9 )); do\'0a 
+\par         [[ -L /dev/fd/$freefd ]] || break\'0a 
+\par         (( freefd++ ))\'0a 
+\par     done\'0a\'0a
+\par 
+\par     (( freefd == 10 )) && return 1\'0a\'0a
+\par 
+\par     ## open the lock file\'0a 
+\par     eval "exec $freefd< \\"$f\\""\'0a\}
+\par \}\'0a\'0a
+\par \'0ai
+\par is_locked()\'0a\{
+\par \{\'0a 
+\par     local f=$1\'0a\'0a
+\par 
+\par     fuser "$f" &> /dev/null\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## -------------------- init global vars -------------------\'0a\'0a
+\par \'0a#
+\par ## init LLLOCALIP, do not delete following line, logmsg/warn/die use this val\'0aL
+\par LLLOCALIP=$( get_localip )\'0a\'0a
+\par \'0a#
+\par ## init WORKDIR\'0a[
+\par [[ -n $WORKDIR ]]  || WORKDIR=$( get_workdir )\'0a\'0a
+\par \'0a#
+\par ## init LLLOG, LLLOGDIR \'0a#
+\par ## this val must be used after the logdir created in func logmsg/logmsg_/warn/die\'0a[
+\par [[ -n $LLLOG    ]] || LLLOG="$WORKDIR/log.d/log.$LLLOCALIP"\'0a[
+\par [[ -n $LLLOGDIR ]] || LLLOGDIR=$\{LLLOG%/*\}\'0a\'0a
+\par \'0a#
+\par ## ---------------------------------------------------------\par}

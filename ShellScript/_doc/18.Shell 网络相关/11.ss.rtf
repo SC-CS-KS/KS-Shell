@@ -1,0 +1,143 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid884614409\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid2064376113}
+{\list\listtemplateid619540476\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid239707121}
+{\list\listtemplateid1803860407\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid387612824}
+{\list\listtemplateid1721181434\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid1876763878}
+{\list\listtemplateid429201029\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid1136035997}
+}
+{\*\listoverridetable
+{\listoverride\listid2064376113\listoverridecount0\ls1}
+{\listoverride\listid239707121\listoverridecount0\ls2}
+{\listoverride\listid387612824\listoverridecount0\ls3}
+{\listoverride\listid1876763878\listoverridecount0\ls4}
+{\listoverride\listid1136035997\listoverridecount0\ls5}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 11.ss
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 SS(8)                                                                                                                      SS(8)
+\par NAME
+\par   \plain \f1\fs20\cf1      ss - another utility to investigate sockets
+\par \plain \f1\fs20 SYNOPSIS
+\par        ss [options] [ FILTER ]
+\par 
+\par DESCRIPTION
+\par      \plain \f1\fs20\cf1   ss  is  used  to  dump  socket statistics. 
+\par        It allows showing information similar to netstat.  It can display more TCP and state informations than other tools.
+\par 
+\par \plain \f1\fs20 OPTIONS
+\par        These programs follow the usual GNU command line syntax, with long options starting with two dashes (`-').  A summary  of
+\par        options is included below.
+\par 
+\par        -h, --help
+\par               Show summary of options.
+\par 
+\par        -V, --version
+\par               Output version information.
+\par 
+\par        -n, --numeric
+\par               Do now try to resolve service names.
+\par 
+\par        -r, --resolve
+\par               Try to resolve numeric address/ports.
+\par \plain \f1\fs20\cf1 
+\par        -a, --all
+\par               Display all sockets.
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1        -l, --listening
+\par               Display listening sockets.
+\par 
+\par        -o, --options
+\par               Show timer information.
+\par \plain \f1\fs20 
+\par        -e, --extended
+\par               Show detailed socket information
+\par 
+\par        -m, --memory
+\par               Show socket memory usage.
+\par 
+\par        -p, --processes
+\par               Show process using socket.
+\par 
+\par        -i, --info
+\par               Show internal TCP information.
+\par 
+\par        -s, --summary
+\par               Print  summary  statistics.  This option does not parse socket lists obtaining summary from various sources. It is
+\par               useful when amount of sockets is so huge that parsing /proc/net/tcp is painful.
+\par 
+\par        -4, --ipv4
+\par               Display only IP version 4 sockets (alias for -f inet).
+\par 
+\par        -6, --ipv6
+\par               Display only IP version 6 sockets (alias for -f inet6).
+\par 
+\par        -0, --packet
+\par               Display PACKET sockets.
+\par \plain \f1\fs20\cf1 
+\par        -t, --tcp
+\par               Display only TCP sockets.
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1        -u, --udp
+\par               Display only UDP sockets.
+\par \plain \f1\fs20 
+\par        -d, --dccp
+\par               Display only DCCP sockets.
+\par 
+\par        -w, --raw
+\par               Display only RAW sockets.
+\par \plain \f1\fs20\cf1 
+\par        -x, --unix
+\par               Display only Unix domain sockets.
+\par \plain \f1\fs20 
+\par        -f FAMILY, --family=FAMILY
+\par               Display sockets of type FAMILY.  Currently the following families are supported: unix, inet, inet6, link, netlink.
+\par 
+\par        -A QUERY, --query=QUERY
+\par               List of socket tables to dump, separated by commas. The following identifiers are understood: all, inet, tcp, udp,
+\par               raw, unix, packet, netlink, unix_dgram, unix_stream, packet_raw, packet_dgram.
+\par 
+\par        -D FILE
+\par               Do not display anything, just dump raw information about TCP sockets to FILE after applying filters. If FILE is  -
+\par               stdout is used.
+\par 
+\par        -F FILE, --filter=FILE
+\par               Read filter information from FILE.  Each line of FILE is interpreted like single command line option. If FILE is -
+\par               stdin is used.
+\par 
+\par \plain \f1\fs20\cf1        FILTER := [ state TCP-STATE ] [ EXPRESSION ]
+\par \plain \f1\fs20               Please take a look at the official documentation (Debian package iproute-doc) for details regarding filters.
+\par 
+\par USAGE EXAMPLES
+\par \plain \f1\fs20\cf1        ss -t -a
+\par \plain \f1\fs20               Display all TCP sockets.
+\par 
+\par  \plain \f1\fs20\cf1       ss -u -a
+\par \plain \f1\fs20               Display all UDP sockets.
+\par 
+\par     \plain \f1\fs20\cf1    ss -o state established '( dport = :ssh or sport = :ssh )'
+\par \plain \f1\fs20               Display all established ssh connections.
+\par 
+\par \plain \f1\fs20\cf1        ss -x src /tmp/.X11-unix/*
+\par \plain \f1\fs20               Find all local processes connected to X server.
+\par 
+\par       \plain \f1\fs20\cf1  ss -o state fin-wait-1 '( sport = :http or sport = :https )' dst 193.233.7/24
+\par \plain \f1\fs20               List all the tcp sockets in state FIN-WAIT-1 for our apache to network 193.233.7/24 and look at their timers.
+\par 
+\par SEE ALSO
+\par        ip(8), /usr/share/doc/iproute-doc/ss.html (package iproutedoc)
+\par 
+\par AUTHOR
+\par        ss was written by Alexey Kuznetosv, <kuznet@ms2.inr.ac.ru>.
+\par 
+\par        This manual page was written by Michael Prokop <mika@grml.org> for the Debian project (but may be used by others).\par}

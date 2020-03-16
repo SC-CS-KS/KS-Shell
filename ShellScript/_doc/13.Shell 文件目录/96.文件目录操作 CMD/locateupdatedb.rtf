@@ -1,0 +1,155 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid267793117\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1224308309}
+{\list\listtemplateid1956112816\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1895748724}
+{\list\listtemplateid1781709899\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid2121588091}
+{\list\listtemplateid174097774\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid472373035}
+}
+{\*\listoverridetable
+{\listoverride\listid1224308309\listoverridecount0\ls1}
+{\listoverride\listid1895748724\listoverridecount0\ls2}
+{\listoverride\listid2121588091\listoverridecount0\ls3}
+{\listoverride\listid472373035\listoverridecount0\ls4}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 locate/updatedb
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par 
+\par \plain \f1\fs20 locate(1)                                                            locate(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        locate - find files by name
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        locate [OPTION]... PATTERN...
+\par 
+\par DESCRIPTION
+\par       \plain \f1\fs20\cf1  locate  reads  one  or  more databases prepared by updatedb(8) and writes file names matching at least one of the
+\par        PATTERNs to standard output, one per line.
+\par 
+\par \plain \f1\fs20        If --regex is not specified, PATTERNs can contain globbing characters.  If any PATTERN contains no globbing char-
+\par        acters, locate behaves as if the pattern were *PATTERN*.
+\par 
+\par        By  default,  locate  does  not check whether files found in database still exist.  locate can never report files
+\par        created after the most recent update of the relevant database.
+\par 
+\par EXIT STATUS
+\par        locate exits with status 0 if any match was found or if locate was invoked with one of  the  --limit  0,  --help,
+\par        --statistics  or  --version  options.   If no match was found or a fatal error was encountered, locate exits with
+\par        status 1.
+\par 
+\par        Errors encountered while reading a database are not fatal, search continues in other specified databases, if any.
+\par 
+\par OPTIONS
+\par        -b, --basename
+\par               Match only the base name against the specified patterns.  This is the opposite of --wholename.
+\par 
+\par        -c, --count
+\par               Instead of writing file names on standard output, write the number of matching entries only.
+\par 
+\par        -d, --database DBPATH
+\par               Replace  the  default database with DBPATH.  DBPATH is a :-separated list of database file names.  If more
+\par               than one --database option is specified, the resulting path is a concatenation of the separate paths.
+\par 
+\par               An empty database file name is replaced by the default database.  A database file name  -  refers  to  the
+\par               standard input.  Note that a database can be read from the standard input only once.
+\par 
+\par        -e, --existing
+\par               Print only entries that refer to files existing at the time locate is run.
+\par 
+\par        -L, --follow
+\par               When checking whether files exist (if the --existing option is specified), follow trailing symbolic links.
+\par               This causes broken symbolic links to be omitted from the output.
+\par 
+\par               This is the default behavior.  The opposite can be specified using --nofollow.
+\par 
+\par        -h, --help
+\par               Write a summary of the available options to standard output and exit successfully.
+\par 
+\par        -i, --ignore-case
+\par               Ignore case distinctions when matching patterns.
+\par 
+\par        -l, --limit, -n LIMIT
+\par               Exit successfully after finding LIMIT entries.  If the --count option is specified, the resulting count is
+\par               also limited to LIMIT.
+\par 
+\par        -m, --mmap
+\par               Ignored, for compatibility with BSD and GNU locate.
+\par 
+\par        -P, --nofollow, -H
+\par               When checking whether files exist (if the --existing option is specified), do not follow trailing symbolic
+\par               links.  This causes broken symbolic links to be reported like other files.
+\par 
+\par               This is the opposite of --follow.
+\par 
+\par        -0, --null
+\par               Separate the entries on output using the ASCII NUL character instead of writing each entry on  a  separate
+\par               line.  This option is designed for interoperability with the --null option of GNU xargs(1).
+\par 
+\par        -S, --statistics
+\par               Write  statistics about each read database to standard output instead of searching for files and exit suc-
+\par               cessfully.
+\par 
+\par        -q, --quiet
+\par               Write no messages about errors encountered while reading and processing databases.
+\par 
+\par        -r, --regexp REGEXP
+\par               Search for a basic regexp REGEXP.  No PATTERNs are allowed if this option is used, but this option can  be
+\par               specified multiple times.
+\par 
+\par        --regex
+\par               Interpret all PATTERNs as extended regexps.
+\par 
+\par        -s, --stdio
+\par               Ignored, for compatibility with BSD and GNU locate.
+\par 
+\par        -V, --version
+\par               Write information about the version and license of locate on standard output and exit successfully.
+\par 
+\par        -w, --wholename
+\par               Match only the whole path name against the specified patterns.
+\par 
+\par               This is the default behavior.  The opposite can be specified using --basename.
+\par 
+\par EXAMPLES
+\par        To search for a file named exactly NAME (not *NAME*), use
+\par               locate -b \rquote \\NAME\rquote 
+\par        Because \\ is a globbing character, this disables the implicit replacement of NAME by *NAME*.
+\par 
+\par FILES
+\par \plain \f1\fs20\cf2        /var/lib/mlocate/mlocate.db
+\par \plain \f1\fs20  \plain \f1\fs20\cf2              The database searched by default.
+\par \plain \f1\fs20 
+\par ENVIRONMENT
+\par        LOCATE_PATH
+\par               Path  to  additional  databases,  added  after  the  default database or the databases specified using the
+\par               --database option.
+\par 
+\par NOTES
+\par        The order in which the requested databases are processed is unspecified,  which  allows  locate  to  reorder  the
+\par        database path for security reasons.
+\par 
+\par        locate  attempts to be compatible to slocate (without the options used for creating databases) and GNU locate, in
+\par        that order.  This is the reason for the impractical default --follow option and for the confusing set of  --regex
+\par        and --regexp options.
+\par 
+\par        The  short  spelling  of the -r option is incompatible to GNU locate, where it corresponds to the --regex option.
+\par        Use the long option names to avoid confusion.
+\par 
+\par        The LOCATE_PATH environment variable replaces the default database in BSD and GNU locate,  but  it  is  added  to
+\par        other databases in this implementation and slocate.
+\par 
+\par AUTHOR
+\par        Miloslav Trmac <mitr@redhat.com>
+\par 
+\par SEE ALSO
+\par        updatedb(8)
+\par 
+\par mlocate                            Jul 2005                          locate(1)\par}

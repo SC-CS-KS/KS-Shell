@@ -1,0 +1,237 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid807054974\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid511108219}
+}
+{\*\listoverridetable
+{\listoverride\listid511108219\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 31.dir
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 DIR(1)                           User Commands                          DIR(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        dir - list directory contents
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        dir [OPTION]... [FILE]...
+\par 
+\par DESCRIPTION
+\par \plain \f1\fs20\cf1        List  information  about  the  FILEs  (the current directory by default).  Sort entries alphabetically if none of
+\par        -cftuvSUX nor --sort.
+\par \plain \f1\fs20 
+\par        Mandatory arguments to long options are mandatory for short options too.
+\par 
+\par        -a, --all
+\par               do not ignore entries starting with .
+\par 
+\par        -A, --almost-all
+\par               do not list implied . and ..
+\par 
+\par        --author
+\par               with -l, print the author of each file
+\par 
+\par        -b, --escape
+\par               print octal escapes for nongraphic characters
+\par 
+\par        --block-size=SIZE
+\par               use SIZE-byte blocks.  See SIZE format below
+\par 
+\par        -B, --ignore-backups
+\par               do not list implied entries ending with ~
+\par 
+\par        -c     with -lt: sort by, and show, ctime (time of last modification of file status information)  with  -l:  show
+\par               ctime and sort by name otherwise: sort by ctime
+\par 
+\par        -C     list entries by columns
+\par 
+\par        --color[=WHEN]
+\par               colorize the output.  WHEN defaults to \lquote always\rquote  or can be \lquote never\rquote  or \lquote auto\rquote .  More info below
+\par 
+\par        -d, --directory
+\par               list directory entries instead of contents, and do not dereference symbolic links
+\par 
+\par        -D, --dired
+\par               generate output designed for Emacs\rquote  dired mode
+\par 
+\par        -f     do not sort, enable -aU, disable -ls --color
+\par 
+\par        -F, --classify
+\par               append indicator (one of */=>@|) to entries
+\par 
+\par        --file-type
+\par               likewise, except do not append \lquote *\rquote 
+\par 
+\par        --format=WORD
+\par               across -x, commas -m, horizontal -x, long -l, single-column -1, verbose -l, vertical -C
+\par 
+\par        --full-time
+\par               like -l --time-style=full-iso
+\par 
+\par        -g     like -l, but do not list owner
+\par 
+\par        --group-directories-first
+\par               group directories before files.
+\par 
+\par               augment with a --sort option, but any use of --sort=none (-U) disables grouping
+\par 
+\par        -G, --no-group
+\par               in a long listing, don\rquote t print group names
+\par 
+\par        -h, --human-readable
+\par               with -l, print sizes in human readable format (e.g., 1K 234M 2G)
+\par 
+\par        --si   likewise, but use powers of 1000 not 1024
+\par 
+\par        -H, --dereference-command-line
+\par               follow symbolic links listed on the command line
+\par 
+\par        --dereference-command-line-symlink-to-dir
+\par               follow each command line symbolic link that points to a directory
+\par 
+\par        --hide=PATTERN
+\par               do not list implied entries matching shell PATTERN (overridden by -a or -A)
+\par 
+\par        --indicator-style=WORD
+\par               append  indicator  with  style  WORD  to entry names: none (default), slash (-p), file-type (--file-type),
+\par               classify (-F)
+\par 
+\par        -i, --inode
+\par               print the index number of each file
+\par 
+\par        -I, --ignore=PATTERN
+\par               do not list implied entries matching shell PATTERN
+\par 
+\par        -k     like --block-size=1K
+\par 
+\par        -l     use a long listing format
+\par 
+\par        -L, --dereference
+\par               when showing file information for a symbolic link, show information  for  the  file  the  link  references
+\par               rather than for the link itself
+\par 
+\par        -m     fill width with a comma separated list of entries
+\par 
+\par        -n, --numeric-uid-gid
+\par               like -l, but list numeric user and group IDs
+\par 
+\par        -N, --literal
+\par               print raw entry names (don\rquote t treat e.g. control characters specially)
+\par 
+\par        -o     like -l, but do not list group information
+\par 
+\par        -p, --indicator-style=slash
+\par               append / indicator to directories
+\par 
+\par        -q, --hide-control-chars
+\par               print ? instead of non graphic characters
+\par 
+\par        --show-control-chars
+\par               show non graphic characters as-is (default unless program is \lquote ls\rquote  and output is a terminal)
+\par 
+\par        -Q, --quote-name
+\par               enclose entry names in double quotes
+\par 
+\par        --quoting-style=WORD
+\par               use quoting style WORD for entry names: literal, locale, shell, shell-always, c, escape
+\par 
+\par        -r, --reverse
+\par               reverse order while sorting
+\par 
+\par        -R, --recursive
+\par               list subdirectories recursively
+\par 
+\par        -s, --size
+\par               print the allocated size of each file, in blocks
+\par 
+\par        -S     sort by file size
+\par 
+\par        --sort=WORD
+\par               sort by WORD instead of name: none -U, extension -X, size -S, time -t, version -v
+\par 
+\par        --time=WORD
+\par               with  -l, show time as WORD instead of modification time: atime -u, access -u, use -u, ctime -c, or status
+\par               -c; use specified time as sort key if --sort=time
+\par 
+\par        --time-style=STYLE
+\par               with -l, show times using style STYLE: full-iso, long-iso, iso, locale, +FORMAT.   FORMAT  is  interpreted
+\par               like  \lquote date\rquote ;  if  FORMAT  is  FORMAT1<newline>FORMAT2, FORMAT1 applies to non-recent files and FORMAT2 to
+\par               recent files; if STYLE is prefixed with \lquote posix-\rquote , STYLE takes effect only outside the POSIX locale
+\par 
+\par        -t     sort by modification time
+\par 
+\par        -T, --tabsize=COLS
+\par               assume tab stops at each COLS instead of 8
+\par 
+\par        -u     with -lt: sort by, and show, access time with -l: show access time and sort by  name  otherwise:  sort  by
+\par               access time
+\par 
+\par        -U     do not sort; list entries in directory order
+\par 
+\par        -v     natural sort of (version) numbers within text
+\par 
+\par        -w, --width=COLS
+\par               assume screen width instead of current value
+\par 
+\par        -x     list entries by lines instead of by columns
+\par 
+\par        -X     sort alphabetically by entry extension
+\par 
+\par        -1     list one file per line
+\par 
+\par        SELinux options:
+\par 
+\par        --lcontext
+\par               Display security context.   Enable -l. Lines will probably be too wide for most displays.
+\par 
+\par        -Z, --context
+\par               Display  security  context so it fits on most displays.  Displays only mode, user, group, security context
+\par               and file name.
+\par 
+\par        --scontext
+\par               Display only security context and file name.
+\par 
+\par        --help display this help and exit
+\par 
+\par        --version
+\par               output version information and exit
+\par 
+\par        SIZE may be (or may be an integer optionally followed by) one of following: KB 1000,  K  1024,  MB  1000*1000,  M
+\par        1024*1024, and so on for G, T, P, E, Z, Y.
+\par 
+\par        Using  color to distinguish file types is disabled both by default and with --color=never.  With --color=auto, ls
+\par        emits color codes only when standard output is connected to a terminal.  The LS_COLORS environment  variable  can
+\par        change the settings.  Use the dircolors command to set it.
+\par 
+\par    Exit status:
+\par        0      if OK,
+\par 
+\par        1      if minor problems (e.g., cannot access subdirectory),
+\par 
+\par        2      if serious trouble (e.g., cannot access command-line argument).
+\par 
+\par AUTHOR
+\par        Written by Richard M. Stallman and David MacKenzie.
+\par 
+\par REPORTING BUGS
+\par        Report dir bugs to bug-coreutils@gnu.org
+\par        GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+\par        General help using GNU software: <http://www.gnu.org/gethelp/>
+\par        Report dir translation bugs to <http://translationproject.org/team/>
+\par 
+\par COPYRIGHT
+\par        Copyright   \u169 ?   2010   Free   Software   Foundation,   Inc.    License   GPLv3+:  GNU  GPL  version  3  or  later
+\par        <http://gnu.org/licenses/gpl.html>.
+\par        This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted
+\par        by law.
+\par 
+\par SEE ALSO
+\par        The  full  documentation  for  dir  is maintained as a Texinfo manual.  If the info and dir programs are properly
+\par        installed at your site, the command
+\par 
+\par               info coreutils 'dir invocation'
+\par 
+\par        should give you access to the complete manual.
+\par 
+\par GNU coreutils 8.4                  June 2012                            DIR(1)\par}

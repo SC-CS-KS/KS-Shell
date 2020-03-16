@@ -1,0 +1,458 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1213158713\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1263440417}
+}
+{\*\listoverridetable
+{\listoverride\listid1263440417\listoverridecount0\ls1}
+}
+
+
+\pard\fi420\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 ENG
+\par \pard\fi420\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)        Dec. 29, 2005
+\par Compiled by Eric Pement - pemente[at]northpark[dot]edu        version 5.5
+\par 
+\par Latest version of this file (in English) is usually at:
+\par    http://sed.sourceforge.net/sed1line.txt
+\par    http://www.pement.org/sed/sed1line.txt
+\par 
+\par This file will also available in other languages:
+\par   Chinese     - http://sed.sourceforge.net/sed1line_zh-CN.html
+\par   Czech       - http://sed.sourceforge.net/sed1line_cz.html
+\par   Dutch       - http://sed.sourceforge.net/sed1line_nl.html
+\par   French      - http://sed.sourceforge.net/sed1line_fr.html
+\par   German      - http://sed.sourceforge.net/sed1line_de.html
+\par   Italian     - http://sed.sourceforge.net/sed1line_it.html
+\par   Portuguese  - http://sed.sourceforge.net/sed1line_pt-BR.html
+\par   Spanish     - http://sed.sourceforge.net/sed1line_es.html
+\par \plain \f1\fs20\cf2 -----------------------------------------------------------------------------------
+\par \plain \f1\b\fs20 FILE SPACING:
+\par \plain \f1\fs20 # double space a file
+\par sed G
+\par 
+\par # double space a file which already has blank lines in it. Output file
+\par # should contain no more than one blank line between lines of text.
+\par sed '/^$/d;G'
+\par 
+\par # triple space a file
+\par sed 'G;G'
+\par 
+\par # undo double-spacing (assumes even-numbered lines are always blank)
+\par sed 'n;d'
+\par 
+\par # insert a blank line above every line which matches "regex"
+\par sed '/regex/\{x;p;x;\}'
+\par 
+\par # insert a blank line below every line which matches "regex"
+\par sed '/regex/G'
+\par 
+\par # insert a blank line above and below every line which matches "regex"
+\par sed '/regex/\{x;p;x;G;\}'
+\par 
+\par NUMBERING:
+\par 
+\par # number each line of a file (simple left alignment). Using a tab (see
+\par # note on '\\t' at end of file) instead of space will preserve margins.
+\par sed = filename | sed 'N;s/\\n/\\t/'
+\par 
+\par # number each line of a file (number on left, right-aligned)
+\par sed = filename | sed 'N; s/^/     /; s/ *\\(.\\\{6,\\\}\\)\\n/\\1  /'
+\par 
+\par # number each line of file, but only print numbers if line is not blank
+\par sed '/./=' filename | sed '/./N; s/\\n/ /'
+\par 
+\par # count lines (emulates "wc -l")
+\par sed -n '$='
+\par 
+\par TEXT CONVERSION AND SUBSTITUTION:
+\par 
+\par # IN UNIX ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+\par sed 's/.$//'               # assumes that all lines end with CR/LF
+\par sed 's/^M$//'              # in bash/tcsh, press Ctrl-V then Ctrl-M
+\par sed 's/\\x0D$//'            # works on ssed, gsed 3.02.80 or higher
+\par 
+\par # IN UNIX ENVIRONMENT: convert Unix newlines (LF) to DOS format.
+\par sed "s/$/`echo -e \\\\\\r`/"            # command line under ksh
+\par sed 's/"/`echo \\\\\\r`/"             # command line under bash
+\par sed "s/$/`echo \\\\\\r`/"               # command line under zsh
+\par sed 's/$/\\r/'                        # gsed 3.02.80 or higher
+\par 
+\par # IN DOS ENVIRONMENT: convert Unix newlines (LF) to DOS format.
+\par sed "s/$//"                          # method 1
+\par sed -n p                             # method 2
+\par 
+\par # IN DOS ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+\par # Can only be done with UnxUtils sed, version 4.0.7 or higher. The
+\par # UnxUtils version can be identified by the custom "--text" switch
+\par # which appears when you use the "--help" switch. Otherwise, changing
+\par # DOS newlines to Unix newlines cannot be done with sed in a DOS
+\par # environment. Use "tr" instead.
+\par sed "s/\\r//" infile >outfile         # UnxUtils sed v4.0.7 or higher
+\par tr -d \\r <infile >outfile            # GNU tr version 1.22 or higher
+\par 
+\par # delete leading whitespace (spaces, tabs) from front of each line
+\par # aligns all text flush left
+\par sed 's/^[ \\t]*//'                    # see note on '\\t' at end of file
+\par 
+\par # delete trailing whitespace (spaces, tabs) from end of each line
+\par sed 's/[ \\t]*$//'                    # see note on '\\t' at end of file
+\par 
+\par # delete BOTH leading and trailing whitespace from each line
+\par sed 's/^[ \\t]*//;s/[ \\t]*$//'
+\par 
+\par # insert 5 blank spaces at beginning of each line (make page offset)
+\par sed 's/^/     /'
+\par 
+\par # align all text flush right on a 79-column width
+\par sed -e :a -e 's/^.\\\{1,78\\\}$/ &/;ta'  # set at 78 plus 1 space
+\par 
+\par # center all text in the middle of 79-column width. In method 1,
+\par # spaces at the beginning of the line are significant, and trailing
+\par # spaces are appended at the end of the line. In method 2, spaces at
+\par # the beginning of the line are discarded in centering the line, and
+\par # no trailing spaces appear at the end of lines.
+\par sed  -e :a -e 's/^.\\\{1,77\\\}$/ & /;ta'                     # method 1
+\par sed  -e :a -e 's/^.\\\{1,77\\\}$/ &/;ta' -e 's/\\( *\\)\\1/\\1/'  # method 2
+\par 
+\par # substitute (find and replace) "foo" with "bar" on each line
+\par sed 's/foo/bar/'             # replaces only 1st instance in a line
+\par sed 's/foo/bar/4'            # replaces only 4th instance in a line
+\par sed 's/foo/bar/g'            # replaces ALL instances in a line
+\par sed 's/\\(.*\\)foo\\(.*foo\\)/\\1bar\\2/' # replace the next-to-last case
+\par sed 's/\\(.*\\)foo/\\1bar/'            # replace only the last case
+\par 
+\par # substitute "foo" with "bar" ONLY for lines which contain "baz"
+\par sed '/baz/s/foo/bar/g'
+\par 
+\par # substitute "foo" with "bar" EXCEPT for lines which contain "baz"
+\par sed '/baz/!s/foo/bar/g'
+\par 
+\par # change "scarlet" or "ruby" or "puce" to "red"
+\par sed 's/scarlet/red/g;s/ruby/red/g;s/puce/red/g'   # most seds
+\par gsed 's/scarlet\\|ruby\\|puce/red/g'                # GNU sed only
+\par 
+\par # reverse order of lines (emulates "tac")
+\par # bug/feature in HHsed v1.5 causes blank lines to be deleted
+\par sed '1!G;h;$!d'               # method 1
+\par sed -n '1!G;h;$p'             # method 2
+\par 
+\par # reverse each character on the line (emulates "rev")
+\par sed '/\\n/!G;s/\\(.\\)\\(.*\\n\\)/&\\2\\1/;//D;s/.//'
+\par 
+\par # join pairs of lines side-by-side (like "paste")
+\par sed '$!N;s/\\n/ /'
+\par 
+\par # if a line ends with a backslash, append the next line to it
+\par sed -e :a -e '/\\\\$/N; s/\\\\\\n//; ta'
+\par 
+\par # if a line begins with an equal sign, append it to the previous line
+\par # and replace the "=" with a single space
+\par sed -e :a -e '$!N;s/\\n=/ /;ta' -e 'P;D'
+\par 
+\par # add commas to numeric strings, changing "1234567" to "1,234,567"
+\par gsed ':a;s/\\B[0-9]\\\{3\\\}\\>/,&/;ta'                     # GNU sed
+\par sed -e :a -e 's/\\(.*[0-9]\\)\\([0-9]\\\{3\\\}\\)/\\1,\\2/;ta'  # other seds
+\par 
+\par # add commas to numbers with decimal points and minus signs (GNU sed)
+\par gsed -r ':a;s/(^|[^0-9.])([0-9]+)([0-9]\{3\})/\\1\\2,\\3/g;ta'
+\par 
+\par # add a blank line every 5 lines (after lines 5, 10, 15, 20, etc.)
+\par gsed '0~5G'                  # GNU sed only
+\par sed 'n;n;n;n;G;'             # other seds
+\par 
+\par SELECTIVE PRINTING OF CERTAIN LINES:
+\par 
+\par # print first 10 lines of file (emulates behavior of "head")
+\par sed 10q
+\par 
+\par # print first line of file (emulates "head -1")
+\par sed q
+\par 
+\par # print the last 10 lines of a file (emulates "tail")
+\par sed -e :a -e '$q;N;11,$D;ba'
+\par 
+\par # print the last 2 lines of a file (emulates "tail -2")
+\par sed '$!N;$!D'
+\par 
+\par # print the last line of a file (emulates "tail -1")
+\par sed '$!d'                    # method 1
+\par sed -n '$p'                  # method 2
+\par 
+\par # print the next-to-the-last line of a file
+\par sed -e '$!\{h;d;\}' -e x              # for 1-line files, print blank line
+\par sed -e '1\{$q;\}' -e '$!\{h;d;\}' -e x  # for 1-line files, print the line
+\par sed -e '1\{$d;\}' -e '$!\{h;d;\}' -e x  # for 1-line files, print nothing
+\par 
+\par # print only lines which match regular expression (emulates "grep")
+\par sed -n '/regexp/p'           # method 1
+\par sed '/regexp/!d'             # method 2
+\par 
+\par # print only lines which do NOT match regexp (emulates "grep -v")
+\par sed -n '/regexp/!p'          # method 1, corresponds to above
+\par sed '/regexp/d'              # method 2, simpler syntax
+\par 
+\par # print the line immediately before a regexp, but not the line
+\par # containing the regexp
+\par sed -n '/regexp/\{g;1!p;\};h'
+\par 
+\par # print the line immediately after a regexp, but not the line
+\par # containing the regexp
+\par sed -n '/regexp/\{n;p;\}'
+\par 
+\par # print 1 line of context before and after regexp, with line number
+\par # indicating where the regexp occurred (similar to "grep -A1 -B1")
+\par sed -n -e '/regexp/\{=;x;1!p;g;$!N;p;D;\}' -e h
+\par 
+\par # grep for AAA and BBB and CCC (in any order)
+\par sed '/AAA/!d; /BBB/!d; /CCC/!d'
+\par 
+\par # grep for AAA and BBB and CCC (in that order)
+\par sed '/AAA.*BBB.*CCC/!d'
+\par 
+\par # grep for AAA or BBB or CCC (emulates "egrep")
+\par sed -e '/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d    # most seds
+\par gsed '/AAA\\|BBB\\|CCC/!d'                        # GNU sed only
+\par 
+\par # print paragraph if it contains AAA (blank lines separate paragraphs)
+\par # HHsed v1.5 must insert a 'G;' after 'x;' in the next 3 scripts below
+\par sed -e '/./\{H;$!d;\}' -e 'x;/AAA/!d;'
+\par 
+\par # print paragraph if it contains AAA and BBB and CCC (in any order)
+\par sed -e '/./\{H;$!d;\}' -e 'x;/AAA/!d;/BBB/!d;/CCC/!d'
+\par 
+\par # print paragraph if it contains AAA or BBB or CCC
+\par sed -e '/./\{H;$!d;\}' -e 'x;/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d
+\par gsed '/./\{H;$!d;\};x;/AAA\\|BBB\\|CCC/b;d'         # GNU sed only
+\par 
+\par # print only lines of 65 characters or longer
+\par sed -n '/^.\\\{65\\\}/p'
+\par 
+\par # print only lines of less than 65 characters
+\par sed -n '/^.\\\{65\\\}/!p'        # method 1, corresponds to above
+\par sed '/^.\\\{65\\\}/d'            # method 2, simpler syntax
+\par 
+\par # print section of file from regular expression to end of file
+\par sed -n '/regexp/,$p'
+\par 
+\par # print section of file based on line numbers (lines 8-12, inclusive)
+\par sed -n '8,12p'               # method 1
+\par sed '8,12!d'                 # method 2
+\par 
+\par # print line number 52
+\par sed -n '52p'                 # method 1
+\par sed '52!d'                   # method 2
+\par sed '52q;d'                  # method 3, efficient on large files
+\par 
+\par # beginning at line 3, print every 7th line
+\par gsed -n '3~7p'               # GNU sed only
+\par sed -n '3,$\{p;n;n;n;n;n;n;\}' # other seds
+\par 
+\par # print section of file between two regular expressions (inclusive)
+\par sed -n '/Iowa/,/Montana/p'             # case sensitive
+\par 
+\par SELECTIVE DELETION OF CERTAIN LINES:
+\par 
+\par # print all of file EXCEPT section between 2 regular expressions
+\par sed '/Iowa/,/Montana/d'
+\par 
+\par # delete duplicate, consecutive lines from a file (emulates "uniq").
+\par # First line in a set of duplicate lines is kept, rest are deleted.
+\par sed '$!N; /^\\(.*\\)\\n\\1$/!P; D'
+\par 
+\par # delete duplicate, nonconsecutive lines from a file. Beware not to
+\par # overflow the buffer size of the hold space, or else use GNU sed.
+\par sed -n 'G; s/\\n/&&/; /^\\([ -~]*\\n\\).*\\n\\1/d; s/\\n//; h; P'
+\par 
+\par # delete all lines except duplicate lines (emulates "uniq -d").
+\par sed '$!N; s/^\\(.*\\)\\n\\1$/\\1/; t; D'
+\par 
+\par # delete the first 10 lines of a file
+\par sed '1,10d'
+\par 
+\par # delete the last line of a file
+\par sed '$d'
+\par 
+\par # delete the last 2 lines of a file
+\par sed 'N;$!P;$!D;$d'
+\par 
+\par # delete the last 10 lines of a file
+\par sed -e :a -e '$d;N;2,10ba' -e 'P;D'   # method 1
+\par sed -n -e :a -e '1,10!\{P;N;D;\};N;ba'  # method 2
+\par 
+\par # delete every 8th line
+\par gsed '0~8d'                           # GNU sed only
+\par sed 'n;n;n;n;n;n;n;d;'                # other seds
+\par 
+\par # delete lines matching pattern
+\par sed '/pattern/d'
+\par 
+\par # delete ALL blank lines from a file (same as "grep '.' ")
+\par sed '/^$/d'                           # method 1
+\par sed '/./!d'                           # method 2
+\par 
+\par # delete all CONSECUTIVE blank lines from file except the first; also
+\par # deletes all blank lines from top and end of file (emulates "cat -s")
+\par sed '/./,/^$/!d'          # method 1, allows 0 blanks at top, 1 at EOF
+\par sed '/^$/N;/\\n$/D'        # method 2, allows 1 blank at top, 0 at EOF
+\par 
+\par # delete all CONSECUTIVE blank lines from file except the first 2:
+\par sed '/^$/N;/\\n$/N;//D'
+\par 
+\par # delete all leading blank lines at top of file
+\par sed '/./,$!d'
+\par 
+\par # delete all trailing blank lines at end of file
+\par sed -e :a -e '/^\\n*$/\{$d;N;ba' -e '\}'  # works on all seds
+\par sed -e :a -e '/^\\n*$/N;/\\n$/ba'        # ditto, except for gsed 3.02.*
+\par 
+\par # delete the last line of each paragraph
+\par sed -n '/^$/\{p;h;\};/./\{x;/./p;\}'
+\par 
+\par SPECIAL APPLICATIONS:
+\par 
+\par # remove nroff overstrikes (char, backspace) from man pages. The 'echo'
+\par # command may need an -e switch if you use Unix System V or bash shell.
+\par sed "s/.`echo \\\\\\b`//g"    # double quotes required for Unix environment
+\par sed 's/.^H//g'             # in bash/tcsh, press Ctrl-V and then Ctrl-H
+\par sed 's/.\\x08//g'           # hex expression for sed 1.5, GNU sed, ssed
+\par 
+\par # get Usenet/e-mail message header
+\par sed '/^$/q'                # deletes everything after first blank line
+\par 
+\par # get Usenet/e-mail message body
+\par sed '1,/^$/d'              # deletes everything up to first blank line
+\par 
+\par # get Subject header, but remove initial "Subject: " portion
+\par sed '/^Subject: */!d; s///;q'
+\par 
+\par # get return address header
+\par sed '/^Reply-To:/q; /^From:/h; /./d;g;q'
+\par 
+\par # parse out the address proper. Pulls out the e-mail address by itself
+\par # from the 1-line return address header (see preceding script)
+\par sed 's/ *(.*)//; s/>.*//; s/.*[:<] *//'
+\par 
+\par # add a leading angle bracket and space to each line (quote a message)
+\par sed 's/^/> /'
+\par 
+\par # delete leading angle bracket & space from each line (unquote a message)
+\par sed 's/^> //'
+\par 
+\par # remove most HTML tags (accommodates multiple-line tags)
+\par sed -e :a -e 's/<[^>]*>//g;/</N;//ba'
+\par 
+\par # extract multi-part uuencoded binaries, removing extraneous header
+\par # info, so that only the uuencoded portion remains. Files passed to
+\par # sed must be passed in the proper order. Version 1 can be entered
+\par # from the command line; version 2 can be made into an executable
+\par # Unix shell script. (Modified from a script by Rahul Dhesi.)
+\par sed '/^end/,/^begin/d' file1 file2 ... fileX | uudecode   # vers. 1
+\par sed '/^end/,/^begin/d' "$@" | uudecode                    # vers. 2
+\par 
+\par # sort paragraphs of file alphabetically. Paragraphs are separated by blank
+\par # lines. GNU sed uses \\v for vertical tab, or any unique char will do.
+\par sed '/./\{H;d;\};x;s/\\n/=\{NL\}=/g' file | sort | sed '1s/=\{NL\}=//;s/=\{NL\}=/\\n/g'
+\par gsed '/./\{H;d\};x;y/\\n/\\v/' file | sort | sed '1s/\\v//;y/\\v/\\n/'
+\par 
+\par # zip up each .TXT file individually, deleting the source file and
+\par # setting the name of each .ZIP file to the basename of the .TXT file
+\par # (under DOS: the "dir /b" switch returns bare filenames in all caps).
+\par echo @echo off >zipup.bat
+\par dir /b *.txt | sed "s/^\\(.*\\)\\.TXT/pkzip -mo \\1 \\1.TXT/" >>zipup.bat
+\par 
+\par TYPICAL USE: Sed takes one or more editing commands and applies all of
+\par them, in sequence, to each line of input. After all the commands have
+\par been applied to the first input line, that line is output and a second
+\par input line is taken for processing, and the cycle repeats. The
+\par preceding examples assume that input comes from the standard input
+\par device (i.e, the console, normally this will be piped input). One or
+\par more filenames can be appended to the command line if the input does
+\par not come from stdin. Output is sent to stdout (the screen). Thus:
+\par 
+\par cat filename | sed '10q'        # uses piped input
+\par sed '10q' filename              # same effect, avoids a useless "cat"
+\par sed '10q' filename > newfile    # redirects output to disk
+\par 
+\par For additional syntax instructions, including the way to apply editing
+\par commands from a disk file instead of the command line, consult "sed &
+\par awk, 2nd Edition," by Dale Dougherty and Arnold Robbins (O'Reilly,
+\par 1997; http://www.ora.com), "UNIX Text Processing," by Dale Dougherty
+\par and Tim O'Reilly (Hayden Books, 1987) or the tutorials by Mike Arst
+\par distributed in U-SEDIT2.ZIP (many sites). To fully exploit the power
+\par of sed, one must understand "regular expressions." For this, see
+\par "Mastering Regular Expressions" by Jeffrey Friedl (O'Reilly, 1997).
+\par The manual ("man") pages on Unix systems may be helpful (try "man
+\par sed", "man regexp", or the subsection on regular expressions in "man
+\par ed"), but man pages are notoriously difficult. They are not written to
+\par teach sed use or regexps to first-time users, but as a reference text
+\par for those already acquainted with these tools.
+\par 
+\par QUOTING SYNTAX: The preceding examples use single quotes ('...')
+\par instead of double quotes ("...") to enclose editing commands, since
+\par sed is typically used on a Unix platform. Single quotes prevent the
+\par Unix shell from intrepreting the dollar sign ($) and backquotes
+\par (`...`), which are expanded by the shell if they are enclosed in
+\par double quotes. Users of the "csh" shell and derivatives will also need
+\par to quote the exclamation mark (!) with the backslash (i.e., \\!) to
+\par properly run the examples listed above, even within single quotes.
+\par Versions of sed written for DOS invariably require double quotes
+\par ("...") instead of single quotes to enclose editing commands.
+\par 
+\par USE OF '\\t' IN SED SCRIPTS: For clarity in documentation, we have used
+\par the expression '\\t' to indicate a tab character (0x09) in the scripts.
+\par However, most versions of sed do not recognize the '\\t' abbreviation,
+\par so when typing these scripts from the command line, you should press
+\par the TAB key instead. '\\t' is supported as a regular expression
+\par metacharacter in awk, perl, and HHsed, sedmod, and GNU sed v3.02.80.
+\par 
+\par VERSIONS OF SED: Versions of sed do differ, and some slight syntax
+\par variation is to be expected. In particular, most do not support the
+\par use of labels (:name) or branch instructions (b,t) within editing
+\par commands, except at the end of those commands. We have used the syntax
+\par which will be portable to most users of sed, even though the popular
+\par GNU versions of sed allow a more succinct syntax. When the reader sees
+\par a fairly long command such as this:
+\par 
+\par    sed -e '/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d
+\par 
+\par it is heartening to know that GNU sed will let you reduce it to:
+\par 
+\par    sed '/AAA/b;/BBB/b;/CCC/b;d'      # or even
+\par    sed '/AAA\\|BBB\\|CCC/b;d'
+\par 
+\par In addition, remember that while many versions of sed accept a command
+\par like "/one/ s/RE1/RE2/", some do NOT allow "/one/! s/RE1/RE2/", which
+\par contains space before the 's'. Omit the space when typing the command.
+\par 
+\par OPTIMIZING FOR SPEED: If execution speed needs to be increased (due to
+\par large input files or slow processors or hard disks), substitution will
+\par be executed more quickly if the "find" expression is specified before
+\par giving the "s/.../.../" instruction. Thus:
+\par 
+\par    sed 's/foo/bar/g' filename         # standard replace command
+\par    sed '/foo/ s/foo/bar/g' filename   # executes more quickly
+\par    sed '/foo/ s//bar/g' filename      # shorthand sed syntax
+\par 
+\par On line selection or deletion in which you only need to output lines
+\par from the first part of the file, a "quit" command (q) in the script
+\par will drastically reduce processing time for large files. Thus:
+\par 
+\par    sed -n '45,50p' filename           # print line nos. 45-50 of a file
+\par    sed -n '51q;45,50p' filename       # same, but executes much faster
+\par 
+\par If you have any additional scripts to contribute or if you find errors
+\par in this document, please send e-mail to the compiler. Indicate the
+\par version of sed you used, the operating system it was compiled for, and
+\par the nature of the problem. To qualify as a one-liner, the command line
+\par must be 65 characters or less. Various scripts in this file have been
+\par written or contributed by:
+\par 
+\par Al Aab                   # founder of "seders" list
+\par Edgar Allen              # various
+\par Yiorgos Adamopoulos      # various
+\par Dale Dougherty           # author of "sed & awk"
+\par Carlos Duarte            # author of "do it with sed"
+\par Eric Pement              # author of this document
+\par Ken Pizzini              # author of GNU sed v3.02
+\par S.G. Ravenhall           # great de-html script
+\par Greg Ubben               # many contributions & much help\par}

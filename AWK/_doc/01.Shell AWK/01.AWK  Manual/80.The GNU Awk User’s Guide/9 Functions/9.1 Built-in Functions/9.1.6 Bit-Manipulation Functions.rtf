@@ -1,0 +1,83 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1027525810\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid291392383}
+}
+{\*\listoverridetable
+{\listoverride\listid291392383\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 9.1.6 Bit-Manipulation Functions
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 \tab}\ls1\ilvl0 \plain \f1\i\fs20 I can explain it for you, but I can\rquote t understand it for you.
+\par \plain\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f1\fs20 \emdash \~\plain \f1\i\fs20 Anonymous
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20 Many languages provide the ability to perform\~\plain \f1\i\fs20 bitwise\plain \f1\fs20 \~operations on two integer numbers. In other words, the operation is performed on each successive pair of bits in the operands. Three common operations are bitwise AND, OR, and XOR. The operations are described in\~\plain \f1\ul\fs20\cf1 Table 9.5\plain \f1\fs20 .
+\par {\*\bkmkstart table_002dbitwise_002dops}{\*\bkmkend table_002dbitwise_002dops}Bit operator\'0a 
+\par           |  AND  |   OR  |  XOR\'0a 
+\par           |\emdash +\emdash +\emdash +\emdash +\emdash +\emdash \'0aO
+\par Operands  | 0 | 1 | 0 | 1 | 0 | 1\'0a\u65533 ?
+\par \emdash \emdash \emdash -+\emdash +\emdash +\emdash +\emdash +\emdash +\emdash \'0a 
+\par     0     | 0   0 | 0   1 | 0   1\'0a 
+\par     1     | 0   1 | 1   1 | 1   0\'0a
+\par 
+\par \plain \f1\b\fs20 Table 9.5:\~\plain \f1\fs20 Bitwise operations
+\par {\*\bkmkstart index_bitwise_002c_complement}{\*\bkmkend index_bitwise_002c_complement}As you can see, the result of an AND operation is 1 only when\~\plain \f1\i\fs20 both\plain \f1\fs20 \~bits are 1. The result of an OR operation is 1 if\~\plain \f1\i\fs20 either\plain \f1\fs20 \~bit is 1. The result of an XOR operation is 1 if either bit is 1, but not both. The next operation is the\~\plain \f1\i\fs20 complement\plain \f1\fs20 ; the complement of 1 is 0 and the complement of 0 is 1. Thus, this operation \ldblquote flips\rdblquote  all the bits of a given value.
+\par {\*\bkmkstart index_bitwise_002c_shift}{\*\bkmkend index_bitwise_002c_shift}Finally, two other common operations are to shift the bits left or right. For example, if you have a bit string \lquote 10111001\rquote  and you shift it right by three bits, you end up with \lquote 00010111\rquote .\plain \f1\ul\super\fs20\cf1 57\plain \f1\fs20 \~If you start over again with \lquote 10111001\rquote  and shift it left by three bits, you end up with \lquote 11001000\rquote . The following list describes\~gawk\rquote s built-in functions that implement the bitwise operations. Optional parameters are enclosed in square brackets ([ ]):
+\par {\*\bkmkstart index_gawk_002c_bitwise_operations_in}{\*\bkmkend index_gawk_002c_bitwise_operations_in}\plain \f1\b\fs20 and(v1,\~v2\~[,\~\uc2\u8230 \'a1\'ad])\uc1
+\par \plain \f1\fs20 Return the bitwise AND of the arguments. There must be at least two.
+\par {\*\bkmkstart index_compl_0028_0029_function__0028gawk_0029}{\*\bkmkend index_compl_0028_0029_function__0028gawk_0029}\plain \f1\b\fs20 compl(val)
+\par \plain \f1\fs20 Return the bitwise complement of\~val.
+\par {\*\bkmkstart index_lshift_0028_0029_function__0028gawk_0029}{\*\bkmkend index_lshift_0028_0029_function__0028gawk_0029}\plain \f1\b\fs20 lshift(val,\~count)
+\par \plain \f1\fs20 Return the value of\~val, shifted left by\~count\~bits.
+\par {\*\bkmkstart index_or_0028_0029_function__0028gawk_0029}{\*\bkmkend index_or_0028_0029_function__0028gawk_0029}\plain \f1\b\fs20 or(v1,\~v2\~[,\~\uc2\u8230 \'a1\'ad])\uc1
+\par \plain \f1\fs20 Return the bitwise OR of the arguments. There must be at least two.
+\par {\*\bkmkstart index_rshift_0028_0029_function__0028gawk_0029}{\*\bkmkend index_rshift_0028_0029_function__0028gawk_0029}\plain \f1\b\fs20 rshift(val,\~count)
+\par \plain \f1\fs20 Return the value of\~val, shifted right by\~count\~bits.
+\par {\*\bkmkstart index_xor_0028_0029_function__0028gawk_0029}{\*\bkmkend index_xor_0028_0029_function__0028gawk_0029}\plain \f1\b\fs20 xor(v1,\~v2\~[,\~\uc2\u8230 \'a1\'ad])\uc1
+\par \plain \f1\fs20 Return the bitwise XOR of the arguments. There must be at least two.
+\par For all of these functions, first the double-precision floating-point value is converted to the widest C unsigned integer type, then the bitwise operation is performed. If the result cannot be represented exactly as a C\~double, leading nonzero bits are removed one by one until it can be represented exactly. The result is then converted back into a C\~double. (If you don\rquote t understand this paragraph, don\rquote t worry about it.)
+\par Here is a user-defined function (see\~\plain \f1\ul\fs20\cf1 User-defined\plain \f1\fs20 ) that illustrates the use of these functions:
+\par {\*\bkmkstart index_bits2str_0028_0029_user_002ddefined_function}{\*\bkmkend index_bits2str_0028_0029_user_002ddefined_function}# bits2str --- turn a byte into readable ones and zeros\'0a\'0a
+\par \'0af
+\par function bits2str(bits,        data, mask)\'0a\{
+\par \{\'0a 
+\par     if (bits == 0)\'0a 
+\par         return "0"\'0a\'0a
+\par 
+\par     mask = 1\'0a 
+\par     for (; bits != 0; bits = rshift(bits, 1))\'0a 
+\par         data = (and(bits, mask) ? "1" : "0") data\'0a\'0a
+\par 
+\par     while ((length(data) % 8) != 0)\'0a 
+\par         data = "0" data\'0a\'0a
+\par 
+\par     return data\'0a\}
+\par \}\'0a
+\par BEGIN \{\'0a 
+\par     printf "123 = %s\\n", bits2str(123)\'0a 
+\par     printf "0123 = %s\\n", bits2str(0123)\'0a 
+\par     printf "0x99 = %s\\n", bits2str(0x99)\'0a 
+\par     comp = compl(0x99)\'0a 
+\par     printf "compl(0x99) = %#x = %s\\n", comp, bits2str(comp)\'0a 
+\par     shift = lshift(0x99, 2)\'0a 
+\par     printf "lshift(0x99, 2) = %#x = %s\\n", shift, bits2str(shift)\'0a 
+\par     shift = rshift(0x99, 2)\'0a 
+\par     printf "rshift(0x99, 2) = %#x = %s\\n", shift, bits2str(shift)\'0a\}
+\par \}\'0a
+\par 
+\par This program produces the following output when run:
+\par $ gawk -f testbits.awk\'0a-
+\par -| 123 = 01111011\'0a-
+\par -| 0123 = 01010011\'0a-
+\par -| 0x99 = 10011001\'0a-
+\par -| compl(0x99) = 0xffffff66 = 11111111111111111111111101100110\'0a-
+\par -| lshift(0x99, 2) = 0x264 = 0000001001100100\'0a-
+\par -| rshift(0x99, 2) = 0x26 = 00100110\'0a
+\par 
+\par {\*\bkmkstart index_converting_002c_strings_to_numbers_1}{\*\bkmkend index_converting_002c_strings_to_numbers_1}The\~bits2str()\~function turns a binary number into a string. Initializing\~mask\~to one creates a binary value where the rightmost bit is set to one. Using this mask, the function repeatedly checks the rightmost bit. ANDing the mask with the value indicates whether the rightmost bit is one or not. If so, a\~"1"\~is concatenated onto the front of the string. Otherwise, a\~"0"\~is added. The value is then shifted right by one bit and the loop continues until there are no more one bits.
+\par If the initial value is zero, it returns a simple\~"0". Otherwise, at the end, it pads the value with zeros to represent multiples of 8-bit quantities. This is typical in modern computers.
+\par The main code in the\~BEGIN\~rule shows the difference between the decimal and octal values for the same numbers (see\~\plain \f1\ul\fs20\cf1 Nondecimal-numbers\plain \f1\fs20 ), and then demonstrates the results of the\~compl(),\~lshift(), and\~rshift()\~functions.
+\par \pard\plain\fs6\brdrb\brdrs\brdrw15\brdrcf0\par\pard
+\par \plain \f1\b\fs20 Footnotes
+\par \plain \f1\ul\fs20\cf1 (57)
+\par \plain \f1\fs20 This example shows that zeros come in on the left side. For\~gawk, this is always true, but in some languages, it\rquote s possible to have the left side fill with ones.\par}

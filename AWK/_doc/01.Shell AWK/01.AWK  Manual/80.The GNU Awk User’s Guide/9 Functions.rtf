@@ -1,0 +1,47 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red240\green240\blue240;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid384842706\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1210185502}
+{\list\listtemplateid554832285\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1935659029}
+{\list\listtemplateid1558096496\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid2076416052}
+{\list\listtemplateid855215883\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid84015932}
+{\list\listtemplateid1551440430\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid156614379}
+}
+{\*\listoverridetable
+{\listoverride\listid1210185502\listoverridecount0\ls1}
+{\listoverride\listid1935659029\listoverridecount0\ls2}
+{\listoverride\listid2076416052\listoverridecount0\ls3}
+{\listoverride\listid84015932\listoverridecount0\ls4}
+{\listoverride\listid156614379\listoverridecount0\ls5}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 9 Functions
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 This chapter describes\~awk\rquote s built-in functions, which fall into three categories: numeric, string, and I/O.\~
+\par gawk\~provides additional groups of functions to work with values that represent time, 
+\par do bit manipulation, sort arrays, provide type information, and internationalize and localize programs.
+\par 
+\par Besides the built-in functions,\~awk\~has provisions for writing new functions that the rest of a program can use.
+\par The second half of this chapter describes these\~\plain \f1\i\fs20 user-defined\plain \f1\fs20 \~functions. 
+\par Finally, we explore indirect function calls, a\~gawk-specific extension that lets you determine at runtime what function is to be called.
+\par {\trowd\trgaph60\trleft0\trpaddl45\trpaddt45\trpaddr45\trpaddb45\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trwWidth4000\trftsWidth2\richviewtbw-80\trbrdrl\brdrs\brdrw15\brdrcf3\trbrdrt\brdrs\brdrw15\brdrcf3\trbrdrr\brdrs\brdrw15\brdrcf2\trbrdrb\brdrs\brdrw15\brdrcf2\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx4710\clwWidth0\richviewcbw96\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\clvertalc\cellx6270\clwWidth0\richviewcbw349\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx11610\pard\intbl{{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \u8226 ?\~\plain \f1\ul\fs20\cf1 Built-in\plain \f1\fs20 :\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \~\~\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 Summarizes the built-in functions.\cell}}\pard\intbl\row}{\trowd\trgaph60\trleft0\trpaddl45\trpaddt45\trpaddr45\trpaddb45\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trwWidth4000\trftsWidth2\richviewtbw-80\trbrdrl\brdrs\brdrw15\brdrcf3\trbrdrt\brdrs\brdrw15\brdrcf3\trbrdrr\brdrs\brdrw15\brdrcf2\trbrdrb\brdrs\brdrw15\brdrcf2\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx4710\clwWidth0\richviewcbw96\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\clvertalc\cellx6270\clwWidth0\richviewcbw349\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx11610\pard\intbl{{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \u8226 ?\~\plain \f1\ul\fs20\cf1 User-defined\plain \f1\fs20 :\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \~\~\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 Describes User-defined functions in detail.\cell}}\pard\intbl\row}{\trowd\trgaph60\trleft0\trpaddl45\trpaddt45\trpaddr45\trpaddb45\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trwWidth4000\trftsWidth2\richviewtbw-80\trbrdrl\brdrs\brdrw15\brdrcf3\trbrdrt\brdrs\brdrw15\brdrcf3\trbrdrr\brdrs\brdrw15\brdrcf2\trbrdrb\brdrs\brdrw15\brdrcf2\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx4710\clwWidth0\richviewcbw96\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\clvertalc\cellx6270\clwWidth0\richviewcbw349\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx11610\pard\intbl{{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \u8226 ?\~\plain \f1\ul\fs20\cf1 Indirect Calls\plain \f1\fs20 :\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \~\~\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 Choosing the function to call at runtime.\cell}}\pard\intbl\row}{\trowd\trgaph60\trleft0\trpaddl45\trpaddt45\trpaddr45\trpaddb45\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trwWidth4000\trftsWidth2\lastrow\richviewtbw-80\trbrdrl\brdrs\brdrw15\brdrcf3\trbrdrt\brdrs\brdrw15\brdrcf3\trbrdrr\brdrs\brdrw15\brdrcf2\trbrdrb\brdrs\brdrw15\brdrcf2\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx4710\clwWidth0\richviewcbw96\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\clvertalc\cellx6270\clwWidth0\richviewcbw349\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx11610\pard\intbl{{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \u8226 ?\~\plain \f1\ul\fs20\cf1 Functions Summary\plain \f1\fs20 :\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \~\~\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 Summary of functions.\cell}}\pard\intbl\row}\par}

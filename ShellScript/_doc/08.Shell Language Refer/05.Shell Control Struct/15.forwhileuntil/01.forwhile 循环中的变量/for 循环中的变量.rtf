@@ -1,0 +1,67 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1917840066\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1588863438}
+}
+{\*\listoverridetable
+{\listoverride\listid1588863438\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 for \uc2\u24490 \'d1\'ad\u29615 \'bb\'b7\u20013 \'d6\'d0\u30340 \'b5\'c4\u21464 \'b1\'e4\u37327 \'c1\'bf\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf1 $ cat for_var.sh 
+\par \plain \f1\fs20 #! /bin/sh -
+\par 
+\par file_name=/etc/passwd
+\par var=0
+\par for line in 
+\par do
+\par   ((var ++ ))
+\par \plain \f1\fs20\cf1 done < $\{file_name\}
+\par \plain \f1\fs20 
+\par echo "var: $\{var\}"
+\par echo "line: $\{line\}"
+\par 
+\par \plain \f1\fs20\cf1 $ ./for_var.sh 
+\par \plain \f1\fs20\cf-1 var: 0
+\par line: 
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 $ cat for_var_02.sh 
+\par \plain \f1\fs20\cf-1 #! /bin/sh -
+\par 
+\par file_name=/etc/passwd
+\par var=0
+\par cat $\{file_name\} | for line in
+\par do
+\par   ((var ++ ))
+\par done 
+\par 
+\par echo "var: $\{var\}"
+\par echo "line: $\{line\}"
+\par 
+\par \plain \f1\fs20\cf1 $ ./for_var_02.sh 
+\par \plain \f1\fs20\cf-1 var: 0
+\par line: 
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 $ cat for_var_01.sh 
+\par \plain \f1\fs20\cf3 #! /bin/sh -
+\par 
+\par file_name=/etc/passwd
+\par var=0
+\par IFS=$'\\n'
+\par for line in $( cat $\{file_name\}  )
+\par do
+\par   ((var ++ ))
+\par done 
+\par IFS=$'\\n\\t '
+\par 
+\par echo "var: $\{var\}"
+\par echo "line: $\{line\}"
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1 $ ./for_var_01.sh 
+\par \plain \f1\fs20 var: 39
+\par line: code:x:506:508::/home/code:/bin/bash
+\par 
+\par \plain \f1\fs20\cf1 $ grep -n "code:x:506:508::/home/code:/bin/bash" /etc/passwd
+\par \plain \f1\fs20 39:code:x:506:508::/home/code:/bin/bash
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------\par}

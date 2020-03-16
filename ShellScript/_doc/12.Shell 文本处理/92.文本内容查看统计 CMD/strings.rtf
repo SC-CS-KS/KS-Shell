@@ -1,0 +1,109 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red79\green129\blue189;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1323814430
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\b\i\fs28}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid2043085466}
+{\list\listtemplateid1863793417\listsimple1
+{\listlevel\levelnfc0\leveljc0\li1380\fi-420\jclisttab\tx1380\levelstartat1{\leveltext\'02\'00);}{\levelnumbers\'01;}\f3\b\i\fs24\cf4}
+\listid1312116529}
+}
+{\*\listoverridetable
+{\listoverride\listid2043085466\listoverridecount0\ls1}
+{\listoverride\listid1312116529\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 strings
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par 
+\par \plain \f1\fs20 STRINGS(1)                   GNU Development Tools                  STRINGS(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        strings - print the strings of \plain \f1\fs20\cf2 printable characters\plain \f1\fs20\cf1  in files.
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        strings [-afovV] [-min-len]
+\par                [-n min-len] [--bytes=min-len]
+\par                [-t radix] [--radix=radix]
+\par                [-e encoding] [--encoding=encoding]
+\par                [-] [--all] [--print-file-name]
+\par                [-T bfdname] [--target=bfdname]
+\par                [--help] [--version] file...
+\par 
+\par DESCRIPTION
+\par        For each file given, GNU strings prints the printable character sequences that \plain \f1\fs20\cf1 are at least 4 characters long
+\par \plain \f1\fs20  (or the number given with the options below) and\plain \f1\fs20\cf1  are followed by an unprintable character\plain \f1\fs20 .  
+\par By default, it only prints the strings from the initialized and loaded sections of object files; 
+\par for other types of files, it prints the strings from the whole file.
+\par 
+\par \plain \f1\fs20\cf1        strings is mainly useful for determining the contents of non-text files.
+\par \plain \f1\fs20 
+\par OPTIONS
+\par        -a
+\par        --all
+\par        -   Do not scan only the initialized and loaded sections of object files; scan the whole files.
+\par 
+\par        -f
+\par        --print-file-name
+\par            Print the name of the file before each string.
+\par 
+\par        --help
+\par            Print a summary of the program usage on the standard output and exit.
+\par 
+\par        -min-len
+\par        -n min-len
+\par        --bytes=min-len
+\par            Print sequences of characters that are at least min-len characters long, instead of the default 4.
+\par 
+\par        -o  Like -t o.  Some other versions of strings have -o act like -t d instead.  Since we can not be compatible
+\par            with both ways, we simply chose one.
+\par 
+\par        -t radix
+\par        --radix=radix
+\par            Print the offset within the file before each string.  The single character argument specifies the radix of
+\par            the offset---o for octal, x for hexadecimal, or d for decimal.
+\par 
+\par        -e encoding
+\par        --encoding=encoding
+\par            Select the character encoding of the strings that are to be found.  Possible values for encoding are: s =
+\par            single-7-bit-byte characters (ASCII, ISO 8859, etc., default), S = single-8-bit-byte characters, b = 16-bit
+\par            bigendian, l = 16-bit littleendian, B = 32-bit bigendian, L = 32-bit littleendian.  Useful for finding wide
+\par            character strings. (l and b apply to, for example, Unicode UTF-16/UCS-2 encodings).
+\par 
+\par        -T bfdname
+\par        --target=bfdname
+\par            Specify an object code format other than your system\rquote s default format.
+\par 
+\par        -v
+\par        -V
+\par        --version
+\par            Print the program version number on the standard output and exit.
+\par 
+\par        @file
+\par            Read command-line options from file.  The options read are inserted in place of the original @file option.
+\par            If file does not exist, or cannot be read, then the option will be treated literally, and not removed.
+\par 
+\par            Options in file are separated by whitespace.  A whitespace character may be included in an option by
+\par            surrounding the entire option in either single or double quotes.  Any character (including a backslash) may
+\par            be included by prefixing the character to be included with a backslash.  The file may itself contain
+\par            additional @file options; any such options will be processed recursively.
+\par 
+\par SEE ALSO
+\par        ar(1), nm(1), objdump(1), ranlib(1), readelf(1) and the Info entries for binutils.
+\par 
+\par COPYRIGHT
+\par        Copyright (c) 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
+\par        2007, 2008, 2009 Free Software Foundation, Inc.
+\par 
+\par        Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free
+\par        Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no
+\par        Invariant Sections, with no Front-Cover Texts, and with no Back-Cover Texts.  A copy of the license is included
+\par        in the section entitled "GNU Free Documentation License".
+\par 
+\par binutils-2.20.51.0.2              2012-06-22                        STRINGS(1)\par}

@@ -1,0 +1,99 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1272414271
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid526041922}
+{\list\listtemplateid462183503\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1204997005}
+}
+{\*\listoverridetable
+{\listoverride\listid526041922\listoverridecount0\ls1}
+{\listoverride\listid1204997005\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 rexecd
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 REXECD(8)                                                   BSD System Manager's Manual                                                  REXECD(8)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1      rexecd - remote execution server
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par      rexecd [ -D ]
+\par 
+\par OPTIONS
+\par      Rexec accepts one option:
+\par \plain \f1\fs20\cf1      -D      Disable reverse DNS look up and in the log will be used client IP addresses.
+\par \plain \f1\fs20 
+\par DESCRIPTION
+\par      Rexecd is the server for the rexec(3) routine.  The server provides remote execution facilities with authentication based on user names and
+\par      passwords.
+\par 
+\par      Rexecd listens for service requests at the port indicated in the ''exec'' service specification; see services(5).  When a service request is
+\par      received the following protocol is initiated:
+\par 
+\par      1.   The server reads characters from the socket up to a NUL ('\\0') byte.  The resultant string is interpreted as an ASCII number, base 10.
+\par 
+\par      2.   If the number received in step 1 is non-zero, it is interpreted as the port number of a secondary stream to be used for the stderr.  A
+\par           second connection will be created to the specified port on the client's machine after receiving and authenticating the user, password,
+\par           and command from the client.
+\par 
+\par      3.   A NUL terminated user name of at most 16 characters is retrieved on the initial socket.
+\par 
+\par      4.   A NUL terminated, unencrypted password of at most 16 characters is retrieved on the initial socket.
+\par 
+\par      5.   A NUL terminated command to be passed to a shell is retrieved on the initial socket.  The length of the command is limited by the upper
+\par           bound on the size of the system's argument list.
+\par 
+\par      6.   Rexecd then validates the user as is done at login time and, if the authentication was successful, changes to the user's home directory,
+\par           and establishes the user and group protections of the user.  If any of these steps fail the connection is aborted with a diagnostic mes-
+\par           sage returned.
+\par 
+\par      7.   A NUL byte is returned on the initial socket and the command line is passed to the normal login shell of the user.  The shell inherits
+\par           the network connections established by rexecd.
+\par 
+\par DIAGNOSTICS
+\par      Except for the last one listed below, all diagnostic messages are returned on the initial socket, after which any network connections are
+\par      closed.  An error is indicated by a leading byte with a value of 1 (0 is returned in step 7 above upon successful completion of all the steps
+\par      prior to the command execution).
+\par 
+\par      username too long
+\par              The name is longer than 16 characters.
+\par 
+\par      password too long
+\par              The password is longer than 16 characters.
+\par 
+\par      command too long
+\par              The command line passed exceeds the size of the argument list (as configured into the system).
+\par 
+\par      Login incorrect.
+\par              No password file entry for the user name existed or the wrong password was supplied.
+\par 
+\par      No remote directory.
+\par              The chdir command to the home directory failed.
+\par 
+\par      Try again.
+\par              A fork by the server failed.
+\par 
+\par      <shellname>: ...
+\par              The user's login shell could not be started.  This message is returned on the connection associated with the stderr, and is not pre-
+\par              ceded by a flag byte.
+\par 
+\par SEE ALSO
+\par      rexec(3)
+\par 
+\par BUGS
+\par      A facility to allow all data and password exchanges to be encrypted should be present.
+\par 
+\par HISTORY
+\par      The rexecd command appeared in 4.2BSD.
+\par 
+\par Linux NetKit (0.17)                                               March 16, 1991                                               Linux NetKit (0.17)\par}

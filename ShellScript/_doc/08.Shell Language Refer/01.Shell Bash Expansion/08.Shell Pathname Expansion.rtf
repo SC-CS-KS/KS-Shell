@@ -1,0 +1,73 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1545302022\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid713346083}
+}
+{\*\listoverridetable
+{\listoverride\listid713346083\listoverridecount0\ls1}
+}
+
+
+\pard\sl360\slmult1\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 08.Shell Pathname Expansion
+\par \pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 Pathname Expansion
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20        After  word  splitting, unless the -f option has been set, bash scans each word for the characters *, ?, and [.  If one of these characters
+\par        appears, then the word is regarded as a pattern, and replaced with an alphabetically sorted list of file names matching the pattern.  If no
+\par        matching  file  names are found, and the shell option nullglob is disabled, the word is left unchanged.  If the nullglob option is set, and
+\par        no matches are found, the word is removed.  If the failglob shell option is set, and no matches are found, an error message is printed  and
+\par        the  command  is  not executed.  If the shell option nocaseglob is enabled, the match is performed without regard to the case of alphabetic
+\par        characters.  When a pattern is used for pathname expansion, the character ''.''  at the start of a name or immediately  following  a  slash
+\par        must  be  matched explicitly, unless the shell option dotglob is set.  When matching a pathname, the slash character must always be matched
+\par        explicitly.  In other cases, the ''.''  character is not treated specially.  See the description of shopt below under  SHELL  BUILTIN  COM-
+\par        MANDS for a description of the nocaseglob, nullglob, failglob, and dotglob shell options.
+\par 
+\par        The  GLOBIGNORE  shell variable may be used to restrict the set of file names matching a pattern.  If GLOBIGNORE is set, each matching file
+\par        name that also matches one of the patterns in GLOBIGNORE is removed from the list of matches.  The file names ''.''  and ''..''  are always
+\par        ignored  when GLOBIGNORE is set and not null.  However, setting GLOBIGNORE to a non-null value has the effect of enabling the dotglob shell
+\par        option, so all other file names beginning with a ''.''  will match.  To get the old behavior of ignoring file names beginning with a ''.'',
+\par        make ''.*''  one of the patterns in GLOBIGNORE.  The dotglob option is disabled when GLOBIGNORE is unset.
+\par 
+\par        Pattern Matching
+\par 
+\par        Any  character that appears in a pattern, other than the special pattern characters described below, matches itself.  The NUL character may
+\par        not occur in a pattern.  A backslash escapes the following character; the escaping backslash is discarded when matching.  The special  pat-
+\par        tern characters must be quoted if they are to be matched literally.
+\par 
+\par        The special pattern characters have the following meanings:
+\par 
+\par        *      Matches any string, including the null string.
+\par        ?      Matches any single character.
+\par        [...]  Matches  any  one  of the enclosed characters.  A pair of characters separated by a hyphen denotes a range expression; any character
+\par               that sorts between those two characters, inclusive, using the current locale's collating sequence and character set, is matched.  If
+\par               the  first  character following the [ is a !  or a ^ then any character not enclosed is matched.  The sorting order of characters in
+\par               range expressions is determined by the current locale and the value of the LC_COLLATE shell variable, if set.  A - may be matched by
+\par               including it as the first or last character in the set.  A ] may be matched by including it as the first character in the set.
+\par 
+\par               Within  [  and ], character classes can be specified using the syntax [:class:], where class is one of the following classes defined
+\par               in the POSIX.2 standard:
+\par               alnum alpha ascii blank cntrl digit graph lower print punct space upper word xdigit
+\par               A character class matches any character belonging to that class.  The word character class matches letters, digits, and the  charac-
+\par               ter _.
+\par 
+\par               Within  [  and ], an equivalence class can be specified using the syntax [=c=], which matches all characters with the same collation
+\par               weight (as defined by the current locale) as the character c.
+\par 
+\par               Within [ and ], the syntax [.symbol.] matches the collating symbol symbol.
+\par 
+\par        If the extglob shell option is enabled using the shopt builtin, several extended pattern matching operators are recognized.  In the follow-
+\par        ing  description, a pattern-list is a list of one or more patterns separated by a |.  Composite patterns may be formed using one or more of
+\par        the following sub-patterns:
+\par 
+\par               ?(pattern-list)
+\par                      Matches zero or one occurrence of the given patterns
+\par               *(pattern-list)
+\par                      Matches zero or more occurrences of the given patterns
+\par               +(pattern-list)
+\par                      Matches one or more occurrences of the given patterns
+\par               @(pattern-list)
+\par                      Matches exactly one of the given patterns
+\par               !(pattern-list)
+\par                      Matches anything except one of the given patterns
+\par 
+\par \plain \f1\b\fs20 Quote Removal
+\par \plain \f1\fs20\cf1 After the preceding expansions\plain \f1\fs20 , all\plain \f1\fs20\cf1  unquoted occurrences of the characters \\, ', and " that did not result from one of the above expansions 
+\par are removed.\par}

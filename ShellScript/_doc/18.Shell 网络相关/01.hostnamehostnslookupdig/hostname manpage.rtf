@@ -1,0 +1,129 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid804277361\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1185416247}
+{\list\listtemplateid1697969431\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid892169082}
+{\list\listtemplateid690390375\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid298187013}
+{\list\listtemplateid1702163741\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1721795480}
+}
+{\*\listoverridetable
+{\listoverride\listid1185416247\listoverridecount0\ls1}
+{\listoverride\listid892169082\listoverridecount0\ls2}
+{\listoverride\listid298187013\listoverridecount0\ls3}
+{\listoverride\listid1721795480\listoverridecount0\ls4}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 hostname manpage
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 NAME
+\par       \plain \f1\fs20\cf1  hostname - show or set the system's host name
+\par        domainname - show or set the system's NIS/YP domain name
+\par        dnsdomainname - show the system's DNS domain name
+\par        nisdomainname - show or set system's NIS/YP domain name
+\par        ypdomainname - show or set the system's NIS/YP domain name
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        hostname [-v] [-a] [--alias] [-d] [--domain] [-f] [--fqdn] [-i] [--ip-address] [--long] [-s] [--short] [-y] [--yp] [--nis]
+\par 
+\par        hostname [-v] [-F filename] [--file filename] [hostname]
+\par 
+\par        domainname [-v] [-F filename] [--file filename] [name]
+\par 
+\par        nodename [-v] [-F filename] [--file filename] [name]
+\par 
+\par        hostname [-v] [-h] [--help] [-V] [--version]
+\par 
+\par        dnsdomainname [-v]
+\par        nisdomainname [-v]
+\par        ypdomainname [-v]
+\par 
+\par DESCRIPTION
+\par        Hostname is the program that is used to either set or display the current host, domain or node name of the system.  These names are used by
+\par        many of the networking programs to identify the machine. The domain name is also used by NIS/YP.
+\par 
+\par    GET NAME
+\par        When called without any arguments, the program displays the current names:
+\par 
+\par        hostname will print the name of the system as returned by the gethostname(2) function.
+\par 
+\par        domainname, nisdomainname, ypdomainname will print the name of the system as returned by the getdomainname(2) function. This is also  known
+\par        as the YP/NIS domain name of the system.
+\par 
+\par        dnsdomainname  will print the domain part of the FQDN (Fully Qualified Domain Name). The complete FQDN of the system is returned with host-
+\par        name --fqdn.
+\par 
+\par        The function gethostname(2) is used to get the hostname.  When the hostname -a, -d, -f or -i is called  will  gethostbyname(3)  be  called.
+\par        The  difference  in  gethostname(2)  and  gethostbyname(3) is that gethostbyname(3) is network aware, so it consults /etc/nsswitch.conf and
+\par        /etc/host.conf to decide whether to read information in /etc/sysconfig/network or /etc/hosts
+\par 
+\par        To add another dimension to this, the hostname is also set when the network interface is brought up.
+\par 
+\par    SET NAME
+\par        When called with one argument or with the --file option, the commands set the host name, the NIS/YP domain name or the node name.
+\par 
+\par        Note, that only the super-user can change the names.
+\par 
+\par        It is not possible to set the FQDN or the DNS domain name with the dnsdomainname command (see THE FQDN below).
+\par 
+\par        The host name is usually set once at system startup in /etc/rc.d/rc.inet1 or /etc/init.d/boot (normally by reading the contents of  a  file
+\par        which contains the host name, e.g.  /etc/hostname).
+\par 
+\par    THE FQDN
+\par        You  can't  change  the  FQDN (as returned by hostname --fqdn) or the DNS domain name (as returned by dnsdomainname) with this command. The
+\par        FQDN of the system is the name that the resolver(3) returns for the host name.
+\par 
+\par        Technically: The FQDN is the name gethostbyname(2) returns for the host name returned by gethostname(2).  The DNS domain name is  the  part
+\par        after the first dot.
+\par 
+\par        Therefore  it  depends  on the configuration (usually in /etc/host.conf) how you can change it. Usually (if the hosts file is parsed before
+\par        DNS or NIS) you can change it in /etc/hosts.
+\par 
+\par OPTIONS
+\par \plain \f1\fs20\cf1        -a, --alias
+\par               Display the alias name of the host (if used).
+\par \plain \f1\fs20 
+\par        -d, --domain
+\par              Display the name of the DNS domain.
+\par              Don't use the command domainname to get the DNS domain name because it will show the NIS  domain name and not the DNS domain name.              Use dnsdomainname instead.
+\par 
+\par        -F, --file filename
+\par               Read the host name from the specified file. Comments (lines starting with a '#') are ignored.
+\par 
+\par        -f, --fqdn, --long
+\par               Display  the  FQDN (Fully Qualified Domain Name). A FQDN consists of a short host name and the DNS domain name. Unless you are using
+\par               bind or NIS for host lookups you can change the FQDN and the DNS domain name (which is part of the FQDN) in the /etc/hosts file.
+\par 
+\par        -h, --help
+\par               Print a usage message and exit.
+\par 
+\par \plain \f1\fs20\cf2        -i, --ip-address
+\par               Display the IP address(es) of the host.
+\par \plain \f1\fs20 
+\par        -s, --short
+\par               Display the short host name. This is the host name cut at the first dot.
+\par 
+\par        -V, --version
+\par               Print version information on standard output and exit successfully.
+\par 
+\par        -v, --verbose
+\par               Be verbose and tell what's going on.
+\par 
+\par        -y, --yp, --nis
+\par               Display the NIS domain name. If a parameter is given (or --file name ) then root can also set a new NIS domain.
+\par 
+\par \plain \f1\fs20\cf1 FILES
+\par        /etc/hosts /etc/sysconfig/network
+\par \plain \f1\fs20 
+\par NOTE
+\par        Note that hostname doesn't change anything permanently. After reboot original names from /etc/hosts are used again.
+\par 
+\par AUTHOR
+\par        Peter Tobias, <tobias@et-inf.fho-emden.de>
+\par        Bernd Eckenfels, <net-tools@lina.inka.de> (NIS and manpage).
+\par        Steve Whitehouse, <SteveW@ACM.org> (DECnet support and manpage).\par}

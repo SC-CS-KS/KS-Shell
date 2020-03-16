@@ -1,0 +1,240 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil Arial;}{\f2\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue128;\red128\green0\blue0;\red0\green128\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid553034924\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1596091232}
+}
+{\*\listoverridetable
+{\listoverride\listid1596091232\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f0\b\fs24\cf5 ethtool
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f2\fs20 ETHTOOL(8)                                                                                                            ETHTOOL(8)
+\par NAME
+\par \plain \f2\fs20\cf1        ethtool - Display or change ethernet card settings
+\par \plain \f2\fs20 
+\par SYNOPSIS
+\par \plain \f2\fs20\cf1        ethtool ethX
+\par \plain \f2\fs20 
+\par        ethtool -h|--help
+\par 
+\par        ethtool -a|--show-pause ethX
+\par 
+\par        ethtool -A|--pause ethX [autoneg on|off] [rx on|off] [tx on|off]
+\par 
+\par        ethtool -c|--show-coalesce ethX
+\par 
+\par        ethtool  -C|--coalesce  ethX  [adaptive-rx on|off]  [adaptive-tx on|off] [rx-usecs N] [rx-frames N] [rx-usecs-irq N] [rx-
+\par        frames-irq N] [tx-usecs N] [tx-frames N] [tx-usecs-irq N] [tx-frames-irq N] [stats-block-usecs N] [pkt-rate-low  N]  [rx-
+\par        usecs-low  N] [rx-frames-low N] [tx-usecs-low N] [tx-frames-low N] [pkt-rate-high N] [rx-usecs-high N] [rx-frames-high N]
+\par        [tx-usecs-high N] [tx-frames-high N] [sample-interval N]
+\par 
+\par        ethtool -g|--show-ring ethX
+\par 
+\par        ethtool -G|--set-ring ethX [rx N] [rx-mini N] [rx-jumbo N] [tx N]
+\par 
+\par        ethtool -i|--driver ethX
+\par 
+\par        ethtool -d|--register-dump ethX [raw on|off] [hex on|off] [file name]
+\par 
+\par        ethtool -e|--eeprom-dump ethX [raw on|off] [offset N] [length N]
+\par 
+\par        ethtool -E|--change-eeprom ethX [magic N] [offset N] [value N]
+\par 
+\par        ethtool -k|--show-offload ethX
+\par 
+\par        ethtool -K--offload ethX [rx on|off] [tx on|off] [sg on|off] [tso on|off] [ufo on|off] [gso on|off]
+\par 
+\par        ethtool -p|--blink ethX [N]
+\par 
+\par        ethtool -r|--negotiate ethX
+\par 
+\par        ethtool -S|--statistics ethX
+\par 
+\par        ethtool -t|--test ethX [offline|online]
+\par 
+\par        ethtool -s ethX [speed 10|100|1000|2500] [duplex half|full] [port tp|aui|bnc|mii] [autoneg on|off] [advertise  N]  [phyad
+\par        N]  [xcvr internal|external] [wol p|u|m|b|a|g|s|d...]  [sopass xx:yy:zz:aa:bb:cc] [msglvl N] ethtool -f|--flash ethX FILE
+\par        [N]
+\par 
+\par DESCRIPTION
+\par      \plain \f2\fs20\cf1   ethtool is used for querying settings of an ethernet device and changing them.
+\par \plain \f2\fs20        ethX is the name of the ethernet device on which ethtool should operate.
+\par 
+\par OPTIONS
+\par        ethtool with a single argument specifying the device name prints current settings of the specified device.
+\par 
+\par        -h --help
+\par               Shows a short help message.
+\par 
+\par        -a --show-pause
+\par               Queries the specified ethernet device for pause parameter information.
+\par 
+\par        -A --pause
+\par               Changes the pause parameters of the specified ethernet device.
+\par 
+\par        autoneg on|off
+\par               Specifies whether pause autonegotiation should be enabled.
+\par 
+\par        rx on|off
+\par               Specifies whether RX pause should be enabled.
+\par 
+\par        tx on|off
+\par               Specifies whether TX pause should be enabled.
+\par 
+\par        -c --show-coalesce
+\par               Queries the specified ethernet device for coalescing information.
+\par 
+\par        -C --coalesce
+\par               Changes the coalescing settings of the specified ethernet device.
+\par 
+\par        -g --show-ring
+\par               Queries the specified ethernet device for rx/tx ring parameter information.
+\par 
+\par        -G --set-ring
+\par               Changes the rx/tx ring parameters of the specified ethernet device.
+\par 
+\par        rx N   Changes the number of ring entries for the Rx ring.
+\par 
+\par        rx-mini N
+\par               Changes the number of ring entries for the Rx Mini ring.
+\par 
+\par        rx-jumbo N
+\par               Changes the number of ring entries for the Rx Jumbo ring.
+\par 
+\par        tx N   Changes the number of ring entries for the Tx ring.
+\par 
+\par \plain \f2\fs20\cf1        -i --driver
+\par               Queries the specified ethernet device for associated driver information.
+\par \plain \f2\fs20 
+\par        -d --register-dump
+\par               Retrieves and prints a register dump for the specified ethernet device.  The register format for some  devices  is
+\par               known  and  decoded  others  are printed in hex.  When raw is enabled, then ethtool dumps the raw register data to
+\par               stdout.  If file is specified, then use contents of previous raw register  dump,  rather  than  reading  from  the
+\par               device.
+\par 
+\par 
+\par        -e --eeprom-dump
+\par               Retrieves and prints an EEPROM dump for the specified ethernet device.  When raw is enabled, then it dumps the raw
+\par               EEPROM data to stdout. The length and offset parameters allow dumping certain portions of the EEPROM.  Default  is
+\par               to dump the entire EEPROM.
+\par 
+\par        -E --change-eeprom
+\par               Changes  EEPROM  byte  for the specified ethernet device.  offset and value specify which byte and it's new value.
+\par               Because of the persistent nature of writing to the EEPROM, a device-specific magic key must be specified  to  pre-
+\par               vent the accidental writing to the EEPROM.
+\par 
+\par        -k --show-offload
+\par               Queries the specified ethernet device for offload information.
+\par 
+\par        -K --offload
+\par               Changes the offload parameters of the specified ethernet device.
+\par 
+\par        rx on|off
+\par               Specifies whether RX checksumming should be enabled.
+\par 
+\par        tx on|off
+\par               Specifies whether TX checksumming should be enabled.
+\par 
+\par        sg on|off
+\par               Specifies whether scatter-gather should be enabled.
+\par 
+\par        tso on|off
+\par               Specifies whether TCP segmentation offload should be enabled.
+\par 
+\par        ufo on|off
+\par               Specifies whether UDP fragmentation offload should be enabled
+\par 
+\par        gso on|off
+\par               Specifies whether generic segmentation offload should be enabled
+\par 
+\par        -p --identify
+\par               Initiates  adapter-specific  action intended to enable an operator to easily identify the adapter by sight.  Typi-
+\par               cally this involves blinking one or more LEDs on the specific ethernet port.
+\par 
+\par        N      Length of time to perform phys-id, in seconds.
+\par 
+\par        -r --negotiate
+\par               Restarts auto-negotiation on the specified ethernet device, if auto-negotiation is enabled.
+\par 
+\par \plain \f2\fs20\cf1        -S --statistics
+\par               Queries the specified ethernet device for NIC- and driver-specific statistics.
+\par \plain \f2\fs20 
+\par        -t --test
+\par               Executes adapter selftest on the specified ethernet device. Possible test modes are:
+\par 
+\par        offline|online
+\par               defines test type: offline (default) means to perform full set of tests possibly causing normal  operation  inter-
+\par               ruption  during  the tests, online means to perform limited set of tests do not interrupting normal adapter opera-
+\par               tion.
+\par 
+\par        -s --change
+\par               Allows changing some or all settings of the specified ethernet device.  All following options only apply if -s was
+\par               specified.
+\par 
+\par        speed 10|100|1000|2500
+\par               Set speed in Mb/s.  ethtool with just the device name as an argument will show you the supported device speeds.
+\par 
+\par        duplex half|full
+\par               Sets full or half duplex mode.
+\par 
+\par        port tp|aui|bnc|mii
+\par               Selects device port.
+\par 
+\par        autoneg on|off
+\par               Specifies  whether  autonegotiation  should be enabled. Autonegotiation is enabled by deafult, but in some network
+\par               devices may have trouble with it, so you can disable it if really necessary.
+\par 
+\par        advertise N
+\par               Sets the speed and duplex advertised by autonegotiation.  The argument is a hexidecimal value using one or a  com-
+\par               bination of the following values:
+\par               0x001    10 Half
+\par               0x002    10 Full
+\par               0x004    100 Half
+\par               0x008    100 Full
+\par               0x010    1000 Half(not supported by IEEE standards)
+\par               0x020    1000 Full
+\par               0x8000   2500 Full(not supported by IEEE standards)
+\par               0x800    10000 Full
+\par               0x03F    Auto
+\par 
+\par        phyad N
+\par               PHY address.
+\par 
+\par        xcvr internal|external
+\par               Selects transceiver type. Currently only internal and external can be specified, in the future further types might
+\par               be added.
+\par 
+\par        wol p|u|m|b|a|g|s|d...
+\par               Sets Wake-on-LAN options.  Not all devices support this.  The argument to this option is a  string  of  characters
+\par               specifying which options to enable.
+\par               p  Wake on phy activity
+\par               u  Wake on unicast messages
+\par               m  Wake on multicast messages
+\par               b  Wake on broadcast messages
+\par               a  Wake on ARP
+\par               g  Wake on MagicPacket(tm)
+\par               s  Enable SecureOn(tm) password for MagicPacket(tm)
+\par               d  Disable (wake on nothing).  This option clears all previous options.
+\par 
+\par        sopass xx:yy:zz:aa:bb:cc
+\par               Sets  the  SecureOn(tm)  password.   The  argument  to  this  option  must  be  6 bytes in ethernet MAC hex format
+\par               (xx:yy:zz:aa:bb:cc).
+\par 
+\par        msglvl N
+\par               Sets the driver message level. Meanings differ per driver.  -f --flash  FILE Flash firmware image from the  speci-
+\par               fied file to a region on the adapter.  By default this will flash all the regions on the adapter.
+\par 
+\par        N      A  number  to  identify  flash  region  where  the image should be flashed.  Default region is 0 which denotes all
+\par               regions in the flash.
+\par 
+\par 
+\par        BUGS   Not supported (in part or whole) on all ethernet drivers.
+\par 
+\par AUTHOR
+\par        ethtool was written by David Miller.
+\par 
+\par        Modifications by Jeff Garzik, Tim Hockin, Jakub Jelinek, Andre Majorel, Eli Kupermann, Scott Feldman, Andi Kleen.
+\par 
+\par AVAILABILITY
+\par        ethtool is available over the Web on the SourceForge site at http://sourceforge.net/projects/gkernel/\uc2\u38463 \'b0\'a2\uc1\par}

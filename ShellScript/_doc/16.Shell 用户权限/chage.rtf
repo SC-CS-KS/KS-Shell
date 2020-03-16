@@ -1,0 +1,67 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid124475791\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1271332815}
+}
+{\*\listoverridetable
+{\listoverride\listid1271332815\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 chage
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 CHAGE(1)                                                                                                                                  CHAGE(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        chage - change user password expiry information
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        chage [-m mindays] [-M maxdays] [-d lastday] [-I inactive]
+\par              [-E expiredate] [-W warndays] user
+\par 
+\par \plain \f1\fs20\cf1        chage -l user
+\par \plain \f1\fs20 
+\par DESCRIPTION
+\par        chage changes the number of days between password changes and the date of the last password change.  This information is used by the system
+\par        to determine when a user must change her password.  The chage command is restricted to the root user, except for the -l option,  which  may
+\par        be used by an unprivileged user to determine when her password or account is due to expire.
+\par 
+\par        With  the -m option, the value of mindays is the minimum number of days between password changes.  A value of zero for this field indicates
+\par        that the user may change her password at any time.
+\par 
+\par        With the -M option, the value of maxdays is the maximum number of days during which a password is valid.  When maxdays plus lastday is less
+\par        than the current day, the user will be required to change her password before being able to use her account.  This occurance can be planned
+\par        for in advance by use of the -W option, which provides the user with advance warning.
+\par 
+\par        With the -d option, the value of lastday is the number of days since January 1st, 1970 when the password was last changed.   The  date  may
+\par        also be expressed in the format YYYY-MM-DD (or the format more commonly used in your area).
+\par 
+\par        The  -E option is used to set a date on which the user's account will no longer be accessible.  The expiredate option is the number of days
+\par        since January 1, 1970 on which the accounted is locked.  The date may also be expressed in the format YYYY-MM-DD (or the format  more  com-
+\par        monly  used in your area).  A user whose account is locked must contact the system administrator before being able to use the system again.
+\par 
+\par        The -I option is used to set the number of days of inactivity after a password has expired before the  account  is  locked.   The  inactive
+\par        option  is  the  number of days of inactivity. A value of -1 disables this feature.  A user whose account is locked must contact the system
+\par        administrator before being able to use the system again.
+\par 
+\par        The -W option is used to set the number of days of warning before a password change is required.  The warndays option is the number of days
+\par        prior to the password expiring that a user will be warned her password is about to expire.
+\par 
+\par        If  none  of  the options are selected, chage operates in an interactive fashion, prompting the user with the current values for all of the
+\par        fields.  Enter the new value to change the field, or leave the line blank to use the current value.  The current value is displayed between
+\par        a pair of [ ] marks.
+\par 
+\par NOTE
+\par        The  chage  program  requires  shadow  password  file to be available.  Its functionality is not available when passwords are stored in the
+\par        passwd file.
+\par 
+\par FILES
+\par        /etc/passwd - user account information
+\par        /etc/shadow - shadow user account information
+\par 
+\par SEE ALSO
+\par        passwd(5), shadow(5)
+\par 
+\par AUTHOR
+\par        Julianne Frances Haugh <jockgrrl@ix.netcom.com>
+\par 
+\par                                                                                                                                           CHAGE(1)\par}

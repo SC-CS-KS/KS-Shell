@@ -1,0 +1,149 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid671158877
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs16\cf2}
+{\listlevel\levelnfc0\leveljc0\li1440\fi-360\jclisttab\tx1440\levelstartat1{\leveltext\'02\'01.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2160\fi-360\jclisttab\tx2160\levelstartat1{\leveltext\'02\'02.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2880\fi-360\jclisttab\tx2880\levelstartat1{\leveltext\'02\'03.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li3600\fi-360\jclisttab\tx3600\levelstartat1{\leveltext\'02\'04.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li4320\fi-360\jclisttab\tx4320\levelstartat1{\leveltext\'02\'05.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5040\fi-360\jclisttab\tx5040\levelstartat1{\leveltext\'02\'06.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5760\fi-360\jclisttab\tx5760\levelstartat1{\leveltext\'02\'07.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li6480\fi-360\jclisttab\tx6480\levelstartat1{\leveltext\'02\'08.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1416204755}
+}
+{\*\listoverridetable
+{\listoverride\listid1416204755\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 nslookup manpage
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 NSLOOKUP(1)                                                                                                                            NSLOOKUP(1)
+\par 
+\par NAME
+\par    \plain \f1\fs20\cf1     nslookup - query Internet name servers interactively
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        nslookup [ -option ]  [ name | - ]  [ server ]
+\par 
+\par DESCRIPTION
+\par        Nslookup  is  a  program  to  query Internet domain name servers. Nslookup has two modes: interactive and non-interactive. Interactive mode
+\par        allows the user to query name servers for information about various hosts and domains or to print a list of hosts in a domain. Non-interac-
+\par        tive mode is used to print just the name and requested information for a host or domain.
+\par 
+\par ARGUMENTS
+\par        Interactive mode is entered in the following cases:
+\par 
+\par       \plain \f1\fs20\cf1  1.     when no arguments are given (the default name server will be used)
+\par \plain \f1\fs20 
+\par        2.     when the first argument is a hyphen (-) and the second argument is the host name or Internet address of a name server.
+\par 
+\par        Non-interactive  mode  is  used  when the name or Internet address of the host to be looked up is given as the first argument. The optional
+\par        second argument specifies the host name or address of a name server.
+\par 
+\par        Options can also be specified on the command line if they precede the arguments and are prefixed with a hyphen. For example, to change  the
+\par        default query type to host information, and the initial timeout to 10 seconds, type:
+\par 
+\par        nslookup -query=hinfo  -timeout=10
+\par 
+\par INTERACTIVE COMMANDS
+\par        host [server]
+\par               Look  up information for host using the current default server or using server, if specified. If host is an Internet address and the
+\par               query type is A or PTR, the name of the host is returned.  If host is a name and does not have a trailing period, the search list is
+\par               used to qualify the name.
+\par 
+\par               To look up a host not in the current domain, append a period to the name.
+\par 
+\par        server domain
+\par 
+\par        lserver domain
+\par               Change the default server to domain; lserver uses the initial server to look up information about domain, while server uses the cur-
+\par               rent default server. If an authoritative answer can't be found, the names of servers that might have the answer are returned.
+\par 
+\par        root   not implemented
+\par 
+\par        finger not implemented
+\par 
+\par        ls     not implemented
+\par 
+\par        view   not implemented
+\par 
+\par        help   not implemented
+\par 
+\par        ?      not implemented
+\par 
+\par        exit   Exits the program.
+\par 
+\par        set keyword[=value]
+\par               This command is used to change state information that affects the lookups. Valid keywords are:
+\par 
+\par               all    Prints the current values of the frequently used options to set. Information about the current default  server  and  host  is
+\par                      also printed.
+\par 
+\par               class=value
+\par                      Change the query class to one of:
+\par 
+\par                       IN     the Internet class
+\par 
+\par                       CH     the Chaos class
+\par 
+\par                       HS     the Hesiod class
+\par 
+\par                       ANY    wildcard
+\par 
+\par               The class specifies the protocol group of the information.
+\par 
+\par               (Default = IN; abbreviation = cl)
+\par 
+\par               [no]debug
+\par                      Turn debugging mode on. A lot more information is printed about the packet sent to the server and the resulting answer.
+\par 
+\par                      (Default = nodebug; abbreviation = [no]deb)
+\par 
+\par               [no]d2 Turn debugging mode on. A lot more information is printed about the packet sent to the server and the resulting answer.
+\par 
+\par                      (Default = nod2)
+\par 
+\par               domain=name
+\par                      Sets the search list to name.
+\par 
+\par               [no]search
+\par                      If  the  lookup  request  contains at least one period but doesn't end with a trailing period, append the domain names in the
+\par                      domain search list to the request until an answer is received.
+\par 
+\par                      (Default = search)
+\par 
+\par               port=value
+\par                      Change the default TCP/UDP name server port to value.
+\par 
+\par                      (Default = 53; abbreviation = po)
+\par 
+\par               querytype=value
+\par 
+\par               type=value
+\par                      Change the top of the information query.
+\par 
+\par                      (Default = A; abbreviations = q, ty)
+\par 
+\par               [no]recurse
+\par                      Tell the name server to query other servers if it does not have the information.
+\par 
+\par                      (Default = recurse; abbreviation = [no]rec)
+\par 
+\par               retry=number
+\par                      Set the number of retries to number.
+\par 
+\par               timeout=number
+\par                      Change the initial timeout interval for waiting for a reply to number seconds.
+\par 
+\par               [no]vc Always use a virtual circuit when sending requests to the server.
+\par 
+\par                      (Default = novc)
+\par 
+\par FILES
+\par        /etc/resolv.conf
+\par 
+\par SEE ALSO
+\par        dig(1), host(1), named(8).
+\par 
+\par AUTHOR
+\par        Andrew Cherenson\par}

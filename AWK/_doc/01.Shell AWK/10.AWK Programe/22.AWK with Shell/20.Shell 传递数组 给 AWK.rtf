@@ -1,0 +1,20 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1519907242\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid49013847}
+{\list\listtemplateid253006773\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid893434510}
+}
+{\*\listoverridetable
+{\listoverride\listid49013847\listoverridecount0\ls1}
+{\listoverride\listid893434510\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 20.Shell \uc2\u20256 \'b4\'ab\u36882 \'b5\'dd\u25968 \'ca\'fd\u32452 \'d7\'e9 \u32473 \'b8\'f8 AWK\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 declare -a refers
+\par refers=([b]="baidu" [g]="google" [s]="soso")
+\par //\uc2\u27880 \'d7\'a2\u24847 \'d2\'e2 bash 4.0 \u20197 \'d2\'d4\u19978 \'c9\'cf\u29256 \'b0\'e6\u26412 \'b1\'be\u25165 \'b2\'c5\u25903 \'d6\'a7\u25345 \'b3\'d6\u20851 \'b9\'d8\u32852 \'c1\'aa\u25968 \'ca\'fd\u32452 \'d7\'e9\uc1
+\par 
+\par awk -v s1="$\{refers[*]\}" -v s2="$\{!refers[*]\}" 'BEGIN\{split(s1,s3," ");split(s2,s4," ");for (i=1;i<=length(s4);i++) refers[s4[i]]=s3[i]; print refers["b"],refers["g"],refers["s"]\}'\par}

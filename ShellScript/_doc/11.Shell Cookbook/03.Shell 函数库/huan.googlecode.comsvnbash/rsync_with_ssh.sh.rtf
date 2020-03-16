@@ -1,0 +1,62 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1311615436
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid1222247680}
+{\list\listtemplateid182640391\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1773042471}
+}
+{\*\listoverridetable
+{\listoverride\listid1222247680\listoverridecount0\ls1}
+{\listoverride\listid1773042471\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 rsync_with_ssh.sh
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 #! /bin/bash
+\par 
+\par # huanlf@gmail.com 2007-06-06
+\par # this script is used to rsync files from or to remote computer
+\par 
+\par # change following values
+\par pidfile='/var/run/rsync_ssh.pid'
+\par logdir='/var/log/rsync'
+\par logfile="`date +%F`"
+\par port='21'
+\par from='remote_host:src_dir'
+\par to='dest_dir'
+\par # from='local_dir'
+\par # to='remote_host:dest_dir'
+\par user='username_on_remote_server'
+\par ## we need ssh private key here
+\par priv_key='path_to_ssh_private_key'
+\par ssh_opt='-o StrictHostKeyChecking no'
+\par 
+\par 
+\par trap "rm $pidfile" 2 3 15
+\par [ -d "$logdir" ] || mkdir -p  "$logdir"
+\par 
+\par if [ -e "$pidfile" ]; then
+\par     pid="$( cat "$pidfile" )"
+\par     echo $pid
+\par fi
+\par 
+\par if [ -n "$pid" ]; then
+\par     kill -0 $pid 2>/dev/null && exit 1
+\par fi
+\par 
+\par echo $$ > "$pidfile"
+\par 
+\par rsync -avz --progress --delete -e \\
+\par     "ssh -l $user -p $port -i $priv_key $ssh_opt" \\
+\par     $from $to > "$logdir/$logfile" 2>&1 
+\par 
+\par rm $pidfile\par}

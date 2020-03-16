@@ -1,0 +1,85 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red0\green128\blue0;\red255\green255\blue255;\red255\green102\blue0;}{\*\listtable{\list\listtemplateid321947703\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1743751447}
+{\list\listtemplateid388124538\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid2021587302}
+}
+{\*\listoverridetable
+{\listoverride\listid1743751447\listoverridecount0\ls1}
+{\listoverride\listid2021587302\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\outlinelevel0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\chcbpat4\cf2 19.\uc2\u32534 \'b1\'e0\u20889 \'d0\'b4\u19968 \'d2\'bb\u20010 \'b8\'f6\u26356 \'b8\'fc\u20855 \'be\'df\u21487 \'bf\'c9\u35835 \'b6\'c1\u24615 \'d0\'d4\u30340 \'b5\'c4 df \u21629 \'c3\'fc\u20196 \'c1\'ee\u36755 \'ca\'e4\u20986 \'b3\'f6\u33050 \'bd\'c5\u26412 \'b1\'be\uc1
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 
+\par \plain \f1\fs20\chcbpat4\cf5 \uc2\u32534 \'b1\'e0\u20889 \'d0\'b4\u19968 \'d2\'bb\u20010 \'b8\'f6\u26356 \'b8\'fc\u20855 \'be\'df\u21487 \'bf\'c9\u35835 \'b6\'c1\u24615 \'d0\'d4\u30340 \'b5\'c4\uc1\plain \f1\b\fs20\chcbpat4\cf5  df\plain \f1\fs20\chcbpat4\cf5  \uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\u36755 \'ca\'e4\u20986 \'b3\'f6\u33050 \'bd\'c5\u26412 \'b1\'be\u65306 \'a3\'ba\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20\cf2 \uc2\u36825 \'d5\'e2\u37324 \'c0\'ef\u25105 \'ce\'d2\u20204 \'c3\'c7\u23558 \'bd\'ab\u20197 \'d2\'d4 awk \u33050 \'bd\'c5\u26412 \'b1\'be\u30340 \'b5\'c4\u26041 \'b7\'bd\u24335 \'ca\'bd\u26469 \'c0\'b4\u23454 \'ca\'b5\u29616 \'cf\'d6 df -h \u30340 \'b5\'c4\u21151 \'b9\'a6\u33021 \'c4\'dc\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 /> cat > test21.sh
+\par #!/bin/sh
+\par \plain \f1\fs20\cf3 #1. $$\uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u24403 \'b5\'b1\u21069 \'c7\'b0 Shell \u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4 pid\u12290 \'a1\'a3\uc1
+\par #2. trap \uc2\u20449 \'d0\'c5\u21495 \'ba\'c5\u25429 \'b2\'b6\u25417 \'d7\'bd\u26159 \'ca\'c7\u20026 \'ce\'aa\u20102 \'c1\'cb\u20445 \'b1\'a3\u35777 \'d6\'a4\u22312 \'d4\'da Shell \u27491 \'d5\'fd\u24120 \'b3\'a3\u25110 \'bb\'f2\u24322 \'d2\'ec\u24120 \'b3\'a3\u36864 \'cd\'cb\u20986 \'b3\'f6\u26102 \'ca\'b1\u65292 \'a3\'ac\u20173 \'c8\'d4\u28982 \'c8\'bb\u33021 \'c4\'dc\u22815 \'b9\'bb\u23558 \'bd\'ab\u35813 \'b8\'c3\u33050 \'bd\'c5\u26412 \'b1\'be\u21019 \'b4\'b4\u24314 \'bd\'a8\u30340 \'b5\'c4\u20020 \'c1\'d9\u26102 \'ca\'b1 awk \u33050 \'bd\'c5\u26412 \'b1\'be\u25991 \'ce\'c4\u20214 \'bc\'fe\u21024 \'c9\'be\u38500 \'b3\'fd\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 awk_script_file="/tmp/scf_tmp.$$"
+\par trap "rm -f $awk_script_file" EXIT
+\par \plain \f1\fs20\cf3 #3. \uc2\u39318 \'ca\'d7\u20808 \'cf\'c8\u38656 \'d0\'e8\u35201 \'d2\'aa\u35828 \'cb\'b5\u26126 \'c3\'f7\u30340 \'b5\'c4\u26159 \'ca\'c7\u65292 \'a3\'ac'EOF'\u20013 \'d6\'d0\u30340 \'b5\'c4\u21333 \'b5\'a5\u24341 \'d2\'fd\u21495 \'ba\'c5\u38750 \'b7\'c7\u24120 \'b3\'a3\u37325 \'d6\'d8\u35201 \'d2\'aa\u65292 \'a3\'ac\u22914 \'c8\'e7\u26524 \'b9\'fb\u24573 \'ba\'f6\u30053 \'c2\'d4\u20182 \'cb\'fb\u23558 \'bd\'ab\u26080 \'ce\'de\u27861 \'b7\'a8\u36890 \'cd\'a8\u36807 \'b9\'fd\u32534 \'b1\'e0\u35793 \'d2\'eb\u65292 \'a3\'ac\u36825 \'d5\'e2\u26159 \'ca\'c7\u22240 \'d2\'f2\u20026 \'ce\'aa awk \u30340 \'b5\'c4\u21629 \'c3\'fc\u20196 \'c1\'ee\u21160 \'b6\'af\u20316 \'d7\'f7\u24517 \'b1\'d8\u39035 \'d0\'eb\u35201 \'d2\'aa\u29992 \'d3\'c3\u21333 \'b5\'a5\u24341 \'d2\'fd\u21495 \'ba\'c5\u25193 \'c0\'a9\u20303 \'d7\'a1\u12290 \'a1\'a3\uc1
+\par #4. awk \uc2\u33050 \'bd\'c5\u26412 \'b1\'be\u30340 \'b5\'c4 show \u20989 \'ba\'af\u25968 \'ca\'fd\u20013 \'d6\'d0\u65292 \'a3\'acint(mb * 100) / 100 \u36825 \'d5\'e2\u20010 \'b8\'f6\u25216 \'bc\'bc\u24039 \'c7\'c9\u26159 \'ca\'c7\u20026 \'ce\'aa\u20102 \'c1\'cb\u20445 \'b1\'a3\u35777 \'d6\'a4\u36755 \'ca\'e4\u20986 \'b3\'f6\u26102 \'ca\'b1\u20445 \'b1\'a3\u30041 \'c1\'f4\u23567 \'d0\'a1\u25968 \'ca\'fd\u28857 \'b5\'e3\u21518 \'ba\'f3\u20004 \'c1\'bd\u20301 \'ce\'bb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 cat << 'EOF' > $awk_script_file
+\par function show(size) \{
+\par mb = size / 1024;
+\par int_mb = (int(mb * 100)) / 100;
+\par gb = mb / 1024;
+\par int_gb = (int(gb * 100)) / 100;
+\par if (substr(size,1,1) !~ "[0-9]" || substr(size,2,1) !~ "[0-9]") \{
+\par return size;
+\par \} else if (mb < 1) \{
+\par return size "K";
+\par \} else if (gb < 1) \{
+\par return int_mb "M";
+\par \} else \{
+\par return int_gb "G";
+\par \}
+\par \}
+\par \plain \f1\fs20\cf3 #5. \uc2\u22312 \'d4\'da BEGIN \u22359 \'bf\'e9\u20013 \'d6\'d0\u25171 \'b4\'f2\u21360 \'d3\'a1\u37325 \'d6\'d8\u23450 \'b6\'a8\u20041 \'d2\'e5\u30340 \'b5\'c4\u36755 \'ca\'e4\u20986 \'b3\'f6\u22836 \'cd\'b7\u20449 \'d0\'c5\u24687 \'cf\'a2\u12290 \'a1\'a3\uc1
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 \plain \f1\fs20\cf1 BEGIN \{
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 printf "%-20s %7s %7s %7s %8s %s\\n","FileSystem","Size","Used","Avail","Use%","Mounted"
+\par \}
+\par \plain \f1\fs20\cf3 #6. !/Filesystem/ \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u36807 \'b9\'fd\u28388 \'c2\'cb\u25481 \'b5\'f4\u21253 \'b0\'fc\u21547 \'ba\'ac Filesystem \u30340 \'b5\'c4\u34892 \'d0\'d0\u65292 \'a3\'ac\u21363 \'bc\'b4 df \u36755 \'ca\'e4\u20986 \'b3\'f6\u30340 \'b5\'c4\u31532 \'b5\'da\u19968 \'d2\'bb\u34892 \'d0\'d0\u12290 \'a1\'a3\u20854 \'c6\'e4\u20313 \'d3\'e0\u34892 \'d0\'d0\u20013 \'d6\'d0\u65292 \'a3\'ac\u26377 \'d3\'d0\u20010 \'b8\'f6\u22495 \'d3\'f2\u23383 \'d7\'d6\u27573 \'b6\'ce\u21487 \'bf\'c9\u20197 \'d2\'d4\u30452 \'d6\'b1\u25509 \'bd\'d3\u20351 \'ca\'b9\u29992 \'d3\'c3 df \u30340 \'b5\'c4\u36755 \'ca\'e4\u20986 \'b3\'f6\u65292 \'a3\'ac\u26377 \'d3\'d0\u30340 \'b5\'c4\u38656 \'d0\'e8\u35201 \'d2\'aa\u36890 \'cd\'a8\u36807 \'b9\'fd show \u20989 \'ba\'af\u25968 \'ca\'fd\uc1
+\par \plain \f1\fs20\chcbpat4\cf3 \uc2\u30340 \'b5\'c4\u35745 \'bc\'c6\u31639 \'cb\'e3\u65292 \'a3\'ac\u20197 \'d2\'d4\u24471 \'b5\'c3\u21040 \'b5\'bd\u26356 \'b8\'fc\u20026 \'ce\'aa\u21487 \'bf\'c9\u35835 \'b6\'c1\u30340 \'b5\'c4\u26174 \'cf\'d4\u31034 \'ca\'be\u32467 \'bd\'e1\u26524 \'b9\'fb\u12290 \'a1\'a3\uc1
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 \plain \f1\fs20\cf1 !/Filesystem/ \{
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 size = show($2);
+\par used = show($3);
+\par avail = show($4);
+\par printf "%-20s %7s %7s %7s %8s %s\\n",$1,size,used,avail,$5,$6
+\par \}
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 EOF
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 df -k | awk -f $awk_script_file
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 \plain \f1\b\fs20\cf1 CTRL+D
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20\cf1 /> ./test12.sh
+\par 
+\par \plain \f1\fs20\cf2 FileSystem
+\par /dev/sda2
+\par Size
+\par \plain \f1\charscalex89\fs20\cf2 3.84G
+\par \plain \f1\fs20\cf2 Used
+\par 2.28G
+\par \plain \f1\charscalex98\fs20\cf2 Avail
+\par 1.36G
+\par \plain \f1\charscalex87\fs20\cf2 Use%
+\par \plain \f1\charscalex84\fs20\cf2 63%
+\par \plain \f1\fs20\cf2 Mounted
+\par /
+\par 
+\par tmpfs
+\par 503.57M
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 100K 503.47M
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\charscalex73\fs20\cf2 1%
+\par \plain \f1\fs20\cf2 /dev/shm
+\par 
+\par /dev/sda1
+\par /dev/sda3
+\par 48.41M 35.27M 10.63M
+\par 14.8G 171.47M 13.88G
+\par \plain \f1\charscalex77\fs20\cf2 77%
+\par \plain \f1\charscalex75\fs20\cf2 2%
+\par \plain \f1\fs20\cf2 /boot
+\par /home\par}

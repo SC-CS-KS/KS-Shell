@@ -1,0 +1,30 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid589423421\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid851798070}
+}
+{\*\listoverridetable
+{\listoverride\listid851798070\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 99.Shell Misc
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf1 history | 
+\par awk '\{
+\par     CMD[$2]++;count++;
+\par \} 
+\par END \{ 
+\par     for (a in CMD )
+\par       print CMD[a] " " CMD[a]/count*100 "% " a
+\par  \}' | 
+\par grep -v "./" | 
+\par column -c3 -s " " -t | 
+\par sort -nr | 
+\par nl | 
+\par head -n10
+\par 
+\par \plain \f1\fs20 \uc2\u38472 \'b3\'c2\u30355 \'f0\'a9\u27880 \'d7\'a2\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 history| awk '\{print $2\}' |awk 'BEGIN\{FS="|"\}\{print $1\}' |sort|uniq -c| sort -nr | head -10
+\par 
+\par \plain \f1\fs20 \uc2\u36825 \'d5\'e2\u34892 \'d0\'d0\u33050 \'bd\'c5\u26412 \'b1\'be\u33021 \'c4\'dc\u36755 \'ca\'e4\u20986 \'b3\'f6\u20320 \'c4\'e3\u26368 \'d7\'ee\u24120 \'b3\'a3\u29992 \'d3\'c3\u30340 \'b5\'c4\u21313 \'ca\'ae\u26465 \'cc\'f5\u21629 \'c3\'fc\u20196 \'c1\'ee\u65292 \'a3\'ac\u30001 \'d3\'c9\u27492 \'b4\'cb\u29978 \'c9\'f5\u33267 \'d6\'c1\u21487 \'bf\'c9\u20197 \'d2\'d4\u27934 \'b6\'b4\u23519 \'b2\'ec\u20320 \'c4\'e3\u26159 \'ca\'c7\u19968 \'d2\'bb\u20010 \'b8\'f6\u20160 \'ca\'b2\u20040 \'c3\'b4\u31867 \'c0\'e0\u22411 \'d0\'cd\u30340 \'b5\'c4\u31243 \'b3\'cc\u24207 \'d0\'f2\u21592 \'d4\'b1\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf2 -------------------------------------------------------------------------------------------------------------------\par}

@@ -1,0 +1,118 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red214\green235\blue235;}{\*\listtable{\list\listtemplateid983614599\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1790293157}
+}
+{\*\listoverridetable
+{\listoverride\listid1790293157\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 alias
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 PROLOG
+\par \plain \f1\fs20        This  manual  page is part of the POSIX Programmer's Manual.  The Linux implementation of this interface may differ (con-
+\par        sult the corresponding Linux manual page for details of Linux behavior), or the  interface  may  not  be  implemented  on
+\par        Linux.
+\par NAME
+\par \plain \f1\fs20\cf1        alias - define or display aliases
+\par \plain \f1\fs20 SYNOPSIS
+\par        alias [alias-name[=string] ...]
+\par DESCRIPTION
+\par        The  alias  utility shall create or redefine alias definitions or write the values of existing alias definitions to stan-
+\par        dard output. An alias definition provides a string value that shall replace a command name when it  is  encountered;  see
+\par        Alias Substitution .
+\par 
+\par        An  alias definition shall affect the current shell execution environment and the execution environments of the subshells
+\par        of the current shell. When used as specified by this volume of  IEEE Std 1003.1-2001,  the  alias  definition  shall  not
+\par        affect  the  parent  process  of  the current shell nor any utility environment invoked by the shell; see Shell Execution
+\par        Environment .
+\par OPTIONS
+\par        None.
+\par OPERANDS
+\par        The following operands shall be supported:
+\par \plain \f1\fs20\cf1        alias-name
+\par \plain \f1\fs20               Write the alias definition to standard output.
+\par \plain \f1\fs20\cf1        alias-name=string
+\par \plain \f1\fs20               Assign the value of string to the alias alias-name.
+\par        If no operands are given, all alias definitions shall be written to standard output.
+\par STDIN
+\par        Not used.
+\par INPUT FILES
+\par        None.
+\par ENVIRONMENT VARIABLES
+\par        The following environment variables shall affect the execution of alias:
+\par        LANG   Provide a default value for the internationalization variables that are unset or null. (See the  Base  Definitions
+\par               volume  of  IEEE Std 1003.1-2001, Section 8.2, Internationalization Variables for the precedence of international-
+\par               ization variables used to determine the values of locale categories.)
+\par        LC_ALL If set to a non-empty string value, override the values of all the other internationalization variables.
+\par        LC_CTYPE
+\par               Determine the locale for the interpretation of sequences of bytes of text data as characters (for example, single-
+\par               byte as opposed to multi-byte characters in arguments).
+\par        LC_MESSAGES
+\par               Determine the locale that should be used to affect the format and contents of diagnostic messages written to stan-
+\par               dard error.
+\par        NLSPATH
+\par               Determine the location of message catalogs for the processing of LC_MESSAGES .
+\par ASYNCHRONOUS EVENTS
+\par        Default.
+\par STDOUT
+\par        The format for displaying aliases (when no operands or only name operands are specified) shall be:
+\par               "%s=%s\\n", name, value
+\par        The value string shall be written with appropriate quoting so that it is suitable for  reinput  to  the  shell.  See  the
+\par        description of shell quoting in Quoting .
+\par STDERR
+\par        The standard error shall be used only for diagnostic messages.
+\par OUTPUT FILES
+\par        None.
+\par EXTENDED DESCRIPTION
+\par        None.
+\par EXIT STATUS
+\par        The following exit values shall be returned:
+\par         0     Successful completion.
+\par        >0     One of the name operands specified did not have an alias definition, or an error occurred.
+\par CONSEQUENCES OF ERRORS
+\par        Default.
+\par        The following sections are informative.
+\par APPLICATION USAGE
+\par        None.
+\par EXAMPLES
+\par         1. Change ls to give a columnated, more annotated output:
+\par            alias ls="ls -CF"
+\par         2. Create a simple "redo" command to repeat previous entries in the command history file:
+\par            alias r='fc -s'
+\par         3. Use 1K units for du:
+\par            alias du=du\\ -k
+\par         4. Set up nohup so that it can deal with an argument that is itself an alias name:
+\par            alias nohup="nohup "
+\par RATIONALE
+\par        The  alias  description is based on historical KornShell implementations.  Known differences exist between that and the C
+\par        shell. The KornShell version was adopted to be consistent with all  the  other  KornShell  features  in  this  volume  of
+\par        IEEE Std 1003.1-2001, such as command line editing.
+\par 
+\par        Since alias affects the current shell execution environment, it is generally provided as a shell regular built-in.
+\par 
+\par        Historical  versions  of the KornShell have allowed aliases to be exported to scripts that are invoked by the same shell.
+\par        This is triggered by the alias -x flag; it is allowed by this volume of IEEE Std 1003.1-2001 only when an explicit exten-
+\par        sion  such  as -x is used. The standard developers considered that aliases were of use primarily to interactive users and
+\par        that they should normally not affect shell scripts called by those users; functions are available to such scripts.
+\par 
+\par        Historical versions of the KornShell had not written aliases in a quoted manner suitable for reentry to  the  shell,  but
+\par        this  volume of IEEE Std 1003.1-2001 has made this a requirement for all similar output. Therefore, consistency with this
+\par        volume of IEEE Std 1003.1-2001 was chosen over this detail of historical practice.
+\par 
+\par FUTURE DIRECTIONS
+\par        None.
+\par 
+\par SEE ALSO
+\par        Function Definition Command
+\par 
+\par COPYRIGHT
+\par        Portions of this text are reprinted and reproduced in electronic form from IEEE Std 1003.1, 2003  Edition,  Standard  for
+\par        Information  Technology -- Portable Operating System Interface (POSIX), The Open Group Base Specifications Issue 6, Copy-
+\par        right (C) 2001-2003 by the Institute of Electrical and Electronics Engineers, Inc and The Open Group. In the event of any
+\par        discrepancy  between this version and the original IEEE and The Open Group Standard, the original IEEE and The Open Group
+\par        Standard  is  the  referee   document.   The   original   Standard   can   be   obtained   online   at   http://www.open-
+\par        group.org/unix/online.html .
+\par 
+\par IEEE/The Open Group                                           2003                                                     ALIAS(1P)
+\par  Manual page alias(1p) line 110/163 (END)\par}

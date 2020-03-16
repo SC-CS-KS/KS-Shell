@@ -1,0 +1,86 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1265408049\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1294795516}
+}
+{\*\listoverridetable
+{\listoverride\listid1294795516\listoverridecount0\ls1}
+}
+
+
+\pard\sl360\slmult1\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 get_ipmac.sh
+\par \pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 #! /bin/bash
+\par 
+\par ## scan ip mac
+\par 
+\par IPMAC_FILE=~huan/mydoc/ipmac
+\par DEFAULT_LAN="192.168.1.0/24"
+\par BLACK_IP="192.168.1.1"
+\par 
+\par LAN="$1"
+\par [[ -z "$LAN" ]] && LAN="$DEFAULT_LAN"
+\par 
+\par if (( UID != 0 )); then
+\par     echo "root privilege to get mac"
+\par     exit 1
+\par fi
+\par 
+\par ## just scan ...
+\par scan_lan()
+\par \{
+\par     nmap -n -sP "$LAN"
+\par \}
+\par 
+\par ## get ip mac
+\par get_ipmac()
+\par \{
+\par     awk '\{
+\par         if ( $1 ~ /^Host/ ) \{
+\par             ip = $2;
+\par         \}
+\par         else if ( $1 ~ /^MAC/ ) \{
+\par             mac = $3;
+\par             print ip, mac;
+\par         \}
+\par     \}'
+\par \}
+\par 
+\par ## check if the ip in blacklist
+\par is_inblack()
+\par \{
+\par     local ip=$1
+\par     for black_ip in $BLACK_IP; do
+\par         [[ "$black_ip" == "$ip" ]] && return 0
+\par     done        
+\par 
+\par     return 1
+\par \}
+\par 
+\par ## check if the ip in db file
+\par is_indb()
+\par \{
+\par     local ipmac="$1 $2"
+\par     grep -xq "$ipmac" "$IPMAC_FILE"
+\par 
+\par     return $?
+\par \}
+\par 
+\par ## update db file
+\par update_db()
+\par \{
+\par     local ip
+\par     local mac
+\par     while read ip mac; do
+\par         if is_inblack "$ip" || is_indb "$ip" "$mac"; then
+\par             :
+\par         else
+\par             echo "$ip $mac" | tee -a "$IPMAC_FILE"
+\par         fi
+\par     done
+\par \}
+\par 
+\par #-------------------- main --------------------
+\par 
+\par scan_lan  |
+\par get_ipmac |
+\par update_db\par}

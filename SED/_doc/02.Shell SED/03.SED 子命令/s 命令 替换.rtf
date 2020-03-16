@@ -1,0 +1,74 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green128\blue0;\red255\green0\blue0;\red128\green0\blue0;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1078480445
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid1806794549}
+{\list\listtemplateid1304663568\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid381334101}
+}
+{\*\listoverridetable
+{\listoverride\listid1806794549\listoverridecount0\ls1}
+{\listoverride\listid381334101\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf6 s \uc2\u21629 \'c3\'fc\u20196 \'c1\'ee \u26367 \'cc\'e6\u25442 \'bb\'bb\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20        s/regexp/replacement/
+\par \plain \f1\fs20\cf1               Attempt  to match regexp against the pattern space.  If successful, replace that portion matched with replacement.
+\par               The replacement may contain the special character & to refer to that portion of the pattern space  which  matched,
+\par \plain \f1\fs20               and the special escapes \\1 through \\9 to refer to the corresponding matching sub-expressions in the regexp.
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 \uc2\u26367 \'cc\'e6\u25442 \'bb\'bb\u65306 \'a3\'bas\u21629 \'c3\'fc\u20196 \'c1\'ee\uc1
+\par \plain \f1\fs20\cf-1 \uc2\u31034 \'ca\'be\u20363 \'c0\'fd\u25991 \'ce\'c4\u20214 \'bc\'fe\u65306 \'a3\'ba  \uc1
+\par \plain \f1\fs20\cf1 #cat chan.t 
+\par \plain \f1\fs20\cf3 chansunny sunny chan
+\par sunny adam 
+\par chenguang chan chen
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 $ sed 's/test/mytest/g' example
+\par \plain \f1\fs20\cf4 \uc2\u22312 \'d4\'da\u25972 \'d5\'fb\u34892 \'d0\'d0\u33539 \'b7\'b6\u22260 \'ce\'a7\u20869 \'c4\'da\u25226 \'b0\'d1test\u26367 \'cc\'e6\u25442 \'bb\'bb\u20026 \'ce\'aamytest\u12290 \'a1\'a3\u22914 \'c8\'e7\u26524 \'b9\'fb\u27809 \'c3\'bb\u26377 \'d3\'d0g\u26631 \'b1\'ea\u35760 \'bc\'c7\u65292 \'a3\'ac\u21017 \'d4\'f2\u21482 \'d6\'bb\u26377 \'d3\'d0\u27599 \'c3\'bf\u34892 \'d0\'d0\u31532 \'b5\'da\u19968 \'d2\'bb\u20010 \'b8\'f6\u21305 \'c6\'a5\u37197 \'c5\'e4\u30340 \'b5\'c4test\u34987 \'b1\'bb\u26367 \'cc\'e6\u25442 \'bb\'bb\u25104 \'b3\'c9mytest\u12290 \'a1\'a3  \uc1
+\par \plain \f1\fs20\cf1 #sed 's/chan/chen/' chan.t 
+\par \plain \f1\fs20\cf3 chensunny sunny \plain \f1\fs20\cf5 chan
+\par \plain \f1\fs20\cf3 sunny adam 
+\par chenguang chen chen
+\par 
+\par \plain \f1\fs20\cf1 #sed 's/chan/chen/\plain \f1\fs20\cf5 g\plain \f1\fs20\cf1 ' chan.t 
+\par \plain \f1\fs20\cf3 chensunny sunny \plain \f1\fs20\cf5 chen
+\par \plain \f1\fs20\cf3 sunny adam 
+\par chenguang chen chen
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------
+\par \plain \f1\fs20 $ sed -n 's/^test/mytest/p' example
+\par \plain \f1\fs20\cf4 (-n)\uc2\u36873 \'d1\'a1\u39033 \'cf\'ee\u21644 \'ba\'cdp\u26631 \'b1\'ea\u24535 \'d6\'be\u19968 \'d2\'bb\u36215 \'c6\'f0\u20351 \'ca\'b9\u29992 \'d3\'c3\u34920 \'b1\'ed\u31034 \'ca\'be\u21482 \'d6\'bb\u25171 \'b4\'f2\u21360 \'d3\'a1\u37027 \'c4\'c7\u20123 \'d0\'a9\u21457 \'b7\'a2\u29983 \'c9\'fa\u26367 \'cc\'e6\u25442 \'bb\'bb\u30340 \'b5\'c4\u34892 \'d0\'d0\u12290 \'a1\'a3\uc1\plain \f1\fs20 \uc2\u20063 \'d2\'b2\u23601 \'be\'cd\u26159 \'ca\'c7\u35828 \'cb\'b5\u65292 \'a3\'ac\u22914 \'c8\'e7\u26524 \'b9\'fb\u26576 \'c4\'b3\u19968 \'d2\'bb\u34892 \'d0\'d0\u24320 \'bf\'aa\u22836 \'cd\'b7\u30340 \'b5\'c4test\u34987 \'b1\'bb\u26367 \'cc\'e6\u25442 \'bb\'bb\u25104 \'b3\'c9mytest\u65292 \'a3\'ac\u23601 \'be\'cd\u25171 \'b4\'f2\u21360 \'d3\'a1\u23427 \'cb\'fc\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 #sed \plain \f1\fs20\cf5 -n\plain \f1\fs20\cf1  's/chan/chen/g\plain \f1\fs20\cf5 p\plain \f1\fs20\cf1 ' chan.t 
+\par \plain \f1\fs20\cf3 chensunny sunny chen
+\par chenguang chen chen
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------
+\par \plain \f1\fs20 $ sed 's/^192.168.0.1/&localhost/' example
+\par \plain \f1\fs20\cf4     &\uc2\u31526 \'b7\'fb\u21495 \'ba\'c5\u34920 \'b1\'ed\u31034 \'ca\'be\u26367 \'cc\'e6\u25442 \'bb\'bb\u23383 \'d7\'d6\u31526 \'b7\'fb\u20018 \'b4\'ae\u20013 \'d6\'d0\u34987 \'b1\'bb\u25214 \'d5\'d2\u21040 \'b5\'bd\u30340 \'b5\'c4\u37096 \'b2\'bf\u20221 \'b7\'dd\uc1\plain \f1\fs20 \uc2\u12290 \'a1\'a3\u25152 \'cb\'f9\u26377 \'d3\'d0\u20197 \'d2\'d4192.168.0.1\u24320 \'bf\'aa\u22836 \'cd\'b7\u30340 \'b5\'c4\u34892 \'d0\'d0\u37117 \'b6\'bc\u20250 \'bb\'e1\u34987 \'b1\'bb\u26367 \'cc\'e6\u25442 \'bb\'bb\u25104 \'b3\'c9\u23427 \'cb\'fc\u33258 \'d7\'d4\u24050 \'d2\'d1\u21152 \'bc\'d3 localhost\u65292 \'a3\'ac\u21464 \'b1\'e4\u25104 \'b3\'c9192.168.0.1localhost\u12290 \'a1\'a3        \uc1
+\par \plain \f1\fs20\cf1 #sed  's/chan/&guang/g' chan.t   \plain \f1\fs20\cf3        
+\par \plain \f1\fs20\cf5 changuangsunny\plain \f1\fs20\cf3  sunny \plain \f1\fs20\cf5 changuang
+\par \plain \f1\fs20\cf3 sunny adam 
+\par chenguang \plain \f1\fs20\cf5 changuang\plain \f1\fs20\cf3  chen
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------
+\par \plain \f1\fs20 $ sed -n 's/\\(love\\)able/\\1rs/p' example
+\par \plain \f1\fs20\cf4 love\uc2\u34987 \'b1\'bb\u26631 \'b1\'ea\u35760 \'bc\'c7\u20026 \'ce\'aa1\u65292 \'a3\'ac\u25152 \'cb\'f9\u26377 \'d3\'d0loveable\u20250 \'bb\'e1\u34987 \'b1\'bb\u26367 \'cc\'e6\u25442 \'bb\'bb\u25104 \'b3\'c9lovers\uc1\plain \f1\fs20 \uc2\u65292 \'a3\'ac\u32780 \'b6\'f8\u19988 \'c7\'d2\u26367 \'cc\'e6\u25442 \'bb\'bb\u30340 \'b5\'c4\u34892 \'d0\'d0\u20250 \'bb\'e1\u34987 \'b1\'bb\u25171 \'b4\'f2\u21360 \'d3\'a1\u20986 \'b3\'f6\u26469 \'c0\'b4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 #sed  's/\plain \f1\fs20\cf5 \\(chan\\)\plain \f1\fs20\cf1 sunny/\plain \f1\fs20\cf5 \\1\plain \f1\fs20\cf1 guang/' chan.t  
+\par \plain \f1\fs20\cf5 changuang\plain \f1\fs20\cf3  sunny chan
+\par sunny adam 
+\par chenguang chan chen  
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------
+\par \plain \f1\fs20 $ sed 's#10#100#g' example
+\par \plain \f1\fs20\cf4 \uc2\u19981 \'b2\'bb\u35770 \'c2\'db\u20160 \'ca\'b2\u20040 \'c3\'b4\u23383 \'d7\'d6\u31526 \'b7\'fb\u65292 \'a3\'ac\u32039 \'bd\'f4\u36319 \'b8\'fa\u30528 \'d7\'c5s\u21629 \'c3\'fc\u20196 \'c1\'ee\u30340 \'b5\'c4\u37117 \'b6\'bc\u34987 \'b1\'bb\u35748 \'c8\'cf\u20026 \'ce\'aa\u26159 \'ca\'c7\u26032 \'d0\'c2\u30340 \'b5\'c4\u20998 \'b7\'d6\u38548 \'b8\'f4\u31526 \'b7\'fb\u65292 \'a3\'ac\u25152 \'cb\'f9\u20197 \'d2\'d4\u65292 \'a3\'ac\ldblquote #\rdblquote \u22312 \'d4\'da\u36825 \'d5\'e2\u37324 \'c0\'ef\u26159 \'ca\'c7\u20998 \'b7\'d6\u38548 \'b8\'f4\u31526 \'b7\'fb\u65292 \'a3\'ac\u20195 \'b4\'fa\u26367 \'cc\'e6\u20102 \'c1\'cb\u40664 \'c4\'ac\u35748 \'c8\'cf\u30340 \'b5\'c4\ldblquote /\rdblquote \u20998 \'b7\'d6\u38548 \'b8\'f4\u31526 \'b7\'fb\u12290 \'a1\'a3\uc1\plain \f1\fs20 \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u25226 \'b0\'d1\u25152 \'cb\'f9\u26377 \'d3\'d010\u26367 \'cc\'e6\u25442 \'bb\'bb\u25104 \'b3\'c9100\u12290 \'a1\'a3 \uc1
+\par \plain \f1\fs20\cf1 #sed  's#\\(chan\\)sunny#\\1guang#' chan.t  
+\par \plain \f1\fs20\cf3 changuang sunny chan
+\par sunny adam 
+\par chenguang chan chen
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------\par}

@@ -1,0 +1,84 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red128\green0\blue0;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1457607818\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1582715574}
+{\list\listtemplateid739392405\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1338278381}
+{\list\listtemplateid1699316648\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1201321548}
+}
+{\*\listoverridetable
+{\listoverride\listid1582715574\listoverridecount0\ls1}
+{\listoverride\listid1338278381\listoverridecount0\ls2}
+{\listoverride\listid1201321548\listoverridecount0\ls3}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 pidof \uc2\u29992 \'d3\'c3\u27861 \'b7\'a8\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 \uc2\u20160 \'ca\'b2\u20040 \'c3\'b4\u26159 \'ca\'c7pidof\u21629 \'c3\'fc\u20196 \'c1\'ee\u65311 \'a3\'bf\uc1
+\par \plain \f1\fs20 #man pidof\uc2\u20013 \'d6\'d0\u30340 \'b5\'c4\u35299 \'bd\'e2\u37322 \'ca\'cd\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 pidof \emdash  find the process ID of a running program.
+\par \plain \f1\fs20\cf3 pidof is actually the same program as killall5;
+\par \plain \f1\fs20 # ls -l /sbin/pidof
+\par \plain \f1\fs20\cf1 lrwxrwxrwx. 1 root root 8 Aug 25 00:40 /sbin/pidof -> killall5 \plain \f1\fs20 //\uc2\u30340 \'b5\'c4\u30830 \'c8\'b7\u22914 \'c8\'e7\u27492 \'b4\'cb\u12290 \'a1\'a3\uc1
+\par 
+\par \plain \f1\b\fs20 \uc2\u21442 \'b2\'ce\u25968 \'ca\'fd\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 -s \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u21482 \'d6\'bb\u36820 \'b7\'b5\u22238 \'bb\'d81\u20010 \'b8\'f6 pid\uc1
+\par -x \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u21516 \'cd\'ac\u26102 \'ca\'b1\u36820 \'b7\'b5\u22238 \'bb\'d8\u36816 \'d4\'cb\u34892 \'d0\'d0\u32473 \'b8\'f8\u23450 \'b6\'a8\u31243 \'b3\'cc\u24207 \'d0\'f2\u30340 \'b5\'c4 shell \u30340 \'b5\'c4 pid\uc1
+\par -o \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u21578 \'b8\'e6\u35785 \'cb\'df piod \u34920 \'b1\'ed\u31034 \'ca\'be\u24573 \'ba\'f6\u30053 \'c2\'d4\u21518 \'ba\'f3\u38754 \'c3\'e6\u32473 \'b8\'f8\u23450 \'b6\'a8\u30340 \'b5\'c4 pid \u65292 \'a3\'ac\u21487 \'bf\'c9\u20197 \'d2\'d4\u20351 \'ca\'b9\u29992 \'d3\'c3\u22810 \'b6\'e0\u20010 \'b8\'f6 -o \u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20 pidof is simply a (symbolic) link to the killall5 program, which should also be located in /sbin.
+\par When pidof is invoked with a full pathname to the program it should find the pid of, it is reasonably safe. Otherwise it
+\par is possible that it returns pids of running programs that happen to have the same name as the program you\rquote re after but are
+\par actually other programs.
+\par \plain \f1\fs20\cf1 \uc2\u22914 \'c8\'e7\u26524 \'b9\'fb \u26159 \'ca\'c7\u19968 \'d2\'bb\u20010 \'b8\'f6 fullpath \u21017 \'d4\'f2 pidof \u19981 \'b2\'bb\u20250 \'bb\'e1\u20986 \'b3\'f6\u38169 \'b4\'ed\u65292 \'a3\'ac\u20294 \'b5\'ab\u22914 \'c8\'e7\u26524 \'b9\'fb\u19981 \'b2\'bb\u26159 \'ca\'c7\u21017 \'d4\'f2\u26377 \'d3\'d0\u21487 \'bf\'c9\u33021 \'c4\'dc\u36820 \'b7\'b5\u22238 \'bb\'d8\u21644 \'ba\'cd\u32473 \'b8\'f8\u23450 \'b6\'a8\u21516 \'cd\'ac\u21517 \'c3\'fb\u30340 \'b5\'c4\u31243 \'b3\'cc\u24207 \'d0\'f2\u12290 \'a1\'a3\uc1
+\par \plain \f1\b\fs20 
+\par \uc2\u23454 \'ca\'b5\u20363 \'c0\'fd\uc1
+\par \plain \f1\fs20\cf1 #\~pidof\~nginx
+\par \plain \f1\fs20\cf2 1476\~1475\~1473\~1472\~1471\~1470\~1469\~1467\~1466
+\par \plain \f1\fs20\cf1 #\~ps\~-ef\~|\~grep\~nginx
+\par \plain \f1\fs20 nginx\~\~\~\~\~1450\~\~1449\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~php-fpm:\~pool\~www
+\par nginx\~\~\~\~\~1451\~\~1449\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~php-fpm:\~pool\~www
+\par nginx\~\~\~\~\~1452\~\~1449\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~php-fpm:\~pool\~www
+\par nginx\~\~\~\~\~1453\~\~1449\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~php-fpm:\~pool\~www
+\par nginx\~\~\~\~\~1454\~\~1449\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~php-fpm:\~pool\~www
+\par root\~\~\~\~\~\~1466\~\~\~\~\~1\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~master\~process\~/usr/sbin/nginx\~-c\~/etc/nginx/nginx.conf
+\par nginx\~\~\~\~\~1467\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1469\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1470\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1471\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1472\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1473\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1475\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par nginx\~\~\~\~\~1476\~\~1466\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~nginx:\~worker\~process
+\par root\~\~\~\~\~\~2234\~\~2141\~\~0\~20:24\~pts/1\~\~\~\~00:00:00\~grep\~nginx
+\par \plain \f1\fs20\cf1 #\~ps\~-ef\~|\~grep\~nginx\~|\~awk\~\rquote \{print\~$2\}\rquote 
+\par \plain \f1\fs20 1450
+\par 1451
+\par 1452
+\par 1453
+\par 1454
+\par 1466
+\par 1467
+\par 1469
+\par 1470
+\par 1471
+\par 1472
+\par 1473
+\par 1475
+\par 1476
+\par 2237
+\par \plain \f1\fs20\cf1 #\~pidof\~-s\~nginx
+\par \plain \f1\fs20 1476
+\par \plain \f1\fs20\cf1 #\~pidof\~sshd
+\par \plain \f1\fs20 2139\~1163
+\par \plain \f1\fs20\cf1 #\~ps\~-ef\~|\~grep\~sshd
+\par \plain \f1\fs20 root\~\~\~\~\~\~1163\~\~\~\~\~1\~\~0\~20:16\~?\~\~\~\~\~\~\~\~00:00:00\~/usr/sbin/sshd
+\par root\~\~\~\~\~\~2139\~\~1163\~\~0\~20:20\~?\~\~\~\~\~\~\~\~00:00:00\~sshd:\~root@pts/1
+\par 
+\par \plain \f1\b\fs20 \uc2\u24310 \'d1\'d3\u20280 \'c9\'ec\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20 pgrep  \uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\u21487 \'bf\'c9\u20197 \'d2\'d4\u36798 \'b4\'ef\u21040 \'b5\'bd\u21516 \'cd\'ac\u26679 \'d1\'f9\u30340 \'b5\'c4\u25928 \'d0\'a7\u26524 \'b9\'fb\u65292 \'a3\'ac\u26412 \'b1\'be\u20027 \'d6\'f7\u19981 \'b2\'bb\u20570 \'d7\'f6\u20171 \'bd\'e9\u32461 \'c9\'dc\u65292 \'a3\'ac51\u24320 \'bf\'aa\u28304 \'d4\'b4\u31038 \'c9\'e7\u21306 \'c7\'f8\u20043 \'d6\'ae\u21069 \'c7\'b0\u26366 \'d4\'f8\u35814 \'cf\'ea\u32454 \'cf\'b8\u20171 \'bd\'e9\u32461 \'c9\'dc\u12290 \'a1\'a3\uc1
+\par linux pgrep\uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\u35814 \'cf\'ea\u35299 \'bd\'e2\u65306 \'a3\'ba\uc1\plain \f1\ul\fs20\cf1 http://bbs.51osos.com/thread-3936-1-1.html
+\par \plain \f1\fs20 \uc2\u21478 \'c1\'ed\u20010 \'b8\'f6pidof\u21487 \'bf\'c9\u20197 \'d2\'d4\u32467 \'bd\'e1\u21512 \'ba\'cfxargs kill \u20351 \'ca\'b9\u29992 \'d3\'c3\u65292 \'a3\'ac\u22914 \'c8\'e7\uc1
+\par pidof xxx | xargs kill \uc2\u24403 \'b5\'b1\u28982 \'c8\'bb\u26377 \'d3\'d0\u26102 \'ca\'b1\u20063 \'d2\'b2\u21487 \'bf\'c9\u20197 \'d2\'d4\u20351 \'ca\'b9\u29992 \'d3\'c3killall\u20195 \'b4\'fa\u26367 \'cc\'e6\u12290 \'a1\'a3\u19981 \'b2\'bb\u36807 \'b9\'fd\u23545 \'b6\'d4\u20110 \'d3\'danginx\u21487 \'bf\'c9\u19981 \'b2\'bb\u35201 \'d2\'aa\u36825 \'d5\'e2\u26679 \'d1\'f9\u25805 \'b2\'d9\u20316 \'d7\'f7\u22114 \'e0\'de\u65292 \'a3\'ac\u26368 \'d7\'ee\u22909 \'ba\'c3\u36824 \'bb\'b9\u26159 \'ca\'c7\u24179 \'c6\'bd\u28369 \'bb\'ac\u20851 \'b9\'d8\u38381 \'b1\'d5\u12290 \'a1\'a3\uc1\par}

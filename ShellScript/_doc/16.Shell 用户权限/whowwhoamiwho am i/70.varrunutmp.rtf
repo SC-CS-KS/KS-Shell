@@ -1,0 +1,203 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue0;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1968182365\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid738533336}
+}
+{\*\listoverridetable
+{\listoverride\listid738533336\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 70./var/run/utmp
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 UTMP(5)                    Linux Programmer\rquote s Manual                   UTMP(5)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        utmp, wtmp - login records
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        #include <utmp.h>
+\par 
+\par DESCRIPTION
+\par        \plain \f1\fs20\cf1 The  utmp  file  allows  one  to discover information about who is currently using the system. \plain \f1\fs20\cf2  \plain \f1\fs20\cf3 There may be more
+\par        users currently using the system, because not all programs use utmp logging.
+\par \plain \f1\fs20 
+\par        \plain \f1\fs20\cf3 Warning\plain \f1\fs20 : 
+\par       \plain \f1\fs20\cf1  utmp must not be writable by the user class "other"\plain \f1\fs20 , because many system programs (foolishly) depend  on
+\par        its  integrity.   You  risk faked system logfiles and modifications of system files if you leave utmp writable to
+\par        any user other than the owner and group owner of the file.
+\par \plain \f1\fs20\cf1 $ ll /var/run/utmp       \plain \f1\fs20     
+\par -rw-rw-\plain \f1\fs20\cf1 r--\plain \f1\fs20 . 1 root utmp 4608 11\uc2\u26376 \'d4\'c2 26 23:45 /var/run/utmp\uc1
+\par 
+\par       \plain \f1\fs20\cf1  The file is a sequence of utmp structures, declared as follows in <utmp.h>\plain \f1\fs20  (note that this is only one of several
+\par        definitions around; details depend on the version of libc):
+\par 
+\par            /* Values for ut_type field, below */
+\par 
+\par \plain \f1\fs20\cf1            #define EMPTY         0 /* Record does not contain valid info
+\par \plain \f1\fs20                                       (formerly known as UT_UNKNOWN on Linux) */
+\par       \plain \f1\fs20\cf1      #define RUN_LVL       1 /* Change in system run-level (see
+\par                                       init(8)) */
+\par \plain \f1\fs20  \plain \f1\fs20\cf1           #define BOOT_TIME     2 /* Time of system boot (in ut_tv) */
+\par \plain \f1\fs20        \plain \f1\fs20\cf1     #define NEW_TIME      3 /* Time after system clock change
+\par \plain \f1\fs20                                       (in ut_tv) */
+\par   \plain \f1\fs20\cf1          #define OLD_TIME      4 /* Time before system clock change
+\par \plain \f1\fs20                                       (in ut_tv) */
+\par \plain \f1\fs20\cf1            #define INIT_PROCESS  5 /* Process spawned by init(8) */
+\par            #define LOGIN_PROCESS 6 /* Session leader process for user login */
+\par \plain \f1\fs20   \plain \f1\fs20\cf1          #define USER_PROCESS  7 /* Normal process */
+\par            #define DEAD_PROCESS  8 /* Terminated process */
+\par \plain \f1\fs20\cf-1            #define ACCOUNTING    9 /* Not implemented */
+\par \plain \f1\fs20 
+\par            #define UT_LINESIZE      32
+\par            #define UT_NAMESIZE      32
+\par            #define UT_HOSTSIZE     256
+\par 
+\par     \plain \f1\fs20\cf1        struct exit_status \plain \f1\fs20 \{              /* Type for ut_exit, below */
+\par                short int e_termination;      /* Process termination status */
+\par                short int e_exit;             /* Process exit status */
+\par            \};
+\par 
+\par \plain \f1\fs20\cf1            struct utmp\plain \f1\fs20  \{
+\par                short   ut_type;              /* Type of record */
+\par      \plain \f1\fs20\cf1           pid_t   ut_pid;               /* PID of login process */
+\par \plain \f1\fs20     \plain \f1\fs20\cf1            char    ut_line[UT_LINESIZE]; /* Device name of tty - "/dev/" */
+\par \plain \f1\fs20                char    ut_id[4];             /* Terminal name suffix,
+\par                                                 or inittab(5) ID */
+\par     \plain \f1\fs20\cf1            char    ut_user[UT_NAMESIZE];\plain \f1\fs20  /* Username */
+\par       \plain \f1\fs20\cf1          char    ut_host[UT_HOSTSIZE];\plain \f1\fs20  /* Hostname for remote login, or
+\par                                                 kernel version for run-level
+\par                                                 messages */
+\par \plain \f1\fs20\cf1                struct  exit_status ut_exit; \plain \f1\fs20  /* Exit status of a process
+\par                                                 marked as DEAD_PROCESS; not
+\par                                                 used by Linux init(8) */
+\par                /* The ut_session and ut_tv fields must be the same size when
+\par                   compiled 32- and 64-bit.  This allows data files and shared
+\par                   memory to be shared between 32- and 64-bit applications. */
+\par            #if __WORDSIZE == 64 && defined __WORDSIZE_COMPAT32
+\par \plain \f1\fs20\cf1                int32_t ut_session;    \plain \f1\fs20        /* Session ID (getsid(2)),
+\par                                                 used for windowing */
+\par \plain \f1\fs20\cf1                struct \{
+\par                    int32_t tv_sec;           /* Seconds */
+\par                    int32_t tv_usec;          /* Microseconds */
+\par                \} ut_tv;                      /* Time entry was made */
+\par \plain \f1\fs20            #else
+\par                 long   ut_session;           /* Session ID */
+\par                 struct timeval ut_tv;        /* Time entry was made */
+\par            #endif
+\par 
+\par       \plain \f1\fs20\cf1          int32_t ut_addr_v6[4];        /* Internet address of remote
+\par                                                 host;\plain \f1\fs20  IPv4 address uses
+\par                                                 just ut_addr_v6[0] */
+\par                char __unused[20];            /* Reserved for future use */
+\par            \};
+\par 
+\par            /* Backwards compatibility hacks */
+\par            #define ut_name ut_user
+\par            #ifndef _NO_UT_TIME
+\par            #define ut_time ut_tv.tv_sec
+\par            #endif
+\par            #define ut_xtime ut_tv.tv_sec
+\par            #define ut_addr ut_addr_v6[0]
+\par 
+\par        This structure gives the name of the special file associated with the user\rquote s terminal, the user\rquote s login name, and
+\par        the time of login in the form of time(2).  String fields are terminated by '\\0' if they are shorter than the size
+\par        of the field.
+\par 
+\par        The  first entries ever created result from init(8) processing inittab(5).  Before an entry is processed, though,
+\par        init(8) cleans up utmp by setting ut_type to DEAD_PROCESS, clearing ut_user, ut_host, and ut_time with null bytes
+\par        for  each record which ut_type is not DEAD_PROCESS or RUN_LVL and where no process with PID ut_pid exists.  If no
+\par        empty record with the needed ut_id can be found, init(8) creates a new one.  It  sets  ut_id  from  the  inittab,
+\par        ut_pid and ut_time to the current values, and ut_type to INIT_PROCESS.
+\par 
+\par        mingetty(8)  (or agetty(8)) locates the entry by the PID, changes ut_type to LOGIN_PROCESS, changes ut_time, sets
+\par        ut_line, and waits for connection to be established.  login(1), after a  user  has  been  authenticated,  changes
+\par        ut_type  to USER_PROCESS, changes ut_time, and sets ut_host and ut_addr.  Depending on mingetty(8) (or agetty(8))
+\par        and login(1), records may be located by ut_line instead of the preferable ut_pid.
+\par 
+\par        When init(8) finds that a process has exited, it locates its utmp entry by ut_pid, sets ut_type to  DEAD_PROCESS,
+\par        and clears ut_user, ut_host and ut_time with null bytes.
+\par 
+\par        xterm(1)  and  other terminal emulators directly create a USER_PROCESS record and generate the ut_id by using the
+\par        string that suffix part of the terminal name (the characters following /dev/[pt]ty).  If they find a DEAD_PROCESS
+\par        for  this ID, they recycle it, otherwise they create a new entry.  If they can, they will mark it as DEAD_PROCESS
+\par        on exiting and it is advised that they null ut_line, ut_time, ut_user, and ut_host as well.
+\par 
+\par        telnetd(8) sets up a LOGIN_PROCESS entry and leaves the rest to login(1) as  usual.   After  the  telnet  session
+\par        ends, telnetd(8) cleans up utmp in the described way.
+\par 
+\par        The  wtmp file records all logins and logouts.  Its format is exactly like utmp except that a null username indi-
+\par        cates a logout on the associated terminal.  Furthermore, the terminal name ~ with  username  shutdown  or  reboot
+\par        indicates  a  system  shutdown  or  reboot  and  the pair of terminal names |/\} logs the old/new system time when
+\par        date(1) changes it.  wtmp is maintained by login(1), init(8), and some versions of getty(8) (e.g., mingetty(8) or
+\par        agetty(8)).  None of these programs creates the file, so if it is removed, record-keeping is turned off.
+\par 
+\par FILES
+\par \plain \f1\fs20\cf1        /var/run/utmp
+\par        /var/log/wtmp
+\par 
+\par \plain \f1\fs20 CONFORMING TO
+\par        POSIX.1  does  not  specify  a  utmp  structure,  but  rather one named utmpx, with specifications for the fields
+\par        ut_type, ut_pid, ut_line, ut_id, ut_user, and ut_tv.  POSIX.1 does not specify the lengths  of  the  ut_line  and
+\par        ut_user fields.
+\par 
+\par        Linux defines the utmpx structure to be the same as the utmp structure.
+\par 
+\par    Comparison with Historical Systems
+\par        Linux utmp entries conform neither to v7/BSD nor to System V; they are a mix of the two.
+\par 
+\par        v7/BSD  has  fewer fields; most importantly it lacks ut_type, which causes native v7/BSD-like programs to display
+\par        (for example) dead or login entries.  Further, there is no configuration file which allocates slots to  sessions.
+\par        BSD does so because it lacks ut_id fields.
+\par 
+\par        In  Linux  (as  in  System V), the ut_id field of a record will never change once it has been set, which reserves
+\par        that slot without needing a configuration file.  Clearing ut_id may result in race  conditions  leading  to  cor-
+\par        rupted  utmp  entries and potential security holes.  Clearing the abovementioned fields by filling them with null
+\par        bytes is not required by System V semantics, but makes it possible to run many programs which assume  BSD  seman-
+\par        tics and which do not modify utmp.  Linux uses the BSD conventions for line contents, as documented above.
+\par 
+\par        System V has no ut_host or ut_addr_v6 fields.
+\par 
+\par NOTES
+\par        Unlike  various other systems, \plain \f1\fs20\cf1 where utmp logging can be disabled by removing the file, utmp must always exist on
+\par        Linux.\plain \f1\fs20  \plain \f1\fs20\cf3  If you want to disable who(1) then do not make utmp world readable.
+\par \plain \f1\fs20 
+\par        The file format is machine-dependent, so it is recommended that it be processed only on the machine  architecture
+\par        where it was created.
+\par 
+\par        Note that on biarch platforms, that is, systems which can run both 32-bit and 64-bit applications (x86-64, ppc64,
+\par        s390x, etc.), ut_tv is the same size in 32-bit mode as in 64-bit mode.  The same goes for ut_session and  ut_time
+\par        if  they  are  present.  This allows data files and shared memory to be shared between 32-bit and 64-bit applica-
+\par        tions.  This is achieved by changing the type of ut_session to int32_t, and that of ut_tv to a  struct  with  two
+\par        int32_t fields tv_sec and tv_usec.  Since ut_tv may not be the same as struct timeval, then instead of the call:
+\par 
+\par            gettimeofday((struct timeval *) &ut.ut_tv, NULL);
+\par 
+\par \plain \f1\fs20\cf1        the following method of setting this field is recommended:
+\par \plain \f1\fs20 
+\par            struct utmp ut;
+\par            struct timeval tv;
+\par 
+\par            gettimeofday(&tv, NULL);
+\par            ut.ut_tv.tv_sec = tv.tv_sec;
+\par            ut.ut_tv.tv_usec = tv.tv_usec;
+\par 
+\par        Note  that the utmp struct from libc5 has changed in libc6.  Because of this,\plain \f1\fs20\cf1  binaries using the old libc5 struct
+\par        will\plain \f1\fs20  \plain \f1\b\fs20\cf1 corrupt\plain \f1\fs20  \plain \f1\fs20\cf1 /var/run/utmp \plain \f1\fs20 and/or \plain \f1\fs20\cf1 /var/log/wtmp\plain \f1\fs20 .
+\par \plain \f1\fs20\cf1 corrupt
+\par \plain \f1\fs20 \uc2\u33521 \'d3\'a2 [k\uc1\u601 ?'r\u652 ?pt]  \uc2\u32654 \'c3\'c0 [k\uc1\u601 ?'r\u652 ?pt] 
+\par adj. \uc2\u33104 \'b8\'af\u36133 \'b0\'dc\u30340 \'b5\'c4\u65292 \'a3\'ac\u36138 \'cc\'b0\u27745 \'ce\'db\u30340 \'b5\'c4\u65307 \'a3\'bb\u22549 \'b6\'e9\u33853 \'c2\'e4\u30340 \'b5\'c4\uc1
+\par vt. \uc2\u20351 \'ca\'b9\u33104 \'b8\'af\u28866 \'c0\'c3\u65307 \'a3\'bb\u20351 \'ca\'b9\u22549 \'b6\'e9\u33853 \'c2\'e4\u65292 \'a3\'ac\u20351 \'ca\'b9\u24694 \'b6\'f1\u21270 \'bb\'af\uc1
+\par vi. \uc2\u22549 \'b6\'e9\u33853 \'c2\'e4\u65292 \'a3\'ac\u33104 \'b8\'af\u21270 \'bb\'af\u65307 \'a3\'bb\u33104 \'b8\'af\u28866 \'c0\'c3\uc1
+\par 
+\par BUGS
+\par        This man page is based on the libc5 one, things may work differently now.
+\par 
+\par SEE ALSO
+\par        ac(1), date(1), last(1), login(1), who(1), getutent(3), getutmp(3), login(3), logout(3), logwtmp(3),  updwtmp(3),
+\par        init(8)
+\par 
+\par COLOPHON
+\par        This  page is part of release 3.22 of the Linux man-pages project.  A description of the project, and information
+\par        about reporting bugs, can be found at http://www.kernel.org/doc/man-pages/.
+\par 
+\par Linux                             2008-10-10                           UTMP(5)\par}

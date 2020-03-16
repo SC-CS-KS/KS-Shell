@@ -1,0 +1,101 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid961637151\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1859081629}
+{\list\listtemplateid790766614\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid1526353520}
+}
+{\*\listoverridetable
+{\listoverride\listid1859081629\listoverridecount0\ls1}
+{\listoverride\listid1526353520\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 10.IFS \uc2\u23454 \'ca\'b5\u20363 \'c0\'fd\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20\cf-1 IFS\uc2\u30340 \'b5\'c4\u20854 \'c6\'e4\u20182 \'cb\'fb\u23454 \'ca\'b5\u20363 \'c0\'fd\uc1
+\par \plain \f1\fs20\cf1 Example 1:
+\par \plain \f1\fs20\cf-1 $ IFS=:  
+\par $ var=ab::cd  
+\par $ echo $var  
+\par ab  cd  
+\par $ echo "$var"  
+\par ab::cd  
+\par \uc2\u35299 \'bd\'e2\u37322 \'ca\'cd\u19979 \'cf\'c2\u65306 \'a3\'ba\uc1
+\par x \uc2\u30340 \'b5\'c4\u20540 \'d6\'b5\u26159 \'ca\'c7 "ab::cd"\u65292 \'a3\'ac\u24403 \'b5\'b1\u36827 \'bd\'f8\u34892 \'d0\'d0\u21040 \'b5\'bd echo $x \u26102 \'ca\'b1\u65292 \'a3\'ac\u22240 \'d2\'f2\u20026 \'ce\'aa$\u31526 \'b7\'fb\u65292 \'a3\'ac\u25152 \'cb\'f9\u20197 \'d2\'d4\u20250 \'bb\'e1\u36827 \'bd\'f8\u34892 \'d0\'d0\u21464 \'b1\'e4\u37327 \'c1\'bf\u26367 \'cc\'e6\u25442 \'bb\'bb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 Shell \uc2\u26681 \'b8\'f9\u25454 \'be\'dd IFS \u30340 \'b5\'c4\u20540 \'d6\'b5\u23558 \'bd\'ab x \u20998 \'b7\'d6\u35299 \'bd\'e2\u20026 \'ce\'aa ab "" cd\u65292 \'a3\'ac\u28982 \'c8\'bb\u21518 \'ba\'f3echo\u65292 \'a3\'ac\u25554 \'b2\'e5\u20837 \'c8\'eb\u31354 \'bf\'d5\u38548 \'b8\'f4\u65292 \'a3\'acab[space]""[space]cd\u65292 \'a3\'ac\u24573 \'ba\'f6\u30053 \'c2\'d4""\u65292 \'a3\'ac\u36755 \'ca\'e4\u20986 \'b3\'f6  ab  cd \u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf-1 
+\par \plain \f1\fs20\cf1 Example 2 :
+\par \plain \f1\fs20\cf-1 $ read a  
+\par        xy  z  
+\par $ echo $a  
+\par xy  z  
+\par \uc2\u35299 \'bd\'e2\u37322 \'ca\'cd\u65306 \'a3\'ba\u36825 \'d5\'e2\u26159 \'ca\'c7 http://bbs.chinaunix.net/thread-207178-1-1.html \u19978 \'c9\'cf\u30340 \'b5\'c4\u19968 \'d2\'bb\u20010 \'b8\'f6\u20363 \'c0\'fd\u23376 \'d7\'d3\u12290 \'a1\'a3\uc1
+\par \uc2\u27492 \'b4\'cb\u26102 \'ca\'b1IFS\u26159 \'ca\'c7\u40664 \'c4\'ac\u35748 \'c8\'cf\u20540 \'d6\'b5\u65292 \'a3\'ac\u26412 \'b1\'be\u24076 \'cf\'a3\u26395 \'cd\'fb\u25226 \'b0\'d1\u25152 \'cb\'f9\u26377 \'d3\'d0\u30340 \'b5\'c4\u36755 \'ca\'e4\u20837 \'c8\'eb(\u21253 \'b0\'fc\u25324 \'c0\'a8\u31354 \'bf\'d5\u26684 \'b8\'f1)\u37117 \'b6\'bc\u25918 \'b7\'c5\u20837 \'c8\'eb\u21464 \'b1\'e4\u37327 \'c1\'bfa\u20013 \'d6\'d0\u65292 \'a3\'ac\u20294 \'b5\'ab\u26159 \'ca\'c7\u36755 \'ca\'e4\u20986 \'b3\'f6\u30340 \'b5\'c4a\u21364 \'c8\'b4\u25226 \'b0\'d1\u21069 \'c7\'b0\u38754 \'c3\'e6\u30340 \'b5\'c4\u31354 \'bf\'d5\u26684 \'b8\'f1\u32473 \'b8\'f8\u24573 \'ba\'f6\u30053 \'c2\'d4\u20102 \'c1\'cb\u65281 \'a3\'a1\u65281 \'a3\'a1\uc1
+\par \uc2\u21407 \'d4\'ad\u22240 \'d2\'f2\u26159 \'ca\'c7\u65306 \'a3\'ba\u40664 \'c4\'ac\u35748 \'c8\'cf\u30340 \'b5\'c4 IFS \u20250 \'bb\'e1\u25353 \'b0\'b4 space tab newline \u26469 \'c0\'b4\u20998 \'b7\'d6\u21106 \'b8\'ee\u12290 \'a1\'a3\uc1
+\par \uc2\u36825 \'d5\'e2\u37324 \'c0\'ef\u38656 \'d0\'e8\u35201 \'d2\'aa\u27880 \'d7\'a2\u24847 \'d2\'e2\u30340 \'b5\'c4\u19968 \'d2\'bb\u28857 \'b5\'e3\u26159 \'ca\'c7\u65292 \'a3\'ac\uc1\plain \f1\fs20\cf1 read \uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\u30340 \'b5\'c4\u23454 \'ca\'b5\u29616 \'cf\'d6\u36807 \'b9\'fd\u31243 \'b3\'cc\u65292 \'a3\'ac\u21363 \'bc\'b4\u22312 \'d4\'da\u35835 \'b6\'c1\u20837 \'c8\'eb\u26102 \'ca\'b1\u24050 \'d2\'d1\u32463 \'be\'ad\u26367 \'cc\'e6\u25442 \'bb\'bb\u20102 \'c1\'cb\uc1\plain \f1\fs20\cf-1 \uc2\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf2 \uc2\u35299 \'bd\'e2\u20915 \'be\'f6\u21150 \'b0\'ec\u27861 \'b7\'a8\u26159 \'ca\'c7\u22312 \'d4\'da\u24320 \'bf\'aa\u22836 \'cd\'b7\u21152 \'bc\'d3\u19978 \'c9\'cf\u19968 \'d2\'bb\u21477 \'be\'e4 IFS=";" \u65292 \'a3\'ac\u36825 \'d5\'e2\u37324 \'c0\'ef\u24517 \'b1\'d8\u39035 \'d0\'eb\u21152 \'bc\'d3\u19978 \'c9\'cf\u21452 \'cb\'ab\u24341 \'d2\'fd\u21495 \'ba\'c5\u65292 \'a3\'ac\u22240 \'d2\'f2\u20026 \'ce\'aa\u20998 \'b7\'d6\u21495 \'ba\'c5\u26377 \'d3\'d0\u29305 \'cc\'d8\u27530 \'ca\'e2\u21547 \'ba\'ac\u20041 \'d2\'e5\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf-1 
+\par \plain \f1\fs20\cf1 Example 3 :
+\par \plain \f1\fs20\cf-1 $ tmp="   xy z"  
+\par $ a=$tmp  
+\par $ echo $a  
+\par $ echo "$a"  
+\par \uc2\u35299 \'bd\'e2\u37322 \'ca\'cd\u65306 \'a3\'ba\u20160 \'ca\'b2\u20040 \'c3\'b4\u26102 \'ca\'b1\u20505 \'ba\'f2\u20250 \'bb\'e1\u26681 \'b8\'f9\u25454 \'be\'dd IFS \u26469 \'c0\'b4"\u22788 \'b4\'a6\u29702 \'c0\'ed"\u21602 \'c4\'d8\u65311 \'a3\'bf\uc1\plain \f1\fs20\cf2 \uc2\u25105 \'ce\'d2\u35273 \'be\'f5\u24471 \'b5\'c3\u26159 \'ca\'c7\u65292 \'a3\'ac\u23545 \'b6\'d4\u20110 \'d3\'da\u19981 \'b2\'bb\u21152 \'bc\'d3\u24341 \'d2\'fd\u21495 \'ba\'c5\u30340 \'b5\'c4\u21464 \'b1\'e4\u37327 \'c1\'bf\u65292 \'a3\'ac\u20351 \'ca\'b9\u29992 \'d3\'c3\u26102 \'ca\'b1\u37117 \'b6\'bc\u20250 \'bb\'e1\u21442 \'b2\'ce\u32771 \'bf\'bcIFS\u65292 \'a3\'ac\u20294 \'b5\'ab\u26159 \'ca\'c7\u35201 \'d2\'aa\u27880 \'d7\'a2\u24847 \'d2\'e2\u20854 \'c6\'e4\u21407 \'d4\'ad\u22987 \'ca\'bc\u20540 \'d6\'b5\u65281 \'a3\'a1\uc1
+\par 
+\par \plain \f1\fs20\cf1 Example 4 \uc2\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf-1 #!/bin/bash  
+\par IFS_old=$IFS                          #\uc2\u23558 \'bd\'ab\u21407 \'d4\'adIFS\u20540 \'d6\'b5\u20445 \'b1\'a3\u23384 \'b4\'e6\u65292 \'a3\'ac\u20197 \'d2\'d4\u20415 \'b1\'e3\u29992 \'d3\'c3\u23436 \'cd\'ea\u21518 \'ba\'f3\u24674 \'bb\'d6\u22797 \'b8\'b4  \uc1
+\par IFS=$\rquote \\n\rquote                            #\uc2\u26356 \'b8\'fc\u25913 \'b8\'c4IFS\u20540 \'d6\'b5\u20026 \'ce\'aa$\rquote \\n\rquote  \u65292 \'a3\'ac\u27880 \'d7\'a2\u24847 \'d2\'e2\u65292 \'a3\'ac\u20197 \'d2\'d4\u22238 \'bb\'d8\u36710 \'b3\'b5\u20570 \'d7\'f6\u20026 \'ce\'aa\u20998 \'b7\'d6\u38548 \'b8\'f4\u31526 \'b7\'fb\u65292 \'a3\'acIFS\u24517 \'b1\'d8\u39035 \'d0\'eb\u20026 \'ce\'aa\u65306 \'a3\'ba$\rquote \\n\rquote   \uc1
+\par for i in $((cat pwd.txt))            #pwd.txt \uc2\u26469 \'c0\'b4\u33258 \'d7\'d4\u36825 \'d5\'e2\u20010 \'b8\'f6\u21629 \'c3\'fc\u20196 \'c1\'ee\u65306 \'a3\'bacat /etc/passwd >pwd.txt  \uc1
+\par do  
+\par     echo $i  
+\par done  
+\par IFS=$IFS_old                          #\uc2\u24674 \'bb\'d6\u22797 \'b8\'b4\u21407 \'d4\'adIFS\u20540 \'d6\'b5  \uc1
+\par 
+\par \uc2\u21478 \'c1\'ed\u22806 \'cd\'e2\u19968 \'d2\'bb\u20010 \'b8\'f6\u20363 \'c0\'fd\u23376 \'d7\'d3\u65292 \'a3\'ac\u25226 \'b0\'d1IP\u22320 \'b5\'d8\u22336 \'d6\'b7\u36870 \'c4\'e6\u36716 \'d7\'aa\u36755 \'ca\'e4\u20986 \'b3\'f6\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 Example 5 :
+\par \plain \f1\fs20\cf-1 #!/bin/bash  
+\par   
+\par IP=220.112.253.111  
+\par IFS="."  
+\par TMPIP=\plain \f1\fs20\cf1 $(echo $IP)  
+\par \plain \f1\fs20\cf-1 IFS=" "                                  # space  
+\par echo $TMPIP  
+\par for x in $TMPIP ;do   
+\par \plain \f1\fs20\cf1     Xip="$\{x\}.$Xip"  
+\par \plain \f1\fs20\cf-1 done  
+\par \plain \f1\fs20\cf2 echo $\{Xip%.\}  
+\par \plain \f1\fs20\cf-1 
+\par \plain \f1\fs20\cf1 Complex_Example 1:  
+\par \plain \f1\fs20\cf-1 http://bbs.chinaunix.net/forum.php?mod=viewthread&tid=3660898&page=1#pid21798049
+\par function output_args_ifs()\{  
+\par     echo "=$*"  
+\par     echo "="$*  
+\par     for m in $* ;do   
+\par         echo "[$m]"  
+\par     done  
+\par \}  
+\par   
+\par IFS=':'  
+\par \plain \f1\fs20\cf1 var='::a:b::c:::'  
+\par \plain \f1\fs20\cf-1 output_args_ifs $var  
+\par 
+\par \uc2\u36755 \'ca\'e4\u20986 \'b3\'f6\u20026 \'ce\'aa\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 =::a:b::c::                          # \uc2\u23569 \'c9\'d9\u20102 \'c1\'cb\u26368 \'d7\'ee\u21518 \'ba\'f3\u19968 \'d2\'bb\u20010 \'b8\'f6\u20882 \'c3\'b0\u21495 \'ba\'c5\u65281 \'a3\'a1\u30475 \'bf\'b4\u21069 \'c7\'b0\u38754 \'c3\'e6\u23601 \'be\'cd\u30693 \'d6\'aa\u36947 \'b5\'c0\u20026 \'ce\'aa\u20160 \'ca\'b2\u20040 \'c3\'b4\u20102 \'c1\'cb  \uc1
+\par =  a b  c   
+\par \plain \f1\fs20\cf-1 []  
+\par []  
+\par [a]  
+\par [b]  
+\par []  
+\par [c]  
+\par []  
+\par \plain \f1\fs20\cf1 \uc2\u30001 \'d3\'c9\u20110 \'d3\'da "output_args_ifs $var" \u20013 \'d6\'d0 $var \u27809 \'c3\'bb\u26377 \'d3\'d0\u21152 \'bc\'d3\u24341 \'d2\'fd\u21495 \'ba\'c5\u65292 \'a3\'ac\u25152 \'cb\'f9\u20197 \'d2\'d4\u26681 \'b8\'f9\u25454 \'be\'ddIFS\u26367 \'cc\'e6\u25442 \'bb\'bb\u65281 \'a3\'a1\uc1
+\par \plain \f1\fs20\cf-1 \uc2\u26681 \'b8\'f9\u25454 \'be\'ddIFS\u21010 \'bb\'ae\u20998 \'b7\'d6\u20986 \'b3\'f6\u21464 \'b1\'e4\u37327 \'c1\'bf\u65306 \'a3\'ba ""  ""  "a"  "b"  ""  "c" "" ""     \uc1
+\par (\uc2\u21487 \'bf\'c9\u20197 \'d2\'d4\u36890 \'cd\'a8\u36807 \'b9\'fd\u36755 \'ca\'e4\u20986 \'b3\'f6 $# \u26469 \'c0\'b4\u27979 \'b2\'e2\u35797 \'ca\'d4\u21442 \'b2\'ce\u25968 \'ca\'fd\u30340 \'b5\'c4\u20010 \'b8\'f6\u25968 \'ca\'fd\u65281 \'a3\'a1)\u65292 \'a3\'ac\u37325 \'d6\'d8\u32452 \'d7\'e9\u30340 \'b5\'c4\u32467 \'bd\'e1\u26524 \'b9\'fb\u20026 \'ce\'aa\uc1
+\par \plain \f1\fs20\cf1 "$@" \uc2\u30340 \'b5\'c4\u20540 \'d6\'b5\u26159 \'ca\'c7  "" [space] "" [space]  "a" [space]  "b"  [space] "" [space]  "c" [space] "" [space] ""\u65292 \'a3\'ac\u21487 \'bf\'c9\u20197 \'d2\'d4\u36890 \'cd\'a8\u36807 \'b9\'fd\u65292 \'a3\'acecho==>"  a b  c   "\uc1
+\par "$*"  \uc2\u30340 \'b5\'c4\u20540 \'d6\'b5\u26159 \'ca\'c7   "" [IFS] "" [IFS]  "a" [IFS]  "b"  [IFS] "" [IFS]  "c" [IFS] "" [IFS] ""\u65292 \'a3\'ac\u24573 \'ba\'f6\u30053 \'c2\'d4""\u65292 \'a3\'acecho=>"::a:b::c::"\uc1
+\par \plain \f1\fs20\cf-1 
+\par \uc2\u27880 \'d7\'a2\u24847 \'d2\'e2\u65292 \'a3\'ac $* \u21644 \'ba\'cd $@ \u30340 \'b5\'c4\u20540 \'d6\'b5\u37117 \'b6\'bc\u26159 \'ca\'c7  ""   ""   "a"   "b"   ""   "c"  ""  "" \u12290 \'a1\'a3\u21487 \'bf\'c9\u20197 \'d2\'d4\u35828 \'cb\'b5\u26159 \'ca\'c7\u19968 \'d2\'bb\u20010 \'b8\'f6\u21015 \'c1\'d0\u34920 \'b1\'ed\u8230 \'a1\'ad\u8230 \'a1\'ad\u22240 \'d2\'f2\u20026 \'ce\'aa\u20182 \'cb\'fb\u20204 \'c3\'c7\u26412 \'b1\'be\u26469 \'c0\'b4\u23601 \'be\'cd\u26159 \'ca\'c7\u30001 \'d3\'c9 $1 $2 $3\u8230 \'a1\'ad\u8230 \'a1\'ad\u32452 \'d7\'e9\u25104 \'b3\'c9\u30340 \'b5\'c4\u12290 \'a1\'a3\uc1
+\par \uc2\u25152 \'cb\'f9\u20197 \'d2\'d4\u65292 \'a3\'ac\u12298 \'a1\'b6Linux\u31243 \'b3\'cc\u24207 \'d0\'f2\u35774 \'c9\'e8\u35745 \'bc\'c6\u12299 \'a1\'b7\u37324 \'c0\'ef\u25512 \'cd\'c6\u33616 \'bc\'f6\u20351 \'ca\'b9\u29992 \'d3\'c3 $@\u65292 \'a3\'ac\u32780 \'b6\'f8\u19981 \'b2\'bb\u26159 \'ca\'c7$*\u12290 \'a1\'a3\uc1\par}

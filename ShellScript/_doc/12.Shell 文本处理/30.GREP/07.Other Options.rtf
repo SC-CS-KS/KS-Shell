@@ -1,0 +1,40 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1380562711\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid379122552}
+{\list\listtemplateid776659802\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid2005490886}
+}
+{\*\listoverridetable
+{\listoverride\listid379122552\listoverridecount0\ls1}
+{\listoverride\listid2005490886\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 07.Other Options
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20\cf3 --mmap     \plain \f1\b\fs20      \plain \f1\fs20                   
+\par          \uc2\u22914 \'c8\'e7\u26524 \'b9\'fb\u21487 \'bf\'c9\u33021 \'c4\'dc\u65292 \'a3\'ac\u20351 \'ca\'b9\u29992 \'d3\'c3mmap\u31995 \'cf\'b5\u32479 \'cd\'b3\u21628 \'ba\'f4\u21483 \'bd\'d0\u21435 \'c8\'a5\u35835 \'b6\'c1\u21462 \'c8\'a1\u36755 \'ca\'e4\u20837 \'c8\'eb\u65292 \'a3\'ac\u32780 \'b6\'f8\u19981 \'b2\'bb\u26159 \'ca\'c7\u39044 \'d4\'a4\u35774 \'c9\'e8\u30340 \'b5\'c4read\u31995 \'cf\'b5\u32479 \'cd\'b3\u21628 \'ba\'f4\u21483 \'bd\'d0\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf3          \uc2\u22312 \'d4\'da\u26576 \'c4\'b3\u20123 \'d0\'a9\u29366 \'d7\'b4\u20917 \'bf\'f6\u65292 \'a3\'ac--mmap \u33021 \'c4\'dc\u20135 \'b2\'fa\u29983 \'c9\'fa\u36739 \'bd\'cf\u22909 \'ba\'c3\u30340 \'b5\'c4\u25928 \'d0\'a7\u33021 \'c4\'dc\u12290 \'a1\'a3 \uc1
+\par \plain \f1\fs20        \plain \f1\fs20\cf3   \uc2\u28982 \'c8\'bb\u32780 \'b6\'f8\u65292 \'a3\'ac--mmap\u22914 \'c8\'e7\u26524 \'b9\'fb\u36816 \'d4\'cb\u20316 \'d7\'f7\u20013 \'d6\'d0\u26723 \'b5\'b5\u26696 \'b0\'b8\u32553 \'cb\'f5\u30701 \'b6\'cc\u65292 \'a3\'ac\u25110 \'bb\'f2I/O \u38169 \'b4\'ed\u35823 \'ce\'f3\u21457 \'b7\'a2\u29983 \'c9\'fa\u26102 \'ca\'b1\u65292 \'a3\'ac\u21487 \'bf\'c9\u33021 \'c4\'dc\u36896 \'d4\'ec\u25104 \'b3\'c9\u26410 \'ce\'b4\u23450 \'b6\'a8\u20041 \'d2\'e5\u30340 \'b5\'c4\u34892 \'d0\'d0\u20026 \'ce\'aa(\u21253 \'b0\'fc\u21547 \'ba\'accore dump)\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf2 -----------------------------------------------------------------------------------------------------------------------------------
+\par \pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\b\fs20 Other Options
+\par \pard\fi420\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20        --line-buffered
+\par               Use line buffering on output.  This can cause a performance penalty.
+\par 
+\par        --mmap If possible, use the mmap(2) system call to read input, instead of the  default  read(2)  system  call.   In  some
+\par               situations, --mmap yields better performance.  However, --mmap can cause undefined behavior (including core dumps)
+\par               if an input file shrinks while grep is operating, or if an I/O error occurs.
+\par 
+\par        -U, --binary
+\par               Treat the file(s) as binary.  By default, under MS-DOS and MS-Windows, grep guesses the file type  by  looking  at
+\par               the  contents  of  the  first  32KB read from the file.  If grep decides the file is a text file, it strips the CR
+\par               characters from the original file contents (to make regular expressions with ^ and $ work correctly).   Specifying
+\par               -U  overrules  this  guesswork, causing all files to be read and passed to the matching mechanism verbatim; if the
+\par               file is a text file with CR/LF pairs at the end of each line, this will cause some regular  expressions  to  fail.
+\par               This option has no effect on platforms other than MS-DOS and MS-Windows.
+\par 
+\par        -z, --null-data
+\par               Treat  the input as a set of lines, each terminated by a zero byte (the ASCII NUL character) instead of a newline.
+\par               Like the -Z or --null option, this option can be used with commands like sort -z to process arbitrary file  names.
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20\cf2 -----------------------------------------------------------------------------------------------------------------------------------\par}

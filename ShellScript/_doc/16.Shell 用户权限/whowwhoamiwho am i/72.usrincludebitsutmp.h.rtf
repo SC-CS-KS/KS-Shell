@@ -1,0 +1,136 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1281044227\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid506084630}
+}
+{\*\listoverridetable
+{\listoverride\listid506084630\listoverridecount0\ls1}
+}
+
+
+\pard\fi420\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 72./usr/include/bits/utmp.h
+\par \pard\fi420\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 /* The `struct utmp' type, describing entries in the utmp file.  GNU version.
+\par    Copyright (C) 1993, 1996, 1997, 1998, 1999, 2002
+\par    Free Software Foundation, Inc.
+\par    This file is part of the GNU C Library.
+\par 
+\par    The GNU C Library is free software; you can redistribute it and/or
+\par    modify it under the terms of the GNU Lesser General Public
+\par    License as published by the Free Software Foundation; either
+\par    version 2.1 of the License, or (at your option) any later version.
+\par 
+\par    The GNU C Library is distributed in the hope that it will be useful,
+\par    but WITHOUT ANY WARRANTY; without even the implied warranty of
+\par    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+\par    Lesser General Public License for more details.
+\par 
+\par    You should have received a copy of the GNU Lesser General Public
+\par    License along with the GNU C Library; if not, write to the Free
+\par    Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+\par    02111-1307 USA.  */
+\par 
+\par #ifndef _UTMP_H
+\par \plain \f1\fs20\cf2 # error "Never include <bits/utmp.h> directly; use <utmp.h> instead."
+\par \plain \f1\fs20 #endif
+\par 
+\par \plain \f1\fs20\cf1 #include <paths.h>
+\par #include <sys/time.h>
+\par #include <sys/types.h>
+\par #include <bits/wordsize.h>
+\par \plain \f1\fs20 
+\par 
+\par #define UT_LINESIZE     32
+\par #define UT_NAMESIZE     32
+\par #define UT_HOSTSIZE     256
+\par 
+\par 
+\par /* The structure describing an entry in the database of
+\par    previous logins.  */
+\par struct lastlog
+\par   \{
+\par #if __WORDSIZE == 64 && defined __WORDSIZE_COMPAT32
+\par     int32_t ll_time;
+\par #else
+\par     __time_t ll_time;
+\par #endif
+\par     char ll_line[UT_LINESIZE];
+\par     char ll_host[UT_HOSTSIZE];
+\par   \};
+\par 
+\par 
+\par /* The structure describing the status of a terminated process.  This
+\par    type is used in `struct utmp' below.  */
+\par struct exit_status
+\par   \{
+\par     short int e_termination;    /* Process termination status.  */
+\par     short int e_exit;           /* Process exit status.  */
+\par   \};
+\par 
+\par 
+\par /* The structure describing an entry in the user accounting database.  */
+\par \plain \f1\fs20\cf2 struct utmp
+\par \plain \f1\fs20 \{
+\par \plain \f1\fs20\cf2   short int ut_type;            /* Type of login.  */
+\par \plain \f1\fs20   pid_t \plain \f1\fs20\cf1 ut_pid\plain \f1\fs20 ;                 /* Process ID of login process.  */
+\par   \plain \f1\fs20\cf2 char\plain \f1\fs20  \plain \f1\fs20\cf1 ut_line\plain \f1\fs20 [UT_LINESIZE];    /* \plain \f1\fs20\cf2 Devicename\plain \f1\fs20 .  */
+\par   char \plain \f1\fs20\cf1 ut_id\plain \f1\fs20 [4];                /* Inittab ID.  */
+\par   \plain \f1\fs20\cf2 char\plain \f1\fs20  \plain \f1\fs20\cf1 ut_user\plain \f1\fs20 [UT_NAMESIZE];    /* \plain \f1\fs20\cf2 Username\plain \f1\fs20 .  */
+\par   \plain \f1\fs20\cf2 char\plain \f1\fs20  \plain \f1\fs20\cf1 ut_host\plain \f1\fs20 [UT_HOSTSIZE];    /* Hostname for remote login.  */
+\par  \plain \f1\fs20\cf1  struct exit_status ut_exit\plain \f1\fs20 ;   /* Exit status of a process marked
+\par                                    as DEAD_PROCESS.  */
+\par /* The ut_session and ut_tv fields must be the same size when compiled
+\par    32- and 64-bit.  This allows data files and shared memory to be
+\par    shared between 32- and 64-bit applications.  */
+\par #if __WORDSIZE == 64 && defined __WORDSIZE_COMPAT32
+\par   int32_t ut_session;           /* Session ID, used for windowing.  */
+\par   struct
+\par   \{
+\par \plain \f1\fs20\cf1     int32_t tv_sec;             /* Seconds.  */
+\par     int32_t tv_usec;            /* Microseconds.  */
+\par \plain \f1\fs20   \} \plain \f1\fs20\cf1 ut_tv\plain \f1\fs20 ;                      /* Time entry was made.  */
+\par #else
+\par   long int ut_session;          /* Session ID, used for windowing.  */
+\par \plain \f1\fs20\cf1   struct timeval ut_tv;         /* Time entry was made.  */
+\par \plain \f1\fs20 #endif
+\par 
+\par   int32_t ut_addr_v6[4];        /* Internet address of remote host.  */
+\par   char __unused[20];            /* Reserved for future use.  */
+\par \};
+\par 
+\par /* Backwards compatibility hacks.  */
+\par #define ut_name         ut_user
+\par #ifndef _NO_UT_TIME
+\par /* We have a problem here: `ut_time' is also used otherwise.  Define
+\par    _NO_UT_TIME if the compiler complains.  */
+\par # define ut_time        ut_tv.tv_sec
+\par #endif
+\par #define ut_xtime        ut_tv.tv_sec
+\par #define ut_addr         ut_addr_v6[0]
+\par 
+\par 
+\par /* Values for the `ut_type' field of a `struct utmp'.  */
+\par #define EMPTY           0       /* No valid user accounting information.  */
+\par 
+\par #define \plain \f1\fs20\cf1 RUN_LVL\plain \f1\fs20          1       /* The system's runlevel.  */
+\par #define \plain \f1\fs20\cf1 BOOT_TIME\plain \f1\fs20        2       /* Time of system boot.  */
+\par #define \plain \f1\fs20\cf1 NEW_TIME\plain \f1\fs20         3       /* Time after system clock changed.  */
+\par #define \plain \f1\fs20\cf1 OLD_TIME\plain \f1\fs20         4       /* Time when system clock changed.  */
+\par 
+\par #define INIT_PROCESS    5       /* Process spawned by the init process.  */
+\par #define \plain \f1\fs20\cf1 LOGIN_PROCESS\plain \f1\fs20    6       /* Session leader of a logged in user.  */
+\par \plain \f1\fs20\cf2 #define USER_PROCESS    7       /* Normal process.  */
+\par #define DEAD_PROCESS    8       /* Terminated process.  */
+\par \plain \f1\fs20 
+\par #define ACCOUNTING      9
+\par 
+\par /* Old Linux name for the EMPTY type.  */
+\par #define UT_UNKNOWN      EMPTY
+\par 
+\par 
+\par /* Tell the user that we have a modern system with UT_HOST, UT_PID,
+\par    UT_TYPE, UT_ID and UT_TV fields.  */
+\par #define _HAVE_UT_TYPE   1
+\par #define _HAVE_UT_PID    1
+\par #define _HAVE_UT_ID     1
+\par #define _HAVE_UT_TV     1
+\par #define _HAVE_UT_HOST   1\par}

@@ -1,0 +1,98 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1779032505\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid208245412}
+}
+{\*\listoverridetable
+{\listoverride\listid208245412\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 90.Code: who v0.1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 /* my_who.c - version 0.1  
+\par  * \plain \f1\fs20\cf1  show who is logged on
+\par \plain \f1\fs20  * by chenguang02@baidu.com
+\par  * 2013/11/27
+\par  */
+\par 
+\par #include <stdio.h>
+\par #include <stdlib.h>
+\par #include <errno.h>
+\par #include <fcntl.h>
+\par #include <unistd.h>
+\par #include <utmp.h>
+\par #include <time.h>
+\par 
+\par #define SHOW_HOST
+\par 
+\par void show_info(struct utmp *);
+\par char *time_transform(char *, time_t);
+\par 
+\par int main(void)
+\par \{
+\par        \plain \f1\fs20\cf1  struct utmp\plain \f1\fs20  utmp_record;        /* to save data records read from /var/run/utmp */
+\par \plain \f1\fs20\cf1         int utmp_fd;            /* file descriptor link to /var/run/utmp  */
+\par \plain \f1\fs20         int record_len = \plain \f1\fs20\cf1 sizeof(struct utmp)\plain \f1\fs20 ;
+\par 
+\par \plain \f1\fs20\cf1         if ((utmp_fd = \plain \f1\fs20\cf3 open\plain \f1\fs20\cf1 (UTMP_FILE, O_RDONLY)) == -1) \{
+\par \plain \f1\fs20                 perror(\plain \f1\fs20\cf1 UTMP_FILE\plain \f1\fs20 );
+\par                 exit(1);
+\par         \}
+\par 
+\par \plain \f1\fs20\cf1         while (read(utmp_fd, &utmp_record, record_len) \plain \f1\fs20\cf3 == record_len\plain \f1\fs20\cf1 )
+\par \plain \f1\fs20                 show_info(&utmp_record);
+\par 
+\par         close(utmp_fd);
+\par 
+\par         return 0;
+\par \}
+\par 
+\par void show_info(struct utmp *utmp_record)
+\par \{
+\par /*
+\par  * show_info()
+\par  * displays contents of the utmp struct in human readable form
+\par  * note : these sizes should not be hardwired
+\par  */
+\par \plain \f1\fs20\cf1 
+\par         if (utmp_record->ut_type != \plain \f1\fs20\cf3 USER_PROCESS\plain \f1\fs20\cf1 )
+\par \plain \f1\fs20                 return;
+\par 
+\par         printf("%-8s", \plain \f1\fs20\cf3 utmp_record->ut_user\plain \f1\fs20 );   /* the login name */
+\par         printf("  ");
+\par         printf("%-8s", \plain \f1\fs20\cf3 utmp_record->ut_line\plain \f1\fs20 );
+\par         printf("  ");
+\par 
+\par \plain \f1\fs20\cf1         char *time_str = (char *) malloc(17 * sizeof(char));
+\par \plain \f1\fs20         printf("%-15s", time_transform(time_str, \plain \f1\fs20\cf3 utmp_record->ut_time\plain \f1\fs20 ));
+\par \plain \f1\fs20\cf1         free(time_str);
+\par \plain \f1\fs20         printf("  ");
+\par 
+\par #ifdef SHOW_HOST
+\par         printf("%s", \plain \f1\fs20\cf3 utmp_record->ut_host\plain \f1\fs20 );
+\par #endif
+\par         printf("\\n");
+\par \}
+\par 
+\par char *time_transform(char *time_str, time_t time_val)
+\par /*
+\par  *
+\par  */
+\par \{
+\par       \plain \f1\fs20\cf1   snprintf(time_str, 16, ctime(&time_val) + 4);
+\par \plain \f1\fs20         return time_str;
+\par \}
+\par \plain \f1\fs20\cf2 ---------------------------------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 $ ./my_who 
+\par \plain \f1\fs20 testframe  pts/0     Nov 26 22:40:23  10.0.2.2
+\par testframe  pts/1     Nov 26 23:45:09  10.0.2.2
+\par sunny     tty1      Nov 26 23:14:48  :0
+\par sunny     pts/2     Nov 26 23:15:25  :0.0
+\par 
+\par \plain \f1\fs20\cf1 $who
+\par \plain \f1\fs20 testframe pts/0        2013-11-26 22:40 (10.0.2.2)
+\par testframe pts/1        2013-11-26 23:45 (10.0.2.2)
+\par sunny    tty1         2013-11-26 23:14 (:0)
+\par sunny    pts/2        2013-11-26 23:15 (:0.0)
+\par 
+\par \plain \f1\fs20\cf2 ---------------------------------------------------------------------------------------------------------------------------------\par}

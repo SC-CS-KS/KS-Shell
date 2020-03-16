@@ -1,0 +1,24 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red255\green0\blue0;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1727281807\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1165452495}
+}
+{\*\listoverridetable
+{\listoverride\listid1165452495\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 50.\uc2\u26085 \'c8\'d5\u24535 \'d6\'be\u22788 \'b4\'a6\u29702 \'c0\'ed\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf1 01.tail -f /path/to/file.log | sed '/^Finished: SUCCESS$/ q'
+\par \plain \f1\fs20 \uc2\u24403 \'b5\'b1file.log\u37324 \'c0\'ef\u20986 \'b3\'f6\u29616 \'cf\'d6Finished: SUCCESS\u26102 \'ca\'b1\u20505 \'ba\'f2\u23601 \'be\'cd\u36864 \'cd\'cb\u20986 \'b3\'f6tail\u65292 \'a3\'ac\u36825 \'d5\'e2\u20010 \'b8\'f6\u21629 \'c3\'fc\u20196 \'c1\'ee\u29992 \'d3\'c3\u20110 \'d3\'da\u23454 \'ca\'b5\u26102 \'ca\'b1\u30417 \'bc\'e0\u25511 \'bf\'d8\u24182 \'b2\'a2\u36807 \'b9\'fd\u28388 \'c2\'cblog\u26159 \'ca\'c7\u21542 \'b7\'f1\u20986 \'b3\'f6\u29616 \'cf\'d6\u20102 \'c1\'cb\u26576 \'c4\'b3\u26465 \'cc\'f5\u35760 \'bc\'c7\u24405 \'c2\'bc\u12290 \'a1\'a3 \uc1
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf1 02.\uc2\u22312 \'d4\'da\u35775 \'b7\'c3\u38382 \'ce\'ca\u26085 \'c8\'d5\u24535 \'d6\'be\u20013 \'d6\'d0\u25552 \'cc\'e1\u21462 \'c8\'a1\u20986 \'b3\'f6\u20986 \'b3\'f6\u29616 \'cf\'d6\u39057 \'c6\'b5\u29575 \'c2\'ca\u26368 \'d7\'ee\u39640 \'b8\'df\u30340 \'b5\'c4IP\u22320 \'b5\'d8\u22336 \'d6\'b7\uc1
+\par \plain \f1\fs20 1,2005-02-21 16:49:51,649,221.203.38.132,guest,g
+\par 1,2005-02-21 16:49:51,692,60.21.203.65,zhangchangxu,1
+\par 1,2005-02-21 16:49:51,779,218.61.139.112,guest,g
+\par \plain \f1\fs20\cf3 awk -F , '\{ print $4 \}' 1.txt|sort |uniq -c |sort -rn
+\par 
+\par \plain \f1\fs20\cf-1 \uc2\u19968 \'d2\'bb\u20010 \'b8\'f6web\u26381 \'b7\'fe\u21153 \'ce\'f1\u22120 \'c6\'f7\u26085 \'c8\'d5\u24535 \'d6\'be\u65292 \'a3\'ac\u22312 \'d4\'da\u26576 \'c4\'b3\u20123 \'d0\'a9\u34892 \'d0\'d0\u19978 \'c9\'cf\u26377 \'d3\'d0\u19968 \'d2\'bb\u20123 \'d0\'a9\u20540 \'d6\'b5\u65292 \'a3\'ac\u27604 \'b1\'c8\u22914 \'c8\'e7URL\u20013 \'d6\'d0\u30340 \'b5\'c4acct_id\u21442 \'b2\'ce\u25968 \'ca\'fd\u12290 \'a1\'a3\uc1
+\par \uc2\u22914 \'c8\'e7\u26524 \'b9\'fb\u20320 \'c4\'e3\u24819 \'cf\'eb\u32479 \'cd\'b3\u35745 \'bc\'c6\u27599 \'c3\'bf\u20010 \'b8\'f6acct_id\u30340 \'b5\'c4\u25152 \'cb\'f9\u26377 \'d3\'d0\u35831 \'c7\'eb\u27714 \'c7\'f3\u35760 \'bc\'c7\u24405 \'c2\'bc\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf3 cat access.log | egrep \plain \f1\b\fs20\cf3 -o \plain \f1\fs20\cf3 \lquote acct_id=[0-9]+\rquote  | cut -d= -f2 | sort | uniq -c | sort -rn
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------------------------\par}

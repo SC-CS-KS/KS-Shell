@@ -1,0 +1,122 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid265408440
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs16\cf2}
+{\listlevel\levelnfc0\leveljc0\li1440\fi-360\jclisttab\tx1440\levelstartat1{\leveltext\'02\'01.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2160\fi-360\jclisttab\tx2160\levelstartat1{\leveltext\'02\'02.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2880\fi-360\jclisttab\tx2880\levelstartat1{\leveltext\'02\'03.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li3600\fi-360\jclisttab\tx3600\levelstartat1{\leveltext\'02\'04.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li4320\fi-360\jclisttab\tx4320\levelstartat1{\leveltext\'02\'05.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5040\fi-360\jclisttab\tx5040\levelstartat1{\leveltext\'02\'06.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5760\fi-360\jclisttab\tx5760\levelstartat1{\leveltext\'02\'07.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li6480\fi-360\jclisttab\tx6480\levelstartat1{\leveltext\'02\'08.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1073229978}
+}
+{\*\listoverridetable
+{\listoverride\listid1073229978\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 mycdrecord.sh
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 #! /bin/bash\'0a\'0a
+\par \'0a#
+\par # Author : Jiahuan Li <huanlf@gmail.com>\'0a#
+\par # License: GPLv2\'0a#
+\par # Date   : 2007/06/22 \'0a#
+\par # Desc : make use of cdrocord to burn cd/dvd disk\'0a\'0a
+\par \'0aE
+\par ERASE= # \uc2\u37823 \'e6\'93\u65090 \'a6\'e9\u27342 \'99\'a4RW\u37711 \'e5\'85\u22796 \'89\'e7\u27919 \'9b\'98\'0aB\uc1
+\par BURN=  # \uc2\u37905 \'e7\'83\u1091 \'a7\'e5\u22498 \'88\'bb\'0a\'0a\uc1
+\par \'0a#
+\par ## \uc2\u22955 \'e6\'a3\uc1\u8364 \'80\uc2\u37836 \'e6\'9f\u12518 \'a5\'e6\u27128 \'98\'af\u37722 \'e5\'90\u65088 \'a6\'e5\u20961 \'b7\'b2\u32513 \'e7\'bb\u24531 \'8f\'e5\u30056 \'ae\'89\u29761 \'e8\'a3\u21324 \'85cdrecord\'0aw\uc1
+\par which cdrecord &>/dev/null || \{\'0a 
+\par     echo "cdrecord not installed"\'0a 
+\par     exit 127\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## \uc2\u37922 \'e7\'94\u12582 \'a8\'e6\u30838 \'b3\bullet \'0au\uc1
+\par usage () \{\'0a 
+\par     cat <<-EOF\'0a\'0a
+\par 
+\par     $0 \uc2\u37716 \'e5\'8a\u29115 \'9f\'e8\u20824 \'83\'bd\u38171 \'ef\'bc\u27693 \'9a\'e6\u25693 \'93\'a6\u38340 \'e9\'99\u58872 \'a4RW\u37711 \'e5\'85\u22796 \'89\'e7\u27919 \'9b\'98\u38171 \'ef\'bc\u23677 \'8c\'e5\u22498 \'88\'bb\u35120 \'e5\'bd\u26110 \bullet ISO\'0a \uc1
+\par     \uc2\u37922 \'e7\'94\u12582 \'a8\'e6\u30838 \'b3\bullet : $0 [ options ] [ xxx.iso ]\'0a \uc1
+\par     options:\'0a 
+\par             -e \uc2\u37823 \'e6\'93\u65090 \'a6\'e9\u27342 \'99\'a4RW\u37711 \'e5\'85\u22796 \'89\'e7\u27919 \'9b\'98\'0a \uc1
+\par             -b \uc2\u37714 \'e5\'88\u35826 \'bb\'e5\u32141 \'bd\bullet \'0a \uc1
+\par             -h \uc2\u37813 \'e6\'89\u25779 \'93\'e5\u23875 \'8d\'b0\u37832 \'e6\'9c\u57601 \'ac\'e6\u28527 \'9d\'a1\u29999 \'e5\'b8\u57788 \'ae\'e5\u23018 \'8a\'a9\u28103 \'e4\'bf\u8451 \'a1\'e6\u20229 \'81\'af\'0a \uc1
+\par     \uc2\u29831 \'e8\'af\u23384 \'b4\'e6\u27089 \'98\'8e\u38171 \'ef\'bc\uc1\u65533 ?\'0a 
+\par     \uc2\u28725 \'e5\'af\u36891 \'b9\'e4\u31788 \'ba\'8eCD-R/DVD-R\u37833 \'e6\'9d\u12520 \'a5\'e8\u57833 \'af\'b4\u38171 \'ef\'bc\uc1\u65533 ? \uc2\u28051 \'e4\'b8\u23945 \'8d\'e9\u28214 \'9c\'80\u29781 \'e8\'a6\u20345 \'81\'e6\u23514 \'8c\'87\u28729 \'e5\'ae\u27504 \'9aoptions, \u37816 \'e6\'8c\u22247 \'87\'e5\u30078 \'ae\'9aiso\u37722 \'e5\'90\u24227 \'8e\'e7\u27967 \'9b\'b4\u37818 \'e6\'8e\u12517 \'a5\'e5\u22498 \'88\'bb\u35120 \'e5\'bd\uc1\u65533 ?\'0a 
+\par     \uc2\u28725 \'e5\'af\u36891 \'b9\'e4\u31788 \'ba\'8eCD-RW/DVD-RW\u37833 \'e6\'9d\u12520 \'a5\'e8\u57833 \'af\'b4, \u38343 \'e9\'9c\uc1\u8364 \'80\uc2\u29781 \'e8\'a6\u20344 \'81\'e5\u21403 \'85\'88\u37823 \'e6\'93\u65088 \'a6\'e5\u21843 \'86\'99\u37712 \'e5\'86\u23944 \'8d\'e8\u57735 \'ae\'b0\u35120 \'e5\'bd\u26346 \bullet \'ef\u32029 \'bc\'8c\u37719 \'e5\'8d\u25277 \'b3\'e9\u28214 \'9c\'80\u29781 \'e8\'a6\u20345 \'81\'e6\u23514 \'8c\'87\u28729 \'e5\'ae\uc1\u65533 ? -e -b \uc2\u37721 \'e5\'8f\u20635 \'82\'e6\u26271 \bullet \'b0\'0a\'0a\uc1
+\par \'0aE
+\par EOF\'0a\'0a
+\par 
+\par     exit 1\'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## \uc2\u29781 \'e8\'a6\u20345 \'81\'e6\u30512 \'b1\'82\u38007 \'e8\'87\u20914 \'b3\'e5\u30383 \'b0\'91\u37832 \'e6\'9c\u22793 \'89\'e4\u31476 \'b8\'80\u28051 \'e4\'b8\u57412 \'aa\'e5\u24364 \'8f\'82\u37825 \'e6\bullet \uc1\u65533 ?\'0a[
+\par [[ -n $1 ]] || usage\'0a\'0a
+\par \'0aw
+\par while getopts 'ebh' opt; do\'0a 
+\par     case $opt in\'0a 
+\par     e)\'0a 
+\par         ERASE=true;;\'0a 
+\par     b)  \'0a 
+\par         BURN=true;;\'0a 
+\par     *)\'0a 
+\par         usage;;\'0a 
+\par     esac\'0ad
+\par done\'0a\'0a
+\par \'0a#
+\par ## \uc2\u37720 \'e5\'8e\u32472 \'bb\'e6\u24064 \'8e\'89 -e/-b\u38171 \'ef\'bc\uc1\u65533 ? iso=xxx.iso\'0as
+\par shift $(( OPTIND -1 ))\'0ai
+\par iso=$1\'0a\'0a
+\par \'0a#
+\par ## \uc2\u22955 \'e6\'a3\uc1\u8364 \'80\uc2\u37836 \'e6\'9f\uc1\u65533 ?$iso\uc2\u37828 \'e6\'98\u57882 \'af\'e5\u24769 \'90\'a6\u28051 \'e4\'b8\u31743 \'baiso\u37826 \'e6\'96\u22246 \'87\'e4\u27426 \'bb\'b6\'0a[\uc1
+\par [[ -n $iso ]] && \{\'0a 
+\par     file $iso | grep -q 'ISO 9660'; RC=$?\'0a 
+\par     [[ $RC != 0 ]] && \{\'0a 
+\par         echo "Target is not a ISO file, aborting ..."\'0a 
+\par         exit 127\'0a 
+\par     \}   \'0a\}
+\par \}\'0a\'0a
+\par \'0a#
+\par ## \uc2\u28725 \'e5\'af\u29006 \'bc\'e5\u21446 \'85\'a5usb\u37711 \'e5\'85\u22800 \'89\'e9\u9485 \'a9\'b1\u26937 \'e9\'a9\u21342 \'b1\'e5\u23017 \'8a\'a8\u22959 \'e6\'a8\u8243 \'a1\'e5\u28513 \'9d\'97, \u28051 \'e4\'b8\uc1\u8364 \'80\uc2\u38008 \'e8\'88\u57599 \'ac\'e4\u31497 \'b8\'8d\u38343 \'e9\'9c\uc1\u8364 \'80\uc2\u29781 \'e8\'a6\u20345 \'81\'e6\u22684 \'89\'8b\u23480 \'e5\'b7\u12517 \'a5\'e5\u57841 \'af\'bc\u37711 \'e5\'85\u12527 \'a5\'ef\u32029 \'bc\'8cudev\u37734 \'e5\'9c\u12581 \'a8\'e5\u32017 \'bc\'80\u37832 \'e6\'9c\u28888 \'ba\'e6\u26882 \'97\'b6\u28028 \'e4\'bc\u27692 \'9a\'e5\u23006 \'8a\~\u26462 \'e8\'bd\uc1\u65533 ?\'0a#
+\par ## \uc2\u23005 \'e6\'ad\u12832 \'a2\'e5\u58921 \'a4\'84\u37828 \'e6\'98\u57886 \'af\'e9\u27131 \'98\'b2\u23005 \'e6\'ad\u12833 \'a2\'e6\u257 \'a8\'a1\u37735 \'e5\'9d\u26948 \'97\'e8\u59238 \'a2\'ab\u37714 \'e5\'88\u26944 \'97\'e5\u21446 \'85\'a5\u27035 \'e9\'bb\u25117 \'91\'e5\u24725 \'90\'8d\u37719 \'e5\'8d\uc1\u65533 ? \'0a#
+\par #modprobe sr_mod 2>/dev/null\'0a#
+\par #modprobe sg 2>/dev/null\'0am
+\par modprobe sr_mod 2>/dev/null\'0am
+\par modprobe sg 2>/dev/null\'0a\'0a
+\par \'0a#
+\par ## \uc2\u37818 \'e6\'8e\u12833 \'a2\'e6\u31092 \'b5\'8b\u37714 \'e5\'88\u35826 \'bb\'e5\u32141 \'bd\bullet \u37711 \'e5\'85\u22800 \'89\'e9\u9485 \'a9\'b1\u37828 \'e6\'98\u57882 \'af\'e5\u25698 \'93\'aa\u28051 \'e4\'b8\u57415 \'aa\'e8\u57749 \'ae\'be\u28598 \'e5\'a4\uc1\u65533 ?\'0ai
+\par if [[ -e /dev/cdrw ]]; then\'0a 
+\par     rw_dev=/dev/cdrw\'0ae
+\par elif [[ -e /dev/dvdrw ]]; then\'0a 
+\par     rw_dev=/dvdrw\'0ae
+\par else\'0a 
+\par     rw_dev=$( cdrecord -scanbus 2>/dev/null | awk '/RW/ \{print $1\}' )\'0af
+\par fi\'0a\'0a
+\par \'0a#
+\par ## \uc2\u37813 \'e6\'89\u21477 \'be\'e4\u31497 \'b8\'8d\u37714 \'e5\'88\u26495 \'b0\'e5\u22498 \'88\'bb\u35120 \'e5\'bd\u26334 \bullet \'e5\u21404 \'85\'89\u26937 \'e9\'a9\uc1\u65533 ?,\uc2\u38315 \'e9\'80\uc1\u8364 \'80\uc2\u37713 \'e5\'87\uc1\u65533 ?\'0a[
+\par [[ -z $rw_dev ]] && \{\'0a 
+\par     echo "Can not found RW device, aborting ..."\'0a 
+\par     exit 127\'0a\}
+\par \}\'0ae
+\par echo "Found RW device: $rw_dev"\'0a\'0a
+\par \'0a#
+\par ## umount\uc2\u37711 \'e5\'85\uc1\u65533 ?\'0au
+\par umount $rw_dev 2>/dev/null\'0a\'0a
+\par \'0aR
+\par RC=0\'0a\'0a
+\par \'0a#
+\par ## \uc2\u28641 \'e5\'a6\u20635 \'82\'e6\u28745 \'9e\'9c\u23052 \'e6\'b2\u8451 \'a1\'e6\u28225 \'9c\'89\u37816 \'e6\'8c\u22247 \'87\'e5\u30078 \'ae\'9a\u29781 \'e8\'a6\u20345 \'81\'e6\u25693 \'93\'a6\u38340 \'e9\'99\u12422 \'a4\'e6\u22440 \'88\'96\u37714 \'e5\'88\u35826 \'bb\'e5\u32141 \'bd\bullet \u38171 \'ef\'bc\u23677 \'8c\'e5\u22447 \'88\'99\u37929 \'e7\'9b\u23384 \'b4\'e6\u24116 \'8e\'a5\u37714 \'e5\'88\u35826 \'bb\'e5\u32141 \'bd\bullet ( CD-R\u38171 \'ef\'bc\uc1\u65533 ? DVD-R \uc2\u37929 \'e7\'9b\u27193 \'98\'e4\u31497 \'b8\'8d\u37922 \'e7\'94\u12582 \'a8\'e6\u25693 \'93\'a6\u38171 \'ef\'bc\u23680 \'8c\'e7\u27967 \'9b\'b4\u37818 \'e6\'8e\u12517 \'a5\'e5\u22498 \'88\'bb )\'0ai\uc1
+\par if [[ -z "$ERASE$BURN" ]]; then\'0a 
+\par     cdrecord dev=$rw_dev blank=fast && cdrecord dev=$rw_dev $iso;\'0ae
+\par else\'0a 
+\par     ## \uc2\u28641 \'e5\'a6\u20635 \'82\'e6\u28745 \'9e\'9c\u37816 \'e6\'8c\u22247 \'87\'e5\u30078 \'ae\'9a\u37823 \'e6\'93\u65086 \'a6\'e7\u27919 \'9b\'98\'0a \uc1
+\par     [[ -n $ERASE ]] && \{ cdrecord dev=$rw_dev blank=fast; RC=$?; \}\'0a 
+\par     ## \uc2\u28641 \'e5\'a6\u20635 \'82\'e6\u28745 \'9e\'9c\u37816 \'e6\'8c\u22247 \'87\'e5\u30078 \'ae\'9a\u37714 \'e5\'88\u33636 \'bb\'e7\u27919 \'9b\'98\'0a \uc1
+\par     [[ -n $BURN ]]  && (( RC == 0 )) && [[ -n $iso ]] && cdrecord dev=$rw_dev $iso\'0af
+\par fi\'0a\'0a
+\par \'0a#
+\par ## modprobe -r cdrom sg sg_mod sr_mod 2>/dev/null\'0a#
+\par ## \uc2\u23534 \'e5\'bc\u29808 \'b9\'e5\u22189 \'87\'ba\u37711 \'e5\'85\u22800 \'89\'e9\u9485 \'a9\'b1\'0a\{\uc1
+\par \{ eject && sleep 5 && eject -t; \} &>/dev/null &\par}

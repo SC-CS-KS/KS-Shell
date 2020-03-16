@@ -1,0 +1,142 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil Arial;}{\f2\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue128;\red128\green0\blue0;\red0\green128\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid428929401
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'00;}{\levelnumbers;}\f1\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid337861983}
+}
+{\*\listoverridetable
+{\listoverride\listid337861983\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f0\b\fs24\cf5 04.pgrep/pkill
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f2\fs20\cf-1 PGREP(1)                                                        Linux User's Manual                                                       PGREP(1)
+\par 
+\par NAME
+\par \plain \f2\fs20\cf1        pgrep, pkill - look up or signal processes based on name and other attributes
+\par \plain \f2\fs20\cf-1 
+\par SYNOPSIS
+\par \plain \f2\fs20\cf1        pgrep [-flvx] [-d delimiter] [-n|-o] [-P ppid,...] [-g pgrp,...]
+\par \plain \f2\fs20\cf-1             [-s sid,...] [-u euid,...] [-U uid,...] [-G gid,...]
+\par             [-t term,...] [pattern]
+\par 
+\par \plain \f2\fs20\cf1        pkill [-signal] [-fvx] [-n|-o] [-P ppid,...] [-g pgrp,...]
+\par \plain \f2\fs20\cf-1             [-s sid,...] [-u euid,...] [-U uid,...] [-G gid,...]
+\par             [-t term,...] [pattern]
+\par 
+\par DESCRIPTION
+\par        pgrep looks through the currently running processes and lists the process IDs which matches the selection criteria to stdout.  All the cri-
+\par        teria have to match.  For example,
+\par 
+\par \plain \f2\fs20\cf1        pgrep -u root sshd
+\par \plain \f2\fs20\cf-1 
+\par        will only list the processes called sshd AND owned by root.  On the other hand,
+\par 
+\par        pgrep -u root,daemon
+\par 
+\par        will list the processes owned by root OR daemon.
+\par 
+\par      \plain \f2\fs20\cf1   pkill will send the specified signal (by default SIGTERM) to each process instead of listing them on stdout.
+\par \plain \f2\fs20\cf-1 
+\par OPTIONS
+\par        -d delimiter
+\par               Sets the string used to delimit each process ID in the output (by default a newline).  (pgrep only.)
+\par 
+\par        -f     The pattern is normally only matched against the process name.  When -f is set, the full command line is used.
+\par 
+\par        -g pgrp,...
+\par               Only match processes in the process group IDs listed.  Process group 0 is translated into pgrep's or pkill's own process group.
+\par 
+\par        -G gid,...
+\par               Only match processes whose real group ID is listed.  Either the numerical or symbolical value may be used.
+\par 
+\par        -l     List the process name as well as the process ID. (pgrep only.)
+\par 
+\par        -n     Select only the newest (most recently started) of the matching processes.
+\par 
+\par        -o     Select only the oldest (least recently started) of the matching processes.
+\par 
+\par        -P ppid,...
+\par               Only match processes whose parent process ID is listed.
+\par 
+\par        -s sid,...
+\par               Only match processes whose process session ID is listed.  Session ID 0 is translated into pgrep's or pkill's own session ID.
+\par 
+\par        -t term,...
+\par               Only match processes whose controlling terminal is listed.  The terminal name should be specified without the "/dev/" prefix.
+\par 
+\par        -u euid,...
+\par               Only match processes whose effective user ID is listed.  Either the numerical or symbolical value may be used.
+\par 
+\par        -U uid,...
+\par               Only match processes whose real user ID is listed.  Either the numerical or symbolical value may be used.
+\par 
+\par        -v     Negates the matching.
+\par 
+\par        -x     Only match processes whose name (or command line if -f is specified) exactly match the pattern.
+\par 
+\par        -signal
+\par               Defines the signal to send to each matched process.  Either the numeric or the symbolic signal name can be used.  (pkill only.)
+\par 
+\par OPERANDS
+\par        pattern
+\par               Specifies an Extended Regular Expression for matching against the process names or command lines.
+\par 
+\par EXAMPLES
+\par        Example 1: Find the process ID of the named daemon:
+\par 
+\par        unix$ pgrep -u root named
+\par 
+\par        Example 2: Make syslog reread its configuration file:
+\par 
+\par        unix$ pkill -HUP syslogd
+\par 
+\par        Example 3: Give detailed information on all xterm processes:
+\par 
+\par        unix$ ps -fp $(pgrep -d, -x xterm)
+\par 
+\par        Example 4: Make all netscape processes run nicer:
+\par 
+\par        unix$ renice +4 'pgrep netscape'
+\par 
+\par EXIT STATUS
+\par        0      One or more processes matched the criteria.
+\par 
+\par        1      No processes matched.
+\par 
+\par        2      Syntax error in the command line.
+\par 
+\par        3      Fatal error: out of memory etc.
+\par 
+\par NOTES
+\par        The process name used for matching is limited to the 15 characters present in the output of /proc/pid/stat.  Use the  -f  option  to  match
+\par        against the complete command line, /proc/pid/cmdline.
+\par 
+\par        The running pgrep or pkill process will never report itself as a match.
+\par 
+\par BUGS
+\par        The options -n and -o and -v can not be combined.  Let me know if you need to do this.
+\par 
+\par        Defunct processes are reported.
+\par 
+\par SEE ALSO
+\par        ps(1) regex(7) signal(7) killall(1) skill(1) kill(1) kill(2)
+\par 
+\par STANDARDS
+\par        pkill and pgrep were introduced in Sun's Solaris 7.  This implementation is fully compatible.
+\par 
+\par AUTHOR
+\par        Kjetil Torgrim Homme <kjetilho@ifi.uio.no>
+\par 
+\par        Albert Cahalan <albert@users.sf.net> is the current maintainer of the procps package.
+\par 
+\par        Please send bug reports to <procps-feedback@lists.sf.net>
+\par 
+\par Linux                                                              June 25, 2000                                                          PGREP(1)\par}

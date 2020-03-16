@@ -1,0 +1,110 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil Arial;}{\f5\fnil\fcharset0 Courier New;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid4544429\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1879076453}
+{\list\listtemplateid270729728\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f4\fs24}
+\listid1975488004}
+{\list\listtemplateid774151195\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid135625868}
+{\list\listtemplateid84402366\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid654434235}
+{\list\listtemplateid339872937\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f4\fs24}
+\listid690087762}
+{\list\listtemplateid394530460\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1778728208}
+{\list\listtemplateid975386455
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+\listid1173976247}
+{\list\listtemplateid1741842842\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid711457799}
+}
+{\*\listoverridetable
+{\listoverride\listid1879076453\listoverridecount0\ls1}
+{\listoverride\listid1975488004\listoverridecount0\ls2}
+{\listoverride\listid135625868\listoverridecount0\ls3}
+{\listoverride\listid654434235\listoverridecount0\ls4}
+{\listoverride\listid690087762\listoverridecount0\ls5}
+{\listoverride\listid1778728208\listoverridecount0\ls6}
+{\listoverride\listid1173976247\listoverridecount0\ls7}
+{\listoverride\listid711457799\listoverridecount0\ls8}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 M01.mknod
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 MKNOD(1)                         User Commands                        MKNOD(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        mknod - make block or character special files
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        mknod [OPTION]... NAME TYPE [MAJOR MINOR]
+\par 
+\par DESCRIPTION
+\par        Create the special file NAME of the given TYPE.
+\par 
+\par        Mandatory arguments to long options are mandatory for short options too.
+\par 
+\par        -m, --mode=MODE
+\par               set file permission bits to MODE, not a=rw - umask
+\par 
+\par        -Z, --context=CTX
+\par               set the SELinux security context of NAME to CTX
+\par 
+\par        --help display this help and exit
+\par 
+\par        --version
+\par               output version information and exit
+\par 
+\par        Both  MAJOR  and  MINOR  must  be specified when TYPE is b, c, or u, and they must be omitted when TYPE is p.  If
+\par        MAJOR or MINOR begins with 0x or 0X, it is interpreted as hexadecimal; otherwise, if it begins with 0, as  octal;
+\par        otherwise, as decimal.  TYPE may be:
+\par 
+\par        b      create a block (buffered) special file
+\par 
+\par        c, u   create a character (unbuffered) special file
+\par 
+\par        p      create a FIFO
+\par 
+\par        NOTE:  your shell may have its own version of mknod, which usually supersedes the version described here.  Please
+\par        refer to your shell\rquote s documentation for details about the options it supports.
+\par 
+\par AUTHOR
+\par        Written by David MacKenzie.
+\par 
+\par REPORTING BUGS
+\par        Report mknod bugs to bug-coreutils@gnu.org
+\par        GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+\par        General help using GNU software: <http://www.gnu.org/gethelp/>
+\par        Report mknod translation bugs to <http://translationproject.org/team/>
+\par 
+\par COPYRIGHT
+\par        Copyright  \u169 ?  2010  Free  Software  Foundation,  Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
+\par        <http://gnu.org/licenses/gpl.html>.
+\par        This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted
+\par        by law.
+\par 
+\par SEE ALSO
+\par        mknod(2)
+\par 
+\par        The full documentation for mknod is maintained as a Texinfo manual.  If the info and mknod programs are  properly
+\par        installed at your site, the command
+\par 
+\par               info coreutils 'mknod invocation'
+\par 
+\par        should give you access to the complete manual.
+\par 
+\par GNU coreutils 8.4                  June 2012                          MKNOD(1)\par}

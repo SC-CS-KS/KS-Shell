@@ -1,0 +1,1788 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1499686638
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid796671659}
+{\list\listtemplateid1327081305\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1352314049}
+}
+{\*\listoverridetable
+{\listoverride\listid796671659\listoverridecount0\ls1}
+{\listoverride\listid1352314049\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 rsync
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 rsync(1)\tab \tab \tab \tab \tab \tab \tab      rsync(1)
+\par 
+\par 
+\par 
+\par NAME
+\par        rsync - faster, flexible replacement for rcp
+\par 
+\par SYNOPSIS
+\par        rsync [OPTION]... SRC [SRC]... [USER@]HOST:DEST
+\par 
+\par        rsync [OPTION]... [USER@]HOST:SRC DEST
+\par 
+\par        rsync [OPTION]... SRC [SRC]... DEST
+\par 
+\par        rsync [OPTION]... [USER@]HOST::SRC [DEST]
+\par 
+\par        rsync [OPTION]... SRC [SRC]... [USER@]HOST::DEST
+\par 
+\par        rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]
+\par 
+\par        rsync [OPTION]... SRC [SRC]... rsync://[USER@]HOST[:PORT]/DEST
+\par 
+\par 
+\par DESCRIPTION
+\par        rsync  is  a  program that behaves in much the same way that rcp does,
+\par        but has many more options and uses the rsync remote-update protocol to
+\par        greatly\tab speed  up  file\tab  transfers when the destination file is being
+\par        updated.
+\par 
+\par        The rsync remote-update protocol allows rsync  to  transfer  just  the
+\par        differences  between  two sets of files across the network connection,
+\par        using an efficient checksum-search algorithm described in the  techni-
+\par        cal report that accompanies this package.
+\par 
+\par        Some of the additional features of rsync are:
+\par 
+\par 
+\par        o      support for copying links, devices, owners, groups, and permis-
+\par \tab       sions
+\par 
+\par        o      exclude and exclude-from options similar to GNU tar
+\par 
+\par        o      a CVS exclude mode for ignoring the same files that  CVS\tab would
+\par \tab       ignore
+\par 
+\par        o      can use any transparent remote shell, including ssh or rsh
+\par 
+\par        o      does not require root privileges
+\par 
+\par        o      pipelining of file transfers to minimize latency costs
+\par 
+\par        o      support for anonymous or authenticated rsync servers (ideal for
+\par \tab       mirroring)
+\par 
+\par 
+\par GENERAL
+\par        There are eight different ways of using rsync. They are:
+\par 
+\par 
+\par        o      for copying local files. This is invoked\tab when  neither  source
+\par \tab       nor destination path contains a : separator
+\par 
+\par 
+\par        o      for  copying from the local machine to a remote machine using a
+\par \tab       remote shell program as the transport (such  as  ssh  or\tab rsh).
+\par \tab       This  is\tab invoked when the destination path contains a single :
+\par \tab       separator.
+\par 
+\par 
+\par        o      for copying from a remote machine to the local machine using  a
+\par \tab       remote  shell program. This is invoked when the source contains
+\par \tab       a : separator.
+\par 
+\par 
+\par        o      for copying from a remote rsync server to\tab  the  local  machine.
+\par \tab       This is invoked when the source path contains a :: separator or
+\par \tab       an rsync:// URL.
+\par 
+\par 
+\par        o      for copying from the local machine to a  remote  rsync  server.
+\par \tab       This is invoked when the destination path contains a :: separa-
+\par \tab       tor or an rsync:// URL.
+\par 
+\par 
+\par        o      for copying from a remote machine using a remote shell  program
+\par \tab       as  the  transport,  using  rsync server on the remote machine.
+\par \tab       This is invoked when the source path contains  a\tab ::  separator
+\par \tab       and  the\tab --rsh=COMMAND  (aka "-e COMMAND") option is also pro-
+\par \tab       vided.
+\par 
+\par 
+\par        o      for copying from the local machine to a remote machine using  a
+\par \tab       remote  shell  program  as the transport, using rsync server on
+\par \tab       the remote machine.  This is invoked when the destination\tab  path
+\par \tab       contains\tab a  ::  separator and the --rsh=COMMAND option is also
+\par \tab       provided.
+\par 
+\par 
+\par        o      for listing files on a remote machine. This is  done  the\tab  same
+\par \tab       way as rsync transfers except that you leave off the local des-
+\par \tab       tination.
+\par 
+\par        Note that in all cases (other than listing) at least one of the source
+\par        and destination paths must be local.
+\par 
+\par 
+\par SETUP
+\par        See the file README for installation instructions.
+\par 
+\par        Once  installed,\tab  you can use rsync to any machine that you can access
+\par        via a remote shell (as well as some that\tab  you  can  access  using  the
+\par        rsync  daemon-mode  protocol).\tab For  remote transfers, a modern rsync
+\par        uses ssh for its communications, but it may have\tab  been  configured  to
+\par        use a different remote shell by default, such as rsh or remsh.
+\par 
+\par        You can also specify any remote shell you like, either by using the -e
+\par        command line option, or by setting the RSYNC_RSH environment variable.
+\par 
+\par        One  common  substitute\tab is  to use ssh, which offers a high degree of
+\par        security.
+\par 
+\par        Note that rsync must be installed on both the source  and  destination
+\par        machines.
+\par 
+\par 
+\par USAGE
+\par        You  use\tab  rsync in the same way you use rcp. You must specify a source
+\par        and a destination, one of which may be remote.
+\par 
+\par        Perhaps the best way to explain the syntax is with some examples:
+\par 
+\par \tab       rsync -t *.c foo:src/
+\par 
+\par        This would transfer all files matching the pattern *.c from  the\tab  cur-
+\par        rent  directory to the directory src on the machine foo. If any of the
+\par        files already exist on the remote system then the rsync\tab remote-update
+\par        protocol\tab  is  used to update the file by sending only the differences.
+\par        See the tech report for details.
+\par 
+\par \tab       rsync -avz foo:src/bar /data/tmp
+\par 
+\par        This would recursively transfer all files from the  directory  src/bar
+\par        on  the\tab machine\tab  foo  into  the\tab  /data/tmp/bar directory on the local
+\par        machine. The files are transferred in "archive"\tab mode,  which  ensures
+\par        that  symbolic  links,  devices,\tab  attributes, permissions, ownerships,
+\par        etc. are preserved in the transfer.  Additionally, compression will be
+\par        used to reduce the size of data portions of the transfer.
+\par 
+\par \tab       rsync -avz foo:src/bar/ /data/tmp
+\par 
+\par        A trailing slash on the source changes this behavior to avoid creating
+\par        an additional directory level at the destination.  You can think of  a
+\par        trailing\tab  /  on\tab a source as meaning "copy the contents of this direc-
+\par        tory" as opposed to "copy the directory by name", but  in  both\tab cases
+\par        the attributes of the containing directory are transferred to the con-
+\par        taining directory on the destination.  In other\tab words,\tab each  of  the
+\par        following  commands  copies the files in the same way, including their
+\par        setting of the attributes of /dest/foo:
+\par 
+\par \plain \f1\fs20\cf1 \tab       rsync -av /src/foo /dest
+\par \tab       rsync -av /src/foo/ /dest/foo
+\par \plain \f1\fs20 
+\par        You can also use rsync in local-only mode, where both the  source  and
+\par        destination don\rquote t have a \rquote :\rquote  in the name. In this case it behaves like
+\par        an improved copy command.
+\par 
+\par \tab       rsync somehost.mydomain.com::
+\par 
+\par        This would list all the anonymous rsync modules available on the\tab  host
+\par        somehost.mydomain.com.\tab (See the following section for more details.)
+\par 
+\par 
+\par ADVANCED USAGE
+\par        The syntax for requesting multiple files from a remote  host  involves
+\par        using quoted spaces in the SRC.\tab Some examples:
+\par 
+\par \tab       rsync host::\rquote modname/dir1/file1 modname/dir2/file2\rquote  /dest
+\par 
+\par        This would copy file1 and file2 into /dest from an rsync daemon.\tab  Each
+\par        additional arg must include the same "modname/" prefix  as  the\tab first
+\par        one,  and  must\tab be  preceded by a single space.\tab  All other spaces are
+\par        assumed to be a part of the filenames.
+\par 
+\par \tab       rsync -av host:\rquote dir1/file1 dir2/file2\rquote  /dest
+\par 
+\par        This would copy file1 and file2 into /dest using a remote shell.\tab  This
+\par        word-splitting  is  done by the remote shell, so if it doesn\rquote t work it
+\par        means that the remote shell isn\rquote t configured to split its  args\tab based
+\par        on  whitespace (a very rare setting, but not unknown).  If you need to
+\par        transfer a filename that contains whitespace, you\rquote ll  need  to  either
+\par        escape  the whitespace in a way that the remote shell will understand,
+\par        or use wildcards in place of the spaces.\tab  Two examples of this are:
+\par 
+\par \tab       rsync -av host:\rquote file\\ name\\ with\\ spaces\rquote  /dest
+\par \tab       rsync -av host:file?name?with?spaces /dest
+\par 
+\par        This latter example assumes that your shell passes  through  unmatched
+\par        wildcards.   If it complains about "no match", put the name in quotes.
+\par 
+\par 
+\par CONNECTING TO AN RSYNC SERVER
+\par        It is also possible to use rsync without a remote shell as the  trans-
+\par        port.  In  this case you will connect to a remote rsync server running
+\par        on TCP port 873.
+\par 
+\par        You may establish the connection via a web proxy by setting the\tab envi-
+\par        ronment\tab variable RSYNC_PROXY to a hostname:port pair pointing to your
+\par        web proxy.  Note that your  web\tab proxy\rquote s\tab  configuration\tab must  support
+\par        proxy connections to port 873.
+\par 
+\par        Using  rsync  in\tab  this way is the same as using it with a remote shell
+\par        except that:
+\par 
+\par 
+\par        o      you use a double colon :: instead of a single colon to separate
+\par \tab       the hostname from the path or an rsync:// URL.
+\par 
+\par 
+\par        o      the  remote server may print a message of the day when you con-
+\par \tab       nect.
+\par 
+\par 
+\par        o      if you specify no path name on the remote server then the\tab  list
+\par \tab       of accessible paths on the server will be shown.
+\par 
+\par 
+\par        o      if you specify no local destination then a listing of the spec-
+\par \tab       ified files on the remote server is provided.
+\par 
+\par        Some paths on the remote server may require authentication. If so then
+\par        you will receive a password prompt when you connect. You can avoid the
+\par        password prompt by setting the environment variable RSYNC_PASSWORD  to
+\par        the password you want to use or using the --password-file option. This
+\par        may be useful when scripting rsync.
+\par 
+\par        WARNING: On some systems environment  variables\tab are  visible  to  all
+\par        users. On those systems using --password-file is recommended.
+\par 
+\par 
+\par CONNECTING TO AN RSYNC SERVER OVER A REMOTE SHELL PROGRAM
+\par        It is sometimes useful to be able to set up file transfers using rsync
+\par        server capabilities on the remote machine, while still  using  ssh  or
+\par        rsh for transport.  This is especially useful when you want to connect
+\par        to a remote machine via ssh (for encryption or to get through a\tab fire-
+\par        wall),  but you still want to have access to the rsync server features
+\par        (see RUNNING AN RSYNC SERVER OVER A REMOTE SHELL PROGRAM, below).
+\par 
+\par        From the user\rquote s perspective, using rsync in this way is\tab the  same  as
+\par        using  it  to connect to an rsync server, except that you must explic-
+\par        itly set the remote shell program on the command line with  --rsh=COM-
+\par        MAND.   (Setting\tab  RSYNC_RSH  in\tab the environment will not turn on this
+\par        functionality.)
+\par 
+\par        In order to distinguish between the remote-shell user  and  the\tab rsync
+\par        server user, you can use \rquote -l user\rquote  on your remote-shell command:
+\par 
+\par \tab       rsync   -av   --rsh="ssh\tab  -l  ssh-user"\tab rsync-user@host::mod-
+\par \tab       ule[/path] local-path
+\par 
+\par        The "ssh-user" will be used at the ssh level; the "rsync-user" will be
+\par        used to check against the rsyncd.conf on the remote host.
+\par 
+\par 
+\par RUNNING AN RSYNC SERVER
+\par        An  rsync server is configured using a configuration file.  Please see
+\par        the rsyncd.conf(5) man page for\tab more  information.   By\tab  default  the
+\par        configuration file is called /etc/rsyncd.conf, unless rsync is running
+\par        over a remote shell program and is not running as root; in that\tab case,
+\par        the default name is rsyncd.conf in the current directory on the remote
+\par        computer (typically $HOME).
+\par 
+\par 
+\par RUNNING AN RSYNC SERVER OVER A REMOTE SHELL PROGRAM
+\par        See the rsyncd.conf(5) man page for  full  information  on  the\tab rsync
+\par        server configuration file.
+\par 
+\par        Several\tab configuration options will not be available unless the remote
+\par        user is root (e.g. chroot, setuid/setgid, etc.).\tab  There is no need  to
+\par        configure  inetd\tab  or the services map to include the rsync server port
+\par        if you run an rsync server only via a remote shell program.
+\par 
+\par        To run an rsync server out of a single-use ssh key, see\tab this  section
+\par        in the rsyncd.conf(5) man page.
+\par 
+\par 
+\par EXAMPLES
+\par        Here are some examples of how I use rsync.
+\par 
+\par        To  backup  my  wife\rquote s home directory, which consists of large MS Word
+\par        files and mail folders, I use a cron job that runs
+\par 
+\par \tab       rsync -Cavz . arvidsjaur:backup
+\par 
+\par        each night over a PPP  connection  to  a\tab  duplicate  directory  on  my
+\par        machine "arvidsjaur".
+\par 
+\par        To synchronize my samba source trees I use the following Makefile tar-
+\par        gets:
+\par 
+\par \tab       get:
+\par \tab       rsync -avuzb --exclude \rquote *~\rquote  samba:samba/ .
+\par 
+\par \tab       put:
+\par \tab       rsync -Cavuzb . samba:samba/
+\par 
+\par \tab       sync: get put
+\par 
+\par        this allows me to sync with a CVS directory at the other\tab  end  of  the
+\par        connection.  I  then  do\tab  cvs  operations on the remote machine, which
+\par        saves a lot of time as the remote cvs protocol isn\rquote t very efficient.
+\par 
+\par        I mirror a directory between my "old" and "new"\tab ftp  sites  with  the
+\par        command
+\par 
+\par \tab       rsync    -az    -e    ssh\tab    --delete    ~ftp/pub/samba/\tab  nim-
+\par \tab       bus:"~ftp/pub/tridge/samba"
+\par 
+\par        this is launched from cron every few hours.
+\par 
+\par 
+\par OPTIONS SUMMARY
+\par        Here is a short summary of the  options\tab available  in  rsync.  Please
+\par        refer to the detailed description below for a complete description.
+\par \plain \f1\fs20\cf1 \tab -v, --verbose\tab \tab     increase verbosity
+\par \plain \f1\fs20 \tab -q, --quiet\tab \tab     decrease verbosity
+\par \tab -c, --checksum\tab \tab     always checksum
+\par \plain \f1\fs20\cf1 \tab -a, --archive\tab \tab     archive mode, equivalent to -rlptgoD
+\par \plain \f1\fs20 \tab -r, --recursive\tab \tab     recurse into directories
+\par \tab -R, --relative\tab \tab     use relative path names
+\par \tab     --no-relative\tab     turn off --relative
+\par \tab     --no-implied-dirs\tab     don\rquote t send implied dirs with -R
+\par \tab -b, --backup\tab \tab     make backups (see --suffix & --backup-dir)
+\par \tab     --backup-dir\tab     make backups into this directory
+\par \tab     --suffix=SUFFIX\tab     backup suffix (default ~ w/o --backup-dir)
+\par \tab -u, --update\tab \tab     update only (don\rquote t overwrite newer files)
+\par \tab     --inplace\tab \tab     update the destination files inplace
+\par \tab -K, --keep-dirlinks\tab     treat symlinked dir on receiver as dir
+\par \tab -l, --links\tab \tab     copy symlinks as symlinks
+\par \tab -L, --copy-links\tab     copy the referent of all symlinks
+\par \tab     --copy-unsafe-links\tab     copy the referent of "unsafe" symlinks
+\par \tab     --safe-links\tab     ignore "unsafe" symlinks
+\par \tab -H, --hard-links\tab     preserve hard links
+\par \tab -p, --perms\tab \tab     preserve permissions
+\par \tab -o, --owner\tab \tab     preserve owner (root only)
+\par \tab -g, --group\tab \tab     preserve group
+\par \tab -D, --devices\tab \tab     preserve devices (root only)
+\par \tab -t, --times\tab \tab     preserve times
+\par \tab -S, --sparse\tab \tab     handle sparse files efficiently
+\par \tab -n, --dry-run\tab \tab     show what would have been transferred
+\par \tab -W, --whole-file\tab     copy whole files, no incremental checks
+\par \tab     --no-whole-file\tab     turn off --whole-file
+\par \tab -x, --one-file-system\tab     don\rquote t cross filesystem boundaries
+\par \tab -B, --block-size=SIZE\tab     force a fixed checksum block-size
+\par \tab -e, --rsh=COMMAND\tab     specify the remote shell
+\par \tab     --rsync-path=PATH\tab     specify path to rsync on the remote machine
+\par \tab     --existing\tab \tab     only update files that already exist
+\par \tab     --ignore-existing\tab     ignore files that already exist on receiver
+\par \tab     --delete\tab \tab     delete files that don\rquote t exist on sender
+\par \tab     --delete-excluded\tab     also delete excluded files on receiver
+\par \tab     --delete-after\tab     receiver deletes after transfer, not before
+\par \tab     --ignore-errors\tab     delete even if there are I/O errors
+\par \tab     --max-delete=NUM\tab     don\rquote t delete more than NUM files
+\par \tab     --partial\tab \tab     keep partially transferred files
+\par \tab     --partial-dir=DIR\tab     put a partially transferred file into DIR
+\par \tab     --force\tab \tab     force deletion of dirs even if not empty
+\par \tab     --numeric-ids\tab     don\rquote t map uid/gid values by user/group name
+\par \tab     --timeout=TIME\tab     set I/O timeout in seconds
+\par \tab -I, --ignore-times\tab     turn off mod time & file size quick check
+\par \tab     --size-only\tab \tab     ignore mod time for quick check (use size)
+\par \tab     --modify-window=NUM\tab     compare mod times with reduced accuracy
+\par \tab -T  --temp-dir=DIR\tab     create temporary files in directory DIR
+\par \tab     --compare-dest=DIR\tab     also compare received files relative to DIR
+\par \tab     --link-dest=DIR\tab     create hardlinks to DIR for unchanged files
+\par \plain \f1\fs20\cf1 \tab -P\tab \tab \tab     equivalent to --partial --progress
+\par \tab -z, --compress\tab \tab     compress file data
+\par \plain \f1\fs20 \tab -C, --cvs-exclude\tab     auto ignore files in the same way CVS does
+\par \plain \f1\fs20\cf2 \tab     --exclude=PATTERN\tab     exclude files matching PATTERN
+\par \plain \f1\fs20 \tab     --exclude-from=FILE\tab     exclude patterns listed in FILE
+\par \tab     --include=PATTERN\tab     don\rquote t exclude files matching PATTERN
+\par \tab     --include-from=FILE\tab     don\rquote t exclude patterns listed in FILE
+\par \tab     --files-from=FILE\tab     read FILE for list of source-file names
+\par \tab -0  --from0\tab \tab     all file lists are delimited by nulls
+\par \tab     --version\tab \tab     print version number
+\par \tab     --daemon\tab \tab     run as an rsync daemon
+\par \tab     --no-detach\tab \tab     do not detach from the parent
+\par \tab     --address=ADDRESS\tab     bind to the specified address
+\par \tab     --config=FILE\tab     specify alternate rsyncd.conf file
+\par \tab     --port=PORT\tab \tab     specify alternate rsyncd port number
+\par \tab     --blocking-io\tab     use blocking I/O for the remote shell
+\par \tab     --no-blocking-io\tab     turn off --blocking-io
+\par \tab     --stats\tab \tab     give some file transfer stats
+\par \tab     --progress\tab \tab     show progress during transfer
+\par \tab     --log-format=FORMAT\tab     log file transfers using specified format
+\par \tab     --password-file=FILE    get password from FILE
+\par \tab     --bwlimit=KBPS\tab     limit I/O bandwidth, KBytes per second
+\par \tab     --write-batch=FILE\tab     write a batch to FILE
+\par \tab     --read-batch=FILE\tab     read a batch from FILE
+\par \tab     --checksum-seed=NUM\tab     set block/file checksum seed
+\par \tab -4  --ipv4\tab \tab     prefer IPv4
+\par \tab -6  --ipv6\tab \tab     prefer IPv6
+\par \tab -h, --help\tab \tab     show this help screen
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par OPTIONS
+\par        rsync  uses  the\tab  GNU  long  options package. Many of the command line
+\par        options have two variants, one short and one long.   These  are\tab shown
+\par        below,  separated  by  commas.  Some options only have a long variant.
+\par        The \rquote =\rquote  for options that take a parameter is optional; whitespace  can
+\par        be used instead.
+\par 
+\par 
+\par        -h, --help
+\par \tab       Print  a\tab short  help  page describing the options available in
+\par \tab       rsync
+\par 
+\par 
+\par        --version
+\par \tab       print the rsync version number and exit
+\par 
+\par 
+\par        -v, --verbose
+\par \tab       This option increases the amount of information you  are\tab given
+\par \tab       during  the transfer.  By default, rsync works silently. A sin-
+\par \tab       gle -v will give you information about  what  files  are\tab being
+\par \tab       transferred  and\tab a brief summary at the end. Two -v flags will
+\par \tab       give you information  on\tab what  files  are  being\tab  skipped  and
+\par \tab       slightly\tab more  information  at the end. More than two -v flags
+\par \tab       should only be used if you are debugging rsync.
+\par 
+\par 
+\par        -q, --quiet
+\par \tab       This option decreases the amount of information you  are\tab given
+\par \tab       during  the  transfer, notably suppressing information messages
+\par \tab       from the remote server. This flag is useful when invoking rsync
+\par \tab       from cron.
+\par 
+\par 
+\par        -I, --ignore-times
+\par \tab       Normally\tab rsync  will  skip any files that are already the same
+\par \tab       size and have the same modification  time-stamp.\tab  This  option
+\par \tab       turns off this "quick check" behavior.
+\par 
+\par 
+\par        --size-only
+\par \tab       Normally rsync will not transfer any files that are already the
+\par \tab       same size and have the same modification time-stamp.  With  the
+\par \tab       --size-only  option, files will not be transferred if they have
+\par \tab       the same size, regardless of timestamp.  This  is\tab  useful\tab  when
+\par \tab       starting\tab to  use\tab  rsync\tab after  using another mirroring system
+\par \tab       which may not preserve timestamps exactly.
+\par 
+\par 
+\par        --modify-window
+\par \tab       When comparing two timestamps rsync treats  the  timestamps  as
+\par \tab       being equal if they are within the value of modify_window. This
+\par \tab       is normally zero, but you may find it useful to set this\tab to  a
+\par \tab       larger  value in some situations. In particular, when transfer-
+\par \tab       ring to Windows FAT filesystems which  cannot  represent\tab times
+\par \tab       with a 1 second resolution --modify-window=1 is useful.
+\par 
+\par 
+\par        -c, --checksum
+\par \tab       This  forces  the\tab  sender to checksum all files using a 128-bit
+\par \tab       MD4 checksum before transfer. The checksum is  then  explicitly
+\par \tab       checked  on  the\tab receiver and any files of the same name which
+\par \tab       already exist and have  the  same\tab  checksum  and\tab size  on  the
+\par \tab       receiver are not transferred.  This option can be quite slow.
+\par 
+\par 
+\par        -a, --archive
+\par \tab       This is equivalent to -rlptgoD. It is a quick way of saying you
+\par \tab       want recursion and want to preserve almost everything.
+\par 
+\par \tab       Note however that -a does not preserve hardlinks, because find-
+\par \tab       ing  multiply-linked  files  is expensive.  You must separately
+\par \tab       specify -H.
+\par 
+\par 
+\par        -r, --recursive
+\par \tab       This tells rsync to copy directories recursively. If you\tab don\rquote t
+\par \tab       specify this then rsync won\rquote t copy directories at all.
+\par 
+\par 
+\par        -R, --relative
+\par \tab       Use  relative paths. This means that the full path names speci-
+\par \tab       fied on the command line are sent to  the\tab  server\tab  rather\tab  than
+\par \tab       just the last parts of the filenames. This is particularly use-
+\par \tab       ful when you want to send several different directories at  the
+\par \tab       same time. For example, if you used the command
+\par 
+\par 
+\par 
+\par \tab       rsync foo/bar/foo.c remote:/tmp/
+\par 
+\par 
+\par 
+\par \tab       then  this  would\tab  create\tab  a  file called foo.c in /tmp/ on the
+\par \tab       remote machine. If instead you used
+\par 
+\par 
+\par 
+\par \tab       rsync -R foo/bar/foo.c remote:/tmp/
+\par 
+\par 
+\par 
+\par \tab       then a file called /tmp/foo/bar/foo.c would be created  on  the
+\par \tab       remote machine -- the full path name is preserved.
+\par 
+\par 
+\par        --no-relative
+\par \tab       Turn  off\tab  the  --relative  option.  This is only needed if you
+\par \tab       want to use --files-from without its  implied  --relative\tab  file
+\par \tab       processing.
+\par 
+\par 
+\par        --no-implied-dirs
+\par \tab       When  combined with the --relative option, the implied directo-
+\par \tab       ries in each path are not explicitly duplicated as part of  the
+\par \tab       transfer.\tab  This makes the transfer more optimal and also allows
+\par \tab       the two sides to have non-matching symlinks in the implied part
+\par \tab       of   the\tab  path.\tab  For  instance,\tab  if  you  transfer  the\tab  file
+\par \tab       "/path/foo/file" with -R, the default is for  rsync  to  ensure
+\par \tab       that  "/path"  and "/path/foo" on the destination exactly match
+\par \tab       the  directories/symlinks\tab  of  the  source.   Using  the\tab --no-
+\par \tab       implied-dirs  option  would  omit\tab  both  of these implied dirs,
+\par \tab       which means that if "/path" was a real directory on one machine
+\par \tab       and  a  symlink  of  the\tab other machine, rsync would not try to
+\par \tab       change this.
+\par 
+\par 
+\par        -b, --backup
+\par \tab       With this option, preexisting destination files are renamed  as
+\par \tab       each file is transferred or deleted.  You can control where the
+\par \tab       backup file goes and what (if any) suffix gets  appended\tab using
+\par \tab       the --backup-dir and --suffix options.
+\par 
+\par 
+\par        --backup-dir=DIR
+\par \tab       In  combination  with  the --backup option, this tells rsync to
+\par \tab       store all backups in the specified directory. This is very use-
+\par \tab       ful  for\tab incremental  backups.  You can additionally specify a
+\par \tab       backup suffix using the --suffix option  (otherwise  the\tab files
+\par \tab       backed  up  in the specified directory will keep their original
+\par \tab       filenames).  If DIR is a relative path, it is relative  to  the
+\par \tab       destination  directory (which changes in a recursive transfer).
+\par 
+\par 
+\par        --suffix=SUFFIX
+\par \tab       This option allows you to override the  default  backup  suffix
+\par \tab       used  with  the --backup (-b) option. The default suffix is a ~
+\par \tab       if no --backup-dir was specified,\tab  otherwise  it\tab is  an\tab empty
+\par \tab       string.
+\par 
+\par 
+\par        -u, --update
+\par \tab       This  forces  rsync to skip any files for which the destination
+\par \tab       file already exists and has a date later than the source\tab file.
+\par 
+\par \tab       In the currently implementation, a difference of file format is
+\par \tab       always considered to be important enough for an update, no mat-
+\par \tab       ter what date is on the objects.\tab In other words, if the source
+\par \tab       has a directory or a symlink where the destination has a\tab file,
+\par \tab       the  transfer  would  occur regardless of the timestamps.\tab  This
+\par \tab       might change in the future (feel free to comment on this on the
+\par \tab       mailing list if you have an opinion).
+\par 
+\par 
+\par        -K, --keep-dirlinks
+\par \tab       On the receiving side, if a symlink is pointing to a directory,
+\par \tab       it will be treated as matching a directory from the sender.
+\par 
+\par 
+\par        --inplace
+\par \tab       This causes rsync not to create a new copy of the file and then
+\par \tab       move  it into place.  Instead rsync will overwrite the existing
+\par \tab       file, meaning that the rsync algorithm can\rquote t extract  the\tab  full
+\par \tab       amount  of  network reduction it might otherwise (since it does
+\par \tab       not yet try to sort  data\tab  matches  --  a\tab  future\tab  version  may
+\par \tab       improve this).
+\par 
+\par \tab       This  option  is useful for transfer of large files with block-
+\par \tab       based changes or appended data, and also on  systems  that  are
+\par \tab       disk bound, not network bound.
+\par 
+\par \tab       The  option  implies  --partial  (since an interrupted transfer
+\par \tab       does not delete the file), but  conflicts\tab  with  --partial-dir,
+\par \tab       --compare-dest,  and  --link-dest\tab  (a future rsync version will
+\par \tab       hopefully update the protocol to remove these restrictions).
+\par 
+\par \tab       WARNING: The file\rquote s data will be in an inconsistent state\tab  dur-
+\par \tab       ing  the\tab transfer (and possibly afterward if the transfer gets
+\par \tab       interrupted), so you should not use this option to update files
+\par \tab       that are in use.\tab Also note that rsync will be unable to update
+\par \tab       a file inplace that is not writable by the receiving user.
+\par 
+\par 
+\par        -l, --links
+\par \tab       When symlinks are encountered, recreate the symlink on the des-
+\par \tab       tination.
+\par 
+\par 
+\par        -L, --copy-links
+\par \tab       When symlinks are encountered, the file that they point to (the
+\par \tab       referent) is copied, rather than the symlink.   In  older\tab  ver-
+\par \tab       sions of rsync, this option also had the side-effect of telling
+\par \tab       the receiving side to follow  symlinks,  such  as\tab  symlinks  to
+\par \tab       directories.   In\tab  a modern rsync such as this one, you\rquote ll need
+\par \tab       to specify --keep-dirlinks (-K) to  get  this  extra  behavior.
+\par \tab       The  only\tab  exception  is when sending files to an rsync that is
+\par \tab       too old to understand -K -- in that case, the  -L\tab  option\tab  will
+\par \tab       still have the side-effect of -K on that older receiving rsync.
+\par 
+\par 
+\par        --copy-unsafe-links
+\par \tab       This tells rsync to copy the referent of\tab symbolic  links\tab  that
+\par \tab       point  outside  the  copied  tree.   Absolute symlinks are also
+\par \tab       treated like ordinary files, and so are  any  symlinks  in  the
+\par \tab       source path itself when --relative is used.
+\par 
+\par 
+\par        --safe-links
+\par \tab       This  tells rsync to ignore any symbolic links which point out-
+\par \tab       side the copied tree. All absolute symlinks are  also  ignored.
+\par \tab       Using this option in conjunction with --relative may give unex-
+\par \tab       pected results.
+\par 
+\par 
+\par        -H, --hard-links
+\par \tab       This tells rsync to recreate hard\tab  links\tab on the\tab remote system
+\par \tab       to   be  the same as the local system. Without this option hard
+\par \tab       links are treated like regular files.
+\par 
+\par \tab       Note that rsync can only detect hard links if both parts of the
+\par \tab       link are in the list of files being sent.
+\par 
+\par \tab       This option can be quite slow, so only use it if you need it.
+\par 
+\par 
+\par        -W, --whole-file
+\par \tab       With  this  option  the incremental rsync algorithm is not used
+\par \tab       and the whole file is sent as-is instead.\tab  The transfer may  be
+\par \tab       faster  if  this\tab option is used when the bandwidth between the
+\par \tab       source and destination machines is higher than the bandwidth to
+\par \tab       disk  (especially\tab  when  the  "disk"  is\tab actually  a networked
+\par \tab       filesystem).  This is the default when both the source and des-
+\par \tab       tination are specified as local paths.
+\par 
+\par 
+\par        --no-whole-file
+\par \tab       Turn off --whole-file, for use when it is the default.
+\par 
+\par 
+\par        -p, --perms
+\par \tab       This  option causes rsync to set the destination permissions to
+\par \tab       be the same as the source permissions.
+\par 
+\par \tab       Without this option, each new file  gets\tab its  permissions  set
+\par \tab       based  on\tab  the  source  file\rquote s permissions and the umask at the
+\par \tab       receiving end, while all other files (including updated  files)
+\par \tab       retain  their  existing permissions (which is the same behavior
+\par \tab       as other file-copy utilities, such as cp).
+\par 
+\par 
+\par        -o, --owner
+\par \tab       This option causes rsync to set the owner\tab  of  the  destination
+\par \tab       file  to be the same as the source file.\tab On most systems, only
+\par \tab       the super-user can set file ownership.  By default, the preser-
+\par \tab       vation  is done by name, but may fall back to using the ID num-
+\par \tab       ber in some circumstances.  See the --numeric-ids option for  a
+\par \tab       full discussion.
+\par 
+\par 
+\par        -g, --group
+\par \tab       This  option  causes  rsync to set the group of the destination
+\par \tab       file to be the same as the source file.  If the receiving\tab  pro-
+\par \tab       gram  is\tab not  running  as the super-user, only groups that the
+\par \tab       receiver is a member of will be  preserved.   By\tab default,  the
+\par \tab       preservation is done by name, but may fall back to using the ID
+\par \tab       number in some circumstances.  See the --numeric-ids option for
+\par \tab       a full discussion.
+\par 
+\par 
+\par        -D, --devices
+\par \tab       This option causes rsync to transfer character and block device
+\par \tab       information to the remote system\tab to  recreate  these  devices.
+\par \tab       This option is only available to the super-user.
+\par 
+\par 
+\par        -t, --times
+\par \tab       This  tells rsync to transfer modification times along with the
+\par \tab       files and update them on the remote system.  Note that if\tab  this
+\par \tab       option  is  not used, the optimization that excludes files that
+\par \tab       have not been modified cannot be effective; in other  words,  a
+\par \tab       missing  -t  or -a will cause the next transfer to behave as if
+\par \tab       it used -I, causing all files to be updated (though  the\tab rsync
+\par \tab       algorithm\tab  will  make  the update fairly efficient if the files
+\par \tab       haven\rquote t actually changed, you\rquote re much better off using -t).
+\par 
+\par 
+\par        -n, --dry-run
+\par \tab       This tells rsync to not do any file transfers, instead it\tab  will
+\par \tab       just report the actions it would have taken.
+\par 
+\par 
+\par        -S, --sparse
+\par \tab       Try  to  handle  sparse  files efficiently so they take up less
+\par \tab       space on the destination.
+\par 
+\par \tab       NOTE: Don\rquote t use this option when the destination is  a  Solaris
+\par \tab       "tmpfs"  filesystem.  It doesn\rquote t seem to handle seeks over null
+\par \tab       regions correctly and ends up corrupting the files.
+\par 
+\par 
+\par        -x, --one-file-system
+\par \tab       This tells rsync\tab not  to\tab  cross\tab filesystem  boundaries\tab  when
+\par \tab       recursing.   This\tab   is  useful for transferring the contents of
+\par \tab       only one filesystem.
+\par 
+\par 
+\par        --existing
+\par \tab       This tells rsync not to create any  new  files  -\tab  only  update
+\par \tab       files that already exist on the destination.
+\par 
+\par 
+\par        --ignore-existing
+\par \tab       This  tells rsync not to update files that already exist on the
+\par \tab       destination.
+\par 
+\par 
+\par        --max-delete=NUM
+\par \tab       This tells rsync not to delete more than NUM files or  directo-
+\par \tab       ries. This is useful when mirroring very large trees to prevent
+\par \tab       disasters.
+\par 
+\par 
+\par        --delete
+\par \tab       This tells rsync to delete any files on the receiving side that
+\par \tab       aren\rquote t  on  the  sending\tab side.\tab  Files that are excluded from
+\par \tab       transfer\tab are  excluded  from  being  deleted  unless  you  use
+\par \tab       --delete-excluded.
+\par 
+\par \tab       This  option  has\tab  no  effect  if\tab  directory  recursion  is not
+\par \tab       selected.
+\par 
+\par \tab       This option can be dangerous if used incorrectly!\tab  It is a very
+\par \tab       good  idea  to  run  first using the dry run option (-n) to see
+\par \tab       what files would be deleted to make sure important files aren\rquote t
+\par \tab       listed.
+\par 
+\par \tab       If the sending side detects any I/O errors then the deletion of
+\par \tab       any files at the destination will\tab  be  automatically  disabled.
+\par \tab       This  is\tab to prevent temporary filesystem failures (such as NFS
+\par \tab       errors) on the sending side causing a massive deletion of files
+\par \tab       on  the  destination.  You can override this with the --ignore-
+\par \tab       errors option.
+\par 
+\par 
+\par        --delete-excluded
+\par \tab       In addition to deleting the files on the\tab receiving  side\tab  that
+\par \tab       are  not\tab on  the sending side, this tells rsync to also delete
+\par \tab       any  files  on  the  receiving  side  that  are  excluded\tab  (see
+\par \tab       --exclude).  Implies --delete.
+\par 
+\par 
+\par        --delete-after
+\par \tab       By  default  rsync  does\tab file  deletions on the receiving side
+\par \tab       before transferring files to try to ensure that there is suffi-
+\par \tab       cient  space on the receiving filesystem. If you want to delete
+\par \tab       after transferring,  use\tab the  --delete-after  switch.  Implies
+\par \tab       --delete.
+\par 
+\par 
+\par        --ignore-errors
+\par \tab       Tells --delete to go ahead and delete files even when there are
+\par \tab       I/O errors.
+\par 
+\par 
+\par        --force
+\par \tab       This options tells rsync to delete directories even if they are
+\par \tab       not  empty  when\tab they  are  to be replaced by non-directories.
+\par \tab       This is only relevant without --delete  because  deletions  are
+\par \tab       now  done\tab  depth-first.  Requires the --recursive option (which
+\par \tab       is implied by -a) to have any effect.
+\par 
+\par 
+\par        -B, --block-size=BLOCKSIZE
+\par \tab       This forces the block size used in the  rsync  algorithm\tab to  a
+\par \tab       fixed value.  It is normally selected based on the size of each
+\par \tab       file being updated.  See the technical report for details.
+\par 
+\par 
+\par        -e, --rsh=COMMAND
+\par \tab       This option allows you to choose an  alternative\tab remote\tab shell
+\par \tab       program  to  use for communication between the local and remote
+\par \tab       copies of rsync. Typically, rsync is configured to use  ssh  by
+\par \tab       default, but you may prefer to use rsh on a local network.
+\par 
+\par \tab       If  this option is used with [user@]host::module/path, then the
+\par \tab       remote shell COMMAND will be used to run an rsync server on the
+\par \tab       remote  host,  and  all  data  will be transmitted through that
+\par \tab       remote shell connection, rather than through  a  direct  socket
+\par \tab       connection  to  a running rsync server on the remote host.  See
+\par \tab       the section "CONNECTING TO AN RSYNC SERVER OVER A REMOTE\tab SHELL
+\par \tab       PROGRAM" above.
+\par 
+\par \tab       Command-line  arguments  are permitted in COMMAND provided that
+\par \tab       COMMAND is presented to rsync as a single argument.  For\tab exam-
+\par \tab       ple:
+\par 
+\par \tab       -e "ssh -p 2234"
+\par 
+\par \tab       (Note  that  ssh\tab users can alternately customize site-specific
+\par \tab       connect options in their .ssh/config file.)
+\par 
+\par \tab       You  can\tab also  choose  the  remote  shell  program  using  the
+\par \tab       RSYNC_RSH environment variable, which accepts the same range of
+\par \tab       values as -e.
+\par 
+\par \tab       See also the --blocking-io option which  is  affected  by\tab  this
+\par \tab       option.
+\par 
+\par 
+\par        --rsync-path=PATH
+\par \tab       Use this to specify the path to the copy of rsync on the remote
+\par \tab       machine. Useful when it\rquote s not in your path. Note that  this  is
+\par \tab       the  full\tab  path  to the binary, not just the directory that the
+\par \tab       binary is in.
+\par 
+\par 
+\par        -C, --cvs-exclude
+\par \tab       This is a useful shorthand for excluding a broad range of files
+\par \tab       that  you often don\rquote t want to transfer between systems. It uses
+\par \tab       the same algorithm that CVS uses to determine if a file  should
+\par \tab       be ignored.
+\par 
+\par \tab       The exclude list is initialized to:
+\par 
+\par \tab       RCS  SCCS\tab  CVS  CVS.adm  RCSLOG  cvslog.* tags TAGS .make.state
+\par \tab       .nse_depinfo *~ #* .#* ,* _$* *$ *.old *.bak *.BAK *.orig *.rej
+\par \tab       .del-* *.a *.olb *.o *.obj *.so *.exe *.Z *.elc *.ln core .svn/
+\par 
+\par \tab       then files listed in a $HOME/.cvsignore are added to  the\tab  list
+\par \tab       and any files listed in the CVSIGNORE environment variable (all
+\par \tab       cvsignore names are delimited by whitespace).
+\par 
+\par \tab       Finally, any file is ignored if it is in the same directory  as
+\par \tab       a\tab  .cvsignore  file  and\tab matches\tab  one  of  the patterns listed
+\par \tab       therein.\tab See the cvs(1) manual for more information.
+\par 
+\par 
+\par        --exclude=PATTERN
+\par \tab       This option allows you to\tab  selectively  exclude  certain\tab files
+\par \tab       from  the\tab  list of files to be transferred. This is most useful
+\par \tab       in combination with a recursive transfer.
+\par 
+\par \tab       You may use as many --exclude options on the  command  line  as
+\par \tab       you like to build up the list of files to exclude.
+\par 
+\par \tab       See  the\tab EXCLUDE\tab  PATTERNS section for detailed information on
+\par \tab       this option.
+\par 
+\par 
+\par        --exclude-from=FILE
+\par \tab       This option is similar to the --exclude option, but instead  it
+\par \tab       adds  all\tab  exclude  patterns  listed  in\tab the  file FILE to the
+\par \tab       exclude list.  Blank lines in FILE and lines starting with  \rquote ;\rquote 
+\par \tab       or  \rquote #\rquote   are  ignored.  If FILE is - the list will be read from
+\par \tab       standard input.
+\par 
+\par 
+\par        --include=PATTERN
+\par \tab       This option tells rsync to not exclude the specified pattern of
+\par \tab       filenames.  This\tab is  useful as it allows you to build up quite
+\par \tab       complex exclude/include rules.
+\par 
+\par \tab       See the EXCLUDE PATTERNS section for  detailed  information  on
+\par \tab       this option.
+\par 
+\par 
+\par        --include-from=FILE
+\par \tab       This specifies a list of include patterns from a file.  If FILE
+\par \tab       is "-" the list will be read from standard input.
+\par 
+\par 
+\par        --files-from=FILE
+\par \tab       Using this option allows you to specify the exact list of files
+\par \tab       to  transfer  (as read from the specified FILE or "-" for stan-
+\par \tab       dard input).  It also tweaks the default behavior of  rsync  to
+\par \tab       make transferring just the specified files and directories eas-
+\par \tab       ier.  For instance, the --relative option is enabled by default
+\par \tab       when this option is used (use --no-relative if you want to turn
+\par \tab       that off), all directories specified in the list are created on
+\par \tab       the destination (rather than being noisily skipped without -r),
+\par \tab       and the -a (--archive) option\rquote s  behavior\tab  does  not  imply  -r
+\par \tab       (--recursive) -- specify it explicitly, if you want it.
+\par 
+\par \tab       The  file names that are read from the FILE are all relative to
+\par \tab       the source dir -- any leading slashes are removed and  no\tab  ".."
+\par \tab       references  are  allowed to go higher than the source dir.  For
+\par \tab       example, take this command:
+\par 
+\par \tab       rsync -a --files-from=/tmp/foo /usr remote:/backup
+\par 
+\par \tab       If /tmp/foo contains the string "bin"  (or  even\tab "/bin"),  the
+\par \tab       /usr/bin directory will be created as /backup/bin on the remote
+\par \tab       host (but the contents of the /usr/bin dir would\tab not  be\tab  sent
+\par \tab       unless  you specified -r or the names were explicitly listed in
+\par \tab       /tmp/foo).  Also keep in mind that the effect of\tab the  (enabled
+\par \tab       by  default)  --relative\tab option\tab is to duplicate only the path
+\par \tab       info that is read from the file -- it does not force the dupli-
+\par \tab       cation of the source-spec path (/usr in this case).
+\par 
+\par \tab       In  addition, the --files-from file can be read from the remote
+\par \tab       host instead of the local host if\tab  you  specify  a  "host:"  in
+\par \tab       front  of\tab  the  file (the host must match one end of the trans-
+\par \tab       fer).  As a short-cut, you can specify just a prefix of ":"  to
+\par \tab       mean "use the remote end of the transfer".  For example:
+\par 
+\par \tab       rsync -a --files-from=:/path/file-list src:/ /tmp/copy
+\par 
+\par \tab       This  would copy all the files specified in the /path/file-list
+\par \tab       file that was located on the remote "src" host.
+\par 
+\par 
+\par        -0, --from0
+\par \tab       This tells rsync that the filenames it reads from\tab  a  file  are
+\par \tab       terminated  by a null (\rquote \\0\rquote ) character, not a NL, CR, or CR+LF.
+\par \tab       This affects --exclude-from, --include-from, and\tab --files-from.
+\par \tab       It  does\tab not affect --cvs-exclude (since all names read from a
+\par \tab       .cvsignore file are split on whitespace).
+\par 
+\par 
+\par        -T, --temp-dir=DIR
+\par \tab       This option instructs rsync to use DIR as a  scratch  directory
+\par \tab       when  creating temporary copies of the files transferred on the
+\par \tab       receiving side.  The default behavior is to create  the  tempo-
+\par \tab       rary files in the receiving directory.
+\par 
+\par 
+\par        --compare-dest=DIR
+\par \tab       This  option  instructs  rsync  to  use  DIR on the destination
+\par \tab       machine as an additional directory to compare destination files
+\par \tab       against  when  doing  transfers if the files are missing in the
+\par \tab       destination directory.  This is useful for doing transfers to a
+\par \tab       new  destination\tab while leaving existing files intact, and then
+\par \tab       doing a flash-cutover when all  files  have  been\tab  successfully
+\par \tab       transferred  (for\tab  example  by  moving  directories  around and
+\par \tab       removing the old directory,  although  this  skips  files\tab  that
+\par \tab       haven\rquote t  changed; see also --link-dest).\tab This option increases
+\par \tab       the usefulness of --partial because partially transferred files
+\par \tab       will  remain in the new temporary destination until they have a
+\par \tab       chance to be completed.  If DIR is a relative path, it is rela-
+\par \tab       tive to the destination directory.
+\par 
+\par 
+\par        --link-dest=DIR
+\par \tab       This  option  behaves  like --compare-dest but also will create
+\par \tab       hard links from DIR to the destination directory for  unchanged
+\par \tab       files.  Files with changed ownership or permissions will not be
+\par \tab       linked.  An example:
+\par 
+\par 
+\par 
+\par 
+\par \tab \tab   rsync -av --link-dest=$PWD/prior_dir host:src_dir/ new_dir/
+\par 
+\par 
+\par 
+\par 
+\par \tab       Like --compare-dest if DIR is a relative path, it\tab  is  relative
+\par \tab       to  the  destination directory.  Note that rsync versions prior
+\par \tab       to 2.6.1 had a bug that could prevent --link-dest from  working
+\par \tab       properly\tab for a non-root user when -o was specified (or implied
+\par \tab       by -a).  If the receiving rsync is not new enough, you can work
+\par \tab       around this bug by avoiding the -o option.
+\par 
+\par 
+\par        -z, --compress
+\par \tab       With this option, rsync compresses any data from the files that
+\par \tab       it sends to the destination machine.  This option is useful  on
+\par \tab       slow  connections.   The\tab compression  method  used is the same
+\par \tab       method that gzip uses.
+\par 
+\par \tab       Note this this option  typically\tab achieves  better  compression
+\par \tab       ratios  that  can\tab  be  achieved  by  using a compressing remote
+\par \tab       shell, or a compressing transport, as it takes advantage of the
+\par \tab       implicit information sent for matching data blocks.
+\par 
+\par 
+\par        --numeric-ids
+\par \tab       With this option rsync will transfer numeric group and user IDs
+\par \tab       rather than using user and group names and mapping them at both
+\par \tab       ends.
+\par 
+\par \tab       By  default rsync will use the username and groupname to deter-
+\par \tab       mine what ownership to give files. The special uid  0  and  the
+\par \tab       special  group  0 are never mapped via user/group names even if
+\par \tab       the --numeric-ids option is not specified.
+\par 
+\par \tab       If a user or group has no name on the source system or  it  has
+\par \tab       no  match\tab  on  the destination system, then the numeric ID from
+\par \tab       the source system is used instead.  See also  the\tab  comments  on
+\par \tab       the  "use chroot" setting in the rsyncd.conf manpage for infor-
+\par \tab       mation on how the chroot setting\tab affects\tab  rsync\rquote s  ability  to
+\par \tab       look  up\tab the names of the users and groups and what you can do
+\par \tab       about it.
+\par 
+\par 
+\par        --timeout=TIMEOUT
+\par \tab       This option allows you to set a maximum I/O timeout in seconds.
+\par \tab       If  no  data  is\tab transferred for the specified time then rsync
+\par \tab       will exit. The default is 0, which means no timeout.
+\par 
+\par 
+\par        --daemon
+\par \tab       This tells rsync that it is to run as a daemon.  The daemon may
+\par \tab       be accessed using the host::module or rsync://host/module/ syn-
+\par \tab       tax.
+\par 
+\par \tab       If standard input is a socket then rsync will assume that it is
+\par \tab       being  run via inetd, otherwise it will detach from the current
+\par \tab       terminal and become a background daemon.\tab The daemon will\tab  read
+\par \tab       the  config file (rsyncd.conf) on each connect made by a client
+\par \tab       and respond to requests accordingly.   See  the  rsyncd.conf(5)
+\par \tab       man page for more details.
+\par 
+\par 
+\par        --no-detach
+\par \tab       When  running  as\tab  a daemon, this option instructs rsync to not
+\par \tab       detach itself and become a background process.  This option  is
+\par \tab       required\tab when  running as a service on Cygwin, and may also be
+\par \tab       useful when rsync is supervised by a program  such  as  daemon-
+\par \tab       tools or AIX\rquote s System Resource Controller.  --no-detach is also
+\par \tab       recommended when rsync is run under a  debugger.\tab  This  option
+\par \tab       has no effect if rsync is run from inetd or sshd.
+\par 
+\par 
+\par        --address
+\par \tab       By  default rsync will bind to the wildcard address when run as
+\par \tab       a daemon with the --daemon option or when connecting to a rsync
+\par \tab       server.  The  --address option allows you to specify a specific
+\par \tab       IP address (or hostname) to bind to. This makes virtual hosting
+\par \tab       possible in conjunction with the --config option.
+\par 
+\par 
+\par        --config=FILE
+\par \tab       This specifies an alternate config file than the default.\tab  This
+\par \tab       is only relevant when --daemon is specified.   The  default  is
+\par \tab       /etc/rsyncd.conf\tab unless\tab the  daemon  is running over a remote
+\par \tab       shell program and the remote user is not root; in that case the
+\par \tab       default  is  rsyncd.conf\tab in  the\tab  current directory (typically
+\par \tab       $HOME).
+\par 
+\par 
+\par        --port=PORT
+\par \tab       This specifies an alternate TCP port number to use rather\tab  than
+\par \tab       the default port 873.
+\par 
+\par 
+\par        --blocking-io
+\par \tab       This  tells  rsync  to use blocking I/O when launching a remote
+\par \tab       shell transport.\tab If the remote shell is either rsh  or  remsh,
+\par \tab       rsync  defaults to using blocking I/O, otherwise it defaults to
+\par \tab       using non-blocking I/O.  (Note that  ssh\tab prefers\tab  non-blocking
+\par \tab       I/O.)
+\par 
+\par 
+\par        --no-blocking-io
+\par \tab       Turn off --blocking-io, for use when it is the default.
+\par 
+\par 
+\par        --log-format=FORMAT
+\par \tab       This  allows  you to specify exactly what the rsync client logs
+\par \tab       to stdout on a per-file basis.  The  log\tab format\tab is  specified
+\par \tab       using  the  same format conventions as the log format option in
+\par \tab       rsyncd.conf.
+\par 
+\par 
+\par        --stats
+\par \tab       This tells rsync to print a verbose set of  statistics  on  the
+\par \tab       file  transfer,  allowing\tab  you  to tell how effective the rsync
+\par \tab       algorithm is for your data.
+\par 
+\par 
+\par        --partial
+\par \tab       By default, rsync will delete any partially transferred file if
+\par \tab       the  transfer  is interrupted. In some circumstances it is more
+\par \tab       desirable to keep partially transferred files. Using the --par-
+\par \tab       tial  option  tells rsync to keep the partial file which should
+\par \tab       make a subsequent transfer of the rest of the file much faster.
+\par 
+\par 
+\par        --partial-dir=DIR
+\par \tab       Turns  on\tab  --partial  mode,  but tells rsync to put a partially
+\par \tab       transferred file into DIR instead of writing out\tab the  file  to
+\par \tab       the  destination dir.  Rsync will also use a file found in this
+\par \tab       dir as data to speed up the transfer (i.e. when  you  redo  the
+\par \tab       send after rsync creates a partial file) and delete such a file
+\par \tab       after it has served its purpose.\tab Note that if --whole-file  is
+\par \tab       specified\tab  (or  implied) that an existing partial-dir file will
+\par \tab       not be used to speedup the transfer  (since  rsync  is  sending
+\par \tab       files without using the incremental rsync algorithm).
+\par 
+\par \tab       Rsync  will  create the dir if it is missing (just the last dir
+\par \tab       -- not the whole path).  This makes it easy to use  a  relative
+\par \tab       path  (such  as  "--partial-dir=.rsync-partial")\tab to have rsync
+\par \tab       create the partial-directory in the destination  file\rquote s  direc-
+\par \tab       tory  (rsync  will also try to remove the DIR if a partial file
+\par \tab       was found to exist at the start of the transfer and the DIR was
+\par \tab       specified as a relative path).
+\par 
+\par \tab       If  the  partial-dir  value is not an absolute path, rsync will
+\par \tab       also add an --exclude of this value at  the  end\tab of  all\tab  your
+\par \tab       existing\tab excludes.   This  will prevent partial-dir files from
+\par \tab       being transferred and also prevent  the  untimely\tab  deletion  of
+\par \tab       partial-dir items on the receiving side.\tab An example: the above
+\par \tab       --partial-dir option would add  an  "--exclude=.rsync-partial/"
+\par \tab       rule  at the end of any other include/exclude rules.  Note that
+\par \tab       if you are supplying your own include/exclude  rules,  you  may
+\par \tab       need  to\tab manually  insert  a rule for this directory exclusion
+\par \tab       somewhere higher up in the list so that it has  a\tab  high  enough
+\par \tab       priority\tab to be effective (e.g., if your rules specify a trail-
+\par \tab       ing --exclude=* rule, the auto-added rule will be ineffective).
+\par 
+\par \tab       IMPORTANT:  the  --partial-dir  should not be writable by other
+\par \tab       users or it is a security risk.  E.g. AVOID "/tmp".
+\par 
+\par \tab       You can also set the partial-dir\tab value  the  RSYNC_PARTIAL_DIR
+\par \tab       environment variable.  Setting this in the environment does not
+\par \tab       force --partial to be enabled, but rather it effects where par-
+\par \tab       tial  files  go  when --partial (or -P) is used.\tab For instance,
+\par \tab       instead  of  specifying  --partial-dir=.rsync-tmp\tab  along\tab  with
+\par \tab       --progress,  you could set RSYNC_PARTIAL_DIR=.rsync-tmp in your
+\par \tab       environment and then just use the -P option to turn on the  use
+\par \tab       of the .rsync-tmp dir for partial transfers.  The only time the
+\par \tab       --partial option does not look for this  environment  value  is
+\par \tab       when  --inplace  was  also specified (since --inplace conflicts
+\par \tab       with --partial-dir).
+\par 
+\par 
+\par        --progress
+\par \tab       This option  tells  rsync\tab  to  print  information\tab  showing  the
+\par \tab       progress\tab of the transfer. This gives a bored user something to
+\par \tab       watch.  Implies --verbose without incrementing verbosity.
+\par 
+\par \tab       When the file is transferring, the data looks like this:
+\par 
+\par 
+\par 
+\par 
+\par \tab \tab     782448  63%\tab  110.64kB/s    0:00:04
+\par 
+\par 
+\par 
+\par 
+\par \tab       This tells you the current file size,  the  percentage  of  the
+\par \tab       transfer\tab that is complete, the current calculated file-comple-
+\par \tab       tion rate (including both data over the  wire  and  data\tab being
+\par \tab       matched  locally),  and  the  estimated  time remaining in this
+\par \tab       transfer.
+\par 
+\par \tab       After the a file is complete, it the data looks like this:
+\par 
+\par 
+\par 
+\par 
+\par \tab \tab    1238099 100%\tab  146.38kB/s    0:00:08\tab (5, 57.1% of 396)
+\par 
+\par 
+\par 
+\par 
+\par \tab       This tells you the final file size, that\tab it\rquote s  100%  complete,
+\par \tab       the  final  transfer  rate  for the file, the amount of elapsed
+\par \tab       time it took to transfer the file, and the addition of a total-
+\par \tab       transfer summary in parentheses.\tab These additional numbers tell
+\par \tab       you how many files have been updated, and what percent  of  the
+\par \tab       total number of files has been scanned.
+\par 
+\par 
+\par        -P     The  -P option is equivalent to --partial --progress.  Its pur-
+\par \tab       pose is to make it much easier to specify these two options for
+\par \tab       a long transfer that may be interrupted.
+\par 
+\par 
+\par        --password-file
+\par \tab       This  option  allows  you\tab  to  provide a password in a file for
+\par \tab       accessing a remote rsync server. Note that this option is\tab  only
+\par \tab       useful when accessing an rsync server using the built in trans-
+\par \tab       port, not when using a remote shell as the transport. The\tab  file
+\par \tab       must not be world readable. It should contain just the password
+\par \tab       as a single line.
+\par 
+\par 
+\par        --bwlimit=KBPS
+\par \tab       This option allows you to specify a maximum  transfer  rate  in
+\par \tab       kilobytes\tab  per second. This option is most effective when using
+\par \tab       rsync with large files (several megabytes and up). Due  to  the
+\par \tab       nature  of  rsync\tab  transfers,  blocks of data are sent, then if
+\par \tab       rsync determines the transfer was too fast, it will wait before
+\par \tab       sending  the next data block. The result is an average transfer
+\par \tab       rate equaling the specified limit. A value of zero specifies no
+\par \tab       limit.
+\par 
+\par 
+\par        --write-batch=FILE
+\par \tab       Record  a\tab  file  that can later be applied to another identical
+\par \tab       destination with --read-batch. See the "BATCH MODE" section for
+\par \tab       details.
+\par 
+\par 
+\par        --read-batch=FILE
+\par \tab       Apply all of the changes stored in FILE, a file previously gen-
+\par \tab       erated by --write-batch.\tab If FILE is "-" the batch data will be
+\par \tab       read  from  standard  input.   See the "BATCH MODE" section for
+\par \tab       details.
+\par 
+\par 
+\par        -4, --ipv4 or -6, --ipv6
+\par \tab       Tells rsync to prefer IPv4/IPv6 when  creating  sockets.\tab  This
+\par \tab       only  affects  sockets that rsync has direct control over, such
+\par \tab       as the outgoing socket when directly contacting an  rsync\tab  dae-
+\par \tab       mon,  or the incoming sockets that an rsync daemon uses to lis-
+\par \tab       ten for connections.  One of these options may be\tab  required  in
+\par \tab       older  versions of Linux to work around an IPv6 bug in the ker-
+\par \tab       nel (if you see an "address already in use" error when  nothing
+\par \tab       else  is\tab using  the port, try specifying --ipv6 or --ipv4 when
+\par \tab       starting the daemon).
+\par 
+\par 
+\par        --checksum-seed=NUM
+\par \tab       Set the MD4 checksum seed to the\tab integer\tab  NUM.\tab This  4\tab  byte
+\par \tab       checksum\tab seed  is included in each block and file MD4 checksum
+\par \tab       calculation.  By default the checksum seed is generated by  the
+\par \tab       server and defaults to the current time().  This option is used
+\par \tab       to set a specific checksum seed, which is useful\tab for  applica-
+\par \tab       tions  that want repeatable block and file checksums, or in the
+\par \tab       case where the user wants a more random  checksum\tab  seed.\tab  Note
+\par \tab       that setting NUM to 0 causes rsync to use the default of time()
+\par \tab       for checksum seed.
+\par 
+\par 
+\par 
+\par EXCLUDE PATTERNS
+\par        The exclude and include patterns specified to rsync allow for flexible
+\par        selection of which files to transfer and which files to skip.
+\par 
+\par        Rsync  builds  an ordered list of include/exclude options as specified
+\par        on the command line. Rsync checks each file and directory name against
+\par        each  exclude/include  pattern  in turn. The first matching pattern is
+\par        acted on. If it is an exclude pattern, then that file is\tab  skipped.  If
+\par        it  is  an  include  pattern  then that filename is not skipped. If no
+\par        matching include/exclude pattern is found then  the  filename  is  not
+\par        skipped.
+\par 
+\par        The  filenames  matched against the exclude/include patterns are rela-
+\par        tive to the "root of the transfer".  If you think of the transfer as a
+\par        subtree of names that are being sent from sender to receiver, the root
+\par        is where the tree starts to be duplicated in  the  destination  direc-
+\par        tory.  This root governs where patterns that start with a / match (see
+\par        below).
+\par 
+\par        Because the matching is relative to the\tab transfer-root,\tab changing  the
+\par        trailing slash on a source path or changing your use of the --relative
+\par        option affects the path you need to use in your matching (in  addition
+\par        to changing how much of the file tree is duplicated on the destination
+\par        system).\tab  The following examples demonstrate this.
+\par 
+\par        Let\rquote s say that we want to match two source files, one with an absolute
+\par        path    of    "/home/me/foo/bar",    and\tab    one\tab  with\tab a   path   of
+\par        "/home/you/bar/baz".  Here is how the various command  choices  differ
+\par        for a 2-source transfer:
+\par 
+\par 
+\par 
+\par 
+\par \tab   Example cmd: rsync -a /home/me /home/you /dest
+\par \tab   +/- pattern: /me/foo/bar
+\par \tab   +/- pattern: /you/bar/baz
+\par \tab   Target file: /dest/me/foo/bar
+\par \tab   Target file: /dest/you/bar/baz
+\par 
+\par \tab   Example cmd: rsync -a /home/me/ /home/you/ /dest
+\par \tab   +/- pattern: /foo/bar\tab \tab       (note missing "me")
+\par \tab   +/- pattern: /bar/baz\tab \tab       (note missing "you")
+\par \tab   Target file: /dest/foo/bar
+\par \tab   Target file: /dest/bar/baz
+\par 
+\par \tab   Example cmd: rsync -a --relative /home/me/ /home/you /dest
+\par \tab   +/- pattern: /home/me/foo/bar\tab       (note full path)
+\par \tab   +/- pattern: /home/you/bar/baz      (ditto)
+\par \tab   Target file: /dest/home/me/foo/bar
+\par \tab   Target file: /dest/home/you/bar/baz
+\par 
+\par \tab   Example cmd: cd /home; rsync -a --relative me/foo you/ /dest
+\par \tab   +/- pattern: /me/foo/bar\tab (starts at specified path)
+\par \tab   +/- pattern: /you/bar/baz\tab (ditto)
+\par \tab   Target file: /dest/me/foo/bar
+\par \tab   Target file: /dest/you/bar/baz
+\par 
+\par 
+\par 
+\par 
+\par        The easiest way to see what name you should include/exclude is to just
+\par        look at the output when using --verbose and put a / in  front  of  the
+\par        name  (use  the\tab --dry-run  option if you\rquote re not yet ready to copy any
+\par        files).
+\par 
+\par        Note that, when using the --recursive (-r) option (which is implied by
+\par        -a), every subcomponent of every path is visited from the top down, so
+\par        include/exclude patterns get applied recursively to each subcomponent.
+\par        The  exclude  patterns  actually short-circuit the directory traversal
+\par        stage when rsync finds the files to send.  If  a\tab  pattern  excludes  a
+\par        particular  parent  directory,  it can render a deeper include pattern
+\par        ineffectual because rsync did not descend through that  excluded\tab  sec-
+\par        tion of the hierarchy.
+\par 
+\par        Note  also  that\tab  the --include and --exclude options take one pattern
+\par        each. To add multiple patterns use the --include-from  and  --exclude-
+\par        from options or multiple --include and --exclude options.
+\par 
+\par        The patterns can take several forms. The rules are:
+\par 
+\par 
+\par 
+\par        o      if  the  pattern starts with a / then it is matched against the
+\par \tab       start of the filename, otherwise it is matched against the  end
+\par \tab       of  the  filename.   This\tab  is  the equivalent of a leading ^ in
+\par \tab       regular expressions.  Thus "/foo" would  match  a\tab  file  called
+\par \tab       "foo" at the transfer-root (see above for how this is different
+\par \tab       from the filesystem-root).  On  the  other  hand,\tab  "foo"\tab would
+\par \tab       match  any  file\tab called "foo" anywhere in the tree because the
+\par \tab       algorithm is applied recursively from top down; it  behaves  as
+\par \tab       if each path component gets a turn at being the end of the file
+\par \tab       name.
+\par 
+\par 
+\par        o      if the pattern ends with a / then it will only match  a  direc-
+\par \tab       tory, not a file, link, or device.
+\par 
+\par 
+\par        o      if  the  pattern contains a wildcard character from the set *?[
+\par \tab       then expression matching is applied using\tab  the  shell  filename
+\par \tab       matching rules. Otherwise a simple string match is used.
+\par 
+\par 
+\par        o      the  double  asterisk  pattern  "**" will match slashes while a
+\par \tab       single asterisk pattern "*" will stop at slashes.
+\par 
+\par 
+\par        o      if the pattern contains a / (not counting a trailing  /)\tab or  a
+\par \tab       "**"  then  it  is matched against the full filename, including
+\par \tab       any leading directory. If the pattern doesn\rquote t contain a / or  a
+\par \tab       "**",  then  it  is matched only against the final component of
+\par \tab       the filename.  Again, remember that the  algorithm  is  applied
+\par \tab       recursively so "full filename" can actually be any portion of a
+\par \tab       path below the starting directory.
+\par 
+\par 
+\par        o      if the pattern starts with "+ " (a plus followed\tab by  a  space)
+\par \tab       then it is always considered an include pattern, even if speci-
+\par \tab       fied as part of an exclude  option.  The\tab prefix\tab is  discarded
+\par \tab       before matching.
+\par 
+\par 
+\par        o      if  the  pattern starts with "- " (a minus followed by a space)
+\par \tab       then it is always considered an exclude pattern, even if speci-
+\par \tab       fied  as\tab part  of  an  include option. The prefix is discarded
+\par \tab       before matching.
+\par 
+\par 
+\par        o      if the pattern is a single exclamation mark ! then the  current
+\par \tab       include/exclude  list is reset, removing all previously defined
+\par \tab       patterns.
+\par 
+\par        The +/- rules are most useful in a list that was\tab  read  from  a\tab file,
+\par        allowing\tab  you to have a single exclude list that contains both include
+\par        and exclude options in the proper order.
+\par 
+\par        Remember that the matching occurs at every step in  the\tab traversal  of
+\par        the  directory  hierarchy,  so  you  must  be sure that all the parent
+\par        directories of the files you want to include are not  excluded.\tab  This
+\par        is  particularly\tab  important  when  using\tab  a  trailing  \rquote *\rquote   rule.  For
+\par        instance, this won\rquote t work:
+\par 
+\par 
+\par 
+\par 
+\par \tab    + /some/path/this-file-will-not-be-found
+\par \tab    + /file-is-included
+\par \tab    - *
+\par 
+\par 
+\par 
+\par 
+\par        This fails because the parent directory "some" is excluded by the  \rquote *\rquote 
+\par        rule,  so  rsync\tab  never\tab visits\tab any  of\tab  the  files  in the "some" or
+\par        "some/path" directories.\tab  One solution is to ask for  all  directories
+\par        in the hierarchy to be included by using a single rule: --include=\rquote */\rquote 
+\par        (put it somewhere before the --exclude=\rquote *\rquote  rule).  Another solution is
+\par        to  add specific include rules for all the parent dirs that need to be
+\par        visited.\tab  For instance, this set of rules works fine:
+\par 
+\par 
+\par 
+\par 
+\par \tab    + /some/
+\par \tab    + /some/path/
+\par \tab    + /some/path/this-file-is-found
+\par \tab    + /file-also-included
+\par \tab    - *
+\par 
+\par 
+\par 
+\par 
+\par        Here are some examples of exclude/include matching:
+\par 
+\par 
+\par        o      --exclude "*.o" would exclude all filenames matching *.o
+\par 
+\par        o      --exclude "/foo" would exclude a file called foo in the  trans-
+\par \tab       fer-root directory
+\par 
+\par        o      --exclude "foo/" would exclude any directory called foo
+\par 
+\par        o      --exclude\tab  "/foo/*/bar"  would  exclude any file called bar two
+\par \tab       levels below a directory called foo in the transfer-root direc-
+\par \tab       tory
+\par 
+\par        o      --exclude\tab  "/foo/**/bar"\tab would exclude any file called bar two
+\par \tab       or more levels below a directory called foo  in  the  transfer-
+\par \tab       root directory
+\par 
+\par        o      --include\tab  "*/" --include "*.c" --exclude "*" would include all
+\par \tab       directories and C source files
+\par 
+\par        o      --include "foo/"\tab --include  "foo/bar.c"\tab --exclude  "*"\tab would
+\par \tab       include  only  foo/bar.c (the foo/ directory must be explicitly
+\par \tab       included or it would be excluded by the "*")
+\par 
+\par 
+\par BATCH MODE
+\par        Note: Batch mode should be considered experimental in this version  of
+\par        rsync. The interface and behavior have now stabilized, though, so feel
+\par        free to try this out.
+\par 
+\par        Batch mode can be used to apply the same set of updates to many\tab iden-
+\par        tical  systems. Suppose one has a tree which is replicated on a number
+\par        of hosts.  Now suppose some changes have been made to this source tree
+\par        and  those  changes need to be propagated to the other hosts. In order
+\par        to do this using batch mode, rsync is run with the write-batch  option
+\par        to apply the changes made to the source tree to one of the destination
+\par        trees.  The write-batch option causes the rsync client to store\tab in  a
+\par        "batch  file"  all  the\tab information  needed  to repeat this operation
+\par        against other, identical destination trees.
+\par 
+\par        To apply the recorded changes to another destination tree,  run\tab rsync
+\par        with  the  read-batch  option,  specifying  the name of the same batch
+\par        file, and the destination tree.\tab Rsync updates  the  destination\tab  tree
+\par        using the information stored in the batch file.
+\par 
+\par        For  convenience, one additional file is creating when the write-batch
+\par        option is used.\tab This file\rquote s name is created by appending ".sh" to the
+\par        batch  filename.\tab   The  .sh  file contains a command-line suitable for
+\par        updating a destination tree using that batch file. It can be  executed
+\par        using a Bourne(-like) shell, optionally passing in an alternate desti-
+\par        nation tree pathname which is then used instead of the original\tab path.
+\par        This  is useful when the destination tree path differs from the origi-
+\par        nal destination tree path.
+\par 
+\par        Generating the batch file once saves having to perform the  file\tab  sta-
+\par        tus,  checksum, and data block generation more than once when updating
+\par        multiple destination trees. Multicast transport protocols can be\tab  used
+\par        to  transfer the batch update files in parallel to many hosts at once,
+\par        instead of sending the same data to every host individually.
+\par 
+\par        Examples:
+\par 
+\par 
+\par 
+\par 
+\par \tab   $ rsync --write-batch=foo -a host:/source/dir/ /adest/dir/
+\par \tab   $ scp foo* remote:
+\par \tab   $ ssh remote ./foo.sh /bdest/dir/
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par 
+\par \tab   $ rsync --write-batch=foo -a /source/dir/ /adest/dir/
+\par \tab   $ ssh remote rsync --read-batch=- -a /bdest/dir/ <foo
+\par 
+\par 
+\par 
+\par 
+\par        In  these  examples,  rsync  is\tab used  to  update   /adest/dir/\tab  from
+\par        /source/dir/ and the information to repeat this operation is stored in
+\par        "foo" and "foo.sh".  The\tab  host  "remote"\tab  is  then  updated  with  the
+\par        batched\tab data  going  into  the directory /bdest/dir.  The differences
+\par        between the two examples reveals some of the flexibility you  have  in
+\par        how you deal with batches:
+\par 
+\par 
+\par 
+\par        o      The  first  example shows that the initial copy doesn\rquote t have to
+\par \tab       be local -- you can push or pull data  to/from  a\tab  remote\tab  host
+\par \tab       using either the remote-shell syntax or rsync daemon syntax, as
+\par \tab       desired.
+\par 
+\par 
+\par        o      The first example uses the created "foo.sh"  file\tab  to  get  the
+\par \tab       right  rsync options when running the read-batch command on the
+\par \tab       remote host.
+\par 
+\par 
+\par        o      The second example reads the batch data via standard  input  so
+\par \tab       that  the\tab  batch\tab file  doesn\rquote t need to be copied to the remote
+\par \tab       machine first.  This example avoids the foo.sh  script  because
+\par \tab       it  needed to use a modified --read-batch option, but you could
+\par \tab       edit the script file if you wished to make use of it  (just  be
+\par \tab       sure that no other option is trying to use standard input, such
+\par \tab       as the "--exclude-from=-" option).
+\par 
+\par 
+\par        Caveats:
+\par 
+\par        The read-batch option expects the destination tree that it is updating
+\par        to  be  identical  to the destination tree that was used to create the
+\par        batch update fileset.  When a difference between the destination trees
+\par        is  encountered\tab the  update  might be discarded with no error (if the
+\par        file appears to be up-to-date  already)\tab or  the\tab  file-update  may  be
+\par        attempted  and then, if the file fails to verify, the update discarded
+\par        with an error.  This means that it should be safe to  re-run  a\tab read-
+\par        batch  operation if the command got interrupted.\tab  If you wish to force
+\par        the batched-update to always be attempted  regardless  of  the  file\rquote s
+\par        size  and  date,\tab  use  the  -I option (when reading the batch).\tab If an
+\par        error occurs, the destination tree will probably\tab  be  in\tab  a  partially
+\par        updated\tab state.\tab In  that case, rsync can be used in its regular (non-
+\par        batch) mode of operation to fix up the destination tree.
+\par 
+\par        The rsync version used on all destinations must be at least as new  as
+\par        the one used to generate the batch file.\tab  Rsync will die with an error
+\par        if the protocol version in the batch file is too new  for  the  batch-
+\par        reading rsync to handle.
+\par 
+\par        The  --dry-run  (-n)  option  does not work in batch mode and yields a
+\par        runtime error.
+\par 
+\par        When reading a batch file, rsync\tab  will  force  the  value  of  certain
+\par        options\tab to match the data in the batch file if you didn\rquote t set them to
+\par        the same as the batch-writing command.  Other options can (and should)
+\par        be  changed.   For  instance  --write-batch  changes  to --read-batch,
+\par        --files-from is dropped, and the --include/--exclude options  are  not
+\par        needed unless --delete is specified without --delete-excluded.
+\par 
+\par        The code that creates the BATCH.sh file transforms any include/exclude
+\par        options into a single list that is appended as a\tab  "here"\tab  document  to
+\par        the  shell  script  file.  An advanced user can use this to modify the
+\par        exclude list if a change in what gets deleted by --delete is  desired.
+\par        A  normal user can ignore this detail and just use the shell script as
+\par        an easy way to  run  the\tab  appropriate  --read-batch  command  for  the
+\par        batched data.
+\par 
+\par        The original batch mode in rsync was based on "rsync+", but the latest
+\par        version uses a new implementation.
+\par 
+\par 
+\par SYMBOLIC LINKS
+\par        Three basic behaviors are possible when rsync  encounters  a  symbolic
+\par        link in the source directory.
+\par 
+\par        By  default,  symbolic  links  are  not transferred at all.  A message
+\par        "skipping non-regular" file is emitted for any symlinks that exist.
+\par 
+\par        If --links is specified, then symlinks are  recreated  with  the\tab  same
+\par        target on the destination.  Note that --archive implies --links.
+\par 
+\par        If --copy-links is specified, then symlinks are "collapsed" by copying
+\par        their referent, rather than the symlink.
+\par 
+\par        rsync also distinguishes "safe" and "unsafe" symbolic links.  An exam-
+\par        ple  where  this might be used is a web site mirror that wishes ensure
+\par        the rsync  module  they\tab copy  does  not\tab  include  symbolic  links  to
+\par        /etc/passwd  in\tab the public section of the site.\tab  Using --copy-unsafe-
+\par        links will cause any links to be copied as the file they point  to  on
+\par        the  destination.   Using  --safe-links\tab will cause unsafe links to be
+\par        omitted altogether.
+\par 
+\par        Symbolic links are considered unsafe if\tab they  are  absolute  symlinks
+\par        (start  with  /), empty, or if they contain enough ".."\tab components to
+\par        ascend from the directory being copied.
+\par 
+\par 
+\par DIAGNOSTICS
+\par        rsync occasionally produces error messages  that\tab  may  seem  a  little
+\par        cryptic.\tab  The  one that seems to cause the most confusion is "protocol
+\par        version mismatch - is your shell clean?".
+\par 
+\par        This message is usually caused by your startup scripts or remote shell
+\par        facility\tab  producing unwanted garbage on the stream that rsync is using
+\par        for its transport. The way to diagnose this problem  is\tab to  run\tab  your
+\par        remote shell like this:
+\par 
+\par 
+\par 
+\par 
+\par \tab   ssh remotehost /bin/true > out.dat
+\par 
+\par 
+\par 
+\par 
+\par        then  look at out.dat. If everything is working correctly then out.dat
+\par        should be a zero length file. If you are getting the above error\tab  from
+\par        rsync  then  you will probably find that out.dat contains some text or
+\par        data. Look at the contents and try to work out what is  producing  it.
+\par        The  most common cause is incorrectly configured shell startup scripts
+\par        (such as .cshrc or .profile) that contain output statements  for\tab  non-
+\par        interactive logins.
+\par 
+\par        If you are having trouble debugging include and exclude patterns, then
+\par        try specifying the -vv option.  At this level of verbosity rsync\tab  will
+\par        show why each individual file is included or excluded.
+\par 
+\par 
+\par EXIT VALUES
+\par        0      Success
+\par 
+\par        1      Syntax or usage error
+\par 
+\par        2      Protocol incompatibility
+\par 
+\par        3      Errors selecting input/output files, dirs
+\par 
+\par        4      Requested\tab  action not supported: an attempt was made to manipu-
+\par \tab       late 64-bit files on a platform that cannot support them; or an
+\par \tab       option was specified that is supported by the client and not by
+\par \tab       the server.
+\par 
+\par        5      Error starting client-server protocol
+\par 
+\par        10     Error in socket I/O
+\par 
+\par        11     Error in file I/O
+\par 
+\par        12     Error in rsync protocol data stream
+\par 
+\par        13     Errors with program diagnostics
+\par 
+\par        14     Error in IPC code
+\par 
+\par        20     Received SIGUSR1 or SIGINT
+\par 
+\par        21     Some error returned by waitpid()
+\par 
+\par        22     Error allocating core memory buffers
+\par 
+\par        23     Partial transfer due to error
+\par 
+\par        24     Partial transfer due to vanished source files
+\par 
+\par        30     Timeout in data send/receive
+\par 
+\par 
+\par ENVIRONMENT VARIABLES
+\par        CVSIGNORE
+\par \tab       The CVSIGNORE environment variable supplements any ignore\tab  pat-
+\par \tab       terns  in\tab  .cvsignore  files.  See the --cvs-exclude option for
+\par \tab       more details.
+\par 
+\par 
+\par        RSYNC_RSH
+\par \tab       The RSYNC_RSH environment variable allows you to\tab override  the
+\par \tab       default  shell  used  as the transport for rsync.\tab  Command line
+\par \tab       options are permitted after the command name, just as in the -e
+\par \tab       option.
+\par 
+\par 
+\par        RSYNC_PROXY
+\par \tab       The  RSYNC_PROXY\tab environment  variable  allows you to redirect
+\par \tab       your rsync client to use a web proxy when connecting to a rsync
+\par \tab       daemon. You should set RSYNC_PROXY to a hostname:port pair.
+\par 
+\par 
+\par        RSYNC_PASSWORD
+\par \tab       Setting  RSYNC_PASSWORD  to the required password allows you to
+\par \tab       run authenticated rsync connections to an rsync daemon  without
+\par \tab       user intervention. Note that this does not supply a password to
+\par \tab       a shell transport such as ssh.
+\par 
+\par 
+\par        USER or LOGNAME
+\par \tab       The USER or LOGNAME environment variables are used to determine
+\par \tab       the  default  username  sent to an rsync server.\tab If neither is
+\par \tab       set, the username defaults to "nobody".
+\par 
+\par 
+\par        HOME   The HOME environment  variable  is  used\tab to  find  the  user\rquote s
+\par \tab       default .cvsignore file.
+\par 
+\par 
+\par 
+\par FILES
+\par        /etc/rsyncd.conf or rsyncd.conf
+\par 
+\par 
+\par SEE ALSO
+\par        rsyncd.conf(5)
+\par 
+\par 
+\par DIAGNOSTICS
+\par BUGS
+\par        times are transferred as unix time_t values
+\par 
+\par        When  transferring  to  FAT  filesystems\tab  rsync may re-sync unmodified
+\par        files.  See the comments on the --modify-window option.
+\par 
+\par        file permissions, devices, etc. are transferred\tab as  native  numerical
+\par        values
+\par 
+\par        see also the comments on the --delete option
+\par 
+\par        Please report bugs! See the website at http://rsync.samba.org/
+\par 
+\par 
+\par CREDITS
+\par        rsync is distributed under the GNU public license.  See the file COPY-
+\par        ING for details.
+\par 
+\par        A WEB site is available at http://rsync.samba.org/.  The site includes
+\par        an  FAQ-O-Matic\tab which  may  cover questions unanswered by this manual
+\par        page.
+\par 
+\par        The primary ftp site for rsync is ftp://rsync.samba.org/pub/rsync.
+\par 
+\par        We would be delighted to hear from you if you like this program.
+\par 
+\par        This program uses the excellent zlib compression\tab  library  written  by
+\par        Jean-loup Gailly and Mark Adler.
+\par 
+\par 
+\par THANKS
+\par        Thanks  to Richard Brent, Brendan Mackay, Bill Waite, Stephen Rothwell
+\par        and David Bell for helpful suggestions, patches and testing of  rsync.
+\par        I\rquote ve probably missed some people, my apologies if I have.
+\par 
+\par        Especial thanks also to: David Dykstra, Jos Backus, Sebastian Krahmer,
+\par        Martin Pool, Wayne Davison, J.W. Schultz.
+\par 
+\par 
+\par AUTHOR
+\par        rsync was originally written by Andrew Tridgell\tab and  Paul  Mackerras.
+\par        Many people have later contributed to it.
+\par 
+\par        Mailing\tab  lists\tab  for   support\tab  and  development  are\tab available  at
+\par        http://lists.samba.org
+\par 
+\par 
+\par 
+\par \tab \tab \tab \tab  30 Sep 2004\tab \tab \tab      rsync(1)\par}

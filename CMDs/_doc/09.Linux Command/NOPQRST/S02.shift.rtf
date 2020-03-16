@@ -1,0 +1,97 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid667849017
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid599440930}
+{\list\listtemplateid29589676\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1150465888}
+}
+{\*\listoverridetable
+{\listoverride\listid599440930\listoverridecount0\ls1}
+{\listoverride\listid1150465888\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 S02.shift
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 PROLOG
+\par        This  manual  page is part of the POSIX Programmer's Manual.  The Linux implementation of this interface may differ (con-
+\par        sult the corresponding Linux manual page for details of Linux behavior), or the  interface  may  not  be  implemented  on
+\par        Linux.
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        shift - shift positional parameters
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        shift [n]
+\par 
+\par DESCRIPTION
+\par        The positional parameters shall be shifted. Positional parameter 1 shall be assigned the value of parameter (1+n), param-
+\par        eter 2 shall be assigned the value of parameter (2+n), and so on. The parameters represented by the numbers "$#" down  to
+\par        "$#-n+1" shall be unset, and the parameter '#' is updated to reflect the new number of positional parameters.
+\par 
+\par        The  value n shall be an unsigned decimal integer less than or equal to the value of the special parameter '#' .  If n is
+\par        not given, it shall be assumed to be 1. If n is 0, the positional and special parameters are not changed.
+\par 
+\par OPTIONS
+\par        None.
+\par 
+\par OPERANDS
+\par        See the DESCRIPTION.
+\par 
+\par STDIN
+\par        Not used.
+\par 
+\par INPUT FILES
+\par        None.
+\par 
+\par ENVIRONMENT VARIABLES
+\par        None.
+\par 
+\par ASYNCHRONOUS EVENTS
+\par        Default.
+\par 
+\par STDOUT
+\par        Not used.
+\par 
+\par STDERR
+\par        The standard error shall be used only for diagnostic messages.
+\par 
+\par OUTPUT FILES
+\par        None.
+\par 
+\par EXTENDED DESCRIPTION
+\par        None.
+\par 
+\par EXIT STATUS
+\par        The exit status is >0 if n>$#; otherwise, it is zero.
+\par 
+\par CONSEQUENCES OF ERRORS
+\par        Default.
+\par 
+\par        The following sections are informative.
+\par 
+\par APPLICATION USAGE
+\par        None.
+\par 
+\par EXAMPLES
+\par               $ set a b c d e
+\par               $ shift 2
+\par               $ echo $*
+\par               c d e
+\par 
+\par RATIONALE
+\par        None.
+\par 
+\par FUTURE DIRECTIONS
+\par        None.
+\par 
+\par SEE ALSO
+\par        Special Built-In Utilities\par}

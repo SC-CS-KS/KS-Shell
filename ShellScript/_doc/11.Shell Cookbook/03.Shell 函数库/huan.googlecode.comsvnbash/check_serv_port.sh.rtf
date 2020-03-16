@@ -1,0 +1,190 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid42580912\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1996484212}
+}
+{\*\listoverridetable
+{\listoverride\listid1996484212\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 check_serv_port.sh
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 #! /bin/bash
+\par 
+\par ## by huanlf@gmail.com 2008-03-07
+\par ## last modify 2008-04-08
+\par 
+\par 
+\par # --------------- definition ----------------- #
+\par ## verbose flag
+\par VERBOSE=
+\par 
+\par # --------------- white list ----------------- #
+\par 
+\par ## ips that can be ignored
+\par IGNORED_IPS=127.0.0.1
+\par 
+\par ## we will try to figure out the local interface's ip later in function get_lanip
+\par LANIPS=
+\par 
+\par ## ports that can be ignored ( <= 1024 ), ok in lan/wan
+\par IGNORED_PORTS=80,443
+\par 
+\par ## programs that can be ignored, ok in lan/wan
+\par IGNORED_PROGS=
+\par 
+\par # --------------- black list ----------------- #
+\par 
+\par ## ports that not should be bond on wan ip
+\par DANGER_PORTS=1-1024,3306
+\par 
+\par ## programs that should not serve in wan
+\par DANGER_PROGS=ssh*,mysqld
+\par 
+\par # --------------- functions ----------------- #
+\par 
+\par ## try to get all lan ips
+\par get_lanip()
+\par \{
+\par     local ip=$(
+\par         /sbin/ifconfig | 
+\par         awk '/inet addr/ \{ 
+\par             if ( $2 ~ /:172\\./ || $2 ~ /:192\\./ || $2 ~ /:10\\./ ) \{
+\par                 print substr( $2, 6 )
+\par             \}
+\par         \}'
+\par     )
+\par 
+\par     [[ -z "$ip" ]] && return 1 || echo $ip
+\par \}
+\par 
+\par ## just print listen_ip listen_port program_name
+\par format()
+\par \{
+\par     awk '
+\par     \{ 
+\par         sub(":", " ", $4)
+\par         sub(/[0-9]*\\//, "", $NF)
+\par         gsub(/[()]/, "", $NF)
+\par         sub(/^-$/, "unknow", $NF)
+\par         print $4, $NF
+\par     \}' 
+\par \}
+\par 
+\par check_port()
+\par \{
+\par     local port="$1"
+\par     shift
+\par     local list="$@"
+\par 
+\par     for p in $list; do
+\par         case $p in
+\par             *-*)
+\par                 local min=$\{p%%-*\}
+\par                 local max=$\{p##*-\}
+\par 
+\par                 if (( min <= port )) && (( port <= max )); then
+\par                     return 0
+\par                 fi
+\par                 ;;
+\par             *)
+\par                 if (( p == port )); then
+\par                     return 0
+\par                 fi
+\par         esac
+\par     done
+\par 
+\par     return 1
+\par \}
+\par 
+\par check_prog()
+\par \{
+\par     local prog=$1
+\par     shift
+\par     local list="$@"
+\par 
+\par     for p in $list; do
+\par         case $prog in
+\par             $p)
+\par                 return 0
+\par                 ;;
+\par         esac
+\par     done
+\par 
+\par     return 1
+\par \}
+\par 
+\par ## check ip,port,prog
+\par check()
+\par \{
+\par     local ok_ip ok_prog d_prog
+\par     local ip port prog
+\par 
+\par     while read ip port prog; do
+\par 
+\par         [[ "$VERBOSE" ]] && echo -e "checking [$ip $port $prog]"
+\par 
+\par         # --- white list start --- #
+\par 
+\par         ## skip lan_ips and ips in ignored_list
+\par         for ok_ip in $LANIPS $\{IGNORED_IPS//,/ \}; do
+\par             [[ "$ok_ip" == "$ip" ]] && continue 2
+\par         done
+\par 
+\par         ## skip ignored ports
+\par         if check_port "$port" $\{IGNORED_PORTS//,/ \}; then
+\par             continue
+\par         fi
+\par 
+\par         ## skip ignored programs
+\par         if check_prog "$prog" $\{IGNORED_PROGS//,/ \}; then
+\par             continue
+\par         fi
+\par 
+\par         # --- black list start --- #
+\par 
+\par         ## check dangerous ports
+\par         if check_port "$port" $\{DANGER_PORTS//,/ \}; then
+\par             echo -e "dangerous port in wan: [$ip:$port $prog]"
+\par             continue
+\par         fi
+\par 
+\par         ## check dangerous programs
+\par         if check_prog "$prog" $\{DANGER_PROGS//,/ \}; then
+\par             echo -e "dangerous serv in wan: [$ip:$port $prog]"
+\par             continue
+\par         fi
+\par 
+\par         ## other's are ignored
+\par         [[ "$VERBOSE" ]] && echo -e "ignored list [$ip:$port $prog]"
+\par 
+\par     done
+\par \}
+\par 
+\par # --------------- main ----------------- #
+\par 
+\par if [[ $1 == '-v' ]] || [[ $1 == '--verbose' ]]; then
+\par     VERBOSE=1
+\par fi
+\par 
+\par LANIPS=$( get_lanip )
+\par LAN_1=$( echo $LANIPS | awk '\{ print $1 \}' )
+\par 
+\par ## exits if can not can one lan ip
+\par : $\{LANIPS:? CAN NOT GET LAN IP\}
+\par 
+\par ## to avoid asterisk expansion
+\par tmpdir=$( mktemp -d 2>/dev/null || mkdir "/tmp/$(date +%s).$$.$RANDOM" )
+\par command cd $tmpdir
+\par 
+\par netstat -lpnt --inet 2>/dev/null |
+\par tail -n +3 |
+\par format |
+\par check  |
+\par \{
+\par     echo -e "host: [$LAN_1]"
+\par     cat
+\par \}
+\par 
+\par command cd
+\par rmdir $tmpdir\par}

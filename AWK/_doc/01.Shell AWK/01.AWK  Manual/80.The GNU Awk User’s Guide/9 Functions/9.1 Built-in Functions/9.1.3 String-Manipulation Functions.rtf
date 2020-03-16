@@ -1,0 +1,253 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red240\green240\blue240;\red160\green160\blue160;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1329395414\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1781509682}
+}
+{\*\listoverridetable
+{\listoverride\listid1781509682\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 9.1.3 String-Manipulation Functions
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 9.1.3 String-Manipulation Functions
+\par {\*\bkmkstart index_string_002dmanipulation_functions}{\*\bkmkend index_string_002dmanipulation_functions}\plain \f1\fs20 The functions in this section look at or change the text of one or more strings.
+\par gawk\~understands locales (see\~\plain \f1\ul\fs20\cf1 Locales\plain \f1\fs20 ) and does all string processing in terms of\~\plain \f1\i\fs20 characters\plain \f1\fs20 , not\~\plain \f1\i\fs20 bytes\plain \f1\fs20 . This distinction is particularly important to understand for locales where one character may be represented by multiple bytes. Thus, for example,\~length()\~returns the number of characters in a string, and not the number of bytes used to represent those characters. Similarly,\~index()\~works with character indices, and not byte indices.
+\par \plain \f1\b\fs20 
+\par CAUTION:\plain \f1\fs20 \~A number of functions deal with indices into strings. For these functions, the first character of a string is at position (index) one. This is different from C and the languages descended from it, where the first character is at position zero. You need to remember this when doing index calculations, particularly if you are used to C.
+\par In the following list, optional parameters are enclosed in square brackets\~([\~]).\~Several functions perform string substitution; the full discussion is provided in the description of the\~sub()\~function, which comes toward the end, because the list is presented alphabetically.
+\par Those functions that are specific to\~gawk\~are marked with a pound sign (\lquote #\rquote ). They are not available in compatibility mode (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ):
+\par {\trowd\trgaph60\trleft0\trpaddl45\trpaddt45\trpaddr45\trpaddb45\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trwWidth4000\trftsWidth2\lastrow\richviewtbw-80\trbrdrl\brdrs\brdrw15\brdrcf3\trbrdrt\brdrs\brdrw15\brdrcf3\trbrdrr\brdrs\brdrw15\brdrcf2\trbrdrb\brdrs\brdrw15\brdrcf2\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx4710\clwWidth0\richviewcbw61\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\clvertalc\cellx5730\clwWidth0\richviewcbw384\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf2\clbrdrt\brdrs\brdrw15\brdrcf2\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\cellx11610\pard\intbl{{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \u8226 ?\~\plain \f1\ul\fs20\cf1 Gory Details\plain \f1\fs20 :\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 \~\~\cell}{
+\pard\fi0\li0\ql\ri0\sb0\sa0\intbl \plain \f1\fs20 More than you want to know about \lquote \\\rquote  and \lquote &\rquote  with\~sub(),\~gsub(), and\~gensub().\cell}}\pard\intbl\row}
+\plain \f1\b\fs20 asort(source\~[,\~dest\~[,\~how\~] ]) #asorti(source\~[,\~dest\~[,\~how\~] ]) #
+\par {\*\bkmkstart index_asorti_0028_0029_function__0028gawk_0029}{\*\bkmkend index_asorti_0028_0029_function__0028gawk_0029}\plain \f1\fs20 These two functions are similar in behavior, so they are described together.
+\par \plain \f1\b\fs20 
+\par NOTE:\plain \f1\fs20 \~The following description ignores the third argument,\~how, as it requires understanding features that we have not discussed yet. Thus, the discussion here is a deliberate simplification. (We do provide all the details later on; see\~\plain \f1\ul\fs20\cf1 Array Sorting Functions\plain \f1\fs20 , for the full story.)
+\par Both functions return the number of elements in the array\~source. For\~asort(),\~gawk\~sorts the values of\~source\~and replaces the indices of the sorted values of\~source\~with sequential integers starting with one. If the optional array\~dest\~is specified, then\~source\~is duplicated into\~dest.\~dest\~is then sorted, leaving the indices of\~source\~unchanged.
+\par 
+\par {\*\bkmkstart index_gawk_002c_IGNORECASE_variable_in_3}{\*\bkmkend index_gawk_002c_IGNORECASE_variable_in_3}When comparing strings,\~IGNORECASE\~affects the sorting (see\~\plain \f1\ul\fs20\cf1 Array Sorting Functions\plain \f1\fs20 ). 
+\par If the\~source\~array contains subarrays as values (see\~\plain \f1\ul\fs20\cf1 Arrays of Arrays\plain \f1\fs20 ), they will come last, 
+\par after all scalar values. Subarrays are\~\plain \f1\i\fs20 not\plain \f1\fs20 \~recursively sorted.
+\par For example, if the contents of\~a\~are as follows:
+\par a["last"] = "de"\'0aa
+\par a["first"] = "sac"\'0aa
+\par a["middle"] = "cul"\'0a
+\par 
+\par A call to\~asort():
+\par asort(a)\'0a
+\par 
+\par results in the following contents of\~a:
+\par a[1] = "cul"\'0aa
+\par a[2] = "de"\'0aa
+\par a[3] = "sac"\'0a
+\par 
+\par The\~asorti()\~function works similarly to\~asort(); however, the\~\plain \f1\i\fs20 indices\plain \f1\fs20 \~are sorted, instead of the values. Thus, in the previous example, starting with the same initial set of indices and values in\~a, calling \lquote asorti(a)\rquote  would yield:
+\par a[1] = "first"\'0aa
+\par a[2] = "last"\'0aa
+\par a[3] = "middle"\'0a
+\par 
+\par gensub(regexp,\~replacement,\~how\~[,\~target]) #
+\par {\*\bkmkstart index_gensub_0028_0029_function__0028gawk_0029_1}{\*\bkmkend index_gensub_0028_0029_function__0028gawk_0029_1}Search the target string\~target\~for matches of the regular expression\~regexp. If\~how\~is a string beginning with \lquote g\rquote  or \lquote G\rquote  (short for \ldblquote global\rdblquote ), then replace all matches of\~regexp\~with\~replacement. Otherwise,\~how\~is treated as a number indicating which match of\~regexpto replace. If no\~target\~is supplied, use\~$0. It returns the modified string as the result of the function and the original target string is\~\plain \f1\i\fs20 not\plain \f1\fs20 \~changed.
+\par gensub()\~is a general substitution function. Its purpose is to provide more features than the standard\~sub()\~and\~gsub()\~functions.
+\par gensub()\~provides an additional feature that is not available in\~sub()\~or\~gsub(): the ability to specify components of a regexp in the replacement text. This is done by using parentheses in the regexp to mark the components and then specifying \lquote \\N\rquote  in the replacement text, where\~N\~is a digit from 1 to 9. For example:
+\par $ gawk '\'0a>
+\par > BEGIN \{\'0a>
+\par >      a = "abc def"\'0a>
+\par >      b = gensub(/(.+) (.+)/, "\\\\2 \\\\1", "g", a)\'0a>
+\par >      print b\'0a>
+\par > \}'\'0a-
+\par -| def abc\'0a
+\par 
+\par As with\~sub(), you must type two backslashes in order to get one into the string. In the replacement text, the sequence \lquote \\0\rquote  represents the entire matched text, as does the character \lquote &\rquote .
+\par The following example shows how you can use the third argument to control which match of the regexp should be changed:
+\par $ echo a b c a b c |\'0a>
+\par > gawk '\{ print gensub(/a/, "AA", 2) \}'\'0a-
+\par -| a b c AA b c\'0a
+\par 
+\par In this case,\~$0\~is the default target string.\~gensub()\~returns the new string as its result, which is passed directly to\~print\~for printing.
+\par If the\~how\~argument is a string that does not begin with \lquote g\rquote  or \lquote G\rquote , or if it is a number that is less than or equal to zero, only one substitution is performed. If\~how\~is zero,\~gawk\~issues a warning message.
+\par If\~regexp\~does not match\~target,\~gensub()\rquote s return value is the original unchanged value of\~target.
+\par \plain \f1\b\i\fs20 gsub(regexp,\~replacement\~[,\~target])
+\par {\*\bkmkstart index_gsub_0028_0029_function_1}{\*\bkmkend index_gsub_0028_0029_function_1}\plain \f1\fs20 Search\~target\~for\~\plain \f1\i\fs20 all\plain \f1\fs20 \~of the longest, leftmost,\~\plain \f1\i\fs20 nonoverlapping\plain \f1\fs20 \~matching substrings it can find and replace them with\~replacement. The \lquote g\rquote  in\~gsub()\~stands for \ldblquote global,\rdblquote  which means replace everywhere. For example:
+\par \{ gsub(/Britain/, "United Kingdom"); print \}\'0a
+\par 
+\par replaces all occurrences of the string \lquote Britain\rquote  with \lquote United Kingdom\rquote  for all input records.
+\par The\~gsub()\~function returns the number of substitutions made. If the variable to search and alter (target) is omitted, then the entire input record ($0) is used. As in\~sub(), the characters \lquote &\rquote  and \lquote \\\rquote  are special, and the third argument must be assignable.
+\par \plain \f1\b\fs20 index(in,\~find)
+\par {\*\bkmkstart index_index_0028_0029_function}{\*\bkmkend index_index_0028_0029_function}\plain \f1\fs20 Search the string\~in\~for the first occurrence of the string\~find, and return the position in characters where that occurrence begins in the string\~in. Consider the following example:
+\par $ awk 'BEGIN \{ print index("peanut", "an") \}'\'0a-
+\par -| 3\'0a
+\par 
+\par If\~find\~is not found,\~index()\~returns zero.
+\par {\*\bkmkstart index_dark_corner_002c_regexp_as_second_argument_to_index_0028_0029}{\*\bkmkend index_dark_corner_002c_regexp_as_second_argument_to_index_0028_0029}With BWK\~awk\~and\~gawk, it is a fatal error to use a regexp constant for\~find. Other implementations allow it, simply treating the regexp constant as an expression meaning \lquote $0 ~ /regexp/\rquote . (d.c.)
+\par length([string])
+\par {\*\bkmkstart index_length_0028_0029_function}{\*\bkmkend index_length_0028_0029_function}Return the number of characters in\~string. If\~string\~is a number, the length of the digit string representing that number is returned. For example,\~length("abcde")\~is five. By contrast,\~length(15 * 35)\~works out to three. In this example, 15 * 35 = 525, and 525 is then converted to the string\~"525", which has three characters.
+\par {\*\bkmkstart index_length_of_input_record}{\*\bkmkend index_length_of_input_record}If no argument is supplied,\~length()\~returns the length of\~$0.
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 \tab}\ls1\ilvl0 {\*\bkmkstart index_portability_002c_length_0028_0029_function}{\*\bkmkend index_portability_002c_length_0028_0029_function}\plain \f1\b\fs20 
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\b\fs20 NOTE:\plain \f1\fs20 \~In older versions of\~awk, the\~length()\~function could be called without any parentheses. Doing so is considered poor practice, although the 2008 POSIX standard explicitly allows it, to support historical practice. For programs to be maximally portable, always supply the parentheses.
+\par 
+\par {\*\bkmkstart index_dark_corner_002c_length_0028_0029_function}{\*\bkmkend index_dark_corner_002c_length_0028_0029_function}If\~length()\~is called with a variable that has not been used,\~gawk\~forces the variable to be a scalar. Other implementations of\~awk\~leave the variable without a type. (d.c.) Consider:
+\par $ gawk 'BEGIN \{ print length(x) ; x[1] = 1 \}'\'0a-
+\par -| 0\'0ae
+\par error\uc2\u8594 \'a1\'fa gawk: fatal: attempt to use scalar `x' as array\'0a\'0a\uc1
+\par \'0a$
+\par $ nawk 'BEGIN \{ print length(x) ; x[1] = 1 \}'\'0a-
+\par -| 0\'0a
+\par 
+\par If\~--lint\~has been specified on the command line,\~gawk\~issues a warning about this.
+\par {\*\bkmkstart index_common_extensions_002c_length_0028_0029_applied_to_an_array}{\*\bkmkend index_common_extensions_002c_length_0028_0029_applied_to_an_array}With\~gawk\~and several other\~awk\~implementations, when given an array argument, the\~length()\~function returns the number of elements in the array. (c.e.) This is less useful than it might seem at first, as the array is not guaranteed to be indexed from one to the number of elements in it. If\~--lint\~is provided on the command line (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ),\~gawk\~warns that passing an array argument is not portable. If\~--posix\~is supplied, using an array argument is a fatal error (see\~\plain \f1\ul\fs20\cf1 Arrays\plain \f1\fs20 ).
+\par match(string,\~regexp\~[,\~array])
+\par {\*\bkmkstart index_match_0028_0029_function}{\*\bkmkend index_match_0028_0029_function}Search\~string\~for the longest, leftmost substring matched by the regular expression\~regexp\~and return the character position (index) at which that substring begins (one, if it starts at the beginning of\~string). If no match is found, return zero.
+\par The\~regexp\~argument may be either a regexp constant (/\uc2\u8230 \'a1\'ad/) or a string constant ("\u8230 \'a1\'ad"). In the latter case, the string is treated as a regexp to be matched. See\~\uc1\plain \f1\ul\fs20\cf1 Computed Regexps\plain \f1\fs20 , for a discussion of the difference between the two forms, and the implications for writing your program correctly.
+\par The order of the first two arguments is the opposite of most other string functions that work with regular expressions, such as\~sub()\~andgsub(). It might help to remember that for\~match(), the order is the same as for the \lquote ~\rquote  operator: \lquote string\~~\~regexp\rquote .
+\par {\*\bkmkstart index_RSTART_variable_002c_match_0028_0029_function_and}{\*\bkmkend index_RSTART_variable_002c_match_0028_0029_function_and}The\~match()\~function sets the predefined variable\~RSTART\~to the index. It also sets the predefined variable\~RLENGTH\~to the length in characters of the matched substring. If no match is found,\~RSTART\~is set to zero, and\~RLENGTH\~to -1.
+\par For example:
+\par \{\'0a 
+\par     if ($1 == "FIND")\'0a 
+\par         regex = $2\'0a 
+\par     else \{\'0a 
+\par         where = match($0, regex)\'0a 
+\par         if (where != 0)\'0a 
+\par             print "Match of", regex, "found at", where, "in", $0\'0a 
+\par        \}\'0a\}
+\par \}\'0a
+\par 
+\par This program looks for lines that match the regular expression stored in the variable\~regex. This regular expression can be changed. If the first word on a line is \lquote FIND\rquote ,\~regex\~is changed to be the second word on that line. Therefore, if given:
+\par FIND ru+n\'0aM
+\par My program runs\'0ab
+\par but not very quickly\'0aF
+\par FIND Melvin\'0aJ
+\par JF+KM\'0aT
+\par This line is property of Reality Engineering Co.\'0aM
+\par Melvin was here.\'0a
+\par 
+\par awk\~prints:
+\par Match of ru+n found at 12 in My program runs\'0aM
+\par Match of Melvin found at 1 in Melvin was here.\'0a
+\par 
+\par {\*\bkmkstart index_differences_in_awk_and_gawk_002c_match_0028_0029_function}{\*\bkmkend index_differences_in_awk_and_gawk_002c_match_0028_0029_function}If\~array\~is present, it is cleared, and then the zeroth element of\~array\~is set to the entire portion of\~string\~matched by\~regexp. Ifregexp\~contains parentheses, the integer-indexed elements of\~array\~are set to contain the portion of\~string\~matching the corresponding parenthesized subexpression. For example:
+\par $ echo foooobazbarrrrr |\'0a>
+\par > gawk '\{ match($0, /(fo+).+(bar*)/, arr)\'0a>
+\par >         print arr[1], arr[2] \}'\'0a-
+\par -| foooo barrrrr\'0a
+\par 
+\par In addition, multidimensional subscripts are available providing the start index and length of each matched subexpression:
+\par $ echo foooobazbarrrrr |\'0a>
+\par > gawk '\{ match($0, /(fo+).+(bar*)/, arr)\'0a>
+\par >           print arr[1], arr[2]\'0a>
+\par >           print arr[1, "start"], arr[1, "length"]\'0a>
+\par >           print arr[2, "start"], arr[2, "length"]\'0a>
+\par > \}'\'0a-
+\par -| foooo barrrrr\'0a-
+\par -| 1 5\'0a-
+\par -| 9 7\'0a
+\par 
+\par There may not be subscripts for the start and index for every parenthesized subexpression, because they may not all have matched text; thus, they should be tested for with the\~in\~operator (see\~\plain \f1\ul\fs20\cf1 Reference to Elements\plain \f1\fs20 ).
+\par {\*\bkmkstart index_troubleshooting_002c_match_0028_0029_function}{\*\bkmkend index_troubleshooting_002c_match_0028_0029_function}The\~array\~argument to\~match()\~is a\~gawk\~extension. In compatibility mode (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ), using a third argument is a fatal error.
+\par patsplit(string,\~array\~[,\~fieldpat\~[,\~seps\~] ]) #
+\par {\*\bkmkstart index_patsplit_0028_0029_function__0028gawk_0029}{\*\bkmkend index_patsplit_0028_0029_function__0028gawk_0029}Divide\~string\~into pieces defined by\~fieldpat\~and store the pieces in\~array\~and the separator strings in the\~seps\~array. The first piece is stored in\~array[1], the second piece in\~array[2], and so forth. The third argument,\~fieldpat, is a regexp describing the fields instring\~(just as\~FPAT\~is a regexp describing the fields in input records). It may be either a regexp constant or a string. If\~fieldpat\~is omitted, the value of\~FPAT\~is used.\~patsplit()\~returns the number of elements created.\~seps[i]\~is the separator string between\~array[i]\~andarray[i+1]. Any leading separator will be in\~seps[0].
+\par The\~patsplit()\~function splits strings into pieces in a manner similar to the way input lines are split into fields using\~FPAT\~(see\plain \f1\ul\fs20\cf1 Splitting By Content\plain \f1\fs20 ).
+\par Before splitting the string,\~patsplit()\~deletes any previously existing elements in the arrays\~array\~and\~seps.
+\par split(string,\~array\~[,\~fieldsep\~[,\~seps\~] ])
+\par {\*\bkmkstart index_split_0028_0029_function}{\*\bkmkend index_split_0028_0029_function}Divide\~string\~into pieces separated by\~fieldsep\~and store the pieces in\~array\~and the separator strings in the\~seps\~array. The first piece is stored in\~array[1], the second piece in\~array[2], and so forth. The string value of the third argument,\~fieldsep, is a regexp describing where to split\~string\~(much as\~FS\~can be a regexp describing where to split input records). If\~fieldsep\~is omitted, the value of\~FS\~is used.\~split()\~returns the number of elements created.\~seps\~is a\~gawk\~extension, with\~seps[i]\~being the separator string betweenarray[i]\~and\~array[i+1]. If\~fieldsep\~is a single space, then any leading whitespace goes into\~seps[0]\~and any trailing whitespace goes intoseps[n], where\~n\~is the return value of\~split()\~(i.e., the number of elements in\~array).
+\par The\~split()\~function splits strings into pieces in a manner similar to the way input lines are split into fields. For example:
+\par split("cul-de-sac", a, "-", seps)\'0a
+\par 
+\par {\*\bkmkstart index_strings_splitting_002c_example}{\*\bkmkend index_strings_splitting_002c_example}splits the string\~"cul-de-sac"\~into three fields using \lquote -\rquote  as the separator. It sets the contents of the array\~a\~as follows:
+\par a[1] = "cul"\'0aa
+\par a[2] = "de"\'0aa
+\par a[3] = "sac"\'0a
+\par 
+\par and sets the contents of the array\~seps\~as follows:
+\par seps[1] = "-"\'0as
+\par seps[2] = "-"\'0a
+\par 
+\par The value returned by this call to\~split()\~is three.
+\par {\*\bkmkstart index_differences_in_awk_and_gawk_002c_split_0028_0029_function}{\*\bkmkend index_differences_in_awk_and_gawk_002c_split_0028_0029_function}As with input field-splitting, when the value of\~fieldsep\~is\~"\~", leading and trailing whitespace is ignored in values assigned to the elements of\~array\~but not in\~seps, and the elements are separated by runs of whitespace. Also, as with input field splitting, if\~fieldsepis the null string, each individual character in the string is split into its own array element. (c.e.)
+\par Note, however, that\~RS\~has no effect on the way\~split()\~works. Even though \lquote RS = ""\rquote  causes the newline character to also be an input field separator, this does not affect how\~split()\~splits strings.
+\par {\*\bkmkstart index_dark_corner_002c_split_0028_0029_function}{\*\bkmkend index_dark_corner_002c_split_0028_0029_function}Modern implementations of\~awk, including\~gawk, allow the third argument to be a regexp constant (/\uc2\u8230 \'a1\'ad/) as well as a string. (d.c.) The POSIX standard allows this as well. See\~\uc1\plain \f1\ul\fs20\cf1 Computed Regexps\plain \f1\fs20 , for a discussion of the difference between using a string constant or a regexp constant, and the implications for writing your program correctly.
+\par Before splitting the string,\~split()\~deletes any previously existing elements in the arrays\~array\~and\~seps.
+\par If\~string\~is null, the array has no elements. (So this is a portable way to delete an entire array with one statement. See\~\plain \f1\ul\fs20\cf1 Delete\plain \f1\fs20 .)
+\par If\~string\~does not match\~fieldsep\~at all (but is not null),\~array\~has one element only. The value of that element is the original\~string.
+\par In POSIX mode (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ), the fourth argument is not allowed.
+\par sprintf(format,\~expression1, \uc2\u8230 \'a1\'ad)\uc1
+\par {\*\bkmkstart index_sprintf_0028_0029_function_1}{\*\bkmkend index_sprintf_0028_0029_function_1}Return (without printing) the string that\~printf\~would have printed out with the same arguments (see\~\plain \f1\ul\fs20\cf1 Printf\plain \f1\fs20 ). For example:
+\par pival = sprintf("pi = %.2f (approx.)", 22/7)\'0a
+\par 
+\par assigns the string \lquote pi\~=\~3.14\~(approx.)\rquote \~to the variable\~pival.
+\par {\*\bkmkstart index_strtonum_0028_0029_function__0028gawk_0029}{\*\bkmkend index_strtonum_0028_0029_function__0028gawk_0029}strtonum(str) #
+\par Examine\~str\~and return its numeric value. If\~str\~begins with a leading \lquote 0\rquote ,\~strtonum()\~assumes that\~str\~is an octal number. If\~strbegins with a leading \lquote 0x\rquote  or \lquote 0X\rquote ,\~strtonum()\~assumes that\~str\~is a hexadecimal number. For example:
+\par $ echo 0x11 |\'0a>
+\par > gawk '\{ printf "%d\\n", strtonum($1) \}'\'0a-
+\par -| 17\'0a
+\par 
+\par Using the\~strtonum()\~function is\~\plain \f1\i\fs20 not\plain \f1\fs20 \~the same as adding zero to a string value; the automatic coercion of strings to numbers works only for decimal data, not for octal or hexadecimal.\plain \f1\ul\super\fs20\cf1 46
+\par \plain \f1\fs20 Note also that\~strtonum()\~uses the current locale\rquote s decimal point for recognizing numbers (see\~\plain \f1\ul\fs20\cf1 Locales\plain \f1\fs20 ).
+\par sub(regexp,\~replacement\~[,\~target])
+\par {\*\bkmkstart index_sub_0028_0029_function_1}{\*\bkmkend index_sub_0028_0029_function_1}Search\~target, which is treated as a string, for the leftmost, longest substring matched by the regular expression\~regexp. Modify the entire string by replacing the matched text with\~replacement. The modified string becomes the new value of\~target. Return the number of substitutions made (zero or one).
+\par The\~regexp\~argument may be either a regexp constant (/\uc2\u8230 \'a1\'ad/) or a string constant ("\u8230 \'a1\'ad"). In the latter case, the string is treated as a regexp to be matched. See\~\uc1\plain \f1\ul\fs20\cf1 Computed Regexps\plain \f1\fs20 , for a discussion of the difference between the two forms, and the implications for writing your program correctly.
+\par This function is peculiar because\~target\~is not simply used to compute a value, and not just any expression will do\emdash it must be a variable, field, or array element so that\~sub()\~can store a modified value there. If this argument is omitted, then the default is to use and alter\~$0.\plain \f1\ul\super\fs20\cf1 47\plain \f1\fs20 \~For example:
+\par str = "water, water, everywhere"\'0as
+\par sub(/at/, "ith", str)\'0a
+\par 
+\par sets\~str\~to \lquote wither,\~water,\~everywhere\rquote , by replacing the leftmost longest occurrence of \lquote at\rquote  with \lquote ith\rquote .
+\par If the special character \lquote &\rquote  appears in\~replacement, it stands for the precise substring that was matched by\~regexp. (If the regexp can match more than one string, then this precise substring may vary.) For example:
+\par \{ sub(/candidate/, "& and his wife"); print \}\'0a
+\par 
+\par changes the first occurrence of \lquote candidate\rquote  to \lquote candidate and his wife\rquote  on each input line. Here is another example:
+\par $ awk 'BEGIN \{\'0a>
+\par >         str = "daabaaa"\'0a>
+\par >         sub(/a+/, "C&C", str)\'0a>
+\par >         print str\'0a>
+\par > \}'\'0a-
+\par -| dCaaCbaaa\'0a
+\par 
+\par This shows how \lquote &\rquote  can represent a nonconstant string and also illustrates the \ldblquote leftmost, longest\rdblquote  rule in regexp matching (see\plain \f1\ul\fs20\cf1 Leftmost Longest\plain \f1\fs20 ).
+\par The effect of this special character (\lquote &\rquote ) can be turned off by putting a backslash before it in the string. As usual, to insert one backslash in the string, you must write two backslashes. Therefore, write \lquote \\\\&\rquote  in a string constant to include a literal \lquote &\rquote  in the replacement. For example, the following shows how to replace the first \lquote |\rquote  on each line with an \lquote &\rquote :
+\par \{ sub(/\\|/, "\\\\&"); print \}\'0a
+\par 
+\par {\*\bkmkstart index_sub_0028_0029_function_002c_arguments_of}{\*\bkmkend index_sub_0028_0029_function_002c_arguments_of}As mentioned, the third argument to\~sub()\~must be a variable, field, or array element. Some versions of\~awk\~allow the third argument to be an expression that is not an lvalue. In such a case,\~sub()\~still searches for the pattern and returns zero or one, but the result of the substitution (if any) is thrown away because there is no place to put it. Such versions of\~awk\~accept expressions like the following:
+\par sub(/USA/, "United States", "the USA and Canada")\'0a
+\par 
+\par {\*\bkmkstart index_troubleshooting_002c_gsub_0028_0029_002fsub_0028_0029_functions}{\*\bkmkend index_troubleshooting_002c_gsub_0028_0029_002fsub_0028_0029_functions}For historical compatibility,\~gawk\~accepts such erroneous code. However, using any other nonchangeable object as the third parameter causes a fatal error and your program will not run.
+\par Finally, if the\~regexp\~is not a regexp constant, it is converted into a string, and then the value of that string is treated as the regexp to match.
+\par substr(string,\~start\~[,\~length\~])
+\par 
+\par {\*\bkmkstart index_substr_0028_0029_function}{\*\bkmkend index_substr_0028_0029_function}Return a\~length-character-long substring of\~string, starting at character number\~start. The first character of a string is character number one.\plain \f1\ul\super\fs20\cf1 48\plain \f1\fs20 \~For example,\~substr("washington", 5, 3)\~returns\~"ing".
+\par If\~length\~is not present,\~substr()\~returns the whole suffix of\~string\~that begins at character number\~start. For example,substr("washington", 5)\~returns\~"ington". The whole suffix is also returned if\~length\~is greater than the number of characters remaining in the string, counting from character\~start.
+\par 
+\par {\*\bkmkstart index_Brian_Kernighan_0027s_awk_11}{\*\bkmkend index_Brian_Kernighan_0027s_awk_11}If\~start\~is less than one,\~substr()\~treats it as if it was one. (POSIX doesn\rquote t specify what to do in this case: BWK\~awk\~acts this way, and therefore\~gawk\~does too.) If\~start\~is greater than the number of characters in the string,\~substr()\~returns the null string. Similarly, if\~length\~is present but less than or equal to zero, the null string is returned.
+\par {\*\bkmkstart index_troubleshooting_002c_substr_0028_0029_function}{\*\bkmkend index_troubleshooting_002c_substr_0028_0029_function}The string returned by\~substr()\~\plain \f1\i\fs20 cannot\plain \f1\fs20 \~be assigned. Thus, it is a mistake to attempt to change a portion of a string, as shown in the following example:
+\par string = "abcdef"\'0a#
+\par # try to get "abCDEf", won't work\'0as
+\par substr(string, 3, 3) = "CDE"\'0a
+\par 
+\par It is also a mistake to use\~substr()\~as the third argument of\~sub()\~or\~gsub():
+\par gsub(/xyz/, "pdq", substr($0, 5, 20))  # WRONG\'0a
+\par 
+\par {\*\bkmkstart index_portability_002c_substr_0028_0029_function}{\*\bkmkend index_portability_002c_substr_0028_0029_function}(Some commercial versions of\~awk\~treat\~substr()\~as assignable, but doing so is not portable.)
+\par If you need to replace bits and pieces of a string, combine\~substr()\~with string concatenation, in the following manner:
+\par string = "abcdef"\'0a\u65533 ?
+\par \uc2\u8230 \'a1\'ad\'0as\uc1
+\par string = substr(string, 1, 2) "CDE" substr(string, 6)\'0a
+\par 
+\par {\*\bkmkstart index_case_sensitivity_002c_converting_case}{\*\bkmkend index_case_sensitivity_002c_converting_case}\plain \f1\b\fs20 tolower(string)
+\par {\*\bkmkstart index_tolower_0028_0029_function}{\*\bkmkend index_tolower_0028_0029_function}\plain \f1\fs20 Return a copy of\~string, with each uppercase character in the string replaced with its corresponding lowercase character. Nonalphabetic characters are left unchanged. For example,\~tolower("MiXeD cAsE 123")\~returns\~"mixed case 123".
+\par \plain \f1\b\fs20 toupper(string)
+\par {\*\bkmkstart index_toupper_0028_0029_function}{\*\bkmkend index_toupper_0028_0029_function}\plain \f1\fs20 Return a copy of\~string, with each lowercase character in the string replaced with its corresponding uppercase character. Nonalphabetic characters are left unchanged. For example,\~toupper("MiXeD cAsE 123")\~returns\~"MIXED CASE 123".
+\par {\*\bkmkstart index_sidebar_002c_Matching_the_Null_String}{\*\bkmkend index_sidebar_002c_Matching_the_Null_String}{\trowd\trgaph45\trleft0\trpaddl15\trpaddt15\trpaddr15\trpaddb15\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trspdl15\trspdr15\trspdfl3\trspdfr3\trspdt15\trspdft3\trspdb15\trspdfb3\trwWidth14565\trftsWidth3\lastrow\richviewtbw0\trbrdrl\brdrs\brdrw15\brdrcf3\trbrdrt\brdrs\brdrw15\brdrcf3\trbrdrr\brdrs\brdrw15\brdrcf4\trbrdrb\brdrs\brdrw15\brdrcf4\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf4\clbrdrt\brdrs\brdrw15\brdrcf4\clbrdrr\brdrs\brdrw15\brdrcf3\clbrdrb\brdrs\brdrw15\brdrcf3\clvertalc\cellx14520\pard\intbl{{
+\pard\fi0\li0\qc\ri0\sb0\sa0\intbl \plain \f1\b\fs20 Matching the Null String
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\intbl {\*\bkmkstart index_matching_002c_null_strings}{\*\bkmkend index_matching_002c_null_strings}\plain \f1\fs20 In\~awk, the \lquote *\rquote  operator can match the null string. This is particularly important for the\~sub(),\~gsub(), and\~gensub()\~functions. For example:
+\par $ echo abc | awk '\{ gsub(/m*/, "X"); print \}'\'0a-
+\par -| XaXbXcX\'0a
+\par 
+\par Although this makes a certain amount of sense, it can be surprising.\cell}}\pard\intbl\row}
+\pard\plain\fs6\brdrb\brdrs\brdrw15\brdrcf0\par\pard
+\par \plain \f1\b\fs20 Footnotes
+\par \plain \f1\ul\fs20\cf1 (46)
+\par \plain \f1\fs20 Unless you use the\~--non-decimal-data\~option, which isn\rquote t recommended. See\~\plain \f1\ul\fs20\cf1 Nondecimal Data\plain \f1\fs20 , for more information.
+\par \plain \f1\ul\fs20\cf1 (47)
+\par \plain \f1\fs20 Note that this means that the record will first be regenerated using the value of\~OFS\~if any fields have been changed, and that the fields will be updated after the substitution, even if the operation is a \ldblquote no-op\rdblquote  such as \lquote sub(/^/, "")\rquote .
+\par \plain \f1\ul\fs20\cf1 (48)
+\par \plain \f1\fs20 This is different from C and C++, in which the first character is number zero.\par}

@@ -1,0 +1,52 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red0\green128\blue0;\red255\green102\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1904527285\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid541458576}
+}
+{\*\listoverridetable
+{\listoverride\listid541458576\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 28.\uc2\u32479 \'cd\'b3\u35745 \'bc\'c6\u33521 \'d3\'a2\u25991 \'ce\'c4\u25991 \'ce\'c4\u31456 \'d5\'c2\u20013 \'d6\'d0\u27599 \'c3\'bf\u20010 \'b8\'f6\u21333 \'b5\'a5\u35789 \'b4\'ca\u20986 \'b3\'f6\u29616 \'cf\'d6\u30340 \'b5\'c4\u39057 \'c6\'b5\u29575 \'c2\'ca\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20\cf4 \uc2\u32479 \'cd\'b3\u35745 \'bc\'c6\u33521 \'d3\'a2\u25991 \'ce\'c4\u25991 \'ce\'c4\u31456 \'d5\'c2\u20013 \'d6\'d0\u27599 \'c3\'bf\u20010 \'b8\'f6\u21333 \'b5\'a5\u35789 \'b4\'ca\u20986 \'b3\'f6\u29616 \'cf\'d6\u30340 \'b5\'c4\u39057 \'c6\'b5\u29575 \'c2\'ca\uc1\plain \f1\fs20\cf4 \uc2\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf2 \uc2\u36825 \'d5\'e2\u20010 \'b8\'f6\u25216 \'bc\'bc\u24039 \'c7\'c9\u30340 \'b5\'c4\u20027 \'d6\'f7\u35201 \'d2\'aa\u30446 \'c4\'bf\u30340 \'b5\'c4\u26159 \'ca\'c7\u26174 \'cf\'d4\u31034 \'ca\'be\u22914 \'c8\'e7\u20309 \'ba\'ce\u26356 \'b8\'fc\u22909 \'ba\'c3\u30340 \'b5\'c4\u20351 \'ca\'b9\u29992 \'d3\'c3 awk \u21629 \'c3\'fc\u20196 \'c1\'ee\u30340 \'b5\'c4\u33050 \'bd\'c5\u26412 \'b1\'be\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 /> cat > test30.sh
+\par #!/bin/sh
+\par \plain \f1\fs20\cf3 #1. \uc2\u36890 \'cd\'a8\u36807 \'b9\'fd\u24403 \'b5\'b1\u21069 \'c7\'b0\u33050 \'bd\'c5\u26412 \'b1\'be\u30340 \'b5\'c4 pid\u65292 \'a3\'ac\u29983 \'c9\'fa\u25104 \'b3\'c9 awk \u33050 \'bd\'c5\u26412 \'b1\'be\u30340 \'b5\'c4\u20020 \'c1\'d9\u26102 \'ca\'b1\u25991 \'ce\'c4\u20214 \'bc\'fe\u21517 \'c3\'fb\u12290 \'a1\'a3\uc1
+\par #2. \uc2\u25429 \'b2\'b6\u25417 \'d7\'bd\u20449 \'d0\'c5\u21495 \'ba\'c5\u65292 \'a3\'ac\u22312 \'d4\'da\u33050 \'bd\'c5\u26412 \'b1\'be\u36864 \'cd\'cb\u20986 \'b3\'f6\u26102 \'ca\'b1\u21024 \'c9\'be\u38500 \'b3\'fd\u35813 \'b8\'c3\u20020 \'c1\'d9\u26102 \'ca\'b1\u25991 \'ce\'c4\u20214 \'bc\'fe\u65292 \'a3\'ac\u20197 \'d2\'d4\u20813 \'c3\'e2\u36896 \'d4\'ec\u25104 \'b3\'c9\u22823 \'b4\'f3\u37327 \'c1\'bf\u30340 \'b5\'c4\u22403 \'c0\'ac\u22334 \'bb\'f8\u20020 \'c1\'d9\u26102 \'ca\'b1\u25991 \'ce\'c4\u20214 \'bc\'fe\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 awk_script_file="/tmp/scf_tmp.$$"
+\par trap "rm -f $awk_script_file" EXIT
+\par \plain \f1\fs20\cf3 #3. while \uc2\u24490 \'d1\'ad\u29615 \'bb\'b7\u23558 \'bd\'ab\u20197 \'d2\'d4\u24403 \'b5\'b1\u21069 \'c7\'b0\u30446 \'c4\'bf\u24405 \'c2\'bc\u19979 \'cf\'c2\u30340 \'b5\'c4 testfile \u20316 \'d7\'f7\u20026 \'ce\'aa\u36755 \'ca\'e4\u20837 \'c8\'eb\u24182 \'b2\'a2\u36880 \'d6\'f0\u34892 \'d0\'d0\u35835 \'b6\'c1\u21462 \'c8\'a1\u65292 \'a3\'ac\u22312 \'d4\'da\u35835 \'b6\'c1\u21462 \'c8\'a1\u21040 \'b5\'bd\u26411 \'c4\'a9\u23614 \'ce\'b2\u26102 \'ca\'b1\u36864 \'cd\'cb\u20986 \'b3\'f6\u24490 \'d1\'ad\u29615 \'bb\'b7\u12290 \'a1\'a3\uc1
+\par #4. getline \uc2\u35835 \'b6\'c1\u21462 \'c8\'a1\u21040 \'b5\'bd\u27599 \'c3\'bf\u19968 \'d2\'bb\u34892 \'d0\'d0\u23558 \'bd\'ab\u20316 \'d7\'f7\u20026 \'ce\'aa awk \u30340 \'b5\'c4\u27491 \'d5\'fd\u24120 \'b3\'a3\u36755 \'ca\'e4\u20837 \'c8\'eb\u12290 \'a1\'a3\u22312 \'d4\'da\u20869 \'c4\'da\u23618 \'b2\'e3\u30340 \'b5\'c4 for \u24490 \'d1\'ad\u29615 \'bb\'b7\u20013 \'d6\'d0\u65292 \'a3\'aci \u35201 \'d2\'aa\u20174 \'b4\'d3 1 \u24320 \'bf\'aa\u22987 \'ca\'bc\u65292 \'a3\'ac\u22240 \'d2\'f2\u20026 \'ce\'aa$0 \u34920 \'b1\'ed\u31034 \'ca\'be\u25972 \'d5\'fb\u34892 \'d0\'d0\u12290 \'a1\'a3NF \u34920 \'b1\'ed\u31034 \'ca\'be\u22495 \'d3\'f2\u23383 \'d7\'d6\u27573 \'b6\'ce\u30340 \'b5\'c4\u25968 \'ca\'fd\u37327 \'c1\'bf\u12290 \'a1\'a3\uc1
+\par #5. \uc2\u20351 \'ca\'b9$i \u20316 \'d7\'f7\u20026 \'ce\'aa\u25968 \'ca\'fd\u32452 \'d7\'e9\u30340 \'b5\'c4\u38190 \'bc\'fc\u65292 \'a3\'ac\u22914 \'c8\'e7\u26524 \'b9\'fb$i \u30340 \'b5\'c4\u20540 \'d6\'b5\u21305 \'c6\'a5\u37197 \'c5\'e4\u27491 \'d5\'fd\u21017 \'d4\'f2\u34920 \'b1\'ed\u36798 \'b4\'ef\u24335 \'ca\'bd"^[a-zA-Z]+$"\u65292 \'a3\'ac\u25105 \'ce\'d2\u20204 \'c3\'c7\u23558 \'bd\'ab\u20854 \'c6\'e4\u35270 \'ca\'d3\u20026 \'ce\'aa\u21333 \'b5\'a5\u35789 \'b4\'ca\u32780 \'b6\'f8\u19981 \'b2\'bb\u26159 \'ca\'c7\u26631 \'b1\'ea\u28857 \'b5\'e3\u12290 \'a1\'a3\u27599 \'c3\'bf\u27425 \'b4\'ce\u36935 \'d3\'f6\u21040 \'b5\'bd\u21333 \'b5\'a5\u35789 \'b4\'ca\u26102 \'ca\'b1\u65292 \'a3\'ac\u20854 \'c6\'e4\u38190 \'bc\'fc\u20540 \'d6\'b5\u37117 \'b6\'bc\u20250 \'bb\'e1\u36882 \'b5\'dd\u22686 \'d4\'f6\u12290 \'a1\'a3\uc1
+\par #6. \uc2\u26368 \'d7\'ee\u21518 \'ba\'f3\u36890 \'cd\'a8\u36807 \'b9\'fd awk \u33050 \'bd\'c5\u26412 \'b1\'be\u25552 \'cc\'e1\u20379 \'b9\'a9\u30340 \'b5\'c4\u29305 \'cc\'d8\u27530 \'ca\'e2 for \u24490 \'d1\'ad\u29615 \'bb\'b7\u65292 \'a3\'ac\u36941 \'b1\'e9\u21382 \'c0\'fa\u25968 \'ca\'fd\u32452 \'d7\'e9\u30340 \'b5\'c4\u38190 \'bc\'fc\u20540 \'d6\'b5\u25968 \'ca\'fd\u25454 \'be\'dd\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 cat << 'EOF' > $awk_script_file
+\par BEGIN \{
+\par while (getline < "./testfile" > 0) \{
+\par for (i = 1; i <= NF; ++i) \{
+\par if (match($i,"^[a-zA-Z]+$") != 0)
+\par arr[$i]++
+\par \}
+\par \}
+\par for (word in arr) \{
+\par printf "word = %s\\t count = %s\\n",word,arr[word]
+\par \}
+\par \}
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 EOF
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 awk -f $awk_script_file
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 \plain \f1\b\fs20\cf1 CTRL+D
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20\cf1 /> cat testfile
+\par \plain \f1\fs20\cf2 hello world liu liu , ,
+\par stephen liu , ?
+\par \plain \f1\fs20\cf1 /> ./test30.sh
+\par 
+\par \plain \f1\fs20\cf2 word = hello
+\par \plain \f1\charscalex97\fs20\cf2 word = world
+\par \plain \f1\fs20\cf2 count = 1
+\par count = 1
+\par 
+\par word = stephen count = 1
+\par 
+\par word = liu
+\par count = 3\par}

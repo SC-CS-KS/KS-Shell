@@ -1,0 +1,1566 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red192\green192\blue192;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid162392557\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid477383078}
+{\list\listtemplateid91441728\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1737619268}
+{\list\listtemplateid797289051\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid206816204}
+}
+{\*\listoverridetable
+{\listoverride\listid477383078\listoverridecount0\ls1}
+{\listoverride\listid1737619268\listoverridecount0\ls2}
+{\listoverride\listid206816204\listoverridecount0\ls3}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 ps \uc2\u21629 \'c3\'fc\u20196 \'c1\'ee\u25163 \'ca\'d6\u20876 \'b2\'e1\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs21 NAME
+\par \plain \f1\fs21 \~\~\~\~\~\~ ps - report a snapshot of the current processes.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baps \u29992 \'d3\'c3\u20110 \'d3\'da\u27719 \'bb\'e3\u25253 \'b1\'a8\u24403 \'b5\'b1\u21069 \'c7\'b0\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4 snapshot\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 SYNOPSIS
+\par \plain \f1\fs21 ps [options]
+\par \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 DESCRIPTION
+\par \plain \f1\fs21 ps displays information about a selection of the active processes. If you
+\par want a repetitive update of the selection and the displayed information,
+\par use top(1) instead.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\uc1\plain \f1\fs21\cf2 ps \uc2\u26174 \'cf\'d4\u31034 \'ca\'be\u25351 \'d6\'b8\u23450 \'b6\'a8\u30340 \'b5\'c4\u22788 \'b4\'a6\u20110 \'d3\'da active \u29366 \'d7\'b4\u24577 \'cc\'ac\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u20449 \'d0\'c5\u24687 \'cf\'a2\uc1\plain \f1\fs21\cf1 \uc2\u12290 \'a1\'a3\u20551 \'bc\'d9\u22914 \'c8\'e7\u20320 \'c4\'e3\u24819 \'cf\'eb\u25345 \'b3\'d6\u32493 \'d0\'f8\u30340 \'b5\'c4\u35266 \'b9\'db\u23519 \'b2\'ec\u65292 \'a3\'ac\u29992 \'d3\'c3 top \u21629 \'c3\'fc\u20196 \'c1\'ee\uc1
+\par \plain \f1\fs21 \~
+\par By default, ps selects all processes with the same effective user ID (EUID)
+\par as the curent user and associated with the same terminal as the invoker. It
+\par displays the process ID (PID), the terminal (tty) associated with the process
+\par (TTY), the cumulated CPU time in [dd-]hh:mm:ss format (TIME), and the
+\par executable name (CMD).\~\plain \f1\b\fs21 The use of BSD-style options will add process state
+\par (STAT) to the default display. The use of BSD-style options will also change
+\par the process selection to include processes on other terminals (TTYs) that are
+\par owned by you;\plain \f1\fs21 \~alternately, this may be described as setting the selection to
+\par be the set of all processes filtered to exclude processes owned by other
+\par users or not on a terminal.\~Output is unsorted by default.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\uc1\plain \f1\fs21\cf2 \uc2\u40664 \'c4\'ac\u35748 \'c8\'cf \u65292 \'a3\'acps \u36873 \'d1\'a1\u25321 \'d4\'f1\u25152 \'cb\'f9\u26377 \'d3\'d0 EUID \u31561 \'b5\'c8\u20110 \'d3\'da\u24403 \'b5\'b1\u21069 \'c7\'b0\u29992 \'d3\'c3\u25143 \'bb\'a7\u12289 \'a1\'a2\u19988 \'c7\'d2 TTY \u31561 \'b5\'c8\u20110 \'d3\'da\u24403 \'b5\'b1\u21069 \'c7\'b0\u32456 \'d6\'d5\u31471 \'b6\'cb\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\uc1
+\par \plain \f1\fs21\cf1 # \uc2\u23427 \'cb\'fc\u40664 \'c4\'ac\u35748 \'c8\'cf\u26174 \'cf\'d4\u31034 \'ca\'be PID\u65288 \'a3\'a8PID \u23383 \'d7\'d6\u27573 \'b6\'ce\u65289 \'a3\'a9\u12289 \'a1\'a2\u32456 \'d6\'d5\u31471 \'b6\'cb\u65288 \'a3\'a8TTY \u23383 \'d7\'d6\u27573 \'b6\'ce\u65289 \'a3\'a9\u12289 \'a1\'a2\u36827 \'bd\'f8\u31243 \'b3\'cc\u25152 \'cb\'f9\u28040 \'cf\'fb\u32791 \'ba\'c4\u30340 \'b5\'c4 CPU \u26102 \'ca\'b1\u38388 \'bc\'e4\u65288 \'a3\'a8TIME \u23383 \'d7\'d6\u27573 \'b6\'ce\u65289 \'a3\'a9\u12289 \'a1\'a2\u21629 \'c3\'fc\u20196 \'c1\'ee\u21517 \'c3\'fb\u65288 \'a3\'a8CMD \u23383 \'d7\'d6\u27573 \'b6\'ce\u65289 \'a3\'a9\uc1
+\par # \uc2\u22914 \'c8\'e7\u26524 \'b9\'fb\u26159 \'ca\'c7 BSD \u39118 \'b7\'e7\u26684 \'b8\'f1\u30340 \'b5\'c4 ps \u65292 \'a3\'ac\u21017 \'d4\'f2\u20250 \'bb\'e1\u36755 \'ca\'e4\u20986 \'b3\'f6\u25152 \'cb\'f9\u26377 \'d3\'d0\u23646 \'ca\'f4\u20110 \'d3\'da\u24403 \'b5\'b1\u21069 \'c7\'b0\u29992 \'d3\'c3\u25143 \'bb\'a7\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u19981 \'b2\'bb\u31649 \'b9\'dc\u26159 \'ca\'c7\u21542 \'b7\'f1\u22312 \'d4\'da\u24403 \'b5\'b1\u21069 \'c7\'b0\u32456 \'d6\'d5\u31471 \'b6\'cb\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u12290 \'a1\'a3\uc1
+\par # \uc2\u21516 \'cd\'ac\u26102 \'ca\'b1\u36824 \'bb\'b9\u20250 \'bb\'e1\u26174 \'cf\'d4\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u29366 \'d7\'b4\u24577 \'cc\'ac\u65288 \'a3\'a8STAT \u23383 \'d7\'d6\u27573 \'b6\'ce\u65289 \'a3\'a9\u12290 \'a1\'a3\uc1
+\par # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u36755 \'ca\'e4\u20986 \'b3\'f6\u20449 \'d0\'c5\u24687 \'cf\'a2\u40664 \'c4\'ac\u35748 \'c8\'cf\u26159 \'ca\'c7\u19981 \'b2\'bb\u25490 \'c5\'c5\u24207 \'d0\'f2\u30340 \'b5\'c4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par Except as described below, process selection options are additive. The
+\par default selection is discarded, and then the selected processes are added to
+\par the set of processes to be displayed. A process will thus be shown if it
+\par meets any of the selection criteria.
+\par \~
+\par \plain \f1\b\fs21 COMMAND-LINE OPTIONS
+\par \plain \f1\fs21 This version of ps accepts several kinds of options:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u35813 \'b8\'c3\u29256 \'b0\'e6\u26412 \'b1\'be\u30340 \'b5\'c4 ps \u25509 \'bd\'d3\u21463 \'ca\'dc\u20960 \'bc\'b8\u31181 \'d6\'d6\u31867 \'c0\'e0\u22411 \'d0\'cd\u30340 \'b5\'c4\u36873 \'d1\'a1\u39033 \'cf\'ee \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~-\uc2\u65289 \'a3\'a91\u12289 \'a1\'a2UNIX \u39118 \'b7\'e7\u26684 \'b8\'f1\u30340 \'b5\'c4\u36873 \'d1\'a1\u39033 \'cf\'ee \u65306 \'a3\'ba\u22810 \'b6\'e0\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\u21487 \'bf\'c9\u20197 \'d2\'d4\u32858 \'be\'db\u21512 \'ba\'cf\u22312 \'d4\'da\u19968 \'d2\'bb\u36215 \'c6\'f0\u65292 \'a3\'ac\u32780 \'b6\'f8\u19988 \'c7\'d2\u21069 \'c7\'b0\u38754 \'c3\'e6\u24517 \'b1\'d8\u39035 \'d0\'eb\u20197 \'d2\'d4 '-' \u24320 \'bf\'aa\u22836 \'cd\'b7\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~-\uc2\u65289 \'a3\'a92\u12289 \'a1\'a2BSD \u39118 \'b7\'e7\u26684 \'b8\'f1\u30340 \'b5\'c4\u36873 \'d1\'a1\u39033 \'cf\'ee \u65306 \'a3\'ba\u22810 \'b6\'e0\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\u21487 \'bf\'c9\u20197 \'d2\'d4\u32858 \'be\'db\u21512 \'ba\'cf\u22312 \'d4\'da\u19968 \'d2\'bb\u36215 \'c6\'f0\u65292 \'a3\'ac\u20294 \'b5\'ab\u21069 \'c7\'b0\u38754 \'c3\'e6\u19981 \'b2\'bb\u33021 \'c4\'dc\u29992 \'d3\'c3 '-' \u24320 \'bf\'aa\u22836 \'cd\'b7\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~-\uc2\u65289 \'a3\'a93\u12289 \'a1\'a2GNU \u39118 \'b7\'e7\u26684 \'b8\'f1\u30340 \'b5\'c4\u36873 \'d1\'a1\u39033 \'cf\'ee \u65306 \'a3\'ba\u24517 \'b1\'d8\u39035 \'d0\'eb\u20197 \'d2\'d4 '--' \u24320 \'bf\'aa\u22836 \'cd\'b7\u65292 \'a3\'ac\u32780 \'b6\'f8\u19981 \'b2\'bb\u26159 \'ca\'c7 '-'\uc1
+\par \plain \f1\fs21 
+\par 1\~\~ UNIX options, which may be grouped and must be preceeded by a dash.
+\par 2\~\~ BSD options, which may be grouped and must not be used with a dash.
+\par 3\~\~ GNU long options, which are preceeded by two dashes.
+\par \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par Options of different types may be freely mixed, but conflicts can appear.
+\par There are some synonomous options, which are functionally identical, due to
+\par the many standards and ps implementations that this ps is compatible with.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u28151 \'bb\'ec\u21512 \'ba\'cf\u22810 \'b6\'e0\u31181 \'d6\'d6\u31867 \'c0\'e0\u22411 \'d0\'cd\u30340 \'b5\'c4\u36873 \'d1\'a1\u39033 \'cf\'ee\u65292 \'a3\'ac\u20294 \'b5\'ab\u21487 \'bf\'c9\u33021 \'c4\'dc\u20135 \'b2\'fa\u29983 \'c9\'fa\u20914 \'b3\'e5\u31361 \'cd\'bb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par Note that "ps -aux" is distinct from "ps aux". The POSIX and UNIX standards
+\par require that "ps -aux" print all processes owned by a user named "x", as well
+\par as printing all processes that would be selected by the -a option. If the
+\par user named "x" does not exist, this ps may interpret the command as "ps aux"
+\par instead and print a warning.\~This behavior is intended to aid in
+\par transitioning old scripts and habits. It is fragile, subject to change, and
+\par thus should not be relied upon.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u22312 \'d4\'da\u32858 \'be\'db\u21512 \'ba\'cf\u22810 \'b6\'e0\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\u26102 \'ca\'b1\u35201 \'d2\'aa\u27880 \'d7\'a2\u24847 \'d2\'e2\u65292 \'a3\'ac\u26377 \'d3\'d0\u26102 \'ca\'b1\u20250 \'bb\'e1\u20986 \'b3\'f6\u29616 \'cf\'d6\u19968 \'d2\'bb\u20123 \'d0\'a9\u24847 \'d2\'e2\u24819 \'cf\'eb\u19981 \'b2\'bb\u21040 \'b5\'bd\u30340 \'b5\'c4\u24773 \'c7\'e9\u20917 \'bf\'f6\u12290 \'a1\'a3\u20363 \'c0\'fd\u22914 \'c8\'e7 ps -aux \u21644 \'ba\'cd ps aux \u25130 \'bd\'d8\u28982 \'c8\'bb\u19981 \'b2\'bb\u21516 \'cd\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u21069 \'c7\'b0\u32773 \'d5\'df\u34987 \'b1\'bb\u35299 \'bd\'e2\u37322 \'ca\'cd\u20026 \'ce\'aa ps -a -u x \u65292 \'a3\'ac\u20063 \'d2\'b2\u23601 \'be\'cd\u26159 \'ca\'c7\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u36824 \'bb\'b9\u26377 \'d3\'d0\u21517 \'c3\'fb\u20026 \'ce\'aa x \u30340 \'b5\'c4\u29992 \'d3\'c3\u25143 \'bb\'a7\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65307 \'a3\'bb\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21 EXAMPLES
+\par \plain \f1\fs21 To see every process on the system using standard syntax:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u26597 \'b2\'e9\u30475 \'bf\'b4\u24403 \'b5\'b1\u21069 \'c7\'b0\u31995 \'cf\'b5\u32479 \'cd\'b3\u30340 \'b5\'c4\u27599 \'c3\'bf\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u29992 \'d3\'c3\u19979 \'cf\'c2\u38754 \'c3\'e6\u30340 \'b5\'c4\u26041 \'b7\'bd\u27861 \'b7\'a8 \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 \~\~ ps -e
+\par \~\~ ps -ef
+\par \~\~ ps -eF
+\par \~\~ ps -ely
+\par \plain \f1\fs21 \~
+\par To see every process on the system using BSD syntax:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u19979 \'cf\'c2\u38754 \'c3\'e6\u26159 \'ca\'c7 BSD \u39118 \'b7\'e7\u26684 \'b8\'f1\u30340 \'b5\'c4\u26597 \'b2\'e9\u36873 \'d1\'a1\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u26041 \'b7\'bd\u24335 \'ca\'bd \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 
+\par \~\~ ps ax
+\par \~\~ ps axu
+\par \~
+\par To print a process tree:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u35201 \'d2\'aa\u25171 \'b4\'f2\u21360 \'d3\'a1\u19968 \'d2\'bb\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u26641 \'ca\'f7\u65292 \'a3\'ac\u29992 \'d3\'c3\uc1
+\par \plain \f1\fs21 
+\par \~\~\plain \f1\b\fs21 \~\plain \f1\fs21 ps -ejH
+\par \~\~ ps axjf
+\par \~
+\par To get info about threads:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u35201 \'d2\'aa\u26174 \'cf\'d4\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\u20449 \'d0\'c5\u24687 \'cf\'a2\u65292 \'a3\'ac\u29992 \'d3\'c3\u19979 \'cf\'c2\u38754 \'c3\'e6\u30340 \'b5\'c4\u26041 \'b7\'bd\u27861 \'b7\'a8\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 \~\~ ps -eLf
+\par \~\~ ps axms
+\par \plain \f1\fs21 \~
+\par To get security info:
+\par \~\~ ps -eo euser,ruser,suser,fuser,f,comm,label
+\par \~\~ ps axZ
+\par \~\~ ps -eM
+\par \~
+\par To see every process except those running as root (real & effective ID)
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u26597 \'b2\'e9\u30475 \'bf\'b4\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'acroot \u30340 \'b5\'c4\u38500 \'b3\'fd\u22806 \'cd\'e2\uc1
+\par \plain \f1\fs21 
+\par \~\~\plain \f1\b\fs21 \~ps -U root -u root -N
+\par \plain \f1\fs21 \~
+\par To see every process with a user-defined format:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u20197 \'d2\'d4\u33258 \'d7\'d4\u23450 \'b6\'a8\u20041 \'d2\'e5\u26684 \'b8\'f1\u24335 \'ca\'bd\u26174 \'cf\'d4\u31034 \'ca\'be\u27599 \'c3\'bf\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 \~\~ ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm
+\par \~\~ ps axo stat,euid,ruid,tty,tpgid,sess,pgrp,ppid,pid,pcpu,comm
+\par \~\~ ps -eopid,tt,user,fname,tmout,f,wchan
+\par \plain \f1\fs21 \~
+\par Odd display with AIX field descriptors:
+\par \~\~ ps -o "%u : %U : %p : %a"
+\par \~
+\par Print only the process IDs of syslogd:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u21482 \'d6\'bb\u25171 \'b4\'f2\u21360 \'d3\'a1 syslogd \u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4 pid\uc1
+\par \plain \f1\fs21 
+\par \~\~\~\plain \f1\b\fs21 ps -C syslogd -o pid=
+\par \plain \f1\fs21 \~
+\par Print only the name of PID 42:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u21482 \'d6\'bb\u25171 \'b4\'f2\u21360 \'d3\'a1 pid \u20026 \'ce\'aa 42 \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u21517 \'c3\'fb\u31216 \'b3\'c6\uc1
+\par \plain \f1\fs21 
+\par \~\~\~\plain \f1\b\fs21 ps -p 42 -o comm=
+\par \plain \f1\fs21 \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 SIMPLE PROCESS SELECTION
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 -A\~\plain \f1\fs21 \~Select all processes. Identical to -e.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-A \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u31561 \'b5\'c8\u20110 \'d3\'da -e\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 -N\~\plain \f1\fs21 \~Select all processes except those that fulfill the specified\~conditions.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-N \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u19981 \'b2\'bb\u21305 \'c6\'a5\u37197 \'c5\'e4\u25152 \'cb\'f9\u26377 \'d3\'d0\u25351 \'d6\'b8\u23450 \'b6\'a8\u26465 \'cc\'f5\u20214 \'bc\'fe\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u20363 \'c0\'fd\u22914 \'c8\'e7 ps -u bob -N \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u19981 \'b2\'bb\u26159 \'ca\'c7\u20197 \'d2\'d4 bob \u36523 \'c9\'ed\u20221 \'b7\'dd\u36816 \'d4\'cb\u34892 \'d0\'d0\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\uc2\u34917 \'b2\'b9\u20805 \'b3\'e4 \u65306 \'a3\'baps \u22810 \'b6\'e0\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\u20043 \'d6\'ae\u38388 \'bc\'e4\u40664 \'c4\'ac\u35748 \'c8\'cfOR \u20851 \'b9\'d8\u31995 \'cf\'b5\u65292 \'a3\'ac\u25152 \'cb\'f9\u20197 \'d2\'d4\u24403 \'b5\'b1\u20351 \'ca\'b9\u29992 \'d3\'c3 -N \u26102 \'ca\'b1\u65292 \'a3\'ac\u34920 \'b1\'ed\u31034 \'ca\'be\u19981 \'b2\'bb\u21305 \'c6\'a5\u37197 \'c5\'e4\u25152 \'cb\'f9\u26377 \'d3\'d0\u26465 \'cc\'f5\u20214 \'bc\'fe\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u25165 \'b2\'c5\u20250 \'bb\'e1\u34987 \'b1\'bb\u21015 \'c1\'d0\u20986 \'b3\'f6\u65292 \'a3\'ac\u32780 \'b6\'f8\u19981 \'b2\'bb\u26159 \'ca\'c7\u34920 \'b1\'ed\u31034 \'ca\'be\u19981 \'b2\'bb\u21305 \'c6\'a5\u37197 \'c5\'e4\u20219 \'c8\'ce\u20309 \'ba\'ce\u19968 \'d2\'bb\u20010 \'b8\'f6\u26465 \'cc\'f5\u20214 \'bc\'fe\u23601 \'be\'cd\u20250 \'bb\'e1\u34987 \'b1\'bb\u21015 \'c1\'d0\u20986 \'b3\'f6\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u20363 \'c0\'fd\u22914 \'c8\'e7 ps -u\~root -t tty1 -N \u34920 \'b1\'ed\u31034 \'ca\'be\u25152 \'cb\'f9\u26377 \'d3\'d0\u19981 \'b2\'bb\u23646 \'ca\'f4\u20110 \'d3\'da\~root \u29992 \'d3\'c3\u25143 \'bb\'a7\u30340 \'b5\'c4\u19988 \'c7\'d2 tty \u19981 \'b2\'bb\u26159 \'ca\'c7 tty1 \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u37117 \'b6\'bc\u34987 \'b1\'bb\u21015 \'c1\'d0\u20986 \'b3\'f6\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -u root -t tty1 -N |more
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~1483 ?\~\~\~\~\~\~\~ 00:00:00 portmap
+\par \~1502 ?\~\~\~\~\~\~\~ 00:00:00 rpc.statd
+\par \~1673 ?\~\~\~\~\~\~\~ 00:00:00 sendmail
+\par \~1723 ?\~\~\~\~\~\~\~ 00:00:00 jserver
+\par \~1762 ?\~\~\~\~\~\~\~ 00:00:00 xfs
+\par 12007 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12008 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12009 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12010 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12011 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12012 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12013 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12014 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 16268 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 18719 ?\~\~\~\~\~\~\~ 00:00:00 ntpd
+\par \~5373 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par \~5387 pts/0\~\~\~ 00:00:00 bash
+\par 10898 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par 10899 pts/3\~\~\~ 00:00:00 bash
+\par 12633 ?\~\~\~\~\~\~\~ 00:00:00 ssh
+\par 13853 pts/0\~\~\~ 00:00:00 ps
+\par 13854 pts/0\~\~\~ 00:00:00 more
+\par [n7css@monitor n7css]$
+\par \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -u n7css -t tty1
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \plain \f1\fs21\cf2 24963 tty1\~\~\~\~ 00:00:00 mingetty\~\~\~\~\~\~\~\~// \uc2\u36825 \'d5\'e2\u20010 \'b8\'f6\u26159 \'ca\'c7\u30001 \'d3\'c9 root \u29992 \'d3\'c3\u25143 \'bb\'a7\u36816 \'d4\'cb\u34892 \'d0\'d0\u30340 \'b5\'c4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~5373 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par \~5387 pts/0\~\~\~ 00:00:00 bash
+\par 10898 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par 10899 pts/3\~\~\~ 00:00:00 bash
+\par 12581 pts/0\~\~\~ 00:00:00 ps
+\par [n7css@monitor n7css]$
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -l 24963
+\par \plain \f1\fs21 F S\~\~ UID\~\~ PID\~ PPID\~ C PRI\~ NI ADDR\~\~\~ SZ WCHAN\~ TTY\~\~\~\~\~\~\~ TIME CMD
+\par 4 S\~\~\~\~\plain \f1\fs21\cf2 \~\plain \f1\fs21 0\~24963\~\~\~\~ 1\~ 0\~ 75\~\~ 0\~\~\~ -\~\~ 340 schedu tty1\~\~\~\~\~\~ 0:00 /sbin/mingetty tty1
+\par [n7css@monitor n7css]$ \~
+\par 
+\par \plain \f1\b\fs21\cf4 T\plain \f1\fs21\cf4 \~\~Select all processes associated with this terminal. Identical
+\par \~\~to the t option without any argument.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21 -a\plain \f1\fs21 \~\~Select all processes except session leaders (see getsid(2))
+\par \~\~and processes not associated with a terminal.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-a \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u38500 \'b3\'fd\u20102 \'c1\'cb session leaders \u20197 \'d2\'d4\u21450 \'bc\'b0\u37027 \'c4\'c7\u20123 \'d0\'a9\u27809 \'c3\'bb\u26377 \'d3\'d0\u21644 \'ba\'cd\u20855 \'be\'df\u20307 \'cc\'e5\u32456 \'d6\'d5\u31471 \'b6\'cb\u20851 \'b9\'d8\u32852 \'c1\'aa\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65288 \'a3\'a8\u20363 \'c0\'fd\u22914 \'c8\'e7\u23432 \'ca\'d8\u25252 \'bb\'a4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u34917 \'b2\'b9\u20805 \'b3\'e4 \u65306 \'a3\'ba\u20851 \'b9\'d8\u20110 \'d3\'da \ldblquote \u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\rdblquote \u12289 \'a1\'a2\ldblquote \u20250 \'bb\'e1\u35805 \'bb\'b0\rdblquote \u30340 \'b5\'c4\u27010 \'b8\'c5\u24565 \'c4\'ee\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 \uc2\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u65288 \'a3\'a8process group\u65289 \'a3\'a9\u65306 \'a3\'ba\u19968 \'d2\'bb\u20010 \'b8\'f6\u25110 \'bb\'f2\u22810 \'b6\'e0\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u38598 \'bc\'af\u21512 \'ba\'cf\u65292 \'a3\'ac\u27599 \'c3\'bf\u19968 \'d2\'bb\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u26377 \'d3\'d0\u21807 \'ce\'a8\u19968 \'d2\'bb\u19968 \'d2\'bb\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9ID\u65292 \'a3\'ac\u21363 \'bc\'b4\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u38271 \'b3\'a4\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4ID\u12290 \'a1\'a3\uc1
+\par 
+\par \uc2\u20250 \'bb\'e1\u35805 \'bb\'b0\u26399 \'c6\'da\u65288 \'a3\'a8session\u65289 \'a3\'a9\u65306 \'a3\'ba\u19968 \'d2\'bb\u20010 \'b8\'f6\u25110 \'bb\'f2\u22810 \'b6\'e0\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u30340 \'b5\'c4\u38598 \'bc\'af\u21512 \'ba\'cf\u65292 \'a3\'ac\u26377 \'d3\'d0\u21807 \'ce\'a8\u19968 \'d2\'bb\u19968 \'d2\'bb\u20010 \'b8\'f6\u20250 \'bb\'e1\u35805 \'bb\'b0\u26399 \'c6\'da\u39318 \'ca\'d7\u36827 \'bd\'f8\u31243 \'b3\'cc\u65288 \'a3\'a8session leader\u65289 \'a3\'a9\u12290 \'a1\'a3\u20250 \'bb\'e1\u35805 \'bb\'b0\u26399 \'c6\'daID\u20026 \'ce\'aa\u39318 \'ca\'d7\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4ID\u12290 \'a1\'a3\uc1
+\par 
+\par \uc2\u20250 \'bb\'e1\u35805 \'bb\'b0\u26399 \'c6\'da\u21487 \'bf\'c9\u20197 \'d2\'d4\u26377 \'d3\'d0\u19968 \'d2\'bb\u20010 \'b8\'f6\u21333 \'b5\'a5\u29420 \'b6\'c0\u30340 \'b5\'c4\u25511 \'bf\'d8\u21046 \'d6\'c6\u32456 \'d6\'d5\u31471 \'b6\'cb\u65288 \'a3\'a8controlling terminal\u65289 \'a3\'a9\u12290 \'a1\'a3\u19982 \'d3\'eb\u25511 \'bf\'d8\u21046 \'d6\'c6\u32456 \'d6\'d5\u31471 \'b6\'cb\u36830 \'c1\'ac\u25509 \'bd\'d3\u30340 \'b5\'c4\u20250 \'bb\'e1\u35805 \'bb\'b0\u26399 \'c6\'da\u39318 \'ca\'d7\u36827 \'bd\'f8\u31243 \'b3\'cc\u21483 \'bd\'d0\u20570 \'d7\'f6\u25511 \'bf\'d8\u21046 \'d6\'c6\u36827 \'bd\'f8\u31243 \'b3\'cc\u65288 \'a3\'a8controlling process\u65289 \'a3\'a9\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 \uc2\u24403 \'b5\'b1\u21069 \'c7\'b0\u19982 \'d3\'eb\u32456 \'d6\'d5\u31471 \'b6\'cb\u20132 \'bd\'bb\u20114 \'bb\'a5\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u31216 \'b3\'c6\u20026 \'ce\'aa\u21069 \'c7\'b0\u21488 \'cc\'a8\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u12290 \'a1\'a3\u20854 \'c6\'e4\u20313 \'d3\'e0\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u31216 \'b3\'c6\u20026 \'ce\'aa\u21518 \'ba\'f3\u21488 \'cc\'a8\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 a\~\~Lift the BSD-style "only yourself" restriction, which is
+\par \~\~imposed upon the set of all processes when some BSD-style
+\par \~\~(without "-") options are used or when the ps personality
+\par \~\~setting is BSD-like. The set of processes selected in this
+\par \~\~manner is in addition to the set of processes selected by
+\par \~\~other means. An alternate description is that this option
+\par \~\~causes ps to list all processes with a terminal (tty), or to
+\par \~\~list all processes when used together with the x option.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21 -d\~\~\plain \f1\fs21 Select all processes except session leaders.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-d \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u20294 \'b5\'ab\u38500 \'b3\'fd\u20102 \'c1\'cb session leaders \u20043 \'d6\'ae\u22806 \'cd\'e2\u12290 \'a1\'a3\u25152 \'cb\'f9\u20197 \'d2\'d4\u23432 \'ca\'d8\u25252 \'bb\'a4\u36827 \'bd\'f8\u31243 \'b3\'cc\u20063 \'d2\'b2\u20250 \'bb\'e1\u34987 \'b1\'bb\u26174 \'cf\'d4\u31034 \'ca\'be\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \plain \f1\b\fs21 -e\~\plain \f1\fs21 \~Select all processes. Identical to -A.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-e \u31561 \'b5\'c8\u20110 \'d3\'da-A\u65292 \'a3\'ac\u25152 \'cb\'f9\u26377 \'d3\'d0\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 g\~\~Really all, even session leaders. This flag is obsolete and
+\par \~\~may be discontinued in a future release. It is normally
+\par \~\~implied by the a flag, and is only useful when operating in
+\par \~\~the sunos4 personality.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 r\~\~Restrict the selection to only running processes.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 x\~\~Lift the BSD-style "must have a tty" restriction, which is
+\par \~\~imposed upon the set of all processes when some BSD-style
+\par \~\~options are used or when the ps personality setting is
+\par \~\~BSD-like. The set of processes selected in this manner is in
+\par \~\~addition to the set of processes selected by other means. An
+\par \~\~alternate description is that this option causes ps to list
+\par \~\~all processes owned by you (same EUID as ps), or to list all
+\par \~\~processes when used together with the a option.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 --deselect\~Select all processes except those that fulfill the specified
+\par \~\~conditions.
+\par \plain \f1\fs21 \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 PROCESS SELECTION BY LIST
+\par \plain \f1\fs21 
+\par These options accept a single argument in the form of a blank-separated or
+\par comma-separated list. They can be used multiple times.
+\par For example: ps -p "1 2" -p 3,4
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u20351 \'ca\'b9\u29992 \'d3\'c3\u21015 \'c1\'d0\u34920 \'b1\'ed\u26469 \'c0\'b4\u36873 \'d1\'a1\u25321 \'d4\'f1\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u22810 \'b6\'e0\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\u20540 \'d6\'b5\u29992 \'d3\'c3\u31354 \'bf\'d5\u26684 \'b8\'f1\u20998 \'b7\'d6\u24320 \'bf\'aa\u65292 \'a3\'ac\u28982 \'c8\'bb\u21518 \'ba\'f3\u29992 \'d3\'c3\u25324 \'c0\'a8\u21495 \'ba\'c5\u25324 \'c0\'a8\u36215 \'c6\'f0\u26469 \'c0\'b4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\uc2\u20063 \'d2\'b2\u24050 \'d2\'d1\u29992 \'d3\'c3\u36887 \'b6\'ba\u21495 \'ba\'c5\u20998 \'b7\'d6\u38548 \'b8\'f4\u65292 \'a3\'ac\u36825 \'d5\'e2\u26679 \'d1\'f9\u23601 \'be\'cd\u21487 \'bf\'c9\u20197 \'d2\'d4\u19981 \'b2\'bb\u29992 \'d3\'c3\u25324 \'c0\'a8\u21495 \'ba\'c5\u20102 \'c1\'cb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u37325 \'d6\'d8\u22797 \'b8\'b4\u20351 \'ca\'b9\u29992 \'d3\'c3\u26576 \'c4\'b3\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\uc1\plain \f1\fs21 \~
+\par \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 -C cmdlist\~\plain \f1\fs21 Select by command name.
+\par \~\~This selects the processes whose executable name is given in\~\~cmdlist.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-C <cmd_list> \u34920 \'b1\'ed\u31034 \'ca\'be\u26681 \'b8\'f9\u25454 \'be\'dd\u21629 \'c3\'fc\u20196 \'c1\'ee\u21517 \'c3\'fb\u21015 \'c1\'d0\u34920 \'b1\'ed\u26469 \'c0\'b4\u36873 \'d1\'a1\u25321 \'d4\'f1\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u21482 \'d6\'bb\u21305 \'c6\'a5\u37197 \'c5\'e4\u21629 \'c3\'fc\u20196 \'c1\'ee\u21517 \'c3\'fb\u37096 \'b2\'bf\u20998 \'b7\'d6\u65292 \'a3\'ac\u19981 \'b2\'bb\u21305 \'c6\'a5\u37197 \'c5\'e4\u21442 \'b2\'ce\u25968 \'ca\'fd\u37096 \'b2\'bf\u20998 \'b7\'d6\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor tmp]$ ps -C sshd,httpd\plain \f1\fs21 \~
+\par \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~1608 ?\~\~\~\~\~\~\~ 00:00:13 sshd
+\par \~1703 ?\~\~\~\~\~\~\~ 00:00:37 httpd
+\par 12007 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12008 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12009 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12010 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12011 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12012 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12013 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 12014 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par 16268 ?\~\~\~\~\~\~\~ 00:00:00 httpd
+\par \~5371 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par \~5373 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par 10896 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par 10898 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par [n7css@monitor tmp]$
+\par \~
+\par 
+\par \plain \f1\b\fs21 -G grplist\plain \f1\fs21 \~Select by real group ID (RGID) or name.
+\par \~\~This selects the processes whose real group name or ID is in
+\par \~\~the grplist list. The real group ID identifies the group of
+\par \~\~the user who created the process, see getgid(2).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-G \u34920 \'b1\'ed\u31034 \'ca\'be\u26681 \'b8\'f9\u25454 \'be\'dd real GID \u25110 \'bb\'f2\u32773 \'d5\'df real group name \u26469 \'c0\'b4\u36873 \'d1\'a1\u25321 \'d4\'f1\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # real GID \uc2\u29992 \'d3\'c3\u20110 \'d3\'da\u25351 \'d6\'b8\u20986 \'b3\'f6\u26159 \'ca\'c7\u24314 \'bd\'a8\u31435 \'c1\'a2\u35813 \'b8\'c3\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u29992 \'d3\'c3\u25143 \'bb\'a7\u26159 \'ca\'c7\u37027 \'c4\'c7\u20010 \'b8\'f6\u29992 \'d3\'c3\u25143 \'bb\'a7\u32452 \'d7\'e9\u65292 \'a3\'ac\u19981 \'b2\'bb\u21516 \'cd\'ac\u20110 \'d3\'da EGID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\uc2\u34917 \'b2\'b9\u20805 \'b3\'e4 \u65306 \'a3\'ba\u24403 \'b5\'b1\u25191 \'d6\'b4\u34892 \'d0\'d0 setuid \u31243 \'b3\'cc\u24207 \'d0\'f2\u26102 \'ca\'b1\u65292 \'a3\'acRGID \u20250 \'bb\'e1\u25913 \'b8\'c4\u21464 \'b1\'e4\u21527 \'c2\'f0\u65311 \'a3\'bf\u65288 \'a3\'a8\u19981 \'b2\'bb\u20250 \'bb\'e1\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -l 21033\plain \f1\fs21 \~
+\par F S\~\~ UID\~\~ PID\~ PPID\~ C PRI\~ NI ADDR\~\~\~ SZ WCHAN\~ TTY\~\~\~\~\~\~\~ TIME CMD
+\par 0 S\~\plain \f1\fs21\cf2 \~\~\~ 0\plain \f1\fs21 \~21033\~ 5387\~ 0\~ 81\~\~ 0\~\~\~ -\~\~ 697 schedu pts/0\~\~\~\~\~ 0:00 [passwd]
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -o rgid,egid 21033
+\par \plain \f1\fs21 \~RGID\~ EGID
+\par \plain \f1\fs21\cf2 \~ 500\~\~ 500
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -o ruid,euid 21033\~\~\~
+\par \plain \f1\fs21 \~RUID\~ EUID
+\par \plain \f1\fs21\cf2 \~ 500\~\~\~\~ 0
+\par \plain \f1\fs21 [n7css@monitor n7css]$
+\par \~
+\par 
+\par \plain \f1\b\fs21 U userlist\plain \f1\fs21 \~Select by effective user ID (EUID) or name.
+\par \~\~This selects the processes whose effective user name or ID is
+\par \~\~in userlist. The effective user ID describes the user whose
+\par \~\~file access permissions are used by the process
+\par \~\~(see geteuid(2)). Identical to -u and --user.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u27880 \'d7\'a2\u24847 \'d2\'e2\u65292 \'a3\'ac\u26159 \'ca\'c7 U <list>,\u21069 \'c7\'b0\u38754 \'c3\'e6\u27809 \'c3\'bb\u26377 \'d3\'d0 '-' \u12290 \'a1\'a3\u22914 \'c8\'e7\u26524 \'b9\'fb\u21152 \'bc\'d3\u19978 \'c9\'cf '-' \u23601 \'be\'cd\u21464 \'b1\'e4\u25104 \'b3\'c9\u19979 \'cf\'c2\u38754 \'c3\'e6\u30340 \'b5\'c4 RUID \u20102 \'c1\'cb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # U <euid_list> \uc2\u26159 \'ca\'c7\u36873 \'d1\'a1\u25321 \'d4\'f1\u25351 \'d6\'b8\u23450 \'b6\'a8 EUID \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u22312 \'d4\'da\u26597 \'b2\'e9\u35810 \'d1\'af setUID \u31243 \'b3\'cc\u24207 \'d0\'f2\u26102 \'ca\'b1\u24456 \'ba\'dc\u26377 \'d3\'d0\u29992 \'d3\'c3\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -U root |grep passwd\~
+\par \plain \f1\fs21 [n7css@monitor n7css]$ ps U root |grep passwd\~
+\par 21033 pts/0\~\~\~ S\~\~\~\~\~ 0:00 [passwd]
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps U 0 |grep passwd\~\~\~\~
+\par \plain \f1\fs21 21033 pts/0\~\~\~ S\~\~\~\~\~ 0:00 [passwd]
+\par [n7css@monitor n7css]$
+\par \~
+\par 
+\par \plain \f1\b\fs21 -U userlist\plain \f1\fs21 \~select by real user ID (RUID) or name.
+\par \~\~It selects the processes whose real user name or ID is in the
+\par \~\~userlist list. The real user ID identifies the user who
+\par \~\~created the process, see getuid(2).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-U \u26159 \'ca\'c7\u36873 \'d1\'a1\u25321 \'d4\'f1\u25351 \'d6\'b8\u23450 \'b6\'a8 RUID \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u20063 \'d2\'b2\u23601 \'be\'cd\u26159 \'ca\'c7\u30495 \'d5\'e6\u27491 \'d5\'fd\u24314 \'bd\'a8\u31435 \'c1\'a2\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u29992 \'d3\'c3\u25143 \'bb\'a7\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u34917 \'b2\'b9\u20805 \'b3\'e4 \u65306 \'a3\'ba\u19978 \'c9\'cf\u38754 \'c3\'e6\u30340 \'b5\'c4 -U \u20043 \'d6\'ae\u25152 \'cb\'f9\u20197 \'d2\'d4\u27809 \'c3\'bb\u26377 \'d3\'d0\u21015 \'c1\'d0\u20986 \'b3\'f6 passwd \u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u26159 \'ca\'c7\u22240 \'d2\'f2\u20026 \'ce\'aa\u36825 \'d5\'e2\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u24182 \'b2\'a2\u19981 \'b2\'bb\u26159 \'ca\'c7 root \u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u65292 \'a3\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u32780 \'b6\'f8\u26159 \'ca\'c7 n7css \u29992 \'d3\'c3\u25143 \'bb\'a7\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u65292 \'a3\'ac\u25152 \'cb\'f9\u20197 \'d2\'d4\u33258 \'d7\'d4\u28982 \'c8\'bb\u19981 \'b2\'bb\u20250 \'bb\'e1\u34987 \'b1\'bb\u21015 \'c1\'d0\u20986 \'b3\'f6\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \plain \f1\b\fs21 -g grplist\plain \f1\fs21 \~Select by session OR by effective group name.
+\par \~\~Selection by session is specified by many standards, but
+\par \~\~selection by effective group is the logical behavior that
+\par \~\~several other operating systems use.\~This ps will select by
+\par \~\~session when the list is completely numeric
+\par \~\~(as sessions are). Group ID numbers will work only when some
+\par \~\~group names are also specified.\~See the -s and --group
+\par \~\~options.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-g \u21015 \'c1\'d0\u20986 \'b3\'f6\u25351 \'d6\'b8\u23450 \'b6\'a8 EGID \u25110 \'bb\'f2\u32773 \'d5\'df\u25351 \'d6\'b8\u23450 \'b6\'a8\u20250 \'bb\'e1\u35805 \'bb\'b0\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65292 \'a3\'ac\u20855 \'be\'df\u20307 \'cc\'e5\u30475 \'bf\'b4\u21442 \'b2\'ce\u25968 \'ca\'fd\u21015 \'c1\'d0\u34920 \'b1\'ed\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u22914 \'c8\'e7\u26524 \'b9\'fb\u21442 \'b2\'ce\u25968 \'ca\'fd\u20840 \'c8\'ab\u37096 \'b2\'bf\u26159 \'ca\'c7\u25968 \'ca\'fd\u23383 \'d7\'d6\u65292 \'a3\'ac\u21017 \'d4\'f2\u30475 \'bf\'b4\u25104 \'b3\'c9\u26159 \'ca\'c7 session ID \u65292 \'a3\'ac\u22914 \'c8\'e7\u26524 \'b9\'fb\u26159 \'ca\'c7 group name \u65292 \'a3\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u30475 \'bf\'b4\u25104 \'b3\'c9 EGID\u65292 \'a3\'ac\u20855 \'be\'df\u20307 \'cc\'e5\u20363 \'c0\'fd\u23376 \'d7\'d3\u30475 \'bf\'b4\u19979 \'cf\'c2\u38754 \'c3\'e6 \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -g 500
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -g n7css
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~5373 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par \~5387 pts/0\~\~\~ 00:00:00 bash
+\par 10898 ?\~\~\~\~\~\~\~ 00:00:00 sshd
+\par 10899 pts/3\~\~\~ 00:00:00 bash
+\par 23881 pts/0\~\~\~ 00:00:00 passwd
+\par 23883 pts/3\~\~\~ 00:00:00 ps
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ id n7css
+\par \plain \f1\fs21 uid=500(n7css) gid=500(n7css) groups=500(n7css),0(root)
+\par [n7css@monitor n7css]$
+\par \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 p pidlist\~Select by process ID. Identical to -p and --pid.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21 -p pidlist\plain \f1\fs21 \~Select by PID.
+\par \~\~This selects the processes whose process ID numbers appear in
+\par \~\~pidlist. Identical to p and --pid.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-p \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u25351 \'d6\'b8\u23450 \'b6\'a8 PID \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21\cf3 [n7css@monitor n7css]$ ps -p 1,2
+\par \plain \f1\fs21\cf3 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~\~\~ 1 ?\~\~\~\~\~\~\~ 00:00:35 init
+\par \~\~\~ 2 ?\~\~\~\~\~\~\~ 00:00:00 migration/0
+\par [n7css@monitor n7css]$
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \plain \f1\b\fs21 -s sesslist\plain \f1\fs21 \~Select by session ID.
+\par \~\~This selects the processes with a session ID specified
+\par \~\~in sesslist.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-s \u34920 \'b1\'ed\u31034 \'ca\'be\u36873 \'d1\'a1\u25321 \'d4\'f1\u25351 \'d6\'b8\u23450 \'b6\'a8\u30340 \'b5\'c4\u20250 \'bb\'e1\u35805 \'bb\'b0\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -s 1
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~\~\~ 2 ?\~\~\~\~\~\~\~ 00:00:00 migration/0
+\par \~\~\~ 3 ?\~\~\~\~\~\~\~ 00:00:00 migration/1
+\par \~\~\~ 4 ?\~\~\~\~\~\~\~ 00:00:00 keventd
+\par \~\~\~ 5 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd_CPU0
+\par \~\~\~ 6 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd_CPU1
+\par \~\~ 11 ?\~\~\~\~\~\~\~ 00:00:00 bdflush
+\par \~\~\~ 7 ?\~\~\~\~\~\~\~ 00:00:12 kswapd
+\par \~\~\~ 8 ?\~\~\~\~\~\~\~ 00:00:00 kscand/DMA
+\par \~\~\~ 9 ?\~\~\~\~\~\~\~ 00:25:51 kscand/Normal
+\par \~\~ 10 ?\~\~\~\~\~\~\~ 01:03:32 kscand/HighMem
+\par \~\~ 12 ?\~\~\~\~\~\~\~ 00:00:36 kupdated
+\par \~\~ 13 ?\~\~\~\~\~\~\~ 00:00:00 mdrecoveryd
+\par \~\~ 19 ?\~\~\~\~\~\~\~ 00:00:00 scsi_eh_0
+\par \~\~ 20 ?\~\~\~\~\~\~\~ 00:00:00 scsi_eh_1
+\par \~\~ 23 ?\~\~\~\~\~\~\~ 00:03:21 kjournald
+\par \~\~ 81 ?\~\~\~\~\~\~\~ 00:00:00 khubd
+\par 31992 ?\~\~\~\~\~\~\~ 00:00:00 loop0
+\par \~1218 ?\~\~\~\~\~\~\~ 00:00:00 loop1
+\par \~9586 ?\~\~\~\~\~\~\~ 00:00:00 kjournald
+\par [n7css@monitor n7css]$
+\par \~
+\par 
+\par 
+\par \plain \f1\fs21\cf4 t ttylist\~Select by tty. Nearly identical to -t and --tty, but can also
+\par \~\~be used with an empty ttylist to indicate the terminal
+\par \~\~associated with ps. Using the T option is considered cleaner
+\par \~\~than using T with an empty ttylist.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21 -t ttylist\plain \f1\fs21 \~Select by tty.
+\par \~\~This selects the processes associated with the terminals
+\par \~\~given in ttylist. Terminals (ttys, or screens for text
+\par \~\~output) can be specified in several forms: /dev/ttyS1, ttyS1,
+\par \~\~S1. A plain "-" may be used to select processes not attached
+\par \~\~to any terminal.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-t \u36873 \'d1\'a1\u25321 \'d4\'f1\u25351 \'d6\'b8\u23450 \'b6\'a8 tty \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3 /dev/ttyS1 \u36825 \'d5\'e2\u26679 \'d1\'f9\u23436 \'cd\'ea\u25972 \'d5\'fb\u30340 \'b5\'c4\u26684 \'b8\'f1\u24335 \'ca\'bd\u65292 \'a3\'ac\u25110 \'bb\'f2\u32773 \'d5\'df ttyS1 \u36825 \'d5\'e2\u26679 \'d1\'f9\u30340 \'b5\'c4\u26684 \'b8\'f1\u24335 \'ca\'bd\u65292 \'a3\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u25110 \'bb\'f2\u32773 \'d5\'df\u24178 \'b8\'c9\u33030 \'b4\'e0\u23601 \'be\'cd\u26159 \'ca\'c7 S1 \u12290 \'a1\'a3\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3 '-' \u34920 \'b1\'ed\u31034 \'ca\'be\u37027 \'c4\'c7\u20123 \'d0\'a9\u27809 \'c3\'bb\u26377 \'d3\'d0\u21644 \'ba\'cd\u20855 \'be\'df\u20307 \'cc\'e5\u32456 \'d6\'d5\u31471 \'b6\'cb\u25346 \'b9\'d2\u38057 \'b9\'b3\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -t tty1
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par 24963 tty1\~\~\~\~ 00:00:00 mingetty
+\par [n7css@monitor n7css]$\~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -t '-'
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~\~\~ 1 ?\~\~\~\~\~\~\~ 00:00:35 init
+\par \~\~\~ 2 ?\~\~\~\~\~\~\~ 00:00:00 migration/0
+\par \~\~\~ 3 ?\~\~\~\~\~\~\~ 00:00:00 migration/1
+\par \~\~\~ 4 ?\~\~\~\~\~\~\~ 00:00:00 keventd
+\par \~\~\~ 5 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd_CPU0
+\par \plain \f1\fs21\cf2 \uc2\u65288 \'a3\'a8\u30465 \'ca\'a1\u30053 \'c2\'d4\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \plain \f1\b\fs21 -u userlist\plain \f1\fs21 \~Select by effective user ID (EUID) or name.
+\par \~\~This selects the processes whose effective user name or ID is
+\par \~\~in userlist. The effective user ID describes the user whose
+\par \~\~file access permissions are used by the process
+\par \~\~(see geteuid(2)). Identical to U and --user.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-u \u29992 \'d3\'c3\u20110 \'d3\'da\u36873 \'d1\'a1\u25321 \'d4\'f1\u25351 \'d6\'b8\u23450 \'b6\'a8 euid \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u21644 \'ba\'cd\u19978 \'c9\'cf\u38754 \'c3\'e6\u30340 \'b5\'c4 U <list> \u19968 \'d2\'bb\u26679 \'d1\'f9\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # euid \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u24403 \'b5\'b1\u21069 \'c7\'b0\u35813 \'b8\'c3\u36827 \'bd\'f8\u31243 \'b3\'cc\u25152 \'cb\'f9\u25317 \'d3\'b5\u26377 \'d3\'d0\u30340 \'b5\'c4\u26435 \'c8\'a8\u21147 \'c1\'a6\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [n7css@monitor n7css]$ ps -u 0 |grep passwd
+\par \plain \f1\fs21 26554 pts/0\~\~\~ 00:00:00 passwd
+\par [n7css@monitor n7css]$
+\par \~
+\par 
+\par 
+\par \plain \f1\b\fs21 --ppid\plain \f1\fs21 \~pidlist\~Select by parent process ID. This selects the processes with
+\par \~\~a parent process ID in pidlist. That is, it selects processes
+\par \~\~that are children of those listed in pidlist.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--ppid \u29992 \'d3\'c3\u20110 \'d3\'da\u36873 \'d1\'a1\u25321 \'d4\'f1 PPID \u20026 \'ce\'aa\u25351 \'d6\'b8\u23450 \'b6\'a8\u20540 \'d6\'b5\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u12290 \'a1\'a3\u20363 \'c0\'fd\u22914 \'c8\'e7\u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3\u23427 \'cb\'fc\u30475 \'bf\'b4 init \u34893 \'d1\'dc\u29983 \'c9\'fa\u20102 \'c1\'cb\u37027 \'c4\'c7\u20123 \'d0\'a9\u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u24847 \'d2\'e2\u65292 \'a3\'ac\u26087 \'be\'c9\u29256 \'b0\'e6\u30340 \'b5\'c4 ps \u21487 \'bf\'c9\u33021 \'c4\'dc\u19981 \'b2\'bb\u25903 \'d6\'a7\u25345 \'b3\'d6\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps --ppid 1
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~\~\~ 2 ?\~\~\~\~\~\~\~ 00:00:16 migration/0
+\par \~\~\~ 3 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd/0
+\par \~\~\~ 4 ?\~\~\~\~\~\~\~ 00:00:08 migration/1
+\par \~\~\~ 5 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd/1
+\par \~\~\~ 6 ?\~\~\~\~\~\~\~ 00:00:10 migration/2
+\par \~\~\~ 7 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd/2
+\par \~\~\~ 8 ?\~\~\~\~\~\~\~ 00:00:11 migration/3
+\par \~\~\~ 9 ?\~\~\~\~\~\~\~ 00:00:00 ksoftirqd/3
+\par \plain \f1\fs21\cf2 \uc2\u65288 \'a3\'a8\u30465 \'ca\'a1\u30053 \'c2\'d4\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\fs21\cf4 -\plain \f1\fs21 \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 OUTPUT FORMAT CONTROL
+\par \plain \f1\fs21 
+\par These options are used to choose the information displayed by ps. The output
+\par may differ by personality.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u33258 \'d7\'d4\u24049 \'bc\'ba\u25511 \'bf\'d8\u21046 \'d6\'c6 ps \u30340 \'b5\'c4\u36755 \'ca\'e4\u20986 \'b3\'f6\u20869 \'c4\'da\u23481 \'c8\'dd\u37027 \'c4\'c7\u20010 \'b8\'f6\uc1\plain \f1\fs21 \~
+\par \~
+\par \plain \f1\b\fs21 -F\plain \f1\fs21 \~\~extra full format. See the -f option, which -F implies.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-F \u34920 \'b1\'ed\u31034 \'ca\'be full format \u65292 \'a3\'ac\u21516 \'cd\'ac\u26102 \'ca\'b1 command \u37096 \'b2\'bf\u20998 \'b7\'d6\u20250 \'bb\'e1\u26174 \'cf\'d4\u31034 \'ca\'be bash \u36827 \'bd\'f8\u31243 \'b3\'cc\u26159 \'ca\'c7 login shell \u65288 \'a3\'a8\u20197 \'d2\'d4 '-' \u24320 \'bf\'aa\u22836 \'cd\'b7\u65289 \'a3\'a9\u36824 \'bb\'b9\u26159 \'ca\'c7\u26222 \'c6\'d5\u36890 \'cd\'a8 shell\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>bash
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par 14366 pts/0\~\~\~ 00:00:00 bash
+\par 15417 pts/0\~\~\~ 00:00:00 bash
+\par 15438 pts/0\~\~\~ 00:00:00 ps
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>ps -F
+\par UID\~\~\~\~\~\~\~ PID\~ PPID\~ C\~\~\~ SZ\~ RSS PSR STIME TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par n7css\~\~\~ 14366 14365\~ 0\~ 1728 1444\~\~ 1 01:34 pts/0\~\~\~ 00:00:00 -\plain \f1\fs21\cf2 bash
+\par \plain \f1\fs21 n7css\~\~\~ 15417 14366\~ 0\~ 1354 1440\~\~ 2 01:40 pts/0\~\~\~ 00:00:00\~\plain \f1\fs21\cf2 bash
+\par \plain \f1\fs21 n7css\~\~\~ 15585 15417\~ 0\~\~ 826\~ 760\~\~ 3 01:41 pts/0\~\~\~ 00:00:00 ps -F
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u34917 \'b2\'b9\u20805 \'b3\'e4 \u65306 \'a3\'baps -F \u40664 \'c4\'ac\u35748 \'c8\'cf\u30340 \'b5\'c4\u36755 \'ca\'e4\u20986 \'b3\'f6\u20869 \'c4\'da\u23481 \'c8\'dd\u26377 \'d3\'d0 \u65306 \'a3\'baUID\u12289 \'a1\'a2PID\u12289 \'a1\'a2PPID\u12289 \'a1\'a2C\u12289 \'a1\'a2SZ\u12289 \'a1\'a2RSS\u12289 \'a1\'a2PSR\u12289 \'a1\'a2STIME\u12289 \'a1\'a2TTY\u12289 \'a1\'a2TIME\u12289 \'a1\'a2CMD\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -F
+\par \plain \f1\fs21\cf2 UID\plain \f1\fs21 \~\~\~\~\~\~\~ PID\~ PPID\~ C\~\~\~ SZ\~ RSS PSR STIME TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par n7css\~\~\~ 14366 14365\~ 0\~ 1728 1444\~\~ 1 01:34 pts/0\~\~\~ 00:00:00 -bash
+\par n7css\~\~\~ 14548 14366\~ 0\~\~ 570\~ 760\~\~ 0 01:36 pts/0\~\~\~ 00:00:00 ps -F
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par 14366 pts/0\~\~\~ 00:00:00 bash
+\par 14695 pts/0\~\~\~ 00:00:00 ps
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \~
+\par 
+\par \plain \f1\b\fs21 -O format\~\plain \f1\fs21 is like -o, but preloaded with some default columns.
+\par \~\~Identical to -o pid,format,state,tname,time,command or
+\par \~\~-o pid,format,tname,time,cmd, see -o below.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-O \u21644 \'ba\'cd -o \u19968 \'d2\'bb\u26679 \'d1\'f9\u65292 \'a3\'ac\u20294 \'b5\'ab\u20250 \'bb\'e1\u39044 \'d4\'a4\u20808 \'cf\'c8\u36755 \'ca\'e4\u20986 \'b3\'f6\u26576 \'c4\'b3\u20123 \'d0\'a9\u40664 \'c4\'ac\u35748 \'c8\'cf\u30340 \'b5\'c4\u23383 \'d7\'d6\u27573 \'b6\'ce\u65292 \'a3\'ac\u32780 \'b6\'f8 -o \u21017 \'d4\'f2\u26159 \'ca\'c7\u21482 \'d6\'bb\u36755 \'ca\'e4\u20986 \'b3\'f6\u25351 \'d6\'b8\u23450 \'b6\'a8\u23383 \'d7\'d6\u27573 \'b6\'ce\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u23427 \'cb\'fc\u19981 \'b2\'bb\u33021 \'c4\'dc\u21644 \'ba\'cd -F \u21516 \'cd\'ac\u26679 \'d1\'f9\u65292 \'a3\'ac\u21542 \'b7\'f1\u21017 \'d4\'f2\u20250 \'bb\'e1\u25253 \'b1\'a8\u38169 \'b4\'ed\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -O ruid
+\par \plain \f1\fs21 \~\~\plain \f1\fs21\cf2 PID\plain \f1\fs21 \~ RUID\plain \f1\fs21\cf2 \~\plain \f1\fs21 S TTY\~\~\~\~\~\~\~\~\~ TIME COMMAND
+\par 14366\~\~ 500 S pts/0\~\~\~ 00:00:00 -bash
+\par 15107\~\~ 500 R pts/0\~\~\~ 00:00:00 ps -O ruid
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par 
+\par \~
+\par \plain \f1\b\fs21 -c\plain \f1\fs21 \~\~Show different scheduler information for the -l option.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-c \u29992 \'d3\'c3\u20110 \'d3\'da\u26174 \'cf\'d4\u31034 \'ca\'be\u19981 \'b2\'bb\u21516 \'cd\'ac\u30340 \'b5\'c4\u35843 \'b5\'f7\u24230 \'b6\'c8\u20449 \'d0\'c5\u24687 \'cf\'a2\u12290 \'a1\'a3\u21644 \'ba\'cd -F \u25110 \'bb\'f2\u32773 \'d5\'df -l \u37117 \'b6\'bc\u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3\uc1
+\par \plain \f1\fs21 \~
+\par \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -F
+\par \plain \f1\fs21 UID\~\~\~\~\~\~\~ PID\~ PPID\~ C\~\~\~ SZ\~ RSS PSR STIME TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par n7css\~\~\~ 14366 14365\~ 0\~ 1728 1444\~\~ 1 01:34 pts/0\~\~\~ 00:00:00 -bash
+\par n7css\~\~\~ 15257 14366\~ 0\~\~ 917\~ 760\~\~ 0 01:39 pts/0\~\~\~ 00:00:00 ps -F
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -F -c
+\par \plain \f1\fs21 UID\~\~\~\~\~\~\~ PID\~ PPID\~\plain \f1\fs21\cf2 CLS\plain \f1\fs21 \~\plain \f1\fs21\cf2 PRI\~\plain \f1\fs21 \~\~ SZ\~ RSS PSR STIME TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par n7css\~\~\~ 14366 14365\~\plain \f1\fs21\cf2 TS\~\~ 24\plain \f1\fs21 \~ 1728 1444\~\~ 1 01:34 pts/0\~\~\~ 00:00:00 -bash
+\par n7css\~\~\~ 15258 14366\~\plain \f1\fs21\cf2 TS\~\~ 23\plain \f1\fs21 \~\~ 770\~ 756\~\~ 0 01:39 pts/0\~\~\~ 00:00:00 ps -F -c
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par 
+\par \plain \f1\b\fs21 -f\plain \f1\fs21 \~\~does full-format listing. This option can be combined with
+\par \~\~many other UNIX-style options to add additional columns.\~It
+\par \~\~also causes the command arguments to be printed.\~When used
+\par \~\~with -L, the NLWP (number of threads) and LWP (thread ID)
+\par \~\~columns will be added.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-f \u34920 \'b1\'ed\u31034 \'ca\'be full-format \u65292 \'a3\'ac\u23427 \'cb\'fc\u20250 \'bb\'e1\u26174 \'cf\'d4\u31034 \'ca\'be\u21629 \'c3\'fc\u20196 \'c1\'ee\u30340 \'b5\'c4\u21442 \'b2\'ce\u25968 \'ca\'fd\u65292 \'a3\'ac\u22914 \'c8\'e7\u26524 \'b9\'fb\u21644 \'ba\'cd -L \u37197 \'c5\'e4\u21512 \'ba\'cf\u65292 \'a3\'ac\u36824 \'bb\'b9\u21487 \'bf\'c9\u20197 \'d2\'d4\u26174 \'cf\'d4\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\u25968 \'ca\'fd\u37327 \'c1\'bf\u12289 \'a1\'a2\u32447 \'cf\'df\u31243 \'b3\'cc ID\uc1
+\par \plain \f1\fs21 \~
+\par \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -C CDRA
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par \~8838 ?\~\~\~\~\~\~\~ 00:00:11 CDRA
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -f -C CDRA
+\par \plain \f1\fs21 UID\~\~\~\~\~\~\~ PID\~ PPID\~ C STIME TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par n7css\~\~\~\~ 8838\~\~\~\~ 1\~ 0 Aug03 ?\~\~\~\~\~\~\~ 00:00:11\~\plain \f1\fs21\cf2 /n7css/as/CDRA -nowait -tracetofile -threadcnt1 -cdrdestdb -statdestboth
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -fL -C CDRA
+\par \plain \f1\fs21 UID\~\~\~\~\~\~\~ PID\~ PPID\~\~ LWP\~ C NLWP STIME TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par n7css\~\~\~\~ 8838\~\~\~\~ 1\~ 8838\~ 0\~\~\~ 5 Aug03 ?\~\~\~\~\~\~\~ 00:00:11 /n7css/as/CDRA -nowait -tracetofile -threadcnt1 -cdrdestdb -statdestboth
+\par n7css\~\~\~\~ 8838\~\~\~\~ 1 31132\~ 0\~\~\~ 5 Aug05 ?\~\~\~\~\~\~\~ 00:00:00 /n7css/as/CDRA -nowait -tracetofile -threadcnt1 -cdrdestdb -statdestboth
+\par n7css\~\~\~\~ 8838\~\~\~\~ 1 31133\~ 0\~\~\~ 5 Aug05 ?\~\~\~\~\~\~\~ 00:01:21 /n7css/as/CDRA -nowait -tracetofile -threadcnt1 -cdrdestdb -statdestboth
+\par n7css\~\~\~\~ 8838\~\~\~\~ 1 31134\~ 0\~\~\~ 5 Aug05 ?\~\~\~\~\~\~\~ 00:00:01 /n7css/as/CDRA -nowait -tracetofile -threadcnt1 -cdrdestdb -statdestboth
+\par n7css\~\~\~\~ 8838\~\~\~\~ 1 31135\~ 3\~\~\~ 5 Aug05 ?\~\~\~\~\~\~\~ 00:49:25 /n7css/as/CDRA -nowait -tracetofile -threadcnt1 -cdrdestdb -statdestboth
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \~
+\par \~
+\par 
+\par \plain \f1\b\fs21 -j\plain \f1\fs21 \~\~jobs format
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-j \u20197 \'d2\'d4 job format \u26174 \'cf\'d4\u31034 \'ca\'be\u65292 \'a3\'ac\u20250 \'bb\'e1\u26174 \'cf\'d4\u31034 \'ca\'be PGID\u65288 \'a3\'a8\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9 ID\u65289 \'a3\'a9\u12289 \'a1\'a2SID\u65288 \'a3\'a8\u20250 \'bb\'e1\u35805 \'bb\'b0 ID\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 [1]+\~ Stopped\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ vim
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps
+\par \plain \f1\fs21 \~ PID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par 14366 pts/0\~\~\~ 00:00:00 bash
+\par 17128 pts/0\~\~\~ 00:00:00 vim
+\par 17130 pts/0\~\~\~ 00:00:00 ps
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -j
+\par \plain \f1\fs21 \~ PID\~ PGID\~\~ SID TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par 14366 14366 14366 pts/0\~\~\~ 00:00:00 bash
+\par 17128\~\plain \f1\fs21\cf2 17128 14366\plain \f1\fs21 \~pts/0\~\~\~ 00:00:00 vim
+\par 17131 17131 14366 pts/0\~\~\~ 00:00:00 ps
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \~
+\par \~
+\par \~
+\par 
+\par \plain \f1\b\fs21 -l\~\~long format.\plain \f1\fs21 \~The -y option is often useful with this.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-l \u34920 \'b1\'ed\u31034 \'ca\'be long-format \u65292 \'a3\'ac\u19981 \'b2\'bb\u20165 \'bd\'f6\u20165 \'bd\'f6\u26159 \'ca\'c7 full-format \u32780 \'b6\'f8\u24050 \'d2\'d1\u12290 \'a1\'a3\u32463 \'be\'ad\u24120 \'b3\'a3\u21644 \'ba\'cd -y \u19968 \'d2\'bb\u36215 \'c6\'f0\u20351 \'ca\'b9\u29992 \'d3\'c3\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~ps -l \uc2\u30340 \'b5\'c4\u40664 \'c4\'ac\u35748 \'c8\'cf\u36755 \'ca\'e4\u20986 \'b3\'f6 \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\ul\fs21\cf1 n7css@as7\plain \f1\b\fs21 : ~>ps -l
+\par \plain \f1\fs21 F S\~\~ UID\~\~ PID\~ PPID\~ C PRI\~ NI ADDR SZ WCHAN\~ TTY\~\~\~\~\~\~\~\~\~ TIME CMD
+\par 0 S\~\~ 500 14366 14365\~ 0\~ 76\~\~ 0 -\~ 1729 wait\~\~ pts/0\~\~\~ 00:00:00 bash
+\par 0 R\~\~ 500 17285 14366\~ 0\~ 76\~\~ 0 -\~\~ 632 -\~\~\~\~\~ pts/0\~\~\~ 00:00:00 ps
+\par \plain \f1\ul\fs21\cf1 n7css@as7\plain \f1\fs21 : ~>
+\par \~
+\par 
+\par \plain \f1\b\fs21 -o format\plain \f1\fs21 \~user-defined format.
+\par 
+\par \~\~format is a single argument in the form of a blank-separated
+\par \~\~or comma-separated list, which offers a way to specify
+\par \~\~individual output columns. The recognized keywords are
+\par \~\~described in the STANDARD FORMAT SPECIFIERS section below.
+\par \~\~Headers may be renamed
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-o \u29992 \'d3\'c3\u20110 \'d3\'da\u25511 \'bf\'d8\u21046 \'d6\'c6\u36755 \'ca\'e4\u20986 \'b3\'f6\u26684 \'b8\'f1\u24335 \'ca\'bd\u65292 \'a3\'ac\u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3\ldblquote  \rdblquote \u25324 \'c0\'a8\u36215 \'c6\'f0\u26469 \'c0\'b4\u65292 \'a3\'ac\u20063 \'d2\'b2\u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3\u36887 \'b6\'ba\u21495 \'ba\'c5\u36827 \'bd\'f8\u34892 \'d0\'d0\u20998 \'b7\'d6\u38548 \'b8\'f4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u20320 \'c4\'e3\u29978 \'c9\'f5\u33267 \'d6\'c1\u21487 \'bf\'c9\u20197 \'d2\'d4\u23545 \'b6\'d4\u26631 \'b1\'ea\u39064 \'cc\'e2\u26639 \'c0\'b8\u36827 \'bd\'f8\u34892 \'d0\'d0\u33258 \'d7\'d4\u23450 \'b6\'a8\u20041 \'d2\'e5\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 
+\par \~\~(ps -o pid,ruser=RealUser -o comm=Command) as desired. If all
+\par \~\~column headers are empty (ps -o pid= -o comm=) then the
+\par \~\~header line will not be output. Column width will increase as
+\par \~\~needed for wide headers; this may be used to widen up columns
+\par \~\~such as WCHAN (ps -o pid,wchan=WIDE-WCHAN-COLUMN -o comm).
+\par \~\~Explicit width control (ps opid,wchan:42,cmd) is offered too.
+\par \~\~The behavior of ps -o pid=X,comm=Y varies with personality;
+\par \~\~output may be one column named "X,comm=Y" or two columns
+\par \~\~named "X" and "Y". Use multiple -o options when in doubt. Use
+\par \~\~the PS_FORMAT environment variable to specify a default as
+\par \~\~desired; DefSysV and DefBSD are macros that may be used to
+\par \~\~choose the default UNIX or BSD columns.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u20363 \'c0\'fd\u22914 \'c8\'e7 ps -o pid,ruser=RealUser -o comm=Command \u34920 \'b1\'ed\u31034 \'ca\'be\u36755 \'ca\'e4\u20986 \'b3\'f6 pid\u12289 \'a1\'a2realuser\u12289 \'a1\'a2command\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u21516 \'cd\'ac\u26102 \'ca\'b1 ruser \u37096 \'b2\'bf\u20998 \'b7\'d6\u30340 \'b5\'c4\u26631 \'b1\'ea\u39064 \'cc\'e2\u20026 \'ce\'aa RealUser\u65292 \'a3\'accomm \u37096 \'b2\'bf\u20998 \'b7\'d6\u30340 \'b5\'c4\u26631 \'b1\'ea\u39064 \'cc\'e2\u20026 \'ce\'aa Command\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u21487 \'bf\'c9\u20197 \'d2\'d4\u30475 \'bf\'b4\u21040 \'b5\'bd\u65292 \'a3\'ac\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u22810 \'b6\'e0\u27425 \'b4\'ce\u20351 \'ca\'b9\u29992 \'d3\'c3 -o \u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65307 \'a3\'bb\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u35753 \'c8\'c3\~ ps \u19981 \'b2\'bb\u36755 \'ca\'e4\u20986 \'b3\'f6\u26631 \'b1\'ea\u39064 \'cc\'e2\u26639 \'c0\'b8\u65292 \'a3\'ac\u26041 \'b7\'bd\u27861 \'b7\'a8\u26159 \'ca\'c7 = \u21518 \'ba\'f3\u38754 \'c3\'e6\u20026 \'ce\'aa\u31354 \'bf\'d5\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baps \u20250 \'bb\'e1\u33258 \'d7\'d4\u21160 \'b6\'af\u26681 \'b8\'f9\u25454 \'be\'dd\u26631 \'b1\'ea\u39064 \'cc\'e2\u30340 \'b5\'c4\u23485 \'bf\'ed\u24230 \'b6\'c8\u26469 \'c0\'b4\u35843 \'b5\'f7\u25972 \'d5\'fb\u23383 \'d7\'d6\u27573 \'b6\'ce\u30340 \'b5\'c4\u23485 \'bf\'ed\u24230 \'b6\'c8\u65292 \'a3\'ac\u24403 \'b5\'b1\u28982 \'c8\'bb\u20063 \'d2\'b2\u21487 \'bf\'c9\u20197 \'d2\'d4\u20005 \'d1\'cf\u26684 \'b8\'f1\u25511 \'bf\'d8\u21046 \'d6\'c6\u23485 \'bf\'ed\u24230 \'b6\'c8\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u24403 \'b5\'b1\u38656 \'d0\'e8\u35201 \'d2\'aa\u33258 \'d7\'d4\u23450 \'b6\'a8\u20041 \'d2\'e5\u26631 \'b1\'ea\u39064 \'cc\'e2\u26102 \'ca\'b1\u65292 \'a3\'ac\u26368 \'d7\'ee\u22909 \'ba\'c3\u20998 \'b7\'d6\u24320 \'bf\'aa\u26469 \'c0\'b4\u20889 \'d0\'b4\u65292 \'a3\'ac\u19981 \'b2\'bb\u35201 \'d2\'aa\u25226 \'b0\'d1\u22810 \'b6\'e0\u20010 \'b8\'f6\u36873 \'d1\'a1\u39033 \'cf\'ee\u32858 \'be\'db\u21512 \'ba\'cf\u21040 \'b5\'bd\u19968 \'d2\'bb\u36215 \'c6\'f0\u65292 \'a3\'ac\u20363 \'c0\'fd\u22914 \'c8\'e7 -o pid=X\u65292 \'a3\'accomm=Y\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u21487 \'bf\'c9\u33021 \'c4\'dc\u34987 \'b1\'bb\u35299 \'bd\'e2\u37322 \'ca\'cd\u20026 \'ce\'aa\u25226 \'b0\'d1 pid \u30340 \'b5\'c4\u23383 \'d7\'d6\u27573 \'b6\'ce\u21517 \'c3\'fb\u35774 \'c9\'e8\u20026 \'ce\'aa X,comm=Y \u65292 \'a3\'ac\u20063 \'d2\'b2\u21487 \'bf\'c9\u20197 \'d2\'d4\u36755 \'ca\'e4\u20986 \'b3\'f6 pid \u21644 \'ba\'cd comm \u23383 \'d7\'d6\u27573 \'b6\'ce\u65292 \'a3\'ac\u21517 \'c3\'fb\u31216 \'b3\'c6\u20026 \'ce\'aa X \u21644 \'ba\'cd Y\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u25152 \'cb\'f9\u20197 \'d2\'d4\u24314 \'bd\'a8\u35758 \'d2\'e9\u20998 \'b7\'d6\u24320 \'bf\'aa\u20889 \'d0\'b4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u20320 \'c4\'e3\u21487 \'bf\'c9\u20197 \'d2\'d4\u20462 \'d0\'de\u25913 \'b8\'c4 PS_FORMAT \u21464 \'b1\'e4\u37327 \'c1\'bf\u26469 \'c0\'b4\u35774 \'c9\'e8\u32622 \'d6\'c3\u40664 \'c4\'ac\u35748 \'c8\'cf\u30340 \'b5\'c4 ps \u36755 \'ca\'e4\u20986 \'b3\'f6\u26684 \'b8\'f1\u24335 \'ca\'bd\uc1
+\par \plain \f1\fs21 \~
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba<format> \u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3\u30340 \'b5\'c4\u23383 \'d7\'d6\u27573 \'b6\'ce\u26377 \'d3\'d0 \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 
+\par 
+\par \plain \f1\b\fs21 -y\plain \f1\fs21 \~\~Do not show flags; show rss in place of addr. This option can
+\par \~\~only be used with -l.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-y \u34920 \'b1\'ed\u31034 \'ca\'be\u19981 \'b2\'bb\u35201 \'d2\'aa\u26174 \'cf\'d4\u31034 \'ca\'be flags \u12290 \'a1\'a3\u21462 \'c8\'a1\u32780 \'b6\'f8\u20195 \'b4\'fa\u20043 \'d6\'ae\u30340 \'b5\'c4\u26159 \'ca\'c7 addr \u65292 \'a3\'ac\u36825 \'d5\'e2\u20010 \'b8\'f6\u21482 \'d6\'bb\u33021 \'c4\'dc\u21644 \'ba\'cd -l \u19968 \'d2\'bb\u36215 \'c6\'f0\u29992 \'d3\'c3\uc1
+\par \plain \f1\fs21 
+\par 
+\par -Z\~\~display security context format (NSA SELinux, etc.)
+\par \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 OUTPUT MODIFIERS
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 -H\plain \f1\fs21 \~\~show process hierarchy (forest)
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-H \u34920 \'b1\'ed\u31034 \'ca\'be\u25353 \'b0\'b4\u36827 \'bd\'f8\u31243 \'b3\'cc\u20043 \'d6\'ae\u38388 \'bc\'e4\u30340 \'b5\'c4\u19978 \'c9\'cf\u19979 \'cf\'c2\u32423 \'bc\'b6\u20851 \'b9\'d8\u31995 \'cf\'b5\u26469 \'c0\'b4\u26174 \'cf\'d4\u31034 \'ca\'be\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \~
+\par 
+\par \plain \f1\b\fs21\cf3 S\~\plain \f1\fs21\cf3 \~Sum up some information, such as CPU usage, from dead child
+\par \~\~processes into their parent. This is useful for examining a
+\par \~\~system where a parent process repeatedly forks off
+\par \~\~short-lived children to do work.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21\cf3 c\~\plain \f1\fs21\cf3 \~Show the true command name. This is derived from the name of
+\par \~\~the executable file, rather than from the argv value which
+\par \~\~could be modified by a user. Command arguments are not shown.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21\cf3 e\~\plain \f1\fs21\cf3 \~Show the environment after the command.
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bae \u29992 \'d3\'c3\u20110 \'d3\'da\u26174 \'cf\'d4\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u29615 \'bb\'b7\u22659 \'be\'b3\u21464 \'b1\'e4\u37327 \'c1\'bf\u12290 \'a1\'a3\u20063 \'d2\'b2\u23601 \'be\'cd\u26159 \'ca\'c7 environ \u25991 \'ce\'c4\u20214 \'bc\'fe\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21\cf3 f\~\plain \f1\fs21\cf3 \~ASCII-art process hierarchy (forest)
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baf \u34920 \'b1\'ed\u31034 \'ca\'be ASCII-ART \u39118 \'b7\'e7\u26684 \'b8\'f1\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u26641 \'ca\'f7\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21\cf3 h\~\plain \f1\fs21\cf3 \~No header. (or, one header per screen in the BSD personality)
+\par \~\~The h option is problematic. Standard BSD ps uses this option
+\par \~\~to print a header on each page of output, but older Linux ps
+\par \~\~uses this option to totally disable the header. This version
+\par \~\~of ps follows the Linux usage of not printing the header
+\par \~\~unless the BSD personality has been selected, in which case
+\par \~\~it prints a header on each page of output. Regardless of the
+\par \~\~current personality, you can use the long options --headers
+\par \~\~and --no-headers to enable printing headers each page or
+\par \~\~disable headers entirely, respectively.
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21\cf3 k spec\plain \f1\fs21\cf3 \~\~specify sorting order. Sorting syntax is
+\par \~\~[+|-]key[,[+|-]key[,...]] Choose a multi-letter key from the
+\par \~\~STANDARD FORMAT SPECIFIERS section. The "+" is optional since
+\par \~\~default direction is increasing numerical or lexicographic
+\par \~\~order. Identical to --sort. Examples:
+\par \~\~ps jaxkuid,-ppid,+pid
+\par \~\~ps axk comm o comm,args
+\par \~\~ps kstart_time -ef
+\par \plain \f1\fs21 \~
+\par 
+\par \plain \f1\b\fs21 -n namelist\plain \f1\fs21 \~set namelist file. Identical to N.
+\par \~\~The namelist file is needed for a proper WCHAN display, and
+\par \~\~must match the current Linux kernel exactly for correct
+\par \~\~output. Without this option, the default search path for the
+\par \~\~namelist is:
+\par \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \~\~\~\~\~\~ $PS_SYSMAP
+\par \~\~\~\~\~\~ $PS_SYSTEM_MAP
+\par \~\~\~\~\~\~ /proc/*/wchan
+\par \~\~\~\~\~\~ /boot/System.map-`uname -r`
+\par \~\~\~\~\~\~ /boot/System.map
+\par \~\~\~\~\~\~ /lib/modules/`uname -r`/System.map
+\par \~\~\~\~\~\~ /usr/src/linux/System.map
+\par \~\~\~\~\~\~ /System.map
+\par \~
+\par 
+\par 
+\par 
+\par \plain \f1\b\fs21 -w\plain \f1\fs21 \~\~Wide output. Use this option twice for unlimited width.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-w \u34920 \'b1\'ed\u31034 \'ca\'be wide output \u65292 \'a3\'ac\u36830 \'c1\'ac\u32493 \'d0\'f8\u20351 \'ca\'b9\u29992 \'d3\'c3\u20004 \'c1\'bd\u27425 \'b4\'ce\u35813 \'b8\'c3\u36873 \'d1\'a1\u39033 \'cf\'ee\u23558 \'bd\'ab\u19981 \'b2\'bb\u20877 \'d4\'d9\u38480 \'cf\'de\u21046 \'d6\'c6\u36755 \'ca\'e4\u20986 \'b3\'f6\u30340 \'b5\'c4\u23485 \'bf\'ed\u24230 \'b6\'c8\u65292 \'a3\'ac\u20063 \'d2\'b2\u23601 \'be\'cd\u26159 \'ca\'c7\u26174 \'cf\'d4\u31034 \'ca\'be\u23436 \'cd\'ea\u25972 \'d5\'fb\u30340 \'b5\'c4\u21629 \'c3\'fc\u20196 \'c1\'ee\u34892 \'d0\'d0\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \plain \f1\b\fs21 w\~\plain \f1\fs21 \~Wide output. Use this option twice for unlimited width.
+\par 
+\par \plain \f1\b\fs21 --cols n\plain \f1\fs21 \~set screen width
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--cols \u35774 \'c9\'e8\u32622 \'d6\'c3\u23631 \'c6\'c1\u24149 \'c4\'bb\u30340 \'b5\'c4\u23485 \'bf\'ed\u24230 \'b6\'c8\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 --columns n\plain \f1\fs21 \~set screen width
+\par \~
+\par 
+\par \plain \f1\b\fs21 --cumulative\plain \f1\fs21 \~include some dead child process data (as a sum with the
+\par \~\~parent)
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--cumulative \u21253 \'b0\'fc\u25324 \'c0\'a8\u26576 \'c4\'b3\u20123 \'d0\'a9\u24050 \'d2\'d1\u32463 \'be\'ad\u27515 \'cb\'c0\u21435 \'c8\'a5\u30340 \'b5\'c4\u23376 \'d7\'d3\u36827 \'bd\'f8\u31243 \'b3\'cc\u25968 \'ca\'fd\u25454 \'be\'dd\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par --forest\~ASCII art process tree
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--forest \u34920 \'b1\'ed\u31034 \'ca\'be\u29992 \'d3\'c3 ASCII \u23383 \'d7\'d6\u31526 \'b7\'fb\u25171 \'b4\'f2\u21360 \'d3\'a1\u19968 \'d2\'bb\u20010 \'b8\'f6\u36827 \'bd\'f8\u31243 \'b3\'cc\u26641 \'ca\'f7\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 --headers\plain \f1\fs21 \~repeat header lines, one per page of output
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--headers \u34920 \'b1\'ed\u31034 \'ca\'be\u24403 \'b5\'b1\u36755 \'ca\'e4\u20986 \'b3\'f6\u38656 \'d0\'e8\u35201 \'d2\'aa\u20998 \'b7\'d6\u39029 \'d2\'b3\u26174 \'cf\'d4\u31034 \'ca\'be\u26102 \'ca\'b1\u65292 \'a3\'ac\u22266 \'b9\'cc\u23450 \'b6\'a8\u26174 \'cf\'d4\u31034 \'ca\'be\u19968 \'d2\'bb\u20010 \'b8\'f6\u26631 \'b1\'ea\u39064 \'cc\'e2\u26639 \'c0\'b8\uc1
+\par \plain \f1\fs21 
+\par --no-headers\~print no header line at all
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--no-headers \u34920 \'b1\'ed\u31034 \'ca\'be\u19981 \'b2\'bb\u25171 \'b4\'f2\u21360 \'d3\'a1\u26631 \'b1\'ea\u39064 \'cc\'e2\u26639 \'c0\'b8\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 --lines n\~\plain \f1\fs21 set screen height
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--lines \u35774 \'c9\'e8\u32622 \'d6\'c3\u23631 \'c6\'c1\u24149 \'c4\'bb\u30340 \'b5\'c4\u39640 \'b8\'df\u24230 \'b6\'c8\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 --rows n\plain \f1\fs21 \~set screen height
+\par 
+\par \plain \f1\b\fs21 --sort\plain \f1\fs21 \~spec\~specify sorting order. Sorting syntax is
+\par \~\~[+|-]key[,[+|-]key[,...]] Choose a multi-letter key from the
+\par \~\~STANDARD FORMAT SPECIFIERS section. The "+" is optional since
+\par \~\~default direction is increasing numerical or lexicographic
+\par \~\~order. Identical to k. For example:
+\par \~\plain \f1\b\fs21 \~ps jax --sort=uid,-ppid,+pid
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--sort \u25351 \'d6\'b8\u23450 \'b6\'a8\u36755 \'ca\'e4\u20986 \'b3\'f6\u30340 \'b5\'c4\u25490 \'c5\'c5\u24207 \'d0\'f2\u12290 \'a1\'a3\u35821 \'d3\'ef\u27861 \'b7\'a8\u26684 \'b8\'f1\u24335 \'ca\'bd\u26159 \'ca\'c7 [+|-]key1,[+|-]key2.... \u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u24314 \'bd\'a8\u35758 \'d2\'e9\u20351 \'ca\'b9\u29992 \'d3\'c3 long-format \u30340 \'b5\'c4 key \u21517 \'c3\'fb\u31216 \'b3\'c6\u20197 \'d2\'d4\u26041 \'b7\'bd\u20415 \'b1\'e3\u38405 \'d4\'c4\u35835 \'b6\'c1 \u12290 \'a1\'a3+ \u34920 \'b1\'ed\u31034 \'ca\'be\u21319 \'c9\'fd\u24207 \'d0\'f2\u25490 \'c5\'c5\u21015 \'c1\'d0\u65292 \'a3\'ac- \u34920 \'b1\'ed\u31034 \'ca\'be\u38477 \'bd\'b5\u24207 \'d0\'f2\u25490 \'c5\'c5\u21015 \'c1\'d0\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par 
+\par \plain \f1\b\fs21 --width n\plain \f1\fs21 \~set screen width
+\par \~
+\par \plain \f1\b\fs21 THREAD DISPLAY
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 H\plain \f1\fs21 \~\~Show threads as if they were processes
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baH \u21487 \'bf\'c9\u20197 \'d2\'d4\u29992 \'d3\'c3\u20110 \'d3\'da\u26174 \'cf\'d4\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 -L\plain \f1\fs21 \~\~Show threads, possibly with LWP and NLWP columns
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-L \u34920 \'b1\'ed\u31034 \'ca\'be\u26174 \'cf\'d4\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\u65292 \'a3\'ac\u21487 \'bf\'c9\u33021 \'c4\'dc\u24102 \'b4\'f8\u26377 \'d3\'d0 LWP \u65288 \'a3\'a8\u32447 \'cf\'df\u31243 \'b3\'cc ID\u65289 \'a3\'a9\~\u21644 \'ba\'cd NLWP \u23383 \'d7\'d6\u27573 \'b6\'ce\u65288 \'a3\'a8\u32447 \'cf\'df\u31243 \'b3\'cc\u25968 \'ca\'fd\u37327 \'c1\'bf\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 -T\plain \f1\fs21 \~\~Show threads, possibly with SPID column
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-T \u29992 \'d3\'c3\u20110 \'d3\'da\u26174 \'cf\'d4\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\u65292 \'a3\'ac\u21487 \'bf\'c9\u33021 \'c4\'dc\u20250 \'bb\'e1\u38468 \'b8\'bd\u24102 \'b4\'f8 SPID \u23383 \'d7\'d6\u27573 \'b6\'ce\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 m\~\~\plain \f1\fs21 Show threads after processes
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bam \u34920 \'b1\'ed\u31034 \'ca\'be\u22312 \'d4\'da\u36827 \'bd\'f8\u31243 \'b3\'cc\u21518 \'ba\'f3\u26174 \'cf\'d4\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 -m\plain \f1\fs21 \~\~Show threads after processes
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-m \u21644 \'ba\'cd m \u19968 \'d2\'bb\u26679 \'d1\'f9\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \~
+\par \plain \f1\b\fs21 OTHER INFORMATION
+\par \plain \f1\fs21 L\~\~List all format specifiers.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baL \u21629 \'c3\'fc\u20196 \'c1\'ee\u29992 \'d3\'c3\u20110 \'d3\'da\u21015 \'c1\'d0\u20986 \'b3\'f6\u25152 \'cb\'f9\u26377 \'d3\'d0\u21487 \'bf\'c9\u29992 \'d3\'c3\u30340 \'b5\'c4\u26684 \'b8\'f1\u24335 \'ca\'bd\u23383 \'d7\'d6\u31526 \'b7\'fb\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 -V\plain \f1\fs21 \~\~Print the procps version.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba-V \u25171 \'b4\'f2\u21360 \'d3\'a1 procps \u29256 \'b0\'e6\u26412 \'b1\'be\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par V\~\~Print the procps version.
+\par \~
+\par --help\~\~Print a help message.
+\par \~
+\par --info\~\~Print debugging info.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba--info \u29992 \'d3\'c3\u20110 \'d3\'da\u25171 \'b4\'f2\u21360 \'d3\'a1 debug \u20449 \'d0\'c5\u24687 \'cf\'a2\uc1
+\par \plain \f1\fs21 
+\par \~
+\par --version\~Print the procps version.
+\par \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 NOTES
+\par 
+\par \plain \f1\fs21 This ps works by reading the virtual files in /proc. This ps does not need to
+\par be setuid kmem or have any privileges to run. Do not give this ps any special
+\par permissions.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u35813 \'b8\'c3\u29256 \'b0\'e6\u26412 \'b1\'be\u30340 \'b5\'c4 ps \u26159 \'ca\'c7\u36890 \'cd\'a8\u36807 \'b9\'fd\u35835 \'b6\'c1\u21462 \'c8\'a1 /proc \u30340 \'b5\'c4\u20869 \'c4\'da\u23481 \'c8\'dd\u26469 \'c0\'b4\u24037 \'b9\'a4\u20316 \'d7\'f7\u30340 \'b5\'c4\u12290 \'a1\'a3\u23427 \'cb\'fc\u19981 \'b2\'bb\u38656 \'d0\'e8\u35201 \'d2\'aa setuid \u25110 \'bb\'f2\u32773 \'d5\'df\u29305 \'cc\'d8\u27530 \'ca\'e2\u30340 \'b5\'c4\u26435 \'c8\'a8\u38480 \'cf\'de\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u25152 \'cb\'f9\u20197 \'d2\'d4\u19981 \'b2\'bb\u35201 \'d2\'aa\u23545 \'b6\'d4 ps \u21629 \'c3\'fc\u20196 \'c1\'ee\u35774 \'c9\'e8\u32622 \'d6\'c3 setuid\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \~
+\par This ps needs access to namelist data for proper WCHAN display. For kernels
+\par prior to 2.6, the System.map file must be installed.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u36825 \'d5\'e2\u20010 \'b8\'f6\u29256 \'b0\'e6\u26412 \'b1\'be\u30340 \'b5\'c4 ps \u38656 \'d0\'e8\u35201 \'d2\'aa\u23545 \'b6\'d4 namelist \u20855 \'be\'df\u22791 \'b1\'b8\u35775 \'b7\'c3\u38382 \'ce\'ca\u26435 \'c8\'a8\u38480 \'cf\'de\u25165 \'b2\'c5\u33021 \'c4\'dc\u27491 \'d5\'fd\u30830 \'c8\'b7\u26174 \'cf\'d4\u31034 \'ca\'be WCHAN \u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u23545 \'b6\'d4\u20110 \'d3\'da 2.6 \u20043 \'d6\'ae\u21069 \'c7\'b0\u30340 \'b5\'c4\u29256 \'b0\'e6\u26412 \'b1\'be\u65292 \'a3\'acSystem.map \u25991 \'ce\'c4\u20214 \'bc\'fe\u24517 \'b1\'d8\u39035 \'d0\'eb\u34987 \'b1\'bb\u23433 \'b0\'b2\u35013 \'d7\'b0\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par CPU usage is currently expressed as the percentage of time spent running
+\par during the entire lifetime of a process. This is not ideal, and it does not
+\par conform to the standards that ps otherwise conforms to. CPU usage is unlikely
+\par to add up to exactly 100%.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baCPU \u20351 \'ca\'b9\u29992 \'d3\'c3\u29575 \'c2\'ca\u29992 \'d3\'c3\u35813 \'b8\'c3\u36827 \'bd\'f8\u31243 \'b3\'cc\u22312 \'d4\'da\u25972 \'d5\'fb\u20010 \'b8\'f6\u29983 \'c9\'fa\u21629 \'c3\'fc\u21608 \'d6\'dc\u26399 \'c6\'da\u20869 \'c4\'da\u22788 \'b4\'a6\u20110 \'d3\'da running \u29366 \'d7\'b4\u24577 \'cc\'ac\u30340 \'b5\'c4\u25968 \'ca\'fd\u25454 \'be\'dd\u30334 \'b0\'d9\u20998 \'b7\'d6\u27604 \'b1\'c8\u26469 \'c0\'b4\u34920 \'b1\'ed\u31034 \'ca\'be\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u36825 \'d5\'e2\u20010 \'b8\'f6\u26041 \'b7\'bd\u24335 \'ca\'bd\u24182 \'b2\'a2\u19981 \'b2\'bb\u26159 \'ca\'c7\u24456 \'ba\'dc\u29702 \'c0\'ed\u24819 \'cf\'eb\u65292 \'a3\'ac\u25152 \'cb\'f9\u20197 \'d2\'d4\u26377 \'d3\'d0\u26102 \'ca\'b1\u25152 \'cb\'f9\u26377 \'d3\'d0 CPU \u23383 \'d7\'d6\u27573 \'b6\'ce\u30340 \'b5\'c4\u20540 \'d6\'b5\u21152 \'bc\'d3\u36215 \'c6\'f0\u26469 \'c0\'b4\u20250 \'bb\'e1\u36229 \'b3\'ac\u36807 \'b9\'fd 100%\uc1
+\par \plain \f1\fs21 
+\par \~
+\par Programs swapped out to disk will be shown without command line arguments,
+\par and unless the c option is given, in brackets.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u34987 \'b1\'bb swapped \u21040 \'b5\'bd\u30913 \'b4\'c5\u30424 \'c5\'cc\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u23558 \'bd\'ab\u19981 \'b2\'bb\u20250 \'bb\'e1\u26174 \'cf\'d4\u31034 \'ca\'be\u21629 \'c3\'fc\u20196 \'c1\'ee\u34892 \'d0\'d0\u21442 \'b2\'ce\u25968 \'ca\'fd\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par The SIZE and RSS fields don\rquote t count some parts of a process including the
+\par page tables, kernel stack, struct thread_info, and struct task_struct. This
+\par is usually at least 20 KiB of memory that is always resident. SIZE is the
+\par virtual size of the process (code+data+stack).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baSIZE \u21644 \'ba\'cd RSS \u23383 \'d7\'d6\u27573 \'b6\'ce\u24182 \'b2\'a2\u19981 \'b2\'bb\u21253 \'b0\'fc\u25324 \'c0\'a8 page tables\u12289 \'a1\'a2kernel stack\u12289 \'a1\'a2struct thread_info \u12289 \'a1\'a2struct task_struct \u31561 \'b5\'c8\u20449 \'d0\'c5\u24687 \'cf\'a2\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u36825 \'d5\'e2\u20123 \'d0\'a9\u33267 \'d6\'c1\u23569 \'c9\'d9\u21344 \'d5\'bc\u29992 \'d3\'c3\u20102 \'c1\'cb 20KB \u30340 \'b5\'c4\u20869 \'c4\'da\u23384 \'b4\'e6\u12290 \'a1\'a3SIZE \u26159 \'ca\'c7\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\ldblquote \u34394 \'d0\'e9\u25311 \'c4\'e2\u22823 \'b4\'f3\u23567 \'d0\'a1\rdblquote \u65288 \'a3\'a8code + data + stack \u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par Processes marked <defunct> are dead processes (so-called "zombies") that
+\par remain because their parent has not destroyed them properly. These processes
+\par will be destroyed by init(8) if the parent process exits.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u37027 \'c4\'c7\u20123 \'d0\'a9\u34987 \'b1\'bb\u26631 \'b1\'ea\u20026 \'ce\'aa <defunct> \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u26159 \'ca\'c7\u24050 \'d2\'d1\u32463 \'be\'ad\u27515 \'cb\'c0\u21435 \'c8\'a5\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u65288 \'a3\'a8zombie \u36827 \'bd\'f8\u31243 \'b3\'cc\u65289 \'a3\'a9\u65292 \'a3\'ac\u20294 \'b5\'ab\u23427 \'cb\'fc\u20204 \'c3\'c7\u36824 \'bb\'b9\u23384 \'b4\'e6\u22312 \'d4\'da\u20110 \'d3\'da\u20869 \'c4\'da\u23384 \'b4\'e6\u20013 \'d6\'d0\u65292 \'a3\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u22240 \'d2\'f2\u20026 \'ce\'aa\u23427 \'cb\'fc\u20204 \'c3\'c7\u30340 \'b5\'c4\u29238 \'b8\'b8\u36827 \'bd\'f8\u31243 \'b3\'cc\u34987 \'b1\'bb\u26432 \'c9\'b1\u27515 \'cb\'c0\u20102 \'c1\'cb\u65292 \'a3\'ac\u36825 \'d5\'e2\u20123 \'d0\'a9\u36827 \'bd\'f8\u31243 \'b3\'cc\u20250 \'bb\'e1\u22312 \'d4\'da init \u21457 \'b7\'a2\u29616 \'cf\'d6\u29238 \'b8\'b8\u36827 \'bd\'f8\u31243 \'b3\'cc\u36864 \'cd\'cb\u20986 \'b3\'f6\u26102 \'ca\'b1\u34987 \'b1\'bb\u26432 \'c9\'b1\u27515 \'cb\'c0\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \~
+\par \plain \f1\b\fs21 PROCESS FLAGS
+\par \plain \f1\fs21 The sum of these values is displayed in the "F" column, which is provided by
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u36827 \'bd\'f8\u31243 \'b3\'cc\u26631 \'b1\'ea\u35760 \'bc\'c7\u34987 \'b1\'bb\u26174 \'cf\'d4\u31034 \'ca\'be\u22312 \'d4\'da 'F' \u23383 \'d7\'d6\u27573 \'b6\'ce\u65292 \'a3\'ac\u26377 \'d3\'d0\u20004 \'c1\'bd\u31181 \'d6\'d6 \u65306 \'a3\'ba\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~-\uc2\u65289 \'a3\'a91\u12289 \'a1\'a2\ldblquote 1\rdblquote  \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc forked \u20294 \'b5\'ab\u26410 \'ce\'b4\u25191 \'d6\'b4\u34892 \'d0\'d0 exec \u35843 \'b5\'f7\u29992 \'d3\'c3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~-\uc2\u65289 \'a3\'a92\u12289 \'a1\'a2\ldblquote 4\rdblquote  \u34920 \'b1\'ed\u31034 \'ca\'be\u20351 \'ca\'b9\u29992 \'d3\'c3 super-user \u26435 \'c8\'a8\u38480 \'cf\'de\uc1
+\par \plain \f1\fs21 
+\par 
+\par the flags output specifier.
+\par 1\~\~\~ forked but didn\rquote t exec
+\par 4\~\~\~ used super-user privileges
+\par \~
+\par 
+\par \plain \f1\b\fs21 PROCESS STATE CODES
+\par \plain \f1\fs21 Here are the different values that the s, stat and state output specifiers
+\par (header "STAT" or "S") will display to describe the state of a process.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u36827 \'bd\'f8\u31243 \'b3\'cc\u21487 \'bf\'c9\u20197 \'d2\'d4\u26377 \'d3\'d0\u24456 \'ba\'dc\u22810 \'b6\'e0\u31181 \'d6\'d6\u29366 \'d7\'b4\u24577 \'cc\'ac\uc1
+\par \plain \f1\fs21 
+\par D\~\~\~ Uninterruptible sleep (usually IO)\~\~\~\~\~\~\~\~\plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baD \u34920 \'b1\'ed\u31034 \'ca\'be\ldblquote \u19981 \'b2\'bb\u21487 \'bf\'c9\u20013 \'d6\'d0\u26029 \'b6\'cf\u30340 \'b5\'c4\u30561 \'cb\'af\u30496 \'c3\'df\rdblquote \u65292 \'a3\'ac\u19968 \'d2\'bb\u33324 \'b0\'e3\u26159 \'ca\'c7\u30001 \'d3\'c9\u20110 \'d3\'da I/O \u30340 \'b5\'c4\u21407 \'d4\'ad\u22240 \'d2\'f2\uc1
+\par \plain \f1\fs21 R\~\~\~ Running or runnable (on run queue)\~\~\~\~\plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baR \u34920 \'b1\'ed\u31034 \'ca\'be running \u29366 \'d7\'b4\u24577 \'cc\'ac\u25110 \'bb\'f2\u32773 \'d5\'df\u22788 \'b4\'a6\u20110 \'d3\'da run \u38431 \'b6\'d3\u21015 \'c1\'d0\u20013 \'d6\'d0\uc1
+\par \plain \f1\fs21 S\~\~\~ Interruptible sleep (waiting for an event to complete)\~\~\~\~\plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baS \u34920 \'b1\'ed\u31034 \'ca\'be\ldblquote \u21487 \'bf\'c9\u20013 \'d6\'d0\u26029 \'b6\'cf\u30340 \'b5\'c4\u30561 \'cb\'af\u30496 \'c3\'df\u29366 \'d7\'b4\u24577 \'cc\'ac\rdblquote \u65292 \'a3\'ac\u20363 \'c0\'fd\u22914 \'c8\'e7\u31561 \'b5\'c8\u24453 \'b4\'fd\u19968 \'d2\'bb\u20010 \'b8\'f6\u20107 \'ca\'c2\u20214 \'bc\'fe\u30340 \'b5\'c4\u23436 \'cd\'ea\u25104 \'b3\'c9\uc1
+\par \plain \f1\fs21 T\~\~\~ Stopped, either by a job control signal or because it is being traced.\~\~\~\~\plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baT \u34920 \'b1\'ed\u31034 \'ca\'be\u24050 \'d2\'d1\u32463 \'be\'ad\u20572 \'cd\'a3\u27490 \'d6\'b9\u65292 \'a3\'ac\u20363 \'c0\'fd\u22914 \'c8\'e7\u25910 \'ca\'d5\u21040 \'b5\'bd\u20316 \'d7\'f7\u19994 \'d2\'b5\u25511 \'bf\'d8\u21046 \'d6\'c6\u20449 \'d0\'c5\u21495 \'ba\'c5\u65288 \'a3\'a8CTRL-Z\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 W\~\~\~ paging (not valid since the 2.6.xx kernel)\~\~\~\~\~\~\~\plain \f1\fs21\cf1 \~# \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baW\~ \u22788 \'b4\'a6\u20110 \'d3\'da paging \u29366 \'d7\'b4\u24577 \'cc\'ac\u65288 \'a3\'a8\u20174 \'b4\'d3 2.6.xx \u23601 \'be\'cd\u19981 \'b2\'bb\u20877 \'d4\'d9\u26377 \'d3\'d0\u20102 \'c1\'cb\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 X\~\~\~ dead (should never be seen)\~\~\~\~\~\~\plain \f1\fs21\cf1 \~\~# \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baX \u34920 \'b1\'ed\u31034 \'ca\'be\u24050 \'d2\'d1\u32463 \'be\'ad\u27515 \'cb\'c0\u25481 \'b5\'f4\u20102 \'c1\'cb\u65292 \'a3\'ac\u27704 \'d3\'c0\u36828 \'d4\'b6\u19981 \'b2\'bb\u24212 \'d3\'a6\u35813 \'b8\'c3\u20986 \'b3\'f6\u29616 \'cf\'d6\uc1
+\par \plain \f1\fs21 Z\~\~\~ Defunct ("zombie") process, terminated but not reaped by its parent.\~\~\~\~\plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baZ \u34920 \'b1\'ed\u31034 \'ca\'be zombie \u36827 \'bd\'f8\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 
+\par \~
+\par For BSD formats and when the stat keyword is used, additional characters may
+\par be displayed:
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba\u26377 \'d3\'d0\u26102 \'ca\'b1\u36824 \'bb\'b9\u26377 \'d3\'d0\u21487 \'bf\'c9\u33021 \'c4\'dc\u26174 \'cf\'d4\u31034 \'ca\'be\u20854 \'c6\'e4\u20182 \'cb\'fb\u26631 \'b1\'ea\u35760 \'bc\'c7\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~> \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u39640 \'b8\'df\u20248 \'d3\'c5\u20808 \'cf\'c8\u32423 \'bc\'b6\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~N \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u20302 \'b5\'cd\u20248 \'d3\'c5\u20808 \'cf\'c8\u32423 \'bc\'b6\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~L \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u26377 \'d3\'d0\u39029 \'d2\'b3\u38754 \'c3\'e6\u34987 \'b1\'bb\u25152 \'cb\'f9\u22312 \'d4\'da\u20869 \'c4\'da\u23384 \'b4\'e6\u20013 \'d6\'d0\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~s \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u36825 \'d5\'e2\u26159 \'ca\'c7\u19968 \'d2\'bb\u20010 \'b8\'f6 session leader\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~l \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u36825 \'d5\'e2\u20010 \'b8\'f6\u26159 \'ca\'c7\u22810 \'b6\'e0\u32447 \'cf\'df\u31243 \'b3\'cc\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 #\~\~\~\~\~+ \uc2\u34920 \'b1\'ed\u31034 \'ca\'be\u36825 \'d5\'e2\u26159 \'ca\'c7\u19968 \'d2\'bb\u20010 \'b8\'f6\u21069 \'c7\'b0\u21488 \'cc\'a8\u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par <\~\~\~ high-priority (not nice to other users)
+\par N\~\~\~ low-priority (nice to other users)
+\par L\~\~\~ has pages locked into memory (for real-time and custom IO)
+\par s\~\~\~ is a session leader
+\par l\~\~\~ is multi-threaded (using CLONE_THREAD, like NPTL pthreads do)
+\par +\~\~\~ is in the foreground process group
+\par \~
+\par \~
+\par \~
+\par 
+\par 
+\par \plain \f1\b\fs21 STANDARD FORMAT SPECIFIERS
+\par \plain \f1\fs21 
+\par Here are the different keywords that may be used to control the output format
+\par (e.g. with option -o) or to sort the selected processes with the GNU-style
+\par --sort option.
+\par \~
+\par For example:\~ ps -eo pid,user,args --sort user
+\par \~
+\par This version of ps tries to recognize most of the keywords used in other
+\par implementations of ps.
+\par \~
+\par The following user-defined format specifiers may contain spaces: args, cmd,
+\par comm, command, fname, ucmd, ucomm, lstart, bsdstart, start.
+\par \~
+\par Some keywords may not be available for sorting.
+\par \~
+\par 
+\par \plain \f1\b\fs21\cf1 CODE\~\~\~\~\~\~\~ HEADER\~\~\~ DESCRIPTION
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 %cpu\~\~\~\~\~\~\~ %CPU\plain \f1\fs21 \~\~\~\~cpu utilization of the process in "##.#" format.
+\par \~\~\~\~\~\~\~\~\~\~It is the CPU time used divided by the time the
+\par \~\~\~\~\~\~\~\~\~\~process has been running (cputime/realtime ratio),
+\par \~\~\~\~\~\~\~\~\~\~expressed as a percentage. It will not add up to
+\par \~\~\~\~\~\~\~\~\~\~100% unless you are lucky. (alias pcpu).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba%cpu \u34920 \'b1\'ed\u31034 \'ca\'be\u35813 \'b8\'c3\u36827 \'bd\'f8\u31243 \'b3\'cc\u23454 \'ca\'b5\u38469 \'bc\'ca\u21344 \'d5\'bc\u29992 \'d3\'c3 cpu \u30340 \'b5\'c4\u26102 \'ca\'b1\u38388 \'bc\'e4\u38500 \'b3\'fd\u20197 \'d2\'d4\u35813 \'b8\'c3\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u23384 \'b4\'e6\u22312 \'d4\'da\u26102 \'ca\'b1\u38388 \'bc\'e4\u30340 \'b5\'c4\u30334 \'b0\'d9\u20998 \'b7\'d6\u27604 \'b1\'c8\u12290 \'a1\'a3\u31561 \'b5\'c8\u20110 \'d3\'da pcpu\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 %mem\~\~\~\~\~\~\~ %MEM\plain \f1\fs21 \~\~\~ ratio of the process\rquote s resident set size\~ to the
+\par \~\~\~\~\~ physical memory on the machine, expressed as a
+\par \~\~\~\~\~ percentage. (alias pmem).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'ba%mem \u29992 \'d3\'c3\u20110 \'d3\'da\u34920 \'b1\'ed\u31034 \'ca\'be\u35813 \'b8\'c3\u36827 \'bd\'f8\u31243 \'b3\'cc\u22266 \'b9\'cc\u23450 \'b6\'a8\u20351 \'ca\'b9\u29992 \'d3\'c3\u30340 \'b5\'c4\u20869 \'c4\'da\u23384 \'b4\'e6\u22823 \'b4\'f3\u23567 \'d0\'a1\u38500 \'b3\'fd\u20197 \'d2\'d4\u29289 \'ce\'ef\u29702 \'c0\'ed\u20869 \'c4\'da\u23384 \'b4\'e6\u30340 \'b5\'c4\u36910 \'b4\'fe\u22885 \'b0\'c2\u25152 \'cb\'f9\u21344 \'d5\'bc\u29992 \'d3\'c3\u30340 \'b5\'c4\u30334 \'b0\'d9\u20998 \'b7\'d6\u27604 \'b1\'c8\u12290 \'a1\'a3\u31561 \'b5\'c8\u20110 \'d3\'da pmem\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 args\~\~\~\~\~\~\~ COMMAND\plain \f1\fs21 \~\~\~ command with all its arguments as a string. May
+\par \~\~\~\~\~ chop as desired. Modifications to the arguments
+\par \~\~\~\~\~ are not shown. The output in this column may
+\par \~\~\~\~\~ contain spaces. (alias cmd, command).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baargs \u34920 \'b1\'ed\u31034 \'ca\'be\u34920 \'b1\'ed\u31034 \'ca\'be\u23436 \'cd\'ea\u25972 \'d5\'fb\u21629 \'c3\'fc\u20196 \'c1\'ee\u34892 \'d0\'d0\u65288 \'a3\'a8\u24102 \'b4\'f8\u21442 \'b2\'ce\u25968 \'ca\'fd\u65289 \'a3\'a9\u65292 \'a3\'ac\u31561 \'b5\'c8\u20110 \'d3\'da cmd\u12289 \'a1\'a2command\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 blocked\~\~\~\~\~\~\~ BLOCKED\plain \f1\fs21 \~\~\~ mask of the blocked signals, see signal(7).
+\par \~\~\~\~\~ According to the width of the field, a 32-bit or
+\par \~\~\~\~\~ 64-bit mask in hexadecimal format is displayed.
+\par \~\~\~\~\~ (alias sig_block, sigmask).
+\par \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 bsdstart\~\~\~\~\~\~ START\~\~\plain \f1\fs21 \~ time the command started. If the process was
+\par \~\~\~\~\~ started less than 24 hours ago, the output format
+\par \~\~\~\~\~ is " HH:MM", else it is "mmm dd" (where mmm is the
+\par \~\~\~\~\~ three letters of the month).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'babsdstart \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u26102 \'ca\'b1\u38388 \'bc\'e4\u12290 \'a1\'a3\u22914 \'c8\'e7\u26524 \'b9\'fb\u26159 \'ca\'c724 \u23567 \'d0\'a1\u26102 \'ca\'b1\u20869 \'c4\'da\u30340 \'b5\'c4\u65292 \'a3\'ac\u21017 \'d4\'f2\u36755 \'ca\'e4\u20986 \'b3\'f6\u26684 \'b8\'f1\u24335 \'ca\'bd\u26159 \'ca\'c7 HH:MM\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u21542 \'b7\'f1\u21017 \'d4\'f2\u19978 \'c9\'cf mmm dd \u65288 \'a3\'a8mmm \u34920 \'b1\'ed\u31034 \'ca\'be\u26376 \'d4\'c2\u20221 \'b7\'dd\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 bsdtime\~\~\~\~\~\~\~ TIME\plain \f1\fs21 \~\~\~ accumulated cpu time, user + system. The display
+\par \~\~\~\~\~ format is usualy "MMM:SS", but can be shifted to
+\par \~\~\~\~\~ the right if the process used more than 999
+\par \~\~\~\~\~ minutes of cpu time.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'babsdtime \u34920 \'b1\'ed\u31034 \'ca\'be\u25152 \'cb\'f9\u21344 \'d5\'bc\u29992 \'d3\'c3\u30340 \'b5\'c4\u24635 \'d7\'dc CPU \u20351 \'ca\'b9\u29992 \'d3\'c3\u65288 \'a3\'a8 user + system \u65289 \'a3\'a9\u65292 \'a3\'ac\u26684 \'b8\'f1\u24335 \'ca\'bd\u20026 \'ce\'aa MMM:SS\uc1
+\par \plain \f1\fs21 \~
+\par 
+\par \~
+\par \plain \f1\b\fs21 c\~\~\~\~\~\~\~ C\~\plain \f1\fs21 \~\~ integer value of the processor utilisation
+\par \~\~\~\~\~ percentage. (see %cpu).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bac \u31561 \'b5\'c8\u21516 \'cd\'ac\u20110 \'d3\'da %cpu\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 caught\~\~\~\~\~\~\~ CAUGHT\plain \f1\fs21 \~\~\~ mask of the caught signals, see signal(7).
+\par \~\~\~\~\~ According to the width of the field, a 32 or 64
+\par \~\~\~\~\~ bits mask in hexadecimal format is displayed.
+\par \~\~\~\~\~ (alias sig_catch, sigcatch).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bacaught \u34920 \'b1\'ed\u31034 \'ca\'be\u33021 \'c4\'dc\u22815 \'b9\'bb\u25429 \'b2\'b6\u25417 \'d7\'bd\u30340 \'b5\'c4\u20449 \'d0\'c5\u21495 \'ba\'c5\u30340 \'b5\'c4\u25513 \'d1\'da\u30721 \'c2\'eb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 class\~\~\~\~\~\~\~ CLS\plain \f1\fs21 \~\~\~ scheduling class of the process.
+\par \~\~\~\~\~ (alias policy, cls). Field\rquote s possible values are:
+\par \~\~\~\~\~ -\~\~ not reported
+\par \~\~\~\~\~ TS\~ SCHED_OTHER
+\par \~\~\~\~\~ FF\~ SCHED_FIFO
+\par \~\~\~\~\~ RR\~ SCHED_RR
+\par \~\~\~\~\~ ?\~\~ unknown value
+\par \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 cls\~\~\~\~\~\~\~ CLS\plain \f1\fs21 \~\~\~ scheduling class of the process.
+\par \~\~\~\~\~ (alias policy, class). Field\rquote s possible values
+\par \~\~\~\~\~ are:
+\par \~\~\~\~\~ -\~\~ not reported
+\par \~\~\~\~\~ TS\~ SCHED_OTHER
+\par \~\~\~\~\~ FF\~ SCHED_FIFO
+\par \~\~\~\~\~ RR\~ SCHED_RR
+\par \~\~\~\~\~ ?\~\~ unknown value
+\par \~
+\par \plain \f1\b\fs21 cmd\~\~\~\~\~\~\~ CMD\plain \f1\fs21 \~\~\~ see args. (alias args, command).
+\par \~
+\par \plain \f1\b\fs21 comm\~\~\~\~\~\~\~ COMMAND\plain \f1\fs21 \~\~\~ command name (only the executable name). The
+\par \~\~\~\~\~ output in this column may contain spaces.\~\~\~\~\~ (alias ucmd, ucomm).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bacomm \u21644 \'ba\'cd args\u12289 \'a1\'a2cmd \u19981 \'b2\'bb\u21516 \'cd\'ac\u30340 \'b5\'c4\u26159 \'ca\'c7\u65292 \'a3\'ac\u23427 \'cb\'fc\u21482 \'d6\'bb\u26174 \'cf\'d4\u31034 \'ca\'be\u21629 \'c3\'fc\u20196 \'c1\'ee\u21517 \'c3\'fb\u65292 \'a3\'ac\u19981 \'b2\'bb\u24102 \'b4\'f8\u21442 \'b2\'ce\u25968 \'ca\'fd\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 command\~\~\~\~\~\~\~ COMMAND\plain \f1\fs21 \~\~\~ see args. (alias args, cmd).
+\par \~
+\par \plain \f1\b\fs21 cp\~\~\~\~\~\~\~ CP\plain \f1\fs21 \~\~\~ per-mill CPU usage. (see %cpu).
+\par \~
+\par \plain \f1\b\fs21 cputime\~\~\~\~\~\~\~ TIME\plain \f1\fs21 \~\~\~ cumulative CPU time, "[dd-]hh:mm:ss" format.\~\~\~ (alias time).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bacputime \u34920 \'b1\'ed\u31034 \'ca\'be CPU \u32047 \'c0\'db\u35745 \'bc\'c6\u26102 \'ca\'b1\u38388 \'bc\'e4\u65292 \'a3\'ac\u31561 \'b5\'c8\u21516 \'cd\'ac\u20110 \'d3\'da time\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 egid\~\~\~\~\~\~\~ EGID\plain \f1\fs21 \~\~\~ effective group ID number of the process as a
+\par \~\~\~\~\~ decimal integer. (alias gid).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baegid \u34920 \'b1\'ed\u31034 \'ca\'be\u26377 \'d3\'d0\u25928 \'d0\'a7 GID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 egroup\~\~\~\~\~\~\~ EGROUP\plain \f1\fs21 \~\~\~ effective group ID of the process. This will be
+\par \~\~\~\~\~ the textual group ID, if it can be obtained and
+\par \~\~\~\~\~ the field width permits, or a decimal
+\par \~\~\~\~\~ representation otherwise. (alias group).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baegroup \u34920 \'b1\'ed\u31034 \'ca\'be\u26377 \'d3\'d0\u25928 \'d0\'a7\u30340 \'b5\'c4 GID \u25110 \'bb\'f2\u32773 \'d5\'df\u32452 \'d7\'e9\u21517 \'c3\'fb\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 eip\~\~\~\~\~\~\~ EIP\plain \f1\fs21 \~\~\~ instruction pointer.
+\par \~
+\par \plain \f1\b\fs21 esp\~\~\~\~\~\~\~ ESP\plain \f1\fs21 \~\~\~ stack pointer.
+\par \~
+\par \plain \f1\b\fs21 etime\~\~\~\~\~\~\~ ELAPSED\plain \f1\fs21 \~\~\~ elapsed time since the process was started, in the\~ form [[dd-]hh:]mm:ss.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baetime \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u21551 \'c6\'f4\u21160 \'b6\'af\u21040 \'b5\'bd\u29616 \'cf\'d6\u22312 \'d4\'da\u25152 \'cb\'f9\u32463 \'be\'ad\u36807 \'b9\'fd\u30340 \'b5\'c4\u26102 \'ca\'b1\u38388 \'bc\'e4\uc1
+\par \plain \f1\fs21 
+\par \~
+\par euid\~\~\~\~\~\~\~ EUID\~\~\~ effective user ID. (alias uid).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baeuid \u34920 \'b1\'ed\u31034 \'ca\'be\u26377 \'d3\'d0\u25928 \'d0\'a7 UID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 euser\~\~\~\~\~\~\~ EUSER\~\~\plain \f1\fs21 \~ effective user name. This will be the textual
+\par \~\~\~\~\~ user ID, if it can be obtained and the field width
+\par \~\~\~\~\~ permits, or a decimal representation otherwise.
+\par \~\~\~\~\~ The n option can be used to force the decimal
+\par \~\~\~\~\~ representation. (alias uname, user).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baeuser \u34920 \'b1\'ed\u31034 \'ca\'be\u26377 \'d3\'d0\u25928 \'d0\'a7 uid /username\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 f\~\~\~\~\~\~\~ F\~\~\~ flags\plain \f1\fs21 \~associated with the process, see the PROCESS
+\par \~\~\~\~\~ FLAGS section. (alias flag, flags).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baf \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4 flag\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 fgid\~\~\~\~\~\~\~ FGID\plain \f1\fs21 \~\~\~ filesystem access group ID. (alias fsgid).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bafgid \u34920 \'b1\'ed\u31034 \'ca\'be\u25991 \'ce\'c4\u20214 \'bc\'fe\u31995 \'cf\'b5\u32479 \'cd\'b3\u35775 \'b7\'c3\u38382 \'ce\'ca\u30340 \'b5\'c4\u32452 \'d7\'e9 ID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 fgroup\~\~\~\~\~\~\~ FGROUP\plain \f1\fs21 \~\~\~ filesystem access group ID. This will be the
+\par \~\~\~\~\~ textual user ID, if it can be obtained and the
+\par \~\~\~\~\~ field width permits, or a decimal representation
+\par \~\~\~\~\~ otherwise. (alias fsgroup).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bafgroup \u34920 \'b1\'ed\u31034 \'ca\'be\u25991 \'ce\'c4\u20214 \'bc\'fe\u31995 \'cf\'b5\u32479 \'cd\'b3\u35775 \'b7\'c3\u38382 \'ce\'ca\u32452 \'d7\'e9 ID / \u32452 \'d7\'e9\u21517 \'c3\'fb\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 flag\~\~\~\~\~\~\~ F\plain \f1\fs21 \~\~\~ see f. (alias f, flags).
+\par \~
+\par \plain \f1\b\fs21 flags\~\~\~\~\~\~\~ F\plain \f1\fs21 \~\~\~ see f. (alias f, flag).
+\par \~
+\par \plain \f1\b\fs21 fname\~\~\~\~\~\~\~ COMMAND\plain \f1\fs21 \~\~\~ first 8 bytes of the base name of the process\rquote s
+\par \~\~\~\~\~ executable file. The output in this column may\~ contain spaces.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bafname \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u21517 \'c3\'fb\u31216 \'b3\'c6\u30340 \'b5\'c4\u21069 \'c7\'b08\u20010 \'b8\'f6\u23383 \'d7\'d6\u33410 \'bd\'da\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 fuid\~\~\~\~\~\~\~ FUID\plain \f1\fs21 \~\~\~ filesystem access user ID. (alias fsuid).
+\par \~
+\par \plain \f1\b\fs21 fuser\~\~\~\~\~\~\~ FUSER\~\plain \f1\fs21 \~\~ filesystem access user ID. This will be the
+\par \~\~\~\~\~ textual user ID, if it can be obtained and the
+\par \~\~\~\~\~ field width permits, or a decimal representation
+\par \~\~\~\~\~ otherwise.
+\par \~
+\par \plain \f1\b\fs21 gid\~\~\~\~\~\~\~ GID\plain \f1\fs21 \~\~\~ see egid. (alias egid).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bagid \u34920 \'b1\'ed\u31034 \'ca\'be\u23454 \'ca\'b5\u38469 \'bc\'ca GID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 group\~\~\~\~\~\~\~ GROUP\plain \f1\fs21 \~\~\~ see egroup. (alias egroup).
+\par \~
+\par \plain \f1\b\fs21 ignored\~\~\~\~\~\~\~ IGNORED\~\~\~\plain \f1\fs21 \~mask of the ignored signals, see signal(7).
+\par \~\~\~\~\~ According to the width of the field, a 32-bit or
+\par \~\~\~\~\~ 64-bit mask in hexadecimal format is displayed.
+\par \~\~\~\~\~ (alias sig_ignore, sigignore).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'baignored \u34920 \'b1\'ed\u31034 \'ca\'be\u34987 \'b1\'bb\u24573 \'ba\'f6\u30053 \'c2\'d4\u30340 \'b5\'c4\u20449 \'d0\'c5\u21495 \'ba\'c5\u25513 \'d1\'da\u30721 \'c2\'eb\uc1
+\par \plain \f1\fs21 
+\par \~
+\par \plain \f1\b\fs21 label\~\~\~\~\~\~\~ LABEL\plain \f1\fs21 \~\~\~ security label, most commonly used for SE Linux
+\par \~\~\~\~\~ context data. This is for the Mandatory Access
+\par \~\~\~\~\~ Control ("MAC") found on high-security systems.
+\par \~
+\par \plain \f1\b\fs21 lstart\~\~\~\~\~\~\~ STARTED\plain \f1\fs21 \~\~\~ time the command started.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'balstart \u34920 \'b1\'ed\u31034 \'ca\'be\u21629 \'c3\'fc\u20196 \'c1\'ee\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u26102 \'ca\'b1\u38388 \'bc\'e4\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 lwp\~\~\~\~\~\~\~ LWP\plain \f1\fs21 \~\~\~ lwp (light weight process, or thread) ID of the
+\par \~\~\~\~\~ lwp being reported. (alias spid, tid).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'balwo \u34920 \'b1\'ed\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc ID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 ni\~\~\~\~\~\~\~ NI\plain \f1\fs21 \~\~\~ nice value. This ranges from 19 (nicest) to -20
+\par \~\~\~\~\~ (not nice to others), see nice(1). (alias nice).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bani \u34920 \'b1\'ed\u31034 \'ca\'be nice \u20540 \'d6\'b5\u12290 \'a1\'a3\u20174 \'b4\'d319\u65288 \'a3\'a8\u26368 \'d7\'ee\u20339 \'bc\'d1\u65289 \'a3\'a9\u21040 \'b5\'bd -20\u65288 \'a3\'a8\u26368 \'d7\'ee\u24046 \'b2\'ee\u65289 \'a3\'a9\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 nice\~\~\~\~\~\~\~ NI\plain \f1\fs21 \~\~\~ see ni. (alias ni).
+\par \~
+\par \plain \f1\b\fs21 nlwp\~\~\~\~\~\~\~ NLWP\plain \f1\fs21 \~\~\~ number of lwps (threads) in the process.\~ (alias thcount).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'banlwp \u34920 \'b1\'ed\u31034 \'ca\'be\u32447 \'cf\'df\u31243 \'b3\'cc\u30340 \'b5\'c4\u25968 \'ca\'fd\u37327 \'c1\'bf\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 nwchan\~\~\~\~\~\~\~ WCHAN\plain \f1\fs21 \~\~\~ address of the kernel function where the process
+\par \~\~\~\~\~ is sleeping (use wchan if you want the kernel
+\par \~\~\~\~\~ function name). Running tasks will display a dash
+\par \~\~\~\~\~ (\rquote -\rquote ) in this column.
+\par 
+\par \~
+\par \plain \f1\b\fs21 pcpu\~\~\~\~\~\~\~ %CPU\plain \f1\fs21 \~\~\~ see %cpu. (alias %cpu).
+\par \~
+\par \plain \f1\b\fs21 pending\~\~\~\~\~\~\~ PENDING\plain \f1\fs21 \~\~\~ mask of the pending signals. See signal(7).
+\par \~\~\~\~\~ Signals pending on the process are distinct from
+\par \~\~\~\~\~ signals pending on individual threads. Use the m
+\par \~\~\~\~\~ option or the -m option to see both. According to
+\par \~\~\~\~\~ the width of the field, a 32-bit or 64-bit mask in
+\par \~\~\~\~\~ hexadecimal format is displayed. (alias sig).
+\par \~
+\par \plain \f1\b\fs21 pgid\~\~\~\~\~\~\~ PGID\plain \f1\fs21 \~\~\~ process group ID or, equivalently, the process ID
+\par \~\~\~\~\~ of the process group leader. (alias pgrp).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bapgid \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9 ID \u65292 \'a3\'ac\u31561 \'b5\'c8\u20110 \'d3\'da\u36827 \'bd\'f8\u31243 \'b3\'cc\u32452 \'d7\'e9 leader \u30340 \'b5\'c4 PID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 pgrp\~\~\~\~\~\~\~ PGRP\plain \f1\fs21 \~\~\~ see pgid. (alias pgid).
+\par \~
+\par \plain \f1\b\fs21 pid\~\~\~\~\~\~\~ PID\~\~\plain \f1\fs21 \~ process ID number of the process.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bapid \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4 PID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 pmem\~\~\~\~\~\~\~ %MEM\plain \f1\fs21 \~\~\~ see %mem. (alias %mem).
+\par \~
+\par \plain \f1\b\fs21 policy\~\~\~\~\~\~\~ POL\plain \f1\fs21 \~\~\~ scheduling class of the process.
+\par \~\~\~\~\~ (alias class, cls). Possible values are:
+\par \~\~\~\~\~ -\~\~ not reported
+\par \~\~\~\~\~ TS\~ SCHED_OTHER
+\par \~\~\~\~\~ FF\~ SCHED_FIFO
+\par \~\~\~\~\~ RR\~ SCHED_RR
+\par \~\~\~\~\~ ?\~\~ unknown value
+\par \~
+\par \plain \f1\b\fs21 ppid\~\~\~\~\~\~\~ PPID\plain \f1\fs21 \~\~\~ parent process ID.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bappid \u34920 \'b1\'ed\u31034 \'ca\'be PPID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 psr\~\~\~\~\~\~\~ PSR\plain \f1\fs21 \~\~\~ processor that process is currently assigned to.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bapsr \u34920 \'b1\'ed\u31034 \'ca\'be\u24403 \'b5\'b1\u21069 \'c7\'b0\u36827 \'bd\'f8\u31243 \'b3\'cc\u34987 \'b1\'bb\u20998 \'b7\'d6\u37197 \'c5\'e4\u21040 \'b5\'bd\u30340 \'b5\'c4 CPU\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 rgid\~\~\~\~\~\~\~ RGID\plain \f1\fs21 \~\~\~ real group ID.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bargid \u34920 \'b1\'ed\u31034 \'ca\'be real gid\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 rgroup\~\~\~\~\~\~\~ RGROUP\plain \f1\fs21 \~\~\~ real group name. This will be the textual
+\par \~\~\~\~\~ group ID, if it can be obtained and the field
+\par \~\~\~\~\~ width permits, or a decimal representation
+\par \~\~\~\~\~ otherwise.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bargroup \u34920 \'b1\'ed\u31034 \'ca\'be real group id /name\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 rss\~\~\~\~\~\~\~ RSS\plain \f1\fs21 \~\~\~ resident set size, the non-swapped physical memory
+\par \~\~\~\~\~ that a task has used (in kiloBytes).
+\par \~\~\~\~\~ (alias rssize, rsz).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'barss \u34920 \'b1\'ed\u31034 \'ca\'be\u24120 \'b3\'a3\u39547 \'d7\'a4\u20869 \'c4\'da\u23384 \'b4\'e6\u22823 \'b4\'f3\u23567 \'d0\'a1\u65292 \'a3\'ac\u20063 \'d2\'b2\u23601 \'be\'cd\u26159 \'ca\'c7\u37027 \'c4\'c7\u20123 \'d0\'a9\u19981 \'b2\'bb\u20250 \'bb\'e1\u34987 \'b1\'bb swap \u20986 \'b3\'f6\u21435 \'c8\'a5\u30340 \'b5\'c4\u20869 \'c4\'da\u23384 \'b4\'e6\u30340 \'b5\'c4\u22823 \'b4\'f3\u23567 \'d0\'a1\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 rssize\~\~\~\~\~\~\~ RSS\plain \f1\fs21 \~\~\~ see rss. (alias rss, rsz).
+\par \~
+\par \plain \f1\b\fs21 rsz\~\~\~\~\~\~\~ RSZ\plain \f1\fs21 \~\~\~ see rss. (alias rss, rssize).
+\par \~
+\par \plain \f1\b\fs21 rtprio\~\~\~\~\~\~\~ RTPRIO\plain \f1\fs21 \~\~\~ realtime priority.
+\par \~
+\par \plain \f1\b\fs21 ruid\~\~\~\~\~\~\~ RUID\plain \f1\fs21 \~\~\~ real user ID.
+\par \~
+\par \plain \f1\b\fs21 ruser\~\~\~\~\~\~\~ RUSER\plain \f1\fs21 \~\~\~ real user ID. This will be the textual user ID,
+\par \~\~\~\~\~ if it can be obtained and the field width permits,
+\par \~\~\~\~\~ or a decimal representation otherwise.
+\par \~
+\par \plain \f1\b\fs21 s\~\~\~\~\~\~\~ S\plain \f1\fs21 \~\~\~ minimal state display (one character). See section
+\par \~\~\~\~\~ PROCESS STATE CODES for the different values.
+\par \~\~\~\~\~ See also stat if you want additionnal information
+\par \~\~\~\~\~ displayed. (alias state).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bas \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u29366 \'d7\'b4\u24577 \'cc\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 sched\~\~\~\~\~\~\~ SCH\plain \f1\fs21 \~\~\~ scheduling policy of the process. The policies
+\par \~\~\~\~\~ sched_other, sched_fifo, and sched_rr are
+\par \~\~\~\~\~ respectively displayed as 0, 1, and 2.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'basched \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u35843 \'b5\'f7\u24230 \'b6\'c8\u31574 \'b2\'df\u30053 \'c2\'d4\u12290 \'a1\'a3\u21487 \'bf\'c9\u20197 \'d2\'d4\u26159 \'ca\'c7 sched_other\u12289 \'a1\'a2sched_fifo\u12289 \'a1\'a2sched_rr \u65292 \'a3\'ac\u20998 \'b7\'d6\u21035 \'b1\'f0\u29992 \'d3\'c3 0\u12289 \'a1\'a21\u12289 \'a1\'a22 \u34920 \'b1\'ed\u31034 \'ca\'be\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 sess\~\~\~\~\~\~\~ SESS\plain \f1\fs21 \~\~\~ session ID or, equivalently, the process ID of the
+\par \~\~\~\~\~ session leader. (alias session, sid).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'basess \u34920 \'b1\'ed\u31034 \'ca\'be\u20250 \'bb\'e1\u35805 \'bb\'b0 ID \u65292 \'a3\'ac\u31561 \'b5\'c8\u20110 \'d3\'da session leader \u30340 \'b5\'c4 PID\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 sgi_p\~\~\~\~\~\~\~ P\plain \f1\fs21 \~\~\~ processor that the process is currently executing
+\par \~\~\~\~\~ on. Displays "*" if the process is not currently
+\par \~\~\~\~\~ running or runnable.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'basgi_p \u34920 \'b1\'ed\u31034 \'ca\'be\u24403 \'b5\'b1\u21069 \'c7\'b0\u36827 \'bd\'f8\u31243 \'b3\'cc\u22312 \'d4\'da\u37027 \'c4\'c7\u20010 \'b8\'f6 cpu \u19978 \'c9\'cf\u25191 \'d6\'b4\u34892 \'d0\'d0\u12290 \'a1\'a3* \u34920 \'b1\'ed\u31034 \'ca\'be\u24403 \'b5\'b1\u21069 \'c7\'b0\u19981 \'b2\'bb\u21487 \'bf\'c9\u25191 \'d6\'b4\u34892 \'d0\'d0\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 sgid\~\~\~\~\~\~\~ SGID\plain \f1\fs21 \~\~\~ saved group ID. (alias svgid).
+\par \~
+\par \plain \f1\b\fs21 sgroup\~\~\~\~\~\~\~ SGROUP\plain \f1\fs21 \~\~\~ saved group name. This will be the textual
+\par \~\~\~\~\~ group ID, if it can be obtained and the field
+\par \~\~\~\~\~ width permits, or a decimal representation
+\par \~\~\~\~\~ otherwise.
+\par \~
+\par \plain \f1\b\fs21 sid\~\~\~\~\~\~\~ SID\plain \f1\fs21 \~\~\~ see sess. (alias sess, session).
+\par \~
+\par \plain \f1\b\fs21 sig\~\~\~\~\~\~\~ PENDING\plain \f1\fs21 \~\~\~ see pending. (alias pending, sig_pend).
+\par \~
+\par \plain \f1\b\fs21 sigcatch\~\~\~\~\~\~ CAUGHT\plain \f1\fs21 \~\~\~ see caught. (alias caught, sig_catch).
+\par \~
+\par \plain \f1\b\fs21 sigignore\~\~\~\~\~ IGNORED\plain \f1\fs21 \~\~\~ see ignored. (alias ignored, sig_ignore).
+\par \~
+\par \plain \f1\b\fs21 sigmask\~\~\~\~\~\~\~ BLOCKED\plain \f1\fs21 \~\~\~ see blocked. (alias blocked, sig_block).
+\par \~
+\par \plain \f1\b\fs21 size\~\~\~\~\~\~\~ SZ\plain \f1\fs21 \~\~\~ approximate amount of swap space that would be
+\par \~\~\~\~\~ required if the process were to dirty all writable
+\par \~\~\~\~\~ pages and then be swapped out. This number is
+\par \~\~\~\~\~ very rough!
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'basize \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u25152 \'cb\'f9\u38656 \'d0\'e8\u35201 \'d2\'aa\u30340 \'b5\'c4 swap \u22823 \'b4\'f3\u23567 \'d0\'a1\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 spid\~\~\~\~\~\~\~ SPID\plain \f1\fs21 \~\~\~ see lwp. (alias lwp, tid).
+\par \~
+\par \plain \f1\b\fs21 stackp\~\~\~\~\~\~\~ STACKP\plain \f1\fs21 \~\~\~ address of the bottom (start) of stack for the\~\~ process.
+\par \~
+\par \plain \f1\b\fs21 start\~\~\~\~\~\~\~ STARTED\plain \f1\fs21 \~\~\~ time the command started. If the process was
+\par \~\~\~\~\~ started less than 24 hours ago, the output format
+\par \~\~\~\~\~ is "HH:MM:SS", else it is "\~mmm dd" (where mmm is
+\par \~\~\~\~\~ a three-letter month name).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bastart \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u21551 \'c6\'f4\u21160 \'b6\'af\u26102 \'ca\'b1\u38388 \'bc\'e4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 start_time\~\~\~\~ START\plain \f1\fs21 \~\~\~ starting time or date of the process. Only the
+\par \~\~\~\~\~ year will be displayed if the process was not
+\par \~\~\~\~\~ started the same year ps was invoked, or "mmmdd"
+\par \~\~\~\~\~ if it was not started the same day, or "HH:MM"
+\par \~\~\~\~\~ otherwise.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bastart_time \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u26102 \'ca\'b1\u38388 \'bc\'e4\u65292 \'a3\'ac\u21487 \'bf\'c9\u33021 \'c4\'dc\u21482 \'d6\'bb\u26174 \'cf\'d4\u31034 \'ca\'be\u24180 \'c4\'ea\u20221 \'b7\'dd\u32780 \'b6\'f8\u24050 \'d2\'d1\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf1 # \uc2\u20063 \'d2\'b2\u21487 \'bf\'c9\u33021 \'c4\'dc\u26159 \'ca\'c7 mmmdd \u25110 \'bb\'f2\u32773 \'d5\'df HH:MM\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 stat\~\~\~\~\~\~\~ STAT\plain \f1\fs21 \~\~\~ multi-character process state. See section PROCESS
+\par \~\~\~\~\~ STATE CODES for the different values meaning. See
+\par \~\~\~\~\~ also s and state if you just want the first
+\par \~\~\~\~\~ character displayed.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'bastat \u34920 \'b1\'ed\u31034 \'ca\'be multi-character \u30340 \'b5\'c4\u36827 \'bd\'f8\u31243 \'b3\'cc\u29366 \'d7\'b4\u24577 \'cc\'ac\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\fs21\cf2 
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 state\~\~\~\~\~\~\~ S\plain \f1\fs21 \~\~\~ see s. (alias s).
+\par \~
+\par \plain \f1\b\fs21 suid\~\~\~\~\~\~\~ SUID\plain \f1\fs21 \~\~\~ saved user ID. (alias svuid).
+\par \~
+\par \plain \f1\b\fs21 suser\~\~\~\~\~\~\~ SUSER\plain \f1\fs21 \~\~\~ saved user name. This will be the textual user ID,
+\par \~\~\~\~\~ if it can be obtained and the field width permits,
+\par \~\~\~\~\~ or a decimal representation otherwise.
+\par \~\~\~\~\~ (alias svuser).
+\par \~
+\par \plain \f1\b\fs21 svgid\~\~\~\~\~\~\~ SVGID\plain \f1\fs21 \~\~\~ see sgid. (alias sgid).
+\par \~
+\par \plain \f1\b\fs21 svuid\~\~\~\~\~\~\~ SVUID\plain \f1\fs21 \~\~\~ see suid. (alias suid).
+\par \~
+\par \plain \f1\b\fs21 sz\~\~\~\~\~\~\~ SZ\plain \f1\fs21 \~\~\~ size in physical pages of the core image of the
+\par \~\~\~\~\~ process. This includes text, data, and stack\~ space.
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'basz \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4 code + data + stack \u27573 \'b6\'ce\u22823 \'b4\'f3\u23567 \'d0\'a1\uc1
+\par \plain \f1\fs21 
+\par \plain \f1\b\fs21 thcount\~\~\~\~\~\~\~ THCNT\~\plain \f1\fs21 \~\~ see nlwp. (alias nlwp). number of kernel threads
+\par \~\~\~\~\~ owned by the process.
+\par \~
+\par \plain \f1\b\fs21 tid\~\~\~\~\~\~\~ TID\plain \f1\fs21 \~\~\~ see lwp. (alias lwp).
+\par \~
+\par \plain \f1\b\fs21 time\~\~\~\~\~\~\~ TIME\plain \f1\fs21 \~\~\~ cumulative CPU time, "[dd-]hh:mm:ss" format.
+\par \~\~\~\~\~ (alias cputime).
+\par \~
+\par \plain \f1\b\fs21 tname\~\~\~\~\~\~\~ TTY\plain \f1\fs21 \~\~\~ controlling tty (terminal). (alias tt, tty).
+\par \~
+\par \plain \f1\fs21\cf1 # \uc2\u27880 \'d7\'a2\u37322 \'ca\'cd \u65306 \'a3\'batname \u34920 \'b1\'ed\u31034 \'ca\'be\u36827 \'bd\'f8\u31243 \'b3\'cc\u30340 \'b5\'c4\u25511 \'bf\'d8\u21046 \'d6\'c6\u32456 \'d6\'d5\u31471 \'b6\'cb\u65292 \'a3\'ac\u31561 \'b5\'c8\u20110 \'d3\'da tt\u12289 \'a1\'a2tty\uc1
+\par \plain \f1\fs21 \~
+\par \plain \f1\b\fs21 tpgid\~\~\~\~\~\~\~ TPGID\plain \f1\fs21 \~\~\~ ID of the foreground process group on the tty
+\par \~\~\~\~\~ (terminal) that the process is connected to, or -1
+\par \~\~\~\~\~ if the process is not connected to a tty.
+\par \~
+\par \plain \f1\b\fs21 tt\~\~\~\~\~\~\~ TT\plain \f1\fs21 \~\~\~ controlling tty (terminal). (alias tname, tty).
+\par \~
+\par \plain \f1\b\fs21 tty\~\~\~\~\~\~\~ TT\plain \f1\fs21 \~\~\~ controlling tty (terminal). (alias tname, tt).
+\par \~
+\par \plain \f1\b\fs21 ucmd\~\~\~\~\~\~\~ CMD\plain \f1\fs21 \~\~\~ see comm. (alias comm, ucomm).
+\par \~
+\par \plain \f1\b\fs21 ucomm\~\~\~\~\~\~\~ COMMAND\plain \f1\fs21 \~\~\~ see comm. (alias comm, ucmd).
+\par \~
+\par \plain \f1\b\fs21 uid\~\~\~\~\~\~\~ UID\plain \f1\fs21 \~\~\~ see euid. (alias euid).
+\par \~
+\par \plain \f1\b\fs21 uname\~\~\~\~\~\~\~ USER\plain \f1\fs21 \~\~\~ see euser. (alias euser, user).
+\par 
+\par \plain \f1\b\fs21 user\~\~\~\~\~\~\~ USER\plain \f1\fs21 \~\~\~ see euser. (alias euser, uname).
+\par \~
+\par \plain \f1\b\fs21 vsize\~\~\~\~\~\~\~ VSZ\plain \f1\fs21 \~\~\~ virtual memory usage of entire process. vm_lib + vm_exe + vm_data + vm_stack
+\par \~
+\par \plain \f1\b\fs21 vsz\~\~\~\~\~\~\~ VSZ\plain \f1\fs21 \~\~\~ see vsize. (alias vsize).
+\par \~
+\par \plain \f1\b\fs21 wchan\~\plain \f1\fs21 \~\~\~\~\~\~ WCHAN\~\~\~ name of the kernel function in which the process
+\par \~\~\~\~\~ is sleeping, a "-" if the process is running, or a
+\par \~\~\~\~\~ "*" if the process is multi-threaded and ps is not
+\par \~\~\~\~\~ displaying threads.
+\par \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 ENVIRONMENT VARIABLES
+\par \plain \f1\fs21 The following environment variables could affect ps:
+\par \~
+\par \plain \f1\b\fs21 COLUMNS
+\par \plain \f1\fs21 \~\~ Override default display width.
+\par \~
+\par \plain \f1\b\fs21 LINES
+\par \plain \f1\fs21 \~\~ Override default display height.
+\par \~
+\par \plain \f1\b\fs21 PS_PERSONALITY
+\par \plain \f1\fs21 \~\~ Set to one of posix, old, linux, bsd, sun, digital...
+\par \~\~ (see section PERSONALITY below).
+\par \~
+\par \plain \f1\b\fs21 CMD_ENV
+\par \plain \f1\fs21 \~\~ Set to one of posix, old, linux, bsd, sun, digital...
+\par \~\~ (see section PERSONALITY below).
+\par \~
+\par \plain \f1\b\fs21 I_WANT_A_BROKEN_PS
+\par \plain \f1\fs21 \~\~ Force obsolete command line interpretation.
+\par \~
+\par \plain \f1\b\fs21 LC_TIME
+\par \plain \f1\fs21 \~\~ Date format.
+\par \~
+\par \plain \f1\b\fs21 PS_COLORS
+\par \plain \f1\fs21 \~\~ Not currently supported.
+\par \~
+\par \plain \f1\b\fs21 PS_FORMAT
+\par \plain \f1\fs21 \~\~ Default output format override.
+\par \~
+\par \plain \f1\b\fs21 PS_SYSMAP
+\par \plain \f1\fs21 \~\~ Default namelist (System.map) location.
+\par \~
+\par \plain \f1\b\fs21 PS_SYSTEM_MAP
+\par \plain \f1\fs21 \~\~ Default namelist (System.map) location.
+\par \~
+\par \plain \f1\b\fs21 POSIXLY_CORRECT
+\par \plain \f1\fs21 \~\~ Don\rquote t find excuses to ignore bad "features".
+\par \~
+\par \plain \f1\b\fs21 POSIX2
+\par \plain \f1\fs21 \~\~ When set to "on", acts as POSIXLY_CORRECT.
+\par \~
+\par \plain \f1\b\fs21 UNIX95
+\par \plain \f1\fs21 \~\~ Don\rquote t find excuses to ignore bad "features".
+\par \~
+\par \plain \f1\b\fs21 _XPG
+\par \plain \f1\fs21 \~\~ Cancel CMD_ENV=irix non-standard behavior.
+\par \~
+\par In general, it is a bad idea to set these variables. The one exception is
+\par CMD_ENV or PS_PERSONALITY, which could be set to Linux for normal systems.
+\par Without that setting, ps follows the useless and bad parts of the Unix98
+\par standard.
+\par \~
+\par \~
+\par \~
+\par 
+\par \~
+\par \~
+\par \plain \f1\b\fs21 SEE ALSO
+\par \plain \f1\fs21 top(1), pgrep(1), pstree(1), proc(5).
+\par \~
+\par \~
+\par \~
+\par \plain \f1\b\fs21 STANDARDS
+\par \plain \f1\fs21 This ps conforms to:
+\par \~
+\par 1\~\~ Version 2 of the Single Unix Specification
+\par 2\~\~ The Open Group Technical Standard Base Specifications, Issue 6
+\par 3\~\~ IEEE Std 1003.1, 2004 Edition
+\par 4\~\~ X/Open System Interfaces Extension [UP XSI]
+\par 5\~\~ ISO/IEC 9945:2003
+\par \~
+\par 
+\par AUTHOR
+\par ps was originally written by Branko Lankester <\plain \f1\ul\fs21\cf1 lankeste@fwi.uva.nl\plain \f1\fs21 >. Michael
+\par K. Johnson <\plain \f1\ul\fs21\cf1 johnsonm@redhat.com\plain \f1\fs21 > re-wrote it significantly to use the proc
+\par filesystem, changing a few things in the process. Michael Shields
+\par <\plain \f1\ul\fs21\cf1 mjshield@nyx.cs.du.edu\plain \f1\fs21 > added the pid-list feature. Charles Blake
+\par <\plain \f1\ul\fs21\cf1 cblake@bbn.com\plain \f1\fs21 > added multi-level sorting, the dirent-style library, the
+\par device name-to-number mmaped database, the approximate binary search directly
+\par on System.map, and many code and documentation cleanups. David
+\par Mossberger-Tang wrote the generic BFD support for psupdate. Albert Cahalan
+\par <\plain \f1\ul\fs21\cf1 albert@users.sf.net\plain \f1\fs21 > rewrote ps for full Unix98 and BSD support, along with
+\par some ugly hacks for obsolete and foreign syntax.
+\par \~
+\par Please send bug reports to <\plain \f1\ul\fs21\cf1 procps-feedback@lists.sf.net\plain \f1\fs21 >. No subscription is
+\par required or suggested.
+\par \~
+\par \~
+\par \~
+\par Linux\~\~\~\~July 28, 2004\~\~\~\~PS(1)\par}

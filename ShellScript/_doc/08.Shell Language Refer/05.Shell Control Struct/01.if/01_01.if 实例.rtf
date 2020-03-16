@@ -1,0 +1,44 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red32\green96\blue160;\red192\green48\blue48;\red0\green0\blue0;\red241\green241\blue241;\red0\green128\blue128;\red64\green96\blue64;\red0\green128\blue160;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1938900741\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid380222752}
+}
+{\*\listoverridetable
+{\listoverride\listid380222752\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 01_01.if \uc2\u23454 \'ca\'b5\u20363 \'c0\'fd\uc1
+\par \pard\fi0\li0\qj\ri0\sb0\sa0\itap0 
+\par \plain \f1\i\fs20\cf7 #!/bin/bash\~
+\line \plain \f1\fs20\cf4 
+\line \plain \f1\fs20\cf2 function\plain \f1\fs20\chcbpat5\cf4 \~myfun\plain \f1\fs20\cf4 ()
+\line \{
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "myfun"
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 return\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf8 0
+\line \plain \f1\fs20\cf4 \}
+\line 
+\line \plain \f1\i\fs20\cf7 #\uc2\u21028 \'c5\'d0\u26029 \'b6\'cf\u26631 \'b1\'ea\u20934 \'d7\'bc\u36755 \'ca\'e4\u20837 \'c8\'eb\u20013 \'d6\'d0\u26159 \'ca\'c7\u21542 \'b7\'f1\u21253 \'b0\'fc\u21547 \'ba\'achello\uc1
+\line #if\uc2\u21518 \'ba\'f3\u38754 \'c3\'e6\u25509 \'bd\'d3\u21629 \'c3\'fc\u20196 \'c1\'ee\uc1
+\line \plain \f1\fs20\cf2 if\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf2 grep\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "hello"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 >/\plain \f1\fs20\chcbpat5\cf4 dev\plain \f1\fs20\cf4 /\plain \f1\fs20\chcbpat5\cf4 null\~\plain \f1\fs20\cf8 2\plain \f1\fs20\cf4 >&\plain \f1\fs20\cf8 1\plain \f1\fs20\chcbpat5\cf4 \~;\plain \f1\fs20\cf2 then
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "include hello"
+\line \plain \f1\fs20\cf2 else
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "don't include hello"
+\line \plain \f1\fs20\cf2 fi
+\line \plain \f1\fs20\cf4 
+\line \plain \f1\i\fs20\cf7 #if\uc2\u21518 \'ba\'f3\u38754 \'c3\'e6\u25509 \'bd\'d3\u20989 \'ba\'af\u25968 \'ca\'fd\u35843 \'b5\'f7\u29992 \'d3\'c3\uc1
+\line \plain \f1\fs20\cf2 if\plain \f1\fs20\chcbpat5\cf4 \~myfun ;\plain \f1\fs20\cf2 then
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "myfun success"
+\line \plain \f1\fs20\cf2 else
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "myfun error"
+\line \plain \f1\fs20\cf2 fi
+\line \plain \f1\fs20\cf4 
+\line \plain \f1\i\fs20\cf7 #if\uc2\u21518 \'ba\'f3\u38754 \'c3\'e6\u25509 \'bd\'d3test\u35821 \'d3\'ef\u21477 \'be\'e4\~\uc1
+\line \plain \f1\fs20\cf2 read\plain \f1\fs20\chcbpat5\cf4 \~T
+\line \plain \f1\fs20\cf2 if\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 [\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "$T"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 -lt\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "10"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 ]\plain \f1\fs20\chcbpat5\cf4 \~;\plain \f1\fs20\cf2 then\plain \f1\fs20\chcbpat5\cf4 \~
+\line \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 " T < 10"
+\line \plain \f1\fs20\cf2 elif\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 [\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "$T"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 -le\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "20"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 -a\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "$T"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 -ge\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 "10"\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf4 ]\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\b\fs20\chcbpat5\cf4 ;\plain \f1\b\fs20\cf2 then\plain \f1\b\fs20\chcbpat5\cf4 \~
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\i\fs20\cf7 #[]\uc2\u20013 \'d6\'d0\u24212 \'d3\'a6\u35813 \'b8\'c3\u20351 \'ca\'b9\u29992 \'d3\'c3-a -o \u32780 \'b6\'f8\u19981 \'b2\'bb\u26159 \'ca\'c7\u20351 \'ca\'b9\u29992 \'d3\'c3&& ||\uc1
+\line \plain \f1\fs20\chcbpat5\cf4 \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 " T >= 10 && T <= 20 "
+\line \plain \f1\fs20\cf2 else\plain \f1\fs20\chcbpat5\cf4 \~
+\line \~ \~\~\plain \f1\fs20\cf6 echo\plain \f1\fs20\chcbpat5\cf4 \~\plain \f1\fs20\cf3 " T > 20"
+\line \plain \f1\fs20\cf2 fi\par}

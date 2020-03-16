@@ -1,0 +1,143 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red79\green129\blue189;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1012340471
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\b\i\fs28}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li0\fi0\jclisttab\tx0\levelstartat1{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid223040216}
+{\list\listtemplateid1945387066\listsimple1
+{\listlevel\levelnfc0\leveljc0\li1380\fi-420\jclisttab\tx1380\levelstartat1{\leveltext\'02\'00);}{\levelnumbers\'01;}\f3\b\i\fs24\cf4}
+\listid247180583}
+}
+{\*\listoverridetable
+{\listoverride\listid223040216\listoverridecount0\ls1}
+{\listoverride\listid247180583\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 unalias
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par 
+\par \plain \f1\fs20 UNALIAS(1P)                POSIX Programmer\rquote s Manual               UNALIAS(1P)
+\par 
+\par PROLOG
+\par        This manual page is part of the POSIX Programmer\rquote s Manual.  The Linux implementation of this interface may differ
+\par        (consult the corresponding Linux manual page for details of Linux behavior), or the interface may not  be  imple-
+\par        mented on Linux.
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        unalias - remove alias definitions
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        unalias alias-name...
+\par 
+\par \plain \f1\fs20\cf2        unalias -a
+\par \plain \f1\fs20 
+\par DESCRIPTION
+\par        The  unalias  utility  shall  remove  the  definition for each alias name specified. See Alias Substitution . The
+\par        aliases shall be removed from the current shell execution environment; see Shell Execution Environment .
+\par 
+\par OPTIONS
+\par        The unalias utility shall conform to the Base Definitions volume of IEEE Std 1003.1-2001, Section  12.2,  Utility
+\par        Syntax Guidelines.
+\par 
+\par        The following option shall be supported:
+\par 
+\par \plain \f1\fs20\cf2        -a     Remove all alias definitions from the current shell execution environment.
+\par \plain \f1\fs20 
+\par OPERANDS
+\par        The following operand shall be supported:
+\par 
+\par \plain \f1\fs20\cf1        alias-name
+\par               The name of an alias to be removed.
+\par \plain \f1\fs20 
+\par STDIN
+\par        Not used.
+\par 
+\par INPUT FILES
+\par        None.
+\par 
+\par ENVIRONMENT VARIABLES
+\par        The following environment variables shall affect the execution of unalias:
+\par 
+\par        LANG   Provide a default value for the internationalization variables that are unset or null. (See the Base Defi-
+\par               nitions volume of IEEE Std 1003.1-2001, Section 8.2, Internationalization Variables for the precedence  of
+\par               internationalization variables used to determine the values of locale categories.)
+\par 
+\par        LC_ALL If set to a non-empty string value, override the values of all the other internationalization variables.
+\par 
+\par        LC_CTYPE
+\par               Determine the locale for the interpretation of sequences of bytes of text data as characters (for example,
+\par               single-byte as opposed to multi-byte characters in arguments).
+\par 
+\par        LC_MESSAGES
+\par               Determine the locale that should be used to affect the format and contents of diagnostic messages  written
+\par               to standard error.
+\par 
+\par        NLSPATH
+\par               Determine the location of message catalogs for the processing of LC_MESSAGES .
+\par 
+\par ASYNCHRONOUS EVENTS
+\par        Default.
+\par 
+\par STDOUT
+\par        Not used.
+\par 
+\par STDERR
+\par        The standard error shall be used only for diagnostic messages.
+\par 
+\par OUTPUT FILES
+\par        None.
+\par 
+\par EXTENDED DESCRIPTION
+\par        None.
+\par 
+\par EXIT STATUS
+\par        The following exit values shall be returned:
+\par 
+\par         0     Successful completion.
+\par 
+\par        >0     One of the alias-name operands specified did not represent a valid alias definition, or an error occurred.
+\par 
+\par CONSEQUENCES OF ERRORS
+\par        Default.
+\par 
+\par        The following sections are informative.
+\par 
+\par APPLICATION USAGE
+\par        Since unalias affects the current shell execution environment, it is generally provided as a shell regular built-
+\par        in.
+\par 
+\par EXAMPLES
+\par        None.
+\par 
+\par RATIONALE
+\par        The  unalias  description  is  based  on  that from historical KornShell implementations. Known differences exist
+\par        between that and the C shell. The KornShell version was adopted to be consistent with  all  the  other  KornShell
+\par        features in this volume of IEEE Std 1003.1-2001, such as command line editing.
+\par 
+\par        The -a option is the equivalent of the unalias * form of the C shell and is provided to address security concerns
+\par        about unknown aliases entering the environment of a user (or application) through the  allowable  implementation-
+\par        defined  predefined  alias  route  or as a result of an ENV file. (Although unalias could be used to simplify the
+\par        "secure" shell script shown in the command rationale, it does not obviate the need to quote all command names. An
+\par        initial call to unalias -a would have to be quoted in case there was an alias for unalias.)
+\par 
+\par FUTURE DIRECTIONS
+\par        None.
+\par 
+\par SEE ALSO
+\par        Shell Command Language, alias
+\par 
+\par COPYRIGHT
+\par        Portions  of  this text are reprinted and reproduced in electronic form from IEEE Std 1003.1, 2003 Edition, Stan-
+\par        dard for Information Technology -- Portable Operating System Interface (POSIX), The Open  Group  Base  Specifica-
+\par        tions Issue 6, Copyright (C) 2001-2003 by the Institute of Electrical and Electronics Engineers, Inc and The Open
+\par        Group. In the event of any discrepancy between this version and the original IEEE and The  Open  Group  Standard,
+\par        the  original  IEEE  and  The  Open Group Standard is the referee document. The original Standard can be obtained
+\par        online at http://www.opengroup.org/unix/online.html .
+\par 
+\par IEEE/The Open Group                  2003                          UNALIAS(1P)\par}

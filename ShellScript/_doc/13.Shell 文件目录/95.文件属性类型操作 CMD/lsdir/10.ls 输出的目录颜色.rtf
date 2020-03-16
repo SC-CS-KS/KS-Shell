@@ -1,0 +1,94 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid781103851\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1885793433}
+{\list\listtemplateid2027030273\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid1942711564}
+}
+{\*\listoverridetable
+{\listoverride\listid1885793433\listoverridecount0\ls1}
+{\listoverride\listid1942711564\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 10.ls \uc2\u36755 \'ca\'e4\u20986 \'b3\'f6\u30340 \'b5\'c4\u30446 \'c4\'bf\u24405 \'c2\'bc\u39068 \'d1\'d5\u33394 \'c9\'ab\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 \uc2\u20462 \'d0\'de\u27491 \'d5\'fdLinux\u19979 \'cf\'c2ls\u36755 \'ca\'e4\u20986 \'b3\'f6\u30340 \'b5\'c4\u30446 \'c4\'bf\u24405 \'c2\'bc\u39068 \'d1\'d5\u33394 \'c9\'ab\uc1
+\par \plain \f1\fs20 Here is an easy way to set different colours for different kinds of files when using the ls command.
+\par 
+\par Add the following lines to the bottom of your ~/.bashrc file -
+\par 
+\par \plain \f1\fs20\cf1 alias ls='ls --color'
+\par LS_COLORS='di=1:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90'
+\par export LS_COLORS
+\par 
+\par \plain \f1\fs20 The first line makes ls use the --color parameter by default, which tells ls to display files in different colours based on the setting of the LS_COLORS variable.
+\par 
+\par The second line is the tricky one, and what I have worked out so far has been by trial and error. The parameters (di, fi, etc.) refer to different Linux file types. I have worked them out as shown
+\par 
+\par di = directory
+\par fi = file
+\par ln = symbolic link
+\par pi = fifo file
+\par so = socket file
+\par bd = block (buffered) special file
+\par cd = character (unbuffered) special file
+\par or = symbolic link pointing to a non-existent file (orphan)
+\par mi = non-existent file pointed to by a symbolic link (visible when you type ls -l)
+\par ex = file which is executable (ie. has 'x' set in permissions).
+\par 
+\par The *.rpm=90 parameter at the end tells ls to display any files ending in .rpm in the specified colour, in this case colour 90 (dark grey). This can be applied to any types of files (eg. you could use '*.png=35' to make jpeg files appear purple.) As many or as few parameters as you like can go into the LS_COLORS variable, as long as the parameters are separated by colons.
+\par 
+\par Using trial and error (and a little bash script I wrote... my first one ever! :) I worked out all the colour codes, at least my interpretation of them -
+\par 
+\par 0 = default colour
+\par 1 = bold
+\par 4 = underlined
+\par 5 = flashing text
+\par 7 = reverse field
+\par 31 = red
+\par 32 = green
+\par 33 = orange
+\par 34 = blue
+\par 35 = purple
+\par 36 = cyan
+\par 37 = grey
+\par 40 = black background
+\par 41 = red background
+\par 42 = green background
+\par 43 = orange background
+\par 44 = blue background
+\par 45 = purple background
+\par 46 = cyan background
+\par 47 = grey background
+\par 90 = dark grey
+\par 91 = light red
+\par 92 = light green
+\par 93 = yellow
+\par 94 = light blue
+\par 95 = light purple
+\par 96 = turquoise
+\par 100 = dark grey background
+\par 101 = light red background
+\par 102 = light green background
+\par 103 = yellow background
+\par 104 = light blue background
+\par 105 = light purple background
+\par 106 = turquoise background
+\par 
+\par These can even be combined, so that a parameter like:
+\par di=5;31;42
+\par in your LS_COLORS variable would make directories appear in flashing red text with a green background!
+\par 
+\par Setting LS_COLORS does more than just make your ls listings look pretty (although it certainly does do that), it is also very helpful in identifying files while wading through a file system.
+\par 
+\par 
+\par LS_COLORS='no=00:fi=00:di=01;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=01;05;37;41:mi=0
+\par 1;05;37;41:ex=01;32:*.cmd=01;32:*.exe=01;32:*.com=01;32:*.btm=01;32:*.bat=01;32:*.sh=01;32:*.csh=01;32
+\par :*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;3
+\par 1:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm
+\par =01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
+\par \uc2\u36825 \'d5\'e2\u20010 \'b8\'f6\u26159 \'ca\'c7\u25105 \'ce\'d2\u30340 \'b5\'c4\u31995 \'cf\'b5\u32479 \'cd\'b3\u37324 \'c0\'ef\u32463 \'be\'ad\u24120 \'b3\'a3\u29992 \'d3\'c3\u30340 \'b5\'c4\u39068 \'d1\'d5\u33394 \'c9\'ab\u37197 \'c5\'e4\u32622 \'d6\'c3\u65292 \'a3\'ac\u36824 \'bb\'b9\u19981 \'b2\'bb\u38169 \'b4\'ed\u12290 \'a1\'a3\uc1
+\par 
+\par \uc2\u22914 \'c8\'e7\u26524 \'b9\'fb\u26159 \'ca\'c7\u22312 \'d4\'daScureCRT\u19978 \'c9\'cf\u26174 \'cf\'d4\u31034 \'ca\'be\u38656 \'d0\'e8\u35201 \'d2\'aa\u35774 \'c9\'e8\u32622 \'d6\'c3ScureCRT\u30340 \'b5\'c4\u36873 \'d1\'a1\u39033 \'cf\'ee\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------------------------------------------\par}

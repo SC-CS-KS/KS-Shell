@@ -1,0 +1,95 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red160\green160\blue160;\red240\green240\blue240;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid724205364\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1662242824}
+{\list\listtemplateid1928590895\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid993300208}
+}
+{\*\listoverridetable
+{\listoverride\listid1662242824\listoverridecount0\ls1}
+{\listoverride\listid993300208\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 9.1.4 Input/Output Functions
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 9.1.4 Input/Output Functions
+\par {\*\bkmkstart index_input_002foutput_functions}{\*\bkmkend index_input_002foutput_functions}\plain \f1\fs20 The following functions relate to input/output (I/O). Optional parameters are enclosed in square brackets ([ ]):
+\par close(filename\~[,\~how])
+\par {\*\bkmkstart index_close_0028_0029_function_1}{\*\bkmkend index_close_0028_0029_function_1}Close the file\~filename\~for input or output. Alternatively, the argument may be a shell command that was used for creating a coprocess, or for redirecting to or from a pipe; then the coprocess or pipe is closed. See\~\plain \f1\ul\fs20\cf1 Close Files And Pipes\plain \f1\fs20 , for more information.
+\par When closing a coprocess, it is occasionally useful to first close one end of the two-way pipe and then to close the other. This is done by providing a second argument to\~close(). This second argument (how) should be one of the two string values\~"to"\~or\~"from", indicating which end of the pipe to close. Case in the string does not matter. See\~\plain \f1\ul\fs20\cf1 Two-way I/O\plain \f1\fs20 , which discusses this feature in more detail and gives an example.
+\par Note that the second argument to\~close()\~is a\~gawk\~extension; it is not available in compatibility mode (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ).
+\par fflush([filename])
+\par {\*\bkmkstart index_fflush_0028_0029_function}{\*\bkmkend index_fflush_0028_0029_function}Flush any buffered output associated with\~filename, which is either a file opened for writing or a shell command for redirecting output to a pipe or coprocess.
+\par {\*\bkmkstart index_buffers_002c_flushing}{\*\bkmkend index_buffers_002c_flushing}Many utility programs\~\plain \f1\i\fs20 buffer\plain \f1\fs20 \~their output (i.e., they save information to write to a disk file or the screen in memory until there is enough for it to be worthwhile to send the data to the output device). This is often more efficient than writing every little bit of information as soon as it is ready. However, sometimes it is necessary to force a program to\~\plain \f1\i\fs20 flush\plain \f1\fs20 \~its buffers (i.e., write the information to its destination, even if a buffer is not full). This is the purpose of the\~fflush()\~function\emdash gawk\~also buffers its output, and the\~fflush()\~function forces\~gawk\~to flush its buffers.
+\par {\*\bkmkstart index_extensions_002c_common_002c_fflush_0028_0029_function}{\*\bkmkend index_extensions_002c_common_002c_fflush_0028_0029_function}Brian Kernighan added\~fflush()\~to his\~awk\~in April 1992. For two decades, it was a common extension. In December 2012, it was accepted for inclusion into the POSIX standard. See\~\plain \f1\ul\fs20\cf1 the Austin Group website\plain \f1\fs20 .
+\par POSIX standardizes\~fflush()\~as follows: if there is no argument, or if the argument is the null string (""), then\~awk\~flushes the buffers for\~\plain \f1\i\fs20 all\plain \f1\fs20 \~open output files and pipes.
+\par \plain \f1\b\fs20 
+\par NOTE:\plain \f1\fs20 \~Prior to version 4.0.2,\~gawk\~would flush only the standard output if there was no argument, and flush all output files and pipes if the argument was the null string. This was changed in order to be compatible with Brian Kernighan\rquote s\~awk, in the hope that standardizing this feature in POSIX would then be easier (which indeed proved to be the case).
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 \tab}\ls1\ilvl0 \plain \f1\fs20 
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20 With\~gawk, you can use \lquote fflush("/dev/stdout")\rquote  if you wish to flush only the standard output.
+\par {\*\bkmkstart index_troubleshooting_002c_fflush_0028_0029_function}{\*\bkmkend index_troubleshooting_002c_fflush_0028_0029_function}fflush()\~returns zero if the buffer is successfully flushed; otherwise, it returns a nonzero value. (gawk\~returns -1.) In the case where all buffers are flushed, the return value is zero only if all buffers were flushed successfully. Otherwise, it is -1, and\~gawk\~warns about the problem\~filename.
+\par gawk\~also issues a warning message if you attempt to flush a file or pipe that was opened for reading (such as with\~getline), or iffilename\~is not an open file, pipe, or coprocess. In such a case,\~fflush()\~returns -1, as well.
+\par {\*\bkmkstart index_sidebar_002c_Interactive_Versus_Noninteractive_Buffering}{\*\bkmkend index_sidebar_002c_Interactive_Versus_Noninteractive_Buffering}{\trowd\trgaph45\trleft0\trpaddl15\trpaddt15\trpaddr15\trpaddb15\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trspdl15\trspdr15\trspdfl3\trspdfr3\trspdt15\trspdft3\trspdb15\trspdfb3\trwWidth14565\trftsWidth3\lastrow\richviewtbw0\trbrdrl\brdrs\brdrw15\brdrcf4\trbrdrt\brdrs\brdrw15\brdrcf4\trbrdrr\brdrs\brdrw15\brdrcf3\trbrdrb\brdrs\brdrw15\brdrcf3\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf3\clbrdrt\brdrs\brdrw15\brdrcf3\clbrdrr\brdrs\brdrw15\brdrcf4\clbrdrb\brdrs\brdrw15\brdrcf4\clvertalc\cellx14520\pard\intbl{{
+\pard\fi0\li0\qc\ri0\sb0\sa0\intbl \plain \f1\b\fs20 Interactive Versus Noninteractive Buffering
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\intbl {\*\bkmkstart index_buffering_002c_interactive_vs_002e_noninteractive}{\*\bkmkend index_buffering_002c_interactive_vs_002e_noninteractive}\plain \f1\fs20 As a side point, buffering issues can be even more confusing if your program is\~\plain \f1\i\fs20 interactive\plain \f1\fs20 \~(i.e., communicating with a user sitting at a keyboard).\plain \f1\ul\super\fs20\cf1 50
+\par \plain \f1\fs20 Interactive programs generally\~\plain \f1\i\fs20 line buffer\plain \f1\fs20 \~their output (i.e., they write out every line). Noninteractive programs wait until they have a full buffer, which may be many lines of output. Here is an example of the difference:
+\par $ awk '\{ print $1 + $2 \}'\'0a1
+\par 1 1\'0a-
+\par -| 2\'0a2
+\par 2 3\'0a-
+\par -| 5\'0aC
+\par Ctrl-d\'0a
+\par 
+\par Each line of output is printed immediately. Compare that behavior with this example:
+\par $ awk '\{ print $1 + $2 \}' | cat\'0a1
+\par 1 1\'0a2
+\par 2 3\'0aC
+\par Ctrl-d\'0a-
+\par -| 2\'0a-
+\par -| 5\'0a
+\par 
+\par Here, no output is printed until after the\~Ctrl-d\~is typed, because it is all buffered and sent down the pipe to\~cat\~in one shot.\cell}}\pard\intbl\row}
+\plain \f1\fs20 system(command)
+\par {\*\bkmkstart index_system_0028_0029_function}{\*\bkmkend index_system_0028_0029_function}Execute the operating system command\~command\~and then return to the\~awk\~program. Return\~command\rquote s exit status.
+\par For example, if the following fragment of code is put in your\~awk\~program:
+\par END \{\'0a 
+\par      system("date | mail -s 'awk run done' root")\'0a\}
+\par \}\'0a
+\par 
+\par the system administrator is sent mail when the\~awk\~program finishes processing input and begins its end-of-input processing.
+\par Note that redirecting\~print\~or\~printf\~into a pipe is often enough to accomplish your task. If you need to run many commands, it is more efficient to simply print them down a pipeline to the shell:
+\par while (more stuff to do)\'0a 
+\par     print command | "/bin/sh"\'0ac
+\par close("/bin/sh")\'0a
+\par 
+\par {\*\bkmkstart index_troubleshooting_002c_system_0028_0029_function}{\*\bkmkend index_troubleshooting_002c_system_0028_0029_function}However, if your\~awk\~program is interactive,\~system()\~is useful for running large self-contained programs, such as a shell or an editor. Some operating systems cannot implement the\~system()\~function.\~system()\~causes a fatal error if it is not supported.
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 \tab}\ls2\ilvl0 \plain \f1\b\fs20 NOTE:\plain \f1\fs20 \~When\~--sandbox\~is specified, the\~system()\~function is disabled (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ).
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 {\*\bkmkstart index_sidebar_002c_Controlling_Output_Buffering_with_system_0028_0029}{\*\bkmkend index_sidebar_002c_Controlling_Output_Buffering_with_system_0028_0029}{\trowd\trgaph45\trleft0\trpaddl15\trpaddt15\trpaddr15\trpaddb15\trpaddfl3\trpaddft3\trpaddfr3\trpaddfb3\trspdl15\trspdr15\trspdfl3\trspdfr3\trspdt15\trspdft3\trspdb15\trspdfb3\trwWidth14565\trftsWidth3\lastrow\richviewtbw0\trbrdrl\brdrs\brdrw15\brdrcf4\trbrdrt\brdrs\brdrw15\brdrcf4\trbrdrr\brdrs\brdrw15\brdrcf3\trbrdrb\brdrs\brdrw15\brdrcf3\clftsWidth1\richviewcbw0\richviewcbh0\clbrdrl\brdrs\brdrw15\brdrcf3\clbrdrt\brdrs\brdrw15\brdrcf3\clbrdrr\brdrs\brdrw15\brdrcf4\clbrdrb\brdrs\brdrw15\brdrcf4\clvertalc\cellx14520\pard\intbl{{
+\pard\fi0\li0\qc\ri0\sb0\sa0\intbl \plain \f1\b\fs20 Controlling Output Buffering with\~\plain \f1\fs20 system()
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\intbl {\*\bkmkstart index_buffers_002c_flushing_1}{\*\bkmkend index_buffers_002c_flushing_1}The\~fflush()\~function provides explicit control over output buffering for individual files and pipes. However, its use is not portable to many older\~awk\~implementations. An alternative method to flush output buffers is to call\~system()\~with a null string as its argument:
+\par system("")   # flush output\'0a
+\par 
+\par gawk\~treats this use of the\~system()\~function as a special case and is smart enough not to run a shell (or other command interpreter) with the empty command. Therefore, with\~gawk, this idiom is not only useful, it is also efficient. Although this method should work with other\~awkimplementations, it does not necessarily avoid starting an unnecessary shell. (Other implementations may only flush the buffer associated with the standard output and not necessarily all buffered output.)
+\par If you think about what a programmer expects, it makes sense that\~system()\~should flush any pending output. The following program:
+\par BEGIN \{\'0a 
+\par      print "first print"\'0a 
+\par      system("echo system echo")\'0a 
+\par      print "second print"\'0a\}
+\par \}\'0a
+\par 
+\par must print:
+\par first print\'0as
+\par system echo\'0as
+\par second print\'0a
+\par 
+\par and not:
+\par system echo\'0af
+\par first print\'0as
+\par second print\'0a
+\par 
+\par If\~awk\~did not flush its buffers before calling\~system(), you would see the latter (undesirable) output.\cell}}\pard\intbl\row}
+\pard\plain\fs6\brdrb\brdrs\brdrw15\brdrcf0\par\pard
+\par \plain \f1\b\fs20 Footnotes
+\par \plain \f1\ul\fs20\cf1 (50)
+\par \plain \f1\fs20 A program is interactive if the standard output is connected to a terminal device. On modern systems, this means your keyboard and screen.\par}

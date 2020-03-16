@@ -1,0 +1,212 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang2052\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f1\fnil Arial;}{\f2\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue128;\red128\green0\blue0;\red0\green128\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1657603607
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid434749562}
+{\list\listtemplateid1688743526\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1584547333}
+}
+{\*\listoverridetable
+{\listoverride\listid434749562\listoverridecount0\ls1}
+{\listoverride\listid1584547333\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f0\b\fs24\cf5 route
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f2\fs20 ROUTE(8)                                            Linux Programmer's Manual                                           ROUTE(8)
+\par 
+\par NAME
+\par \plain \f2\fs20\cf1        route - show / manipulate the IP routing table
+\par \plain \f2\fs20 
+\par SYNOPSIS
+\par        route [-CFvnee]
+\par 
+\par        route  [-v]  [-A  family]  add  [-net|-host]  target [netmask Nm] [gw Gw] [metric N] [mss M] [window W] [irtt I] [reject]
+\par               [mod] [dyn] [reinstate] [[dev] If]
+\par 
+\par        route  [-v] [-A family] del [-net|-host] target [gw Gw] [netmask Nm] [metric N] [[dev] If]
+\par 
+\par        route  [-V] [--version] [-h] [--help]
+\par 
+\par DESCRIPTION
+\par        Route manipulates the kernel's IP routing tables.  Its primary use is to set up static routes to specific hosts  or  net-
+\par        works via an interface after it has been configured with the ifconfig(8) program.
+\par 
+\par        When  the add or del options are used, route modifies the routing tables.  Without these options, route displays the cur-
+\par        rent contents of the routing tables.
+\par 
+\par 
+\par OPTIONS
+\par        -A family
+\par               use the specified address family (eg `inet'; use `route --help' for a full list).
+\par 
+\par        -F     operate on the kernel's FIB (Forwarding Information Base) routing table.  This is the default.
+\par 
+\par        -C     operate on the kernel's routing cache.
+\par 
+\par 
+\par        -v     select verbose operation.
+\par 
+\par        -n     show numerical addresses instead of trying to determine symbolic host names. This is useful if you are  trying  to
+\par               determine why the route to your nameserver has vanished.
+\par 
+\par        -e     use  netstat(8)-format  for  displaying the routing table.  -ee will generate a very long line with all parameters
+\par               from the routing table.
+\par 
+\par 
+\par        del    delete a route.
+\par 
+\par        add    add a new route.
+\par 
+\par        target the destination network or host. You can provide IP addresses in dotted decimal or host/network names.
+\par 
+\par        -net   the target is a network.
+\par 
+\par        -host  the target is a host.
+\par 
+\par        netmask NM
+\par               when adding a network route, the netmask to be used.
+\par 
+\par        gw GW  route packets via a gateway.  NOTE: The specified gateway must be reachable first. This  usually  means  that  you
+\par               have  to  set  up a static route to the gateway beforehand. If you specify the address of one of your local inter-
+\par               faces, it will be used to decide about the interface to which the packets should be routed to. This  is  a  BSDism
+\par               compatibility hack.
+\par 
+\par        metric M
+\par               set the metric field in the routing table (used by routing daemons) to M.
+\par 
+\par        mss M  set  the TCP Maximum Segment Size (MSS) for connections over this route to M bytes.  The default is the device MTU
+\par               minus headers, or a lower MTU when path mtu discovery occured. This setting can  be  used  to  force  smaller  TCP
+\par               packets  on  the  other end when path mtu discovery does not work (usually because of misconfigured firewalls that
+\par               block ICMP Fragmentation Needed)
+\par 
+\par        window W
+\par               set the TCP window size for connections over this route to W bytes. This is typically only used on AX.25  networks
+\par               and with drivers unable to handle back to back frames.
+\par 
+\par        irtt I set  the  initial  round trip time (irtt) for TCP connections over this route to I milliseconds (1-12000). This is
+\par               typically only used on AX.25 networks. If omitted the RFC 1122 default of 300ms is used.
+\par 
+\par        reject install a blocking route, which will force a route lookup to fail.  This is for example used to mask out  networks
+\par               before using the default route.  This is NOT for firewalling.
+\par 
+\par        mod, dyn, reinstate
+\par               install  a dynamic or modified route. These flags are for diagnostic purposes, and are generally only set by rout-
+\par               ing daemons.
+\par 
+\par        dev If force the route to be associated with the specified device, as the kernel will  otherwise  try  to  determine  the
+\par               device  on  its  own  (by checking already existing routes and device specifications, and where the route is added
+\par               to). In most normal networks you won't need this.
+\par 
+\par               If dev If is the last option on the command line, the word dev may be omitted, as it's the default. Otherwise  the
+\par               order of the route modifiers (metric - netmask - gw - dev) doesn't matter.
+\par 
+\par 
+\par EXAMPLES
+\par        route add -net 127.0.0.0
+\par               adds the normal loopback entry, using netmask 255.0.0.0 (class A net, determined from the destination address) and
+\par               associated with the "lo" device (assuming this device was prviously set up correctly with ifconfig(8)).
+\par 
+\par 
+\par        route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0
+\par               adds a route to the network 192.56.76.x via "eth0". The Class C netmask modifier  is  not  really  necessary  here
+\par               because 192.* is a Class C IP address. The word "dev" can be omitted here.
+\par 
+\par 
+\par        route add default gw mango-gw
+\par               adds  a  default route (which will be used if no other route matches).  All packets using this route will be gate-
+\par               wayed through "mango-gw". The device which will actually be used for that  route  depends  on  how  we  can  reach
+\par               "mango-gw" - the static route to "mango-gw" will have to be set up before.
+\par 
+\par 
+\par        route add ipx4 sl0
+\par               Adds the route to the "ipx4" host via the SLIP interface (assuming that "ipx4" is the SLIP host).
+\par 
+\par 
+\par        route add -net 192.57.66.0 netmask 255.255.255.0 gw ipx4
+\par               This command adds the net "192.57.66.x" to be gatewayed through the former route to the SLIP interface.
+\par 
+\par 
+\par        route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+\par               This  is an obscure one documented so people know how to do it. This sets all of the class D (multicast) IP routes
+\par               to go via "eth0". This is the correct normal configuration line with a multicasting kernel.
+\par 
+\par 
+\par        route add -net 10.0.0.0 netmask 255.0.0.0 reject
+\par               This installs a rejecting route for the private network "10.x.x.x."
+\par 
+\par 
+\par 
+\par OUTPUT
+\par        The output of the kernel routing table is organized in the following columns
+\par 
+\par        Destination
+\par               The destination network or destination host.
+\par 
+\par        Gateway
+\par               The gateway address or '*' if none set.
+\par 
+\par        Genmask
+\par               The netmask for the destination net; '255.255.255.255' for a host destination and '0.0.0.0' for the default route.
+\par 
+\par        Flags  Possible flags include
+\par               U (route is up)
+\par               H (target is a host)
+\par               G (use gateway)
+\par               R (reinstate route for dynamic routing)
+\par               D (dynamically installed by daemon or redirect)
+\par               M (modified from routing daemon or redirect)
+\par               A (installed by addrconf)
+\par               C (cache entry)
+\par               !  (reject route)
+\par 
+\par        Metric The  'distance'  to  the  target (usually counted in hops). It is not used by recent kernels, but may be needed by
+\par               routing daemons.
+\par 
+\par        Ref    Number of references to this route. (Not used in the Linux kernel.)
+\par 
+\par        Use    Count of lookups for the route.  Depending on the use of -F and -C this will be either route cache misses (-F)  or
+\par               hits (-C).
+\par 
+\par        Iface  Interface to which packets for this route will be sent.
+\par 
+\par        MSS    Default maximum segement size for TCP connections over this route.
+\par 
+\par        Window Default window size for TCP connections over this route.
+\par 
+\par        irtt   Initial  RTT (Round Trip Time). The kernel uses this to guess about the best TCP protocol parameters without wait-
+\par               ing on (possibly slow) answers.
+\par 
+\par        HH (cached only)
+\par               The number of ARP entries and cached routes that refer to the hardware header cache for  the  cached  route.  This
+\par               will be -1 if a hardware address is not needed for the interface of the cached route (e.g. lo).
+\par 
+\par        Arp (cached only)
+\par               Whether or not the hardware address for the cached route is up to date.
+\par 
+\par 
+\par FILES
+\par        /proc/net/ipv6_route
+\par        /proc/net/route
+\par        /proc/net/rt_cache
+\par 
+\par 
+\par SEE ALSO
+\par        ifconfig(8), netstat(8), arp(8), rarp(8)
+\par 
+\par 
+\par HISTORY
+\par        Route for Linux was originally written by Fred N.  van Kempen, <waltje@uwalt.nl.mugnet.org> and then modified by Johannes
+\par        Stille and Linus Torvalds for pl15. Alan Cox added the mss and window options for Linux 1.1.22. irtt support  and  merged
+\par        with netstat from Bernd Eckenfels.
+\par 
+\par AUTHOR
+\par        Currently maintained by Phil Blundell <Philip.Blundell@pobox.com>.\par}

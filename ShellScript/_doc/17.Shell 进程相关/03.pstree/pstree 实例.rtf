@@ -1,0 +1,79 @@
+{\rtf1\ansi\ansicpg936\cocoartf2509
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fnil\fcharset134 PingFangSC-Semibold;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green128\blue128;}
+{\*\expandedcolortbl;;\csgenericrgb\c100000\c0\c0;\csgenericrgb\c0\c50196\c50196;}
+\paperw11900\paperh16840\vieww12000\viewh15000\viewkind0
+\deftab720
+\pard\pardeftab720\ri-340\qc\partightenfactor0
+
+\f0\b\fs24 \cf0 pstree 
+\f1 \'ca\'b5\'c0\'fd
+\f0 \
+\pard\pardeftab720\ri-340\partightenfactor0
+\cf0 \
+
+\f1\fs20 \'ca\'b5\'c0\'fd\'a3\'ba
+\f0 \
+
+\f2\b0 \cf2 #pstree | head -n 10\
+\cf0 init-+-6*[X]\
+     |-acpid\
+     |-almcol---4*[\{almcol\}]\
+     |-auditd-+-audispd---\{audispd\}\
+     |        `-\{auditd\}\
+     |-console-kit-dae---63*[\{console-kit-dae\}]\
+     |-cron\
+     |-cupsd\
+     |-7*[dbus-daemon]\
+     |-6*[dbus-launch]\
+\cf3 -----------------------------------------------\
+\cf2 #pstree -c | head -n 10\
+\cf0 init-+-X\
+     |-X\
+     |-X\
+     |-X\
+     |-X\
+     |-X\
+     |-acpid\
+     |-almcol-+-\{almcol\}\
+     |        |-\{almcol\}\
+     |        |-\{almcol\}\
+\cf3 -----------------------------------------------\
+\cf2 # pstree -p |head -n 10\
+\cf0 init(1)-+-X(5391)\
+        |-X(10195)\
+        |-X(20147)\
+        |-X(26428)\
+        |-X(26835)\
+        |-X(\cf2 32462\cf0 )\
+        |-acpid(3552)\
+        |-almcol(24071)-+-\{almcol\}(24072)\
+        |               |-\{almcol\}(24073)\
+        |               |-\{almcol\}(24074)\
+\cf3 -----------------------------------------------\
+\cf2 #pstree -a |head -n 10\
+\cf0 init  \
+  |-X :0 -br -verbose -auth /var/run/gdm/auth-for-gdm-RvKMpk/database -nolisten tcp vt7\
+  |-X :2 -br -verbose -auth /var/run/gdm/auth-for-gdm-drO4W8/database -nolisten tcp vt9\
+  |-X :3 -br -verbose -auth /var/run/gdm/auth-for-gdm-BPxpGy/database -nolisten tcp vt11\
+  |-X :4 -br -verbose -auth /var/run/gdm/auth-for-gdm-NAYUC5/database -nolisten tcp vt12\
+  |-X :1 -br -verbose -auth /var/run/gdm/auth-for-gdm-X9ItPo/database -nolisten tcp vt8\
+  |-X :5 -br -verbose -auth /var/run/gdm/auth-for-gdm-xBDhSE/database -nolisten tcp vt13\
+  |-acpid\
+  |-almcol\
+  |   |-\{almcol\}\
+\cf3 -----------------------------------------------\
+\cf2 #pstree -h |head -n 10\
+\cf0 init-+-6*[X]\
+     |-acpid\
+     |-almcol---4*[\{almcol\}]\
+     |-auditd-+-audispd---\{audispd\}\
+     |        `-\{auditd\}\
+     |-console-kit-dae---63*[\{console-kit-dae\}]\
+     |-cron\
+     |-cupsd\
+     |-7*[dbus-daemon]\
+     |-6*[dbus-launch]\
+\cf3 --------------------------------------------------------------------------------------------------------------------\
+}

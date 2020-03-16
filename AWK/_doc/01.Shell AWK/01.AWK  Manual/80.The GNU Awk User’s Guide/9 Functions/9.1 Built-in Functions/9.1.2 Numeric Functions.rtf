@@ -1,0 +1,82 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1960592951\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1312964375}
+{\list\listtemplateid1821891962\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid822263655}
+{\list\listtemplateid385555205\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1963368221}
+{\list\listtemplateid539022744\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid59707389}
+{\list\listtemplateid1106642419\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1954540995}
+}
+{\*\listoverridetable
+{\listoverride\listid1312964375\listoverridecount0\ls1}
+{\listoverride\listid822263655\listoverridecount0\ls2}
+{\listoverride\listid1963368221\listoverridecount0\ls3}
+{\listoverride\listid59707389\listoverridecount0\ls4}
+{\listoverride\listid1954540995\listoverridecount0\ls5}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 9.1.2 Numeric Functions
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 The following list describes all of the built-in functions that work with numbers. Optional parameters are enclosed in square brackets\~([\~]):
+\par \plain \f1\b\fs20 atan2(y,\~x)
+\par {\*\bkmkstart index_atan2_0028_0029_function}{\*\bkmkend index_atan2_0028_0029_function}\plain \f1\fs20 Return the arctangent of\~y\~/\~x\~in radians. You can use \lquote pi = atan2(0, -1)\rquote  to retrieve the value of\~\plain \f1\i\fs20 pi\plain \f1\fs20 .
+\par \plain \f1\b\fs20 cos(x)
+\par {\*\bkmkstart index_cos_0028_0029_function}{\*\bkmkend index_cos_0028_0029_function}\plain \f1\fs20 Return the cosine of\~x, with\~x\~in radians.
+\par \plain \f1\b\fs20 exp(x)
+\par {\*\bkmkstart index_exp_0028_0029_function}{\*\bkmkend index_exp_0028_0029_function}\plain \f1\fs20 Return the exponential of\~x\~(e ^\~x) or report an error if\~x\~is out of range. The range of values\~x\~can have depends on your machine\rquote s floating-point representation.
+\par \plain \f1\b\fs20 int(x)
+\par {\*\bkmkstart index_int_0028_0029_function}{\*\bkmkend index_int_0028_0029_function}\plain \f1\fs20 Return the nearest integer to\~x, located between\~x\~and zero and truncated toward zero. For example,\~int(3)\~is 3,\~int(3.9)\~is 3,\~int(-3.9)\~is -3, and\~int(-3)\~is -3 as well.
+\par \plain \f1\b\fs20 log(x)
+\par {\*\bkmkstart index_log_0028_0029_function}{\*\bkmkend index_log_0028_0029_function}\plain \f1\fs20 Return the natural logarithm of\~x, if\~x\~is positive; otherwise, return\~NaN\~(\ldblquote not a number\rdblquote ) on IEEE 754 systems. Additionally,\~gawkprints a warning message when\~x\~is negative.
+\par \plain \f1\b\fs20 rand()
+\par {\*\bkmkstart index_rand_0028_0029_function}{\*\bkmkend index_rand_0028_0029_function}\plain \f1\fs20 Return a random number. The values of\~rand()\~are uniformly distributed between zero and one. The value could be zero but is never one.\plain \f1\ul\super\fs20\cf1 43
+\par \plain \f1\fs20 Often random integers are needed instead. Following is a user-defined function that can be used to obtain a random nonnegative integer less than\~n:
+\par function randint(n)\'0a\{
+\par \{\'0a 
+\par     return int(n * rand())\'0a\}
+\par \}\'0a
+\par 
+\par The multiplication produces a random number greater than or equal to zero and less than\~n. 
+\par Using\~int(), this result is made into an integer between zero and\~n\~- 1, inclusive.
+\par The following example uses a similar function to produce random integers between one and\~n.
+\par This program prints a new random number for each input record:
+\par # Function to roll a simulated die.\'0af
+\par function roll(n) \{ return 1 + int(rand() * n) \}\'0a\'0a
+\par \'0a#
+\par # Roll 3 six-sided dice and\'0a#
+\par # print total number of points.\'0a\{
+\par \{\'0a 
+\par     printf("%d points\\n", roll(6) + roll(6) + roll(6))\'0a\}
+\par \}\'0a
+\par 
+\par {\*\bkmkstart index_seeding_random_number_generator}{\*\bkmkend index_seeding_random_number_generator}\plain \f1\b\fs20 CAUTION:
+\par \plain \f1\fs20 In most\~awk\~implementations, including\~gawk,\~rand()\~starts generating numbers from the same starting number, or\~\plain \f1\i\fs20 seed\plain \f1\fs20 , each time you run\~awk.\plain \f1\ul\super\fs20\cf1 44\plain \f1\fs20 \~Thus, a program generates the same results each time you run it. The numbers are random within one\~awkrun but predictable from run to run. This is convenient for debugging, but if you want a program to do different things each time it is used, you must change the seed to a value that is different in each run. To do this, use\~srand().
+\par \plain \f1\b\fs20 sin(x)
+\par {\*\bkmkstart index_sin_0028_0029_function}{\*\bkmkend index_sin_0028_0029_function}\plain \f1\fs20 Return the sine of\~x, with\~x\~in radians.
+\par \plain \f1\b\fs20 sqrt(x)
+\par {\*\bkmkstart index_sqrt_0028_0029_function}{\*\bkmkend index_sqrt_0028_0029_function}\plain \f1\fs20 Return the positive square root of\~x.\~gawk\~prints a warning message if\~x\~is negative. Thus,\~sqrt(4)\~is 2.
+\par \plain \f1\b\fs20 srand([x])
+\par {\*\bkmkstart index_srand_0028_0029_function}{\*\bkmkend index_srand_0028_0029_function}\plain \f1\fs20 Set the starting point, or seed, for generating random numbers to the value\~x.
+\par Each seed value leads to a particular sequence of random numbers.\plain \f1\ul\super\fs20\cf1 45\plain \f1\fs20 \~Thus, if the seed is set to the same value a second time, the same sequence of random numbers is produced again.
+\par \plain \f1\b\fs20 
+\par CAUTION:\plain \f1\fs20 \~Different\~awk\~implementations use different random-number generators internally. 
+\par Don\rquote t expect the same\~awk\~program to produce the same series of random numbers when executed by different versions of\~awk.
+\par If the argument\~x\~is omitted, as in \lquote srand()\rquote , then the current date and time of day are used for a seed. This is the way to get random numbers that are truly unpredictable.
+\par The return value of\~srand()\~is the previous seed. This makes it easy to keep track of the seeds in case you need to consistently reproduce sequences of random numbers.
+\par POSIX does not specify the initial seed; it differs among\~awk\~implementations.
+\par \pard\plain\fs6\brdrb\brdrs\brdrw15\brdrcf0\par\pard
+\par \plain \f1\b\fs20 Footnotes
+\par \plain \f1\ul\fs20\cf1 (43)
+\par \plain \f1\fs20 The C version of\~rand()\~on many Unix systems is known to produce fairly poor sequences of random numbers. However, nothing requires that an\~awkimplementation use the C\~rand()\~to implement the\~awk\~version of\~rand(). In fact,\~gawk\~uses the BSD\~random()\~function, which is considerably better than\~rand(), to produce random numbers.
+\par \plain \f1\ul\fs20\cf1 (44)
+\par \plain \f1\fs20 mawk\~uses a different seed each time.
+\par \plain \f1\ul\fs20\cf1 (45)
+\par \plain \f1\fs20 Computer-generated random numbers really are not truly random. They are technically known as\~\plain \f1\i\fs20 pseudorandom\plain \f1\fs20 . This means that although the numbers in a sequence appear to be random, you can in fact generate the same sequence of random numbers over and over again.\par}

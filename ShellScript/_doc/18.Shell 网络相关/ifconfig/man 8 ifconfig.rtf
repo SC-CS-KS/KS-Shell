@@ -1,0 +1,181 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f2\fnil\fcharset2 Symbol;}{\f3\fnil Arial;}{\f4\fnil\fcharset0 Courier New;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1867641515\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f2\fs24\lang1024}
+\listid1730064222}
+{\list\listtemplateid1224632538\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1038432841}
+{\list\listtemplateid165170034\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f2\fs24\lang1024}
+\listid666141500}
+{\list\listtemplateid1545208880\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f2\fs24\lang1024}
+\listid1681365751}
+{\list\listtemplateid951969496\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid25240634}
+{\list\listtemplateid403448103\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f2\fs24\lang1024}
+\listid2123432901}
+{\list\listtemplateid217524958
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f2\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid2112000088}
+{\list\listtemplateid312653245\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f2\fs24\lang1024}
+\listid1557086899}
+}
+{\*\listoverridetable
+{\listoverride\listid1730064222\listoverridecount0\ls1}
+{\listoverride\listid1038432841\listoverridecount0\ls2}
+{\listoverride\listid666141500\listoverridecount0\ls3}
+{\listoverride\listid1681365751\listoverridecount0\ls4}
+{\listoverride\listid25240634\listoverridecount0\ls5}
+{\listoverride\listid2123432901\listoverridecount0\ls6}
+{\listoverride\listid2112000088\listoverridecount0\ls7}
+{\listoverride\listid1557086899\listoverridecount0\ls8}
+}
+
+
+\pard\sl360\slmult1\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f1\b\lang2052\fs24\cf2 man 8 ifconfig
+\par \pard\sl360\slmult1\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\lang2052\fs18 IFCONFIG(8)                                         Linux Programmer's Manual                                        IFCONFIG(8)
+\par NAME
+\par \plain \f1\lang2052\fs18\cf1        ifconfig - configure a network interface
+\par \plain \f1\lang2052\fs18 
+\par SYNOPSIS
+\par        ifconfig [interface]
+\par        ifconfig interface [aftype] options | address ...
+\par 
+\par DESCRIPTION
+\par        Ifconfig  is  used  to configure the kernel-resident network interfaces.  It is used at boot time to set up interfaces as
+\par        necessary.  After that, it is usually only needed when debugging or when system tuning is needed.
+\par 
+\par        WARNING: Ifconfig is obsolete on system with Linux kernel newer than 2.0. On this system you should use ip.  See  the  ip
+\par        manual page for details
+\par 
+\par        If  no arguments are given, ifconfig displays the status of the currently active interfaces.  If a single interface argu-
+\par        ment is given, it displays the status of the given interface only; if a single -a argument is given, it displays the sta-
+\par        tus of all interfaces, even those that are down.  Otherwise, it configures an interface.
+\par 
+\par 
+\par Address Families
+\par        If the first argument after the interface name is recognized as the name of a supported address family, that address fam-
+\par        ily is used for decoding and displaying all protocol  addresses.   Currently  supported  address  families  include  inet
+\par        (TCP/IP,  default),  inet6  (IPv6),  ax25 (AMPR Packet Radio), ddp (Appletalk Phase 2), ipx (Novell IPX) and netrom (AMPR
+\par        Packet radio).
+\par 
+\par OPTIONS
+\par        interface
+\par               The name of the interface.  This is usually a driver name followed by a unit number,  for  example  eth0  for  the
+\par               first Ethernet interface.
+\par 
+\par        up     This  flag  causes  the  interface  to  be activated.  It is implicitly specified if an address is assigned to the
+\par               interface.
+\par 
+\par        down   This flag causes the driver for this interface to be shut down.
+\par 
+\par        [-]arp Enable or disable the use of the ARP protocol on this interface.
+\par 
+\par        [-]promisc
+\par               Enable or disable the promiscuous mode of the interface.  If selected, all packets on the network will be received
+\par               by the interface.
+\par 
+\par        [-]allmulti
+\par               Enable  or  disable all-multicast mode.  If selected, all multicast packets on the network will be received by the
+\par               interface.
+\par 
+\par        metric N
+\par               This parameter sets the interface metric.
+\par 
+\par        mtu N  This parameter sets the Maximum Transfer Unit (MTU) of an interface.
+\par 
+\par        dstaddr addr
+\par               Set the remote IP address for a point-to-point link (such as PPP).  This keyword is now obsolete; use the  pointo-
+\par               point keyword instead.
+\par 
+\par        netmask addr
+\par               Set  the  IP  network  mask for this interface.  This value defaults to the usual class A, B or C network mask (as
+\par               derived from the interface IP address), but it can be set to any value.
+\par 
+\par        add addr/prefixlen
+\par               Add an IPv6 address to an interface.
+\par 
+\par        del addr/prefixlen
+\par               Remove an IPv6 address from an interface.
+\par 
+\par        tunnel aa.bb.cc.dd
+\par               Create a new SIT (IPv6-in-IPv4) device, tunnelling to the given destination.
+\par 
+\par        irq addr
+\par               Set the interrupt line used by this device.  Not all devices can dynamically change their IRQ setting.
+\par 
+\par        io_addr addr
+\par               Set the start address in I/O space for this device.
+\par 
+\par        mem_start addr
+\par               Set the start address for shared memory used by this device.  Only a few devices need this.
+\par 
+\par        media type
+\par               Set the physical port or medium type to be used by the device.  Not all devices can change this setting, and those
+\par               that can vary in what values they support.  Typical values for type are 10base2 (thin Ethernet), 10baseT (twisted-
+\par               pair 10Mbps Ethernet), AUI (external transceiver) and so on.  The special medium type of auto can be used to  tell
+\par               the driver to auto-sense the media.  Again, not all drivers can do this.
+\par 
+\par        [-]broadcast [addr]
+\par               If  the  address  argument  is  given,  set the protocol broadcast address for this interface.  Otherwise, set (or
+\par               clear) the IFF_BROADCAST flag for the interface.
+\par 
+\par        [-]pointopoint [addr]
+\par               This keyword enables the point-to-point mode of an interface, meaning  that  it  is  a  direct  link  between  two
+\par               machines with nobody else listening on it.
+\par               If the address argument is also given, set the protocol address of the other side of the link, just like the obso-
+\par               lete dstaddr keyword does.  Otherwise, set or clear the IFF_POINTOPOINT flag for the interface.
+\par 
+\par        hw class address
+\par               Set the hardware address of this interface, if the device driver supports this operation.   The  keyword  must  be
+\par               followed  by  the name of the hardware class and the printable ASCII equivalent of the hardware address.  Hardware
+\par               classes currently supported include ether (Ethernet), ax25 (AMPR AX.25), ARCnet and netrom (AMPR NET/ROM).
+\par 
+\par        multicast
+\par               Set the multicast flag on the interface. This should not normally be needed as the drivers set the flag  correctly
+\par               themselves.
+\par 
+\par        address
+\par               The IP address to be assigned to this interface.
+\par 
+\par        txqueuelen length
+\par               Set  the  length  of the transmit queue of the device. It is useful to set this to small values for slower devices
+\par               with a high latency (modem links, ISDN) to prevent fast bulk transfers from disturbing  interactive  traffic  like
+\par               telnet too much.
+\par 
+\par NOTES
+\par        Since  kernel release 2.2 there are no explicit interface statistics for alias interfaces anymore. The statistics printed
+\par        for the original address are shared with all alias addresses on the same device. If you want per-address  statistics  you
+\par        should add explicit accounting rules for the address using the ipchains(8) command.
+\par 
+\par        Interrupt  problems  with  Ethernet  device drivers fail with EAGAIN. See http://cesdis.gsfc.nasa.gov/linux/misc/irq-con-
+\par        flict.html for more information.
+\par 
+\par FILES
+\par \plain \f1\lang2052\fs18\cf1        /proc/net/socket
+\par        /proc/net/dev
+\par        /proc/net/if_inet6
+\par \plain \f1\lang2052\fs18 
+\par BUGS
+\par        While appletalk DDP and IPX addresses will be displayed they cannot be altered by this command.
+\par 
+\par SEE ALSO
+\par        route(8), netstat(8), arp(8), rarp(8), ipchains(8)
+\par 
+\par AUTHORS
+\par        Fred N. van Kempen, <waltje@uwalt.nl.mugnet.org>
+\par        Alan Cox, <Alan.Cox@linux.org>
+\par        Phil Blundell, <Philip.Blundell@pobox.com>
+\par        Andi Kleen\par}

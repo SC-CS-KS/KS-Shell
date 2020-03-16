@@ -1,0 +1,92 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1788722147\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1830452598}
+}
+{\*\listoverridetable
+{\listoverride\listid1830452598\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 arp
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 ARP(8)                                              Linux Programmer's Manual                                             ARP(8)
+\par NAME
+\par \plain \f1\fs20\cf1        arp - manipulate(\uc2\u25805 \'b2\'d9\u32437 \'d7\'dd\u65307 \'a3\'bb\u25805 \'b2\'d9\u20316 \'d7\'f7\u65307 \'a3\'bb\u24039 \'c7\'c9\u22937 \'c3\'ee\u22320 \'b5\'d8\u22788 \'b4\'a6\u29702 \'c0\'ed\u65307 \'a3\'bb\u31713 \'b4\'db\u25913 \'b8\'c4) the system ARP cache\uc1
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        arp [-vn] [-H type] [-i if] -a [hostname]
+\par        arp [-v] [-i if] -d hostname [pub]
+\par        arp [-v] [-H type] [-i if] -s hostname hw_addr [temp]
+\par        arp [-v] [-H type] [-i if] -s hostname hw_addr [netmask nm] pub
+\par        arp [-v] [-H type] [-i if] -Ds hostname ifa [netmask nm] pub
+\par        arp [-vnD] [-H type] [-i if] -f [filename]
+\par 
+\par DESCRIPTION
+\par        Arp  manipulates  the  kernel's ARP cache in various ways.  The primary options are clearing an address mapping entry and
+\par        manually setting up one.  For debugging purposes, the arp program also allows a complete dump of the ARP cache.
+\par 
+\par OPTIONS
+\par        -v, --verbose
+\par               Tell the user what is going on by being verbose.
+\par 
+\par \plain \f1\fs20\cf1        -n, --numeric
+\par \plain \f1\fs20             \plain \f1\fs20\cf1   shows numerical addresses instead of trying to determine symbolic host, port or user names.
+\par \plain \f1\fs20 
+\par        -H type, --hw-type type
+\par               When setting or reading the ARP cache, this optional parameter tells arp which class of entries  it  should  check
+\par               for.   The  default  value  of  this  parameter is ether (i.e. hardware code 0x01 for IEEE 802.3 10Mbps Ethernet).
+\par               Other values might include network technologies such as ARCnet (arcnet) ,  PROnet  (pronet)  ,  AX.25  (ax25)  and
+\par               NET/ROM (netrom).
+\par 
+\par        -a [hostname], --display [hostname]
+\par               Shows the entries of the specified hosts.  If the hostname parameter is not used, all entries will be displayed.
+\par 
+\par \plain \f1\fs20\cf2        -d hostname, --delete hostname
+\par \plain \f1\fs20\cf1               Remove any entry for the specified host.  This can be used if the indicated host is brought down, for example.
+\par \plain \f1\fs20 
+\par        -D, --use-device
+\par               Use the interface ifa's hardware address.
+\par 
+\par        -i If, --device If
+\par               Select  an  interface.  When  dumping the ARP cache only entries matching the specified interface will be printed.
+\par               When setting a permanent or temp ARP entry this interface will be associated with the entry; if this option is not
+\par               used,  the  kernel will guess based on the routing table. For pub entries the specified interface is the interface
+\par               on which ARP requests will be answered.
+\par               NOTE: This has to be different from the interface to which the IP datagrams will be routed.
+\par 
+\par \plain \f1\fs20\cf1        -s hostname hw_addr, --set hostname
+\par \plain \f1\fs20               Manually create an ARP address mapping entry for host hostname with hardware address set to hw_addr class, but for
+\par               most  classes  one can assume that the usual presentation can be used.  For the Ethernet class, this is 6 bytes in
+\par               hexadecimal, separated by colons. When adding proxy arp entries (that is those with the publish flag set a netmask
+\par               may  be  specified  to  proxy arp for entire subnets. This is not good practice, but is supported by older kernels
+\par               because it can be useful. If the temp flag is not supplied entries will be permanent stored into the ARP cache.
+\par               NOTE: As of kernel 2.2.0 it is no longer possible to set an ARP entry for an entire  subnet.  Linux  instead  does
+\par               automagic proxy arp when a route exists and it is forwarding. See arp(7) for details.
+\par \plain \f1\fs20\cf1 
+\par        -f filename, --file filename
+\par \plain \f1\fs20               Similar  to  the  -s  option, only this time the address info is taken from file filename set up.  The name of the
+\par               data file is very often /etc/ethers, but this is not official. If no filename is specified /etc/ethers is used  as
+\par               default.
+\par 
+\par               The  format of the file is simple; it only contains ASCII text lines with a hostname, and a hardware address sepa-
+\par               rated by whitespace. Additionally the pub, temp and netmask flags can be used.
+\par 
+\par        In all places where a hostname is expected, one can also enter an IP address in dotted-decimal notation.
+\par 
+\par        As a special case for compatibility the order of the hostname and the hardware address can be exchanged.
+\par 
+\par        Each complete entry in the ARP cache will be marked with the C flag. Permanent entries are marked with  M  and  published
+\par        entries have the P flag.
+\par 
+\par FILES
+\par \plain \f1\fs20\cf1        /proc/net/arp,
+\par \plain \f1\fs20        /etc/networks
+\par        /etc/hosts
+\par        /etc/ethers
+\par 
+\par SEE ALSO
+\par        rarp(8), route(8), ifconfig(8), netstat(8)
+\par 
+\par AUTHORS
+\par        Fred  N.  van  Kempen,  <waltje@uwalt.nl.mugnet.org> with a lot of improvements from net-tools Maintainer Bernd Eckenfels
+\par        <net-tools@lina.inka.de>.\par}

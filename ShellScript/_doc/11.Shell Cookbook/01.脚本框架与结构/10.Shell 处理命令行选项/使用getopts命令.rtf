@@ -1,0 +1,54 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid371835810\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid751361583}
+{\list\listtemplateid1610142957\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1159127205}
+}
+{\*\listoverridetable
+{\listoverride\listid751361583\listoverridecount0\ls1}
+{\listoverride\listid1159127205\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 \uc2\u20351 \'ca\'b9\u29992 \'d3\'c3getopts\u21629 \'c3\'fc\u20196 \'c1\'ee\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 #\uc2\u23558 \'bd\'ab\u26631 \'b1\'ea\u24535 \'d6\'be\u21464 \'b1\'e4\u37327 \'c1\'bf\u35774 \'c9\'e8\u32622 \'d6\'c3\u20026 \'ce\'aa\u31354 \'bf\'d5\uc1
+\par file=
+\par verbose=
+\par quiet=
+\par long=
+\par 
+\par while getopts  :f:vql opt
+\par do
+\par   case $opt in
+\par   f)  file=$OPTARG
+\par       ;;
+\par   v)  verbose=true
+\par       quiet=
+\par       ;;
+\par   q)  quiet=true
+\par       verbose=
+\par       ;;
+\par   l)  long=true
+\par       ;;
+\par   '?') echo "$0: invalid option -$OPTARG" >&2
+\par        echo "Usage: $0 [-f file] [-vql] [files ...]" >&2
+\par        exit 1
+\par        ;;
+\par    esac
+\par done
+\par 
+\par shift $((OPTIND - 1))                                    #\uc2\u21024 \'c9\'be\u38500 \'b3\'fd\u36873 \'d1\'a1\u39033 \'cf\'ee\u65292 \'a3\'ac\u30041 \'c1\'f4\u19979 \'cf\'c2\u21442 \'b2\'ce\u25968 \'ca\'fd\uc1
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------
+\par \plain \f1\fs20 \uc2\u19982 \'d3\'eb\u20351 \'ca\'b9\u29992 \'d3\'c3\u20301 \'ce\'bb\u32622 \'d6\'c3\u21442 \'b2\'ce\u25968 \'ca\'fd\u23454 \'ca\'b5\u29616 \'cf\'d6\u26041 \'b7\'bd\u24335 \'ca\'bd\u30340 \'b5\'c4\u21306 \'c7\'f8\u21035 \'b1\'f0\u65306 \'a3\'ba\uc1
+\par case\uc2\u27169 \'c4\'a3\u24335 \'ca\'bd\u21305 \'c6\'a5\u37197 \'c5\'e4\u20013 \'d6\'d0\u26080 \'ce\'de\u39035 \'d0\'eb\u20351 \'ca\'b9\u29992 \'d3\'c3\u36830 \'c1\'ac\u23383 \'d7\'d6\u31526 \'b7\'fb\uc1
+\par \uc2\u38024 \'d5\'eb\u23545 \'b6\'d4--\u30340 \'b5\'c4\u24773 \'c7\'e9\u20917 \'bf\'f6\u19981 \'b2\'bb\u35265 \'bc\'fb\u20102 \'c1\'cb\u65292 \'a3\'acgetopts\u20250 \'bb\'e1\u33258 \'d7\'d4\u21160 \'b6\'af\u22788 \'b4\'a6\u29702 \'c0\'ed\uc1
+\par 
+\par \uc2\u19981 \'b2\'bb\u21512 \'ba\'cf\u27861 \'b7\'a8\u30340 \'b5\'c4\u24773 \'c7\'e9\u20917 \'bf\'f6\u22788 \'b4\'a6\u29702 \'c0\'ed\u20063 \'d2\'b2\u19981 \'b2\'bb\u35265 \'bc\'fb\u20102 \'c1\'cb\u65292 \'a3\'acgetopts\u33258 \'d7\'d4\u21160 \'b6\'af\u25171 \'b4\'f2\u21360 \'d3\'a1\u38169 \'b4\'ed\u35823 \'ce\'f3\u20449 \'d0\'c5\u24687 \'cf\'a2\u12290 \'a1\'a3\uc1
+\par \uc2\u19981 \'b2\'bb\u36807 \'b9\'fd\u19968 \'d2\'bb\u33324 \'b0\'e3\u26469 \'c0\'b4\u35828 \'cb\'b5\u65292 \'a3\'ac\u22312 \'d4\'da\u33050 \'bd\'c5\u26412 \'b1\'be\u37324 \'c0\'ef\u22788 \'b4\'a6\u29702 \'c0\'ed\u38169 \'b4\'ed\u35823 \'ce\'f3\u35201 \'d2\'aa\u27604 \'b1\'c8getopts\u40664 \'c4\'ac\u35748 \'c8\'cf\u22788 \'b4\'a6\u29702 \'c0\'ed\u35201 \'d2\'aa\u23481 \'c8\'dd\u26131 \'d2\'d7\u20123 \'d0\'a9\u12290 \'a1\'a3\uc1
+\par 
+\par \plain \f1\fs20\cf1 \uc2\u23558 \'bd\'ab\u20882 \'c3\'b0\u21495 \'ba\'c5\u32622 \'d6\'c3\u20110 \'d3\'da\u36873 \'d1\'a1\u39033 \'cf\'ee\u23383 \'d7\'d6\u31526 \'b7\'fb\u20018 \'b4\'ae\u30340 \'b5\'c4\u39318 \'ca\'d7\u20301 \'ce\'bb\u32622 \'d6\'c3\u65292 \'a3\'ac\u21487 \'bf\'c9\u25913 \'b8\'c4\u21464 \'b1\'e4getopts\u30340 \'b5\'c4\u20004 \'c1\'bd\u31181 \'d6\'d6\u34892 \'d0\'d0\u20026 \'ce\'aa\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20 \uc2\u39318 \'ca\'d7\u20808 \'cf\'c8\u65292 \'a3\'ac\u19981 \'b2\'bb\u20250 \'bb\'e1\u26174 \'cf\'d4\u31034 \'ca\'be\u20219 \'c8\'ce\u20309 \'ba\'ce\u38169 \'b4\'ed\u35823 \'ce\'f3\u20449 \'d0\'c5\u24687 \'cf\'a2\u12290 \'a1\'a3\uc1
+\par \uc2\u31532 \'b5\'da\u20108 \'b6\'fe\u65292 \'a3\'ac\u38500 \'b3\'fd\u20102 \'c1\'cb\u23558 \'bd\'ab\u21464 \'b1\'e4\u37327 \'c1\'bf\u35774 \'c9\'e8\u32622 \'d6\'c3\u20026 \'ce\'aa\u38382 \'ce\'ca\u21495 \'ba\'c5\u20043 \'d6\'ae\u22806 \'cd\'e2\u65292 \'a3\'acIPTARG\u36824 \'bb\'b9\u21253 \'b0\'fc\u21547 \'ba\'ac\u20102 \'c1\'cb\u32473 \'b8\'f8\u23450 \'b6\'a8\u30340 \'b5\'c4\u19981 \'b2\'bb\u21512 \'ba\'cf\u27861 \'b7\'a8\u36873 \'d1\'a1\u39033 \'cf\'ee\u23383 \'d7\'d6\u27597 \'c4\'b8\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf2 ------------------------------------------------------------------------------------------\par}

@@ -1,0 +1,77 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid2093421821\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid850043640}
+{\list\listtemplateid1495634652\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid543298643}
+{\list\listtemplateid1996862883\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid367615542}
+{\list\listtemplateid1809527570\listsimple1
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1446645089}
+}
+{\*\listoverridetable
+{\listoverride\listid850043640\listoverridecount0\ls1}
+{\listoverride\listid850043640\listoverridecount1{\lfolevel\listoverridestartat\levelstartat1}\ls2}
+{\listoverride\listid850043640\listoverridecount1{\lfolevel\listoverridestartat\levelstartat2}\ls3}
+{\listoverride\listid850043640\listoverridecount1{\lfolevel\listoverridestartat\levelstartat3}\ls4}
+{\listoverride\listid543298643\listoverridecount0\ls5}
+{\listoverride\listid543298643\listoverridecount1{\lfolevel\listoverridestartat\levelstartat1}\ls6}
+{\listoverride\listid543298643\listoverridecount1{\lfolevel\listoverridestartat\levelstartat2}\ls7}
+{\listoverride\listid543298643\listoverridecount1{\lfolevel\listoverridestartat\levelstartat3}\ls8}
+{\listoverride\listid543298643\listoverridecount1{\lfolevel\listoverridestartat\levelstartat4}\ls9}
+{\listoverride\listid543298643\listoverridecount1{\lfolevel\listoverridestartat\levelstartat5}\ls10}
+{\listoverride\listid367615542\listoverridecount0\ls11}
+{\listoverride\listid367615542\listoverridecount1{\lfolevel\listoverridestartat\levelstartat1}\ls12}
+{\listoverride\listid367615542\listoverridecount1{\lfolevel\listoverridestartat\levelstartat2}\ls13}
+{\listoverride\listid367615542\listoverridecount1{\lfolevel\listoverridestartat\levelstartat3}\ls14}
+{\listoverride\listid367615542\listoverridecount1{\lfolevel\listoverridestartat\levelstartat4}\ls15}
+{\listoverride\listid367615542\listoverridecount1{\lfolevel\listoverridestartat\levelstartat5}\ls16}
+{\listoverride\listid1446645089\listoverridecount0\ls17}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat1}\ls18}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat2}\ls19}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat3}\ls20}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat4}\ls21}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat5}\ls22}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat6}\ls23}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat7}\ls24}
+{\listoverride\listid1446645089\listoverridecount1{\lfolevel\listoverridestartat\levelstartat8}\ls25}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 GNU Screen and Zmodem
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 One thing I\rquote ve wanted to do for a while is initiate a file transfer during an ssh session without having to do anything special, ie: let the terminal, the tunnel, or something I\rquote m already using handle the transfer after I\rquote ve told it to start, say, from the command line.
+\par Here\rquote s my goal:
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 1.\tab}\ls2\ilvl0 \plain \f1\fs20 ssh to remote host
+\par \plain{\listtext\pard\plain\f3\fs24 2.\tab}\ls3\ilvl0 \plain \f1\fs20 initiate file transfer from the command line
+\par \plain{\listtext\pard\plain\f3\fs24 3.\tab}\ls4\ilvl0 \plain \f1\fs20 file is transferred between local and remote hosts
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20 I\rquote m not quite there yet, but I\rquote ve found something interesting using\~\plain \f1\ul\fs20\cf1 GNU Screen\plain \f1\fs20 \~that is just teasing me to spend more time on the problem. Also, since I use Screen constantly, this is a somewhat acceptable workaround for now. Here\rquote s what I can do, thanks to\~\plain \f1\ul\fs20\cf1 Michael Schroeder\rquote s help\plain \f1\fs20 \~(he wrote the book on Screen).
+\par \plain \f1\fs20\cf1 
+\par Send a file from the remote host to the local host:
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 1.\tab}\ls6\ilvl0 \plain \f1\fs20 start a Screen session on the local host
+\par \plain{\listtext\pard\plain\f3\fs24 2.\tab}\ls7\ilvl0 \plain \f1\fs20 configure Screen to \ldblquote catch\rdblquote  zmodem traffic (CTRL-A:zmodem catch<ENTER>)
+\par \plain{\listtext\pard\plain\f3\fs24 3.\tab}\ls8\ilvl0 \plain \f1\fs20 execute sz FILE from the command line
+\par \plain{\listtext\pard\plain\f3\fs24 4.\tab}\ls9\ilvl0 \plain \f1\fs20 hit <ENTER> when Screen brings up the default receive command
+\par \plain{\listtext\pard\plain\f3\fs24 5.\tab}\ls10\ilvl0 \plain \f1\fs20 bam, the file is available on the local host!
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20 
+\par \plain \f1\fs20\cf1 Send a file from the local host to the remote host:
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 1.\tab}\ls12\ilvl0 \plain \f1\fs20 start a Screen session on the local host
+\par \plain{\listtext\pard\plain\f3\fs24 2.\tab}\ls13\ilvl0 \plain \f1\fs20 configure Screen to \ldblquote catch\rdblquote  zmodem traffic (CTRL-A\plain \f1\fs20\cf2 :\plain \f1\fs20 zmodem catch<ENTER>)
+\par \plain{\listtext\pard\plain\f3\fs24 3.\tab}\ls14\ilvl0 \plain \f1\fs20 execute rz from the command line (\plain \f1\b\fs20 no need to specify filename\plain \f1\fs20 )
+\par \plain{\listtext\pard\plain\f3\fs24 4.\tab}\ls15\ilvl0 \plain \f1\b\fs20 add local filename\plain \f1\fs20 \~when Screen brings up the default\plain \f1\b\fs20 send\plain \f1\fs20 \~command, then hit <ENTER>
+\par \plain{\listtext\pard\plain\f3\fs24 5.\tab}\ls16\ilvl0 \plain \f1\fs20 bam, the file is available on the\~\plain \f1\b\fs20 remote\plain \f1\fs20 \~host!
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20 
+\par \plain \f1\fs20\cf1 Here\rquote s another cool thing to try.\plain \f1\fs20  Transferring files using Screen sessions on both the local and remote hosts:
+\par \pard\li720\fi-360\jclisttab\tx720\ql\ri0\sb0\sa0\itap0 {\listtext\pard\plain\f3\fs24 1.\tab}\ls18\ilvl0 \plain \f1\fs20 start a Screen session on the remote host
+\par \plain{\listtext\pard\plain\f3\fs24 2.\tab}\ls19\ilvl0 \plain \f1\fs20 configure remote host Screen to \ldblquote pass\rdblquote  zmodem traffic (CTRL-A:zmodem pass<ENTER>)
+\par \plain{\listtext\pard\plain\f3\fs24 3.\tab}\ls20\ilvl0 \plain \f1\fs20 detach remote host Screen session
+\par \plain{\listtext\pard\plain\f3\fs24 4.\tab}\ls21\ilvl0 \plain \f1\fs20 start a Screen session on the local host
+\par \plain{\listtext\pard\plain\f3\fs24 5.\tab}\ls22\ilvl0 \plain \f1\fs20 configure local host Screen to \ldblquote catch\rdblquote  zmodem traffic (CTRL-A:zmodem catch<ENTER>)
+\par \plain{\listtext\pard\plain\f3\fs24 6.\tab}\ls23\ilvl0 \plain \f1\fs20 ssh to remote host within Screen
+\par \plain{\listtext\pard\plain\f3\fs24 7.\tab}\ls24\ilvl0 \plain \f1\fs20 attach to the Screen session on the remote host (yep, now you\rquote re \ldblquote 2 deep\rdblquote )
+\par \plain{\listtext\pard\plain\f3\fs24 8.\tab}\ls25\ilvl0 \plain \f1\fs20 continue as in previous two walkthroughs. Remote host Screen passes zmodem traffic to local host Screen!
+\par \plain\pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20 
+\par A word of caution, as of GNU Screen version 4.0.3, this is an\~\plain \f1\b\fs20 experimental\plain \f1\fs20 \~feature. I just had Screen crash on me after (successfully) transferring a 10MiB file.
+\par I\rquote m getting a little closer to my goal, but I think I need to learn a little more about zmodem and ssh first. I tried to get\~\plain \f1\ul\fs20\cf1 zssh\plain \f1\fs20 \~fired up, but it complains about no ptys being available (possibly needs to be updated to use udev?)\par}

@@ -1,0 +1,212 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1767429341\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1936629845}
+}
+{\*\listoverridetable
+{\listoverride\listid1936629845\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 check_ipt_status.sh
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 #! /bin/bash
+\par 
+\par ## hunalf (AT) gmail.com, 2008-09-22
+\par ## GPL v2
+\par ## not completed yet
+\par 
+\par get_safe_inface()
+\par \{
+\par     echo eth1 eth\{3..10\}
+\par     echo "tun+"
+\par     echo lo
+\par     echo "tap+"
+\par \}
+\par 
+\par get_safe_proto()
+\par \{
+\par     echo icmp
+\par \}
+\par 
+\par get_safe_src()
+\par \{
+\par     echo 127.0.0.1
+\par \}
+\par 
+\par is_a_safe_iface()
+\par \{
+\par     local iface=$1
+\par     local safe_i
+\par 
+\par     for safe_i in $( get_safe_inface ); do
+\par         if [[ $iface == $safe_i ]]; then
+\par             return 0
+\par         fi
+\par     done
+\par 
+\par     return 1
+\par \}
+\par 
+\par is_a_safe_proto()
+\par \{
+\par     local proto=$1
+\par     local safe_p
+\par 
+\par     for safe_p in $( get_safe_proto ); do
+\par         if [[ $proto == $safe_p ]]; then
+\par             return 0
+\par         fi
+\par     done
+\par 
+\par     return 1
+\par \}
+\par 
+\par is_a_safe_src()
+\par \{
+\par     local src=$1
+\par     local safe_s
+\par 
+\par     case $src in
+\par         127.*)
+\par             return 0
+\par             ;;
+\par         192.168.*)
+\par             return 0
+\par             ;;
+\par         172.*)
+\par             return 0
+\par             ;;
+\par         10.*)
+\par             return 0
+\par             ;;
+\par     esac
+\par 
+\par     for safe_s in $( get_safe_src ); do
+\par         if [[ $src == $safe_s ]]; then
+\par             return 0
+\par         fi
+\par     done
+\par 
+\par     return 1
+\par \}
+\par 
+\par is_a_related_rule()
+\par \{
+\par     echo $@ | grep -wq RELATED
+\par \}
+\par 
+\par is_a_established_rule()
+\par \{
+\par     echo $@ | grep -wq ESTABLISHED
+\par \}
+\par 
+\par is_drop_all()
+\par \{
+\par     local target=$1
+\par     local src=$2
+\par     local destination=$3
+\par 
+\par     if [[ $target == "DROP" ]] && [[ $src == "0.0.0.0/0" ]] && [[ $destination == "0.0.0.0/0" ]]; then
+\par         return 0
+\par     else
+\par         return 1
+\par     fi
+\par 
+\par \}
+\par 
+\par is_a_drop()
+\par \{
+\par     local target=$1
+\par     case $target in
+\par         DROP|REJECT)
+\par             return 0
+\par             ;;
+\par         *)
+\par             return 1
+\par             ;;
+\par     esac
+\par \}
+\par 
+\par guess_policy()
+\par \{
+\par     :
+\par \}
+\par 
+\par check_ipt_rules()
+\par \{
+\par     local pkts bytes target prot opt inn out src destination
+\par 
+\par     iptables -nvL $* | while read pkts bytes target prot opt inn out src destination rest; do
+\par 
+\par         ## ignore blank line
+\par         if [[ -z $pkts ]]; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore chain name line
+\par         if [[ $pkts == "Chain" ]]; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore info not about real rules
+\par         if [[ $pkts == "pkts" ]]; then
+\par             continue
+\par         fi
+\par 
+\par         ## rule to drop everything, break here
+\par         if is_drop_all $target $src $destination; then
+\par             break
+\par         fi
+\par 
+\par         ## drop | reject
+\par         if is_a_drop $target; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore safe interface
+\par         if is_a_safe_iface $inn; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore safe protocals
+\par         if is_a_safe_proto $prot; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore safe src
+\par         if is_a_safe_src $src; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore related stat
+\par         if is_a_related_rule "$rest"; then
+\par             continue
+\par         fi
+\par 
+\par         ## ignore established stat
+\par         if is_a_established_rule "$rest"; then
+\par             continue
+\par         fi
+\par 
+\par         ## accept
+\par         if [[ $target == "ACCEPT" ]]; then
+\par             #echo "$pkts $bytes $target $prot $opt $inn $out $src $destination $rest"
+\par             ## may have bugs here
+\par             local sport=$( echo $rest | perl -ne 'print $1 if m\{spt:(\\d+)\}' )
+\par             local dport=$( echo $rest | perl -ne 'print $1 if m\{dpt:(\\d+)\}' )
+\par             echo -e "proto:$prot\\tfrom:$\{src%/0\}:$\{sport:-any\}\\tto:$\{destination%/0\}:$\{dport:-any\}"
+\par 
+\par         ## sub-chain, shoud check this chain recursively
+\par         else
+\par             #echo "CHAIN: $target"
+\par             check_ipt_rules $target
+\par         fi
+\par 
+\par         ## check if we has a drop all here
+\par     done
+\par \}
+\par 
+\par 
+\par ## ------------------------------------------------------------- ##
+\par 
+\par check_ipt_rules -t filter\par}

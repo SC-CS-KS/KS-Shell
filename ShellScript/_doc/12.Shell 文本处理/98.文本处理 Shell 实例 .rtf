@@ -1,0 +1,27 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red0\green128\blue0;\red255\green102\blue0;\red255\green255\blue255;\red153\green51\blue102;}{\*\listtable{\list\listtemplateid874162802\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid737959484}
+}
+{\*\listoverridetable
+{\listoverride\listid737959484\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\chcbpat5\cf2 98.\uc2\u25991 \'ce\'c4\u26412 \'b1\'be\u22788 \'b4\'a6\u29702 \'c0\'ed Shell \u23454 \'ca\'b5\u20363 \'c0\'fd \uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\chcbpat5\cf4 \uc2\u23558 \'bd\'ab\u36755 \'ca\'e4\u20837 \'c8\'eb\u20449 \'d0\'c5\u24687 \'cf\'a2\u36716 \'d7\'aa\u25442 \'bb\'bb\u20026 \'ce\'aa\u22823 \'b4\'f3\u20889 \'d0\'b4\u23383 \'d7\'d6\u31526 \'b7\'fb\u21518 \'ba\'f3\u20877 \'d4\'d9\u36827 \'bd\'f8\u34892 \'d0\'d0\u26465 \'cc\'f5\u20214 \'bc\'fe\u21028 \'c5\'d0\u26029 \'b6\'cf\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 /> cat > test1.sh
+\par #!/bin/sh
+\par echo -n "Please let me know your name. "
+\par read name
+\par \plain \f1\fs20\cf3 #\uc2\u23558 \'bd\'ab\u21464 \'b1\'e4\u37327 \'c1\'bf name \u30340 \'b5\'c4\u20540 \'d6\'b5\u36890 \'cd\'a8\u36807 \'b9\'fd\u31649 \'b9\'dc\u36947 \'b5\'c0\u36755 \'ca\'e4\u20986 \'b3\'f6\u21040 \'b5\'bd tr \u21629 \'c3\'fc\u20196 \'c1\'ee\u65292 \'a3\'ac\u20877 \'d4\'d9\u30001 \'d3\'c9 tr \u21629 \'c3\'fc\u20196 \'c1\'ee\u36827 \'bd\'f8\u34892 \'d0\'d0\u22823 \'b4\'f3\u23567 \'d0\'a1\u20889 \'d0\'b4\u36716 \'d7\'aa\u25442 \'bb\'bb\u21518 \'ba\'f3\u37325 \'d6\'d8\u26032 \'d0\'c2\u36171 \'b8\'b3\u20540 \'d6\'b5\u32473 \'b8\'f8 name \u21464 \'b1\'e4\u37327 \'c1\'bf\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf1 name=`echo $name | tr [a-z] [A-Z]`
+\par if [[ $name == "STEPHEN" ]]; then
+\par echo "Hello, Stephen."
+\par else
+\par echo "You are not Stephen."
+\par fi
+\par \pard\fi0\li0\ql\ri0\outlinelevel0\sb0\sa0\itap0 \plain \f1\b\fs20\cf1 CTRL+D
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 \plain \f1\fs20\cf1 /> ./test1.sh
+\par \plain \f1\fs20\cf2 Please let me know your name.\plain \f1\b\fs20\cf6  stephen
+\par \plain \f1\fs20\cf2 Hello, Stephen.\par}

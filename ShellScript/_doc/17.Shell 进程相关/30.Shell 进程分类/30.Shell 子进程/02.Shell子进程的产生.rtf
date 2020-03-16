@@ -1,0 +1,210 @@
+{\rtf1\ansi\ansicpg936\cocoartf2509
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fnil\fcharset134 PingFangSC-Semibold;\f2\fnil\fcharset134 PingFangSC-Regular;
+\f3\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red255\green0\blue0;\red0\green128\blue128;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c100000\c0\c0;\csgenericrgb\c0\c50196\c50196;
+}
+\paperw11900\paperh16840\vieww12000\viewh15060\viewkind0
+\deftab720
+\pard\pardeftab720\ri-340\qc\partightenfactor0
+
+\f0\b\fs24 \cf0 02.Shell
+\f1 \'d7\'d3\'bd\'f8\'b3\'cc\'b5\'c4\'b2\'fa\'c9\'fa
+\f0 \
+\pard\pardeftab720\ri-340\partightenfactor0
+\cf0 \
+
+\fs20 2
+\f1 \'a3\'ba
+\f0 shell
+\f1 \'ca\'b2\'c3\'b4\'c7\'e9\'bf\'f6\'cf\'c2\'bb\'e1\'b2\'fa\'c9\'fa\'d7\'d3\'bd\'f8\'b3\'cc
+\f0 \
+
+\f2\b0 \'d2\'d4\'cf\'c2\'bc\'b8\'b8\'f6\'b4\'b4\'bd\'a8\'d7\'d3\'bd\'f8\'b3\'cc\'b5\'c4\'c7\'e9\'bf\'f6\'a1\'a3\'a3\'a8\'d2\'d4\'cf\'c2\'d3\'a2\'ce\'c4\'d5\'aa\'d7\'d4
+\f3 info bash)\
+\cf2 1
+\f2 \'a3\'a9
+\f3 \cf3 &
+\f2 \'a3\'ac\'cc\'e1\'bd\'bb\'ba\'f3\'cc\'a8\'d7\'f7\'d2\'b5
+\f3 \
+\cf0 If a command is terminated by the control operator `&', the shell\'a0executes the command asynchronously in a subshell.\
+\cf2 2
+\f2 \'a3\'a9\'b9\'dc\'b5\'c0
+\f3 \
+\cf0 Each command in a pipeline is executed in its own subshell\
+\cf2 3
+\f2 \'a3\'a9\'c0\'a8\'ba\'c5\'c3\'fc\'c1\'ee\'c1\'d0\'b1\'ed
+\f3   \cf0 ()
+\f2 \'b2\'d9\'d7\'f7\'b7\'fb
+\f3 \
+\'a0\'a0\'a0\'a0\'a0Placing a list of commands between parentheses causes \cf2 a subshell environment to be created\
+4
+\f2 \'a3\'a9\'d6\'b4\'d0\'d0\'cd\'e2\'b2\'bf\'bd\'c5\'b1\'be\'a1\'a2\'b3\'cc\'d0\'f2
+\f3 \
+\cf0 When Bash finds such a file while\'a0searching the `$PATH' for a command, it spawns a subshell to execute\'a0it.\'a0\'a0\
+In other words, executing filename ARGUMENTS\'a0is equivalent to executing\'a0bash filename ARGUMENTS\
+\'a0\
+
+\f2 \'cb\'b5\'c3\'f7\'a3\'ba\'b4\'f3\'d6\'c2\'c9\'cf\'d7\'d3\'bd\'f8\'b3\'cc\'b5\'c4\'b4\'b4\'bd\'a8\'b0\'fc\'c0\'a8\'d2\'d4\'c9\'cf\'cb\'c4\'d6\'d6\'c7\'e9\'bf\'f6\'c1\'cb\'a1\'a3
+\f3 \
+
+\f2 \'d0\'e8\'d2\'aa\'cb\'b5\'c3\'f7\'b5\'c4\'ca\'c7\'d6\'bb\'d2\'aa\'ca\'c7\'b7\'fb\'ba\'cf\'c9\'cf\'b1\'df\'cb\'c4\'d6\'d6\'c7\'e9\'bf\'f6\'d6\'ae\'d2\'bb\'a3\'ac\'b1\'e3\'bb\'e1\'b4\'b4\'bd\'a8
+\f3 (fork)
+\f2 \'d7\'d3\'bd\'f8\'b3\'cc\'a3\'ac\cf2 \'b2\'bb\'d2\'f2\'ca\'c7\'b7\'f1\'ca\'c7\'ba\'af\'ca\'fd\'a3\'ac\'c3\'fc\'c1\'ee\'a3\'ac\'bb\'f2\'b3\'cc\'d0\'f2\'a3\'ac\'d2\'b2\'b2\'bb\'bb\'e1\'d2\'f2\'ce\'aa\'ca\'c7\'c4\'da\'d6\'c3\'ba\'af\'ca\'fd
+\f3 (buitin)
+\f2 \'bb\'f2\'ca\'c7\'cd\'e2\'b2\'bf\'b3\'cc\'d0\'f2\'a1\'a3
+\f3 \
+\cf0 \
+
+\f2 \'b4\'cb\'cd\'e2\'a3\'ac\'c9\'cf\'b1\'df\'cc\'e1\'b5\'bd\'d7\'d3\'bd\'f8\'b3\'cc\'b4\'b4\'bd\'a8\'d3\'eb\'d6\'b4\'d0\'d0\'b5\'c4\'b6\'fe\'b8\'f6\'b2\'bd\'d6\'e8\'a3\'ac
+\f3 shell
+\f2 \'d7\'d3\'bd\'f8\'b3\'cc\'b5\'c4\'b4\'b4\'bd\'a8\'d4\'da\'b2\'bd\'d6\'e8\'d6\'ae\'d2\'bb\'b2\'a2\'ce\'de\'b6\'e0\'b4\'f3\'b2\'ee\'b1\'f0\'a1\'a3
+\f3 \
+
+\f2 \'d2\'bb\'b0\'e3\'bb\'b9\'ca\'c7\'b8\'b8\'bd\'f8\'b3\'cc\'b5\'f7\'d3\'c3
+\f3 fork
+\f2 \'b2\'fa\'c9\'fa\'bd\'f8\'b3\'cc\'bb\'b7\'be\'b3\'a3\'ac\'b9\'c0\'d4\'da\'b5\'da\'b6\'fe\'b2\'bd
+\f3 exec
+\f2 \'b5\'c4\'ca\'b1\'ba\'f2\'a3\'ac\'ca\'c7\'b4\'e6\'d4\'da\'b2\'ee\'b1\'f0\'b5\'c4\'a1\'a3
+\f3 \
+\'a0\
+shell
+\f2 \'d7\'f6\'ce\'aa\'bd\'e2\'ca\'cd\'d3\'ef\'d1\'d4\'b3\'cc\'d0\'f2\'a3\'ac\'cc\'e1\'b9\'a9\'b8\'f8\'b5\'da\'b6\'fe\'b2\'bd
+\f3 exec
+\f2 \'bc\'d3\'d4\'d8\'ba\'cd\'d6\'b4\'d0\'d0\'b5\'c4\'b3\'cc\'d0\'f2\'cc\'e5\'b2\'a2\'b2\'bb\'ca\'c7\'bd\'c5\'b1\'be\'b1\'be\'c9\'ed\'a3\'ac\'b6\'f8\'ca\'c7\'d3\'c9\'b5\'da\'d2\'bb\'d0\'d0
+\f3 #!
+\f2 \'d6\'b8\'b6\'a8\'b5\'c4\'a1\'a3
+\f3 \
+
+\f2 \'d6\'bb\'b2\'bb\'b9\'fd\'d7\'d3\'bd\'f8\'b3\'cc\'b5\'c4\'d6\'b4\'d0\'d0\'bb\'e1\'b8\'f9\'be\'dd\'c7\'e9\'bf\'f6\'b6\'f8\'d3\'d0\'cb\'f9\'b2\'ee\'b1\'f0\'a3\'ac\cf2 \'b6\'d4\'d3\'da\'c4\'da\'d6\'c3\'ba\'af\'ca\'fd\'a3\'ac
+\f3 exec
+\f2 \'b3\'cc\'d0\'f2\'cc\'e5\'ce\'aa
+\f3 shell
+\f2 \'b3\'cc\'d0\'f2\'a3\'ac\'b2\'a2\'d4\'da\'bb\'e1\'d4\'da\'d7\'d3
+\f3 shell
+\f2 \'d6\'b1\'bd\'d3\'b5\'f7\'d3\'c3\'c4\'da\'d6\'c3\'ba\'af\'ca\'fd\'a1\'a3
+\f3 \
+
+\f2 \'b6\'f8\'cd\'e2\'b2\'bf\'ba\'af\'ca\'fd\'bb\'f2\'b3\'cc\'d0\'f2\'a3\'ac\'d4\'da\'b4\'b4\'bd\'a8\'c1\'cb\'d7\'d3\'bd\'f8\'b3\'cc\'bb\'b7\'be\'b3\'ba\'f3\'a3\'ac\'b4\'f3\'d6\'c2\'bb\'e1\'d3\'d0\'b6\'fe\'d6\'d6\'d6\'b4\'d0\'d0\'c7\'e9\'bf\'f6\'a3\'ba
+\f3 \
+1
+\f2 \'a3\'a9\'d6\'b1\'bd\'d3
+\f3 exec
+\f2 \'cd\'e2\'b2\'bf\'b3\'cc\'d0\'f2
+\f3 \
+
+\f2 \cf0 \'b1\'c8\'c8\'e7\'cf\'c2\'b1\'df\'c0\'fd\'d7\'d3\'d6\'d0\'d6\'b1\'bd\'d3\'d6\'b4\'d0\'d0\'b5\'c4
+\f3 sleep,pstree
+\f2 \'c3\'fc\'c1\'ee\'b5\'c8
+\f3 \
+\cf2 2
+\f2 \'a3\'a9
+\f3 subshellexec
+\f2 \'b3\'cc\'d0\'f2\'cc\'e5\'ce\'aa
+\f3 shell
+\f2 \'b3\'cc\'d0\'f2\'a3\'ac\'d4\'da\'b4\'cb\'bb\'f9\'b4\'a1\'c9\'cf\'bb\'e1\'bd\'f8\'d2\'bb\'b2\'bd\'b4\'b4\'bd\'a8\'d2\'bb\'b8\'f6\'d7\'d3\'bd\'f8\'b3\'cc\'d2\'d4\'d6\'b4\'d0\'d0\'ba\'af\'ca\'fd\'a1\'a3
+\f3 \
+
+\f2 \cf0 \'b1\'c8\'c8\'e7\'cf\'c2\'b1\'df\'c0\'fd\'d7\'d3\'d6\'d0\'cd\'a8\'b9\'fd\'ba\'af\'ca\'fd\'cc\'e1\'bd\'bb\'ba\'f3\'cc\'a8\'b3\'cc\'d0\'f2\'d6\'d0\'b5\'c4
+\f3 shell
+\f2 \'c3\'fc\'c1\'ee\'b5\'c8
+\f3 \
+\'a0\
+
+\f2 \'c0\'fd\'a3\'ba\'c4\'da\'d6\'c3\'ba\'af\'ca\'fd\'a3\'a8\'d6\'b1\'bd\'d3\'d4\'da
+\f3 subshell
+\f2 \'c0\'ef\'d6\'b4\'d0\'d0\'a3\'ac\'b2\'bb\'b9\'dc\'ca\'c7\'b7\'f1\'cd\'a8\'b9\'fd\'ba\'af\'ca\'fd\'a3\'a9
+\f3 \
+# mkfifo a\
+# type echo\
+echo is a shell builtin\
+# b()\{ echo a>a; \}\
+# b &\
+[1] 15697\
+# echo a>a &\
+[2] 15732\
+# pstree -pa $$\
+bash,571\
+\'a0\'a0|-bash,15697\
+\'a0\'a0|-bash,15732\
+\'a0\'a0`-pstree,15734 -pa 571\
+\'a0\
+
+\f2 \'c0\'fd\'a3\'ba\'b6\'a8\'d2\'e5\'ba\'af\'ca\'fd\'b2\'a2\'cc\'e1\'bd\'bb\'ba\'f3\'cc\'a8\'bd\'f8\'d0\'d0
+\f3 \
+
+\f2 \'a3\'a8\'ba\'af\'ca\'fd\'b5\'f7\'d3\'c3\'d6\'d0\'b5\'c4
+\f3 sleep
+\f2 \'d4\'da
+\f3 subshell
+\f2 \'d6\'ae\'cf\'c2\'d3\'d6\'b4\'b4\'bd\'a8\'d2\'bb\'b8\'f6\'d7\'d3\'bd\'f8\'b3\'cc\'a3\'ac\'b6\'f8
+\f3 pstree,sleep
+\f2 \'c3\'fc\'c1\'ee\'b5\'c4\'d6\'b1\'bd\'d3\'d6\'b4\'d0\'d0\'a3\'ac\'d4\'f2\'ca\'c7\'d6\'b1\'bd\'d3\'d4\'da\'d7\'d3\'bd\'f8\'b3\'cc\'c9\'cf\'bd\'f8\'d0\'d0\'a3\'a9
+\f3 \
+#\'a0\'a0a()\{ sleep 30;  \} ;\
+# sleep 40 &\
+# a &\
+# pstree -pa $$\
+bash,29787\
+  |-bash,15497\
+\cf2   |   `-sleep,15498 30\
+\cf0   |-pstree,15499 -pa 29787\
+  `-sleep,13820 40\
+\'a0\
+
+\f2 \'b6\'d4\'d3\'da\'b5\'da\'cb\'c4\'b5\'e3\'a3\'ac\'d2\'aa\'d7\'a2\'d2\'e2\'a3\'ac
+\f3 shell
+\f2 \'bd\'c5\'b1\'be\'b5\'c4\'d6\'b4\'d0\'d0\'c4\'a3\'ca\'bd\'a3\'ac\'d4\'da\'b5\'da\'cb\'c4\'b5\'e3\'b5\'c4\'b6\'fe\'d6\'d6\'c4\'a3\'ca\'bd\'cf\'c2\'a3\'ac
+\f3 shell
+\f2 \'ca\'c7\'bb\'e1\'b4\'b4\'bd\'a8\'d7\'d3\'bd\'f8\'b3\'cc\'b5\'c4\'a3\'ba
+\f3 \
+filename ARGUMENTS\
+bash filename ARGUMENTS\
+\cf4 --------------------------------------------------------------------------------------------------\
+
+\f2 \cf2 \'b5\'ab
+\f3 shell
+\f2 \'cd\'ac\'ca\'b1\'cc\'e1\'b9\'a9\'b6\'fe\'d6\'d6\'b2\'bb\'b4\'b4\'bd\'a8\'d7\'d3\'b3\'cc\'d0\'f2\'b5\'c4\'bd\'f8\'b3\'cc\'b4\'b4\'bd\'a8\'b7\'bd\'ca\'bd
+\f3 \
+1
+\f2 \'a3\'ba
+\f3 source
+\f2 \'c3\'fc\'c1\'ee\'a3\'ac\'ca\'b9\'d3\'c3\'b7\'bd\'b7\'a8
+\f3 \
+\cf0 Source\'a0\'a0\'a0filename ARGUMENTS\
+
+\f2 \'bb\'f2
+\f3 \
+.\'a0\'a0filename ARGUMENTS\
+
+\f2 \'b4\'cb\'d6\'d6\'b7\'bd\'b7\'a8\'a3\'ac\'d6\'b1\'bd\'d3\'d4\'da\'b5\'b1\'c7\'b0
+\f3 shell
+\f2 \'bd\'f8\'b3\'cc\'d6\'d0\'d6\'b4\'d0\'d0
+\f3 filename
+\f2 \'bd\'c5\'b1\'be\'a3\'ac
+\f3 filename
+\f2 \'bd\'e1\'ca\'f8\'ba\'f3\'bc\'cc\'d0\'f8\'b7\'b5\'bb\'d8\'b5\'b1\'c7\'b0
+\f3 shell
+\f2 \'bd\'f8\'b3\'cc
+\f3 \
+\'a0\
+\cf2 2
+\f2 \'a3\'ba
+\f3 exec
+\f2 \'c3\'fc\'c1\'ee\'a3\'ac\'ca\'b9\'d3\'c3\'b7\'bd\'b7\'a8
+\f3 \
+\cf0 Exec\'a0\'a0filename ARGUMENTS\
+
+\f2 \'b4\'cb\'d6\'d6\'b7\'bd\'b7\'a8\'d6\'b1\'bd\'d3\'d4\'da\'b5\'b1\'c7\'b0
+\f3 shell
+\f2 \'bd\'f8\'b3\'cc\'d6\'d0\'d6\'b4\'d0\'d0
+\f3 filname
+\f2 \'bd\'c5\'b1\'be\'a3\'ac
+\f3 filename
+\f2 \'bd\'e1\'ca\'f8\'ba\'f3\'cd\'cb\'b3\'f6\'b5\'b1\'c7\'b0
+\f3 shell
+\f2 \'bd\'f8\'b3\'cc
+\f3 \
+\cf4 --------------------------------------------------------------------------------------------------\
+}

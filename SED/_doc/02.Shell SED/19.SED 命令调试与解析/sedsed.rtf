@@ -1,0 +1,1524 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1188662270\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1785428477}
+{\list\listtemplateid1055939062\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid751360976}
+{\list\listtemplateid1472990996\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid326066539}
+}
+{\*\listoverridetable
+{\listoverride\listid1785428477\listoverridecount0\ls1}
+{\listoverride\listid751360976\listoverridecount0\ls2}
+{\listoverride\listid326066539\listoverridecount0\ls3}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 sedsed
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf2 #!/usr/bin/env python
+\par \plain \f1\fs20 # sedsed - the SED mastering script
+\par # Since 27 November 2001, by Aurelio Marinho Jargas
+\par # For ChangeLog and Documentation, see http://sedsed.sf.net
+\par 
+\par import sys, re, os, getopt, string, tempfile
+\par 
+\par myname    = 'sedsed'
+\par myversion = '1.0'
+\par myhome    = 'http://sedsed.sf.net'
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                              User Configuration
+\par #-------------------------------------------------------------------------------
+\par 
+\par # Default config - Changeable, but you won't need to do it
+\par sedbin = 'sed'                # name (or full path) of the sed program
+\par color = 1                     # colored output or not? (--color, --nocolor)
+\par dump_debug = 0                # dump debug script to screen? (--dump-debug)
+\par indent_prefix = ' '*4         # default indent prefix for blocks (--prefix)
+\par debug_prefix = '\\t\\t'         # default prefix for debug commands
+\par action = 'indent'             # default action if none specified (-d,-i,-t,-H)
+\par DEBUG = 0                     # set developper's debug level [0-3]
+\par EMUDEBUG = 0                  # emulator have it's own debug [0-3]
+\par 
+\par # HTML colors for --htmlize
+\par # You may edit here to change the default colors
+\par html_colors = \{
+\par   'addr1'    : '#8080ff',
+\par   'addr1flag': '#ff6060',
+\par   'addr2'    : '#8080ff',
+\par   'addr2flag': '#ff6060',
+\par   'lastaddr' : '',
+\par   'modifier' : '#ff6060',
+\par   'id'       : '#ffff00',
+\par   'content'  : '#ff00ff',
+\par   'delimiter': '#ff6060',
+\par   'pattern'  : '#8080ff',
+\par   'replace'  : '',
+\par   'flag'     : '#00ff00',
+\par   'extrainfo': '',
+\par   'comment'  : '#00ffff',
+\par   'escape'   : '#ff6060',
+\par   'special'  : '#00ff00',
+\par   'pattmeta' : '#ff00ff',
+\par   'plaintext': '',
+\par   'branch'   : '',
+\par   'BGCOLOR'  : '#000000',
+\par   'TEXT'     : '#ffffff',
+\par   'LINK'     : '#ff00ff',
+\par   'ALINK'    : '#ff00ff',
+\par   'VLINK'    : '#ff00ff'
+\par \}
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                              General Functions
+\par #-------------------------------------------------------------------------------
+\par 
+\par def printUsage(exitcode=1):
+\par     print """
+\par Usage: sedsed OPTION [-e sedscript] [-f sedscriptfile] [inputfile]
+\par 
+\par OPTIONS:
+\par 
+\par      -f, --file          add file contents to the commands to be parsed
+\par      -e, --expression    add the script to the commands to be parsed
+\par      -n, --quiet         suppress automatic printing of pattern space
+\par          --silent        alias to --quiet
+\par 
+\par      -d, --debug         debug the sed script
+\par          --hide          hide some debug info (options: PATT,HOLD,COMM)
+\par          --color         shows debug output in colors (default: ON)
+\par          --nocolor       no colors on debug output
+\par          --dump-debug    dumps to screen the debugged sed script
+\par 
+\par          --emu           emulates GNU sed (INCOMPLETE)
+\par          --emudebug      emulates GNU sed debugging the sed script (INCOMPLETE)
+\par 
+\par      -i, --indent        script beautifier, prints indented and
+\par                          one-command-per-line output do STDOUT
+\par          --prefix        indent prefix string (default: 4 spaces)
+\par 
+\par      -t, --tokenize      script tokenizer, prints extensive
+\par                          command by command information
+\par      -H, --htmlize       converts sed script to a colorful HTML page
+\par 
+\par      -V, --version       prints the program version and exit
+\par      -h, --help          prints this help message and exit
+\par 
+\par 
+\par NOTE: The --emu and --emudebug options are still INCOMPLETE and must
+\par       be used with care. Mainly regexes and address $ (last line)
+\par       are not handled right by the emulator.
+\par """
+\par     print "Homepage: %s\\n"%myhome
+\par     sys.exit(exitcode)
+\par 
+\par def Error(msg):
+\par     "All error messages are handled by me"
+\par     print 'ERROR:',msg ; sys.exit(1)
+\par 
+\par def echo(msg): print "\\033[33;1m%s\\033[m"%msg
+\par 
+\par def Debug(msg, level=1):
+\par     if DEBUG and DEBUG >= level: print '+++ DEBUG%d: %s'%(level,msg)
+\par 
+\par def read_file(file):
+\par     "Reads a file into a list, removing line breaks"
+\par     if file == '-':
+\par         try: data = sys.stdin.readlines()
+\par         except: Error('I was expecting data on STDIN!')
+\par     else:
+\par         try: f = open(file); data = f.readlines() ; f.close()
+\par         except: Error("Cannot read file: %s"%file)
+\par     return map(lambda x:re.sub('[\\n\\r]+$','',x), data)
+\par 
+\par def write_file(file, lines=[]):
+\par     "Writes a list contents into file, adding correct line breaks" 
+\par     try: f = open(file, 'wb')
+\par     except: Error("Cannot open file for writing: %s"%file)
+\par     #TODO maybe use os.linesep? - all this is really necessary?
+\par     # ensuring line break
+\par     lines = map(lambda x:re.sub('\\n$','',x)+'\\n', lines)
+\par     f.writelines(lines); f.close()
+\par 
+\par def runCommand(cmd): # Returns a (#exit_code, program_output[]) tuple
+\par     #TODO dont use popen()
+\par     list = [] ; fd = os.popen(cmd)
+\par     for line in fd.readlines():
+\par         list.append(string.rstrip(line))  # stripping \\s*\\n
+\par     ret = fd.close()
+\par     if ret: ret = ret/256  # 16bit number
+\par     return ret, list
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                           Command line & Config
+\par #-------------------------------------------------------------------------------
+\par 
+\par # Here's all the valid command line options
+\par short_options = 'he:f:ditVHn'
+\par long_options = [
+\par   'debug', 'tokenize', 'htmlize', 'indent',                     # actions
+\par   'version', 'help', 'file=', 'expression=', 'silent', 'quiet', # sed-like
+\par   'nocolor', 'color', 'hide=', 'prefix=', 'emu', 'emudebug',    # misc
+\par   'dump-debug',                                                 # other
+\par   '_debuglevel=','_emudebuglevel=','_stdout-only', 'dumpcute']  # admin
+\par 
+\par # Check it!
+\par try: opt, args = getopt.getopt(sys.argv[1:], short_options, long_options)
+\par except getopt.error, errmsg: Error("%s (try --help)"%errmsg)
+\par 
+\par # Turn color OFF on Windows because ANSI.SYS is not installed by default.
+\par # Windows users who have ANSY.SYS configured, can use the --color option
+\par # or comment the following line.
+\par # ANSY.SYS ressources:
+\par #   http://www.evergreen.edu/biophysics/technotes/program/ansi_esc.htm#notes
+\par #   http://www3.sympatico.ca/rhwatson/dos7/v-ansi-escseq.html
+\par if os.name == 'nt': color = 0
+\par 
+\par # Command Line is OK, now let's parse its values
+\par action_modifiers = []             # --hide contents and others
+\par sedscript = []                    # join all scripts found here
+\par script_file = ''                  # old sedscript filename for --htmlize
+\par quiet_flag = 0                    # tell if the #n is needed or not
+\par 
+\par for o in opt:
+\par     if   o[0] in ('-d', '--debug')     : action = 'debug'
+\par     elif o[0] in ('-i', '--indent')    : action = 'indent'; color = 0
+\par     elif o[0] in ('-t', '--tokenize')  : action = 'token' ; color = 0
+\par     elif o[0] in ('-H', '--htmlize')   : action = 'html'  ; color = 0
+\par     elif o[0] in ('-n', '--quiet')     : quiet_flag = 1
+\par     elif o[0] in ('-e', '--expression'): sedscript.append(o[1])
+\par     elif o[0] in ('-f', '--file')      :
+\par         sedscript.extend(read_file(o[1]))
+\par         script_file = o[1]
+\par     elif o[0] in ('-h', '--help')      : printUsage(0)
+\par     elif o[0] in ('-V', '--version')   :
+\par         print '%s v%s'%(myname,myversion)
+\par         sys.exit(0)
+\par     elif o[0] == '--emu'       : action = 'emu'
+\par     elif o[0] == '--emudebug'  : action = 'emudebug'
+\par     elif o[0] == '--dump-debug': action = 'debug' ; dump_debug=1 ; color=0
+\par     elif o[0] == '--nocolor'   : color = 0
+\par     elif o[0] == '--color'     : color = 1
+\par     elif o[0] == '--hide':                        # get hide options
+\par         for hide in string.split(o[1], ','):  # save as no<OPT>
+\par             hide_me = string.lower(string.strip(hide))
+\par             action_modifiers.append('no'+hide_me)
+\par     elif o[0] == '--prefix':
+\par         if re.sub('\\s', '', o[1]):            # prefix is valid?
+\par             Error("--prefix: must be spaces and/or TABs")
+\par         indent_prefix = o[1]
+\par     # not documented admin options
+\par     elif o[0] == '--_debuglevel'   : DEBUG = int(o[1])
+\par     elif o[0] == '--_emudebuglevel': EMUDEBUG = int(o[1])
+\par     elif o[0] == '--_stdout-only':
+\par         action = 'debug'
+\par         action_modifiers.append(o[0][2:])
+\par     elif o[0] == '--dumpcute':
+\par         action = 'dumpcute'; DEBUG = 0; color = 1
+\par 
+\par # Now all Command Line options were sucessfuly parsed
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                              Sanity Checkings  
+\par #-------------------------------------------------------------------------------
+\par 
+\par # There's a SED script?
+\par if not sedscript:
+\par     if args:          # the script is the only argument (echo | sed 's///')
+\par         sedscript.append(args.pop(0))
+\par     else:             # :(
+\par         Error("there's no SED script to parse! (try --help)")
+\par 
+\par # Get all text files, if none, use STDIN (-)
+\par textfiles = args or ['-']
+\par 
+\par # On --debug, check the given script syntax, runnig SED with it.
+\par # We will not debug a broken script.
+\par #XXX there is a problem with popen() and win9x machines
+\par #    so i'm skipping this check for those machines
+\par #TODO redo this check using !runCommand
+\par if action == 'debug' and os.name != 'nt':
+\par     tmpfile = tempfile.mktemp()
+\par     write_file(tmpfile, sedscript)
+\par     ret, msg = runCommand("%s -f '%s' /dev/null"%(sedbin,tmpfile))
+\par     if ret:
+\par         msg = 'syntax error on your SED script, please fix it before.'
+\par         Error('#%d: %s' % (ret,msg))
+\par     os.remove(tmpfile)
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                    Internal Config Adjustments and Magic
+\par #-------------------------------------------------------------------------------
+\par 
+\par # Add the leading #n to the sed script, when using -n
+\par if quiet_flag: sedscript.insert(0, '#n')
+\par 
+\par # Add the terminal escapes for color (or not)
+\par if color:
+\par     color_YLW = '\\033[33;1m'  # yellow text
+\par     color_RED = '\\033[31;1m'  # red text
+\par     color_REV = '\\033[7m'     # reverse video
+\par     color_NO  = '\\033[m'      # back to default
+\par else:
+\par     color_YLW = color_RED = color_REV = color_NO = ''
+\par 
+\par 
+\par ### The SED debugger magic lines
+\par #
+\par # Here is where the 'magic' lives. The heart of this program are the
+\par # following lines, which are the special SED commands responsable for
+\par # the DEBUG behaviour. For *each* command of the original script,
+\par # several commands are added before, to show buffers and command
+\par # contents. Some tricks are needed to preserve script's original
+\par # behaviour, they are explained ahead.
+\par #
+\par # 1. Show PATTERN SPACE contents:
+\par #    The 'PATT:' prefix is added, then the 'l' command shows the
+\par #    buffer contents, then the prefix is removed.
+\par #
+\par # 2. Show HOLD SPACE contents:
+\par #    Similar to PATTERN SPACE, but use the 'x' command to access and
+\par #    restore the HOLD buffer contents. The prefix used is 'HOLD:'.
+\par #
+\par # 3. Show current SED COMMAND:
+\par #    Uses a single 'i' command to show the full 'COMM:' line, as it
+\par #    does not depend on execution data. The color codes are added or
+\par #    not, depending on user options.
+\par #
+\par # 4. 'Last Address' trick:
+\par #    On SED, the empty address // refers to the last address matched.
+\par #    As this behaviour can be affected when several DEBUG lines are
+\par #    inserted before the command, sedsed uses a trick to force it.
+\par #    The last address used on the original script is repeated with a
+\par #    null command (/last-address/ y/!/!/). This way sedsed repeat the
+\par #    addressing, ensuring the next command will have it as the right
+\par #    'last' address.
+\par #
+\par # 5. 't Status' trick:
+\par #    The 't' command behaviour, from SED manual page:
+\par #
+\par #        If a s/// has done a successful substitution since the last
+\par #        input line was read and since the last t command, then branch
+\par #        to label
+\par #
+\par #    As all the DEBUG commands use lots of 's///' commands, the 't'
+\par #    status is always true. The trick here is to add fake labels
+\par #    between *any* command and fake 't' commands to jump to them:
+\par #
+\par #        <last command, possibly s///>
+\par #        t zzset001
+\par #        ... debug commands ...
+\par #        t zzclr001
+\par #        : zzset001
+\par #        ... debug commands ...
+\par #        : zzclr001
+\par #        <next command, possibly t>
+\par #
+\par #    The DEBUG commands are repeated and placed into two distinct
+\par #    blocks: 'zzset' and 'zzclr', which represents the 't' status
+\par #    of the last command. The execution order follows:
+\par #
+\par #       zzset: 1st jump (t), then debug (s///), t status is ON
+\par #       zzclr: 1st debug (s///), then jump (t), t status is OFF
+\par #
+\par #    The 001 count is incremented on each command to have unique
+\par #    labels.
+\par #
+\par #
+\par #                   --- THANK YOU VERY MUCH ---
+\par #
+\par # - Paolo Bonzini (GNU sed 4.x maintainer) for the idea of the
+\par #   't status' trick.
+\par #
+\par # - Thobias Salazar Trevisan for the idea of using the 'i'
+\par #   command for the COMM: lines.
+\par #
+\par 
+\par # show pattern space, show hold space, show sed command
+\par # null sed command to restore last address, 't' status trick
+\par showpatt = [     's/^/PATT:/', 'l', 's/^PATT://'     ]
+\par showhold = ['x', 's/^/HOLD:/', 'l', 's/^HOLD://', 'x']
+\par showcomm = ['i\\\\','COMM:%s\\a%s'%(color_YLW, color_NO)]
+\par nullcomm = ['y/!/!/']
+\par save_t   = ['t zzset\\a\\n#DEBUG#', 't zzclr\\a',
+\par             ':zzset\\a\\n#DEBUG#' , ':zzclr\\a' ]
+\par 
+\par def format_debugcmds(cmds):
+\par     "One per line, with prefix (spaces)"
+\par     return debug_prefix + string.join(cmds, '\\n'+debug_prefix) + '\\n'
+\par 
+\par showpatt = format_debugcmds(showpatt)
+\par showhold = format_debugcmds(showhold)
+\par save_t   = format_debugcmds(save_t  )
+\par showcomm = debug_prefix+string.join(showcomm, '\\n')+'\\n'
+\par nullcomm = nullcomm[0]
+\par 
+\par 
+\par # If user specified --hide, unset DEBUG commands for them
+\par if action_modifiers.count('nopatt'): showpatt = ''    # don't show!
+\par if action_modifiers.count('nohold'): showhold = ''    # don't show!
+\par if action_modifiers.count('nocomm'): showcomm = ''    # don't show!
+\par 
+\par 
+\par # Compose HTML page header and footer info for --htmlize.
+\par # The SCRIPTNAME is added then removed from html_colors for
+\par # code convenience only.
+\par #
+\par html_colors['SCRIPTNAME'] = os.path.basename(script_file)
+\par html_data = \{
+\par                    'header': """\\
+\par <html>
+\par <head><meta name="Generator" content="sedsed --htmlize">
+\par <title>Colorized %(SCRIPTNAME)s</title></head>
+\par <body bgcolor="%(BGCOLOR)s" text="%(TEXT)s"
+\par       link="%(LINK)s" alink="%(ALINK)s" vlink="%(VLINK)s">
+\par <pre>
+\par """%html_colors,
+\par                    'footer': """
+\par <font color="%s"><b>### colorized by <a \\
+\par href="http://sedsed.sf.net">sedsed</a>, a SED script \\
+\par debugger/indenter/tokenizer/HTMLizer</b></font>\\n
+\par </pre></body></html>\\
+\par """%html_colors['comment']
+\par \}
+\par del html_colors['SCRIPTNAME']
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                              SED Machine Data
+\par #-------------------------------------------------------------------------------
+\par 
+\par # All SED commands grouped by kind
+\par sedcmds = \{
+\par   'file' : 'rw'            ,
+\par   'addr' : '/$0123456789\\\\',
+\par   'multi': 'sy'            ,
+\par   'solo' : 'nNdDgGhHxpPlq=',
+\par   'text' : 'aci'           ,
+\par   'jump' : ':bt'           ,
+\par   'block': '\{\}'            ,
+\par   'flag' : 'gpIi0123456789w'
+\par \}
+\par 
+\par # Regex patterns to identify special entities
+\par patt = \{
+\par   'jump_label': r'[^\\s;\}#]*'             ,  # _any_ char except those, or None
+\par   'filename'  : r'[^\\s]+'                ,  # _any_ not blank char (strange..)
+\par   'flag'      : r'[%s]+'%sedcmds['flag'] ,  # list of all flags
+\par   'topopts'   : r'#!\\s*/[^\\s]+\\s+-([nf]+)'  # options on #!/bin/sed header
+\par \}
+\par 
+\par # All fields used by the internal SED command dictionary
+\par cmdfields = [
+\par   'linenr',
+\par   'addr1', 'addr1flag', 'addr2', 'addr2flag', 'lastaddr', 'modifier',
+\par   'id', 'content', 'delimiter', 'pattern', 'replace', 'flag',
+\par   'extrainfo', 'comment'
+\par ]
+\par #XXX Don't change the order! There is a piggy cmdfields[6:] ahead
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                         Auxiliar Functions - Tools
+\par #-------------------------------------------------------------------------------
+\par 
+\par def escapeTextCommandsSpecials(str):
+\par     str = string.replace(str, '\\\\', '\\\\\\\\')         # escape escape
+\par     return str
+\par 
+\par def isOpenBracket(str):
+\par     # bracket open:  [   \\\\[   \\\\\\\\[ ...
+\par     # not bracket : \\[  \\\\\\[  \\\\\\\\\\[ ...
+\par     isis = 0
+\par     delim = '['
+\par     str = re.sub('\\[:[a-z]+:]', '', str)            # del [:charclasses:]
+\par     if string.find(str, delim) == -1: return 0      # hey, no brackets!
+\par     
+\par     # Only the last two count
+\par     patterns = string.split(str, delim)[-2:]
+\par     Debug('bracketpatts: %s'%patterns,3)
+\par     possibleescape, bracketpatt = patterns
+\par     
+\par     # Maybe the bracket is escaped, and is not a metachar?
+\par     m = re.search(r'\\\\+$', possibleescape)          # escaped bracket
+\par     if m and len(m.group(0))%2:                     # odd number of escapes
+\par         Debug('bracket INVALID! - escaped',2)
+\par         isis = 0
+\par     elif string.find(bracketpatt, ']') == -1:       # not closed by ]
+\par         Debug('bracket OPEN! - found! found!',2)
+\par         isis = 1                                # it is opened! &:)
+\par     
+\par     return isis
+\par 
+\par def paintHtml(id, txt=''):
+\par     # Escape HTML special chars
+\par     if txt:
+\par         txt = string.replace(txt, '&', '&amp;')
+\par         txt = string.replace(txt, '>', '&gt;')
+\par         txt = string.replace(txt, '<', '&lt;')
+\par     # Some color adjustments and emphasis
+\par     if   id == 'id' and txt in sedcmds['block']:
+\par         id = 'delimiter'
+\par     elif id == 'id' and txt == ':':
+\par         id = 'content'
+\par     elif id == 'replace':   # highlight \\n, & and \\$
+\par         newtxt = paintHtml('special', '\\\\'+linesep)
+\par         txt = string.replace(txt, '\\\\'+linesep, newtxt)
+\par         txt = re.sub(
+\par               '(\\\\\\\\[1-9]|&amp;)', paintHtml('special', '\\\\1'), txt)
+\par     elif id == 'pattern':   # highlight ( and |
+\par         txt = re.sub(
+\par               '(\\\\\\\\)([(|])', '\\\\1'+paintHtml('pattmeta', '\\\\2'), txt)
+\par     elif id == 'plaintext': # highlight \\$
+\par         newtxt = paintHtml('special', '\\\\'+linesep)
+\par         txt = string.replace(txt, '\\\\'+linesep, newtxt)
+\par     elif id == 'branch':    # nice link to the label!
+\par         txt = '<a href="#%s">%s</a>'%(txt,txt)
+\par     elif id == 'target':    # link target
+\par         txt = '<a name="%s">%s</a>'%(txt,txt)
+\par         id = 'content'
+\par     # Paint it!
+\par     if html_colors.get(id) and txt:
+\par         font_color = html_colors[id]
+\par         txt = '<font color="%s"><b>%s</b></font>'%(font_color, txt)
+\par     return txt
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                 SedCommand class - Know All About Commands
+\par #-------------------------------------------------------------------------------
+\par 
+\par # TIP: SedCommand already receives lstrip()ed data and data != None
+\par class SedCommand:
+\par     def __init__(self, abcde):
+\par         self.id = abcde[0]   # s
+\par         self.content = ''    # txt, filename
+\par         self.modifier = ''   # !
+\par         self.full = ''       # !s/abc/def/g
+\par         
+\par         # for s/// & y///
+\par         self.pattern = ''    # abc
+\par         self.replace = ''    # def
+\par         self.delimiter = ''  # /
+\par         self.flag = ''       # g
+\par         
+\par         self.isok = 0
+\par         self.comment = ''
+\par         self.rest = self.junk = abcde
+\par         self.extrainfo = ''
+\par         
+\par         if self.id == '!':
+\par             self.modifier = self.id                  # set modifier
+\par             self.junk = string.lstrip(self.junk[1:]) # del !@junk
+\par             self.id = self.junk[0]                   # set id again
+\par         self.junk = self.junk[1:]                     # del id@junk
+\par         
+\par         #self.setId()
+\par         self.doItAll()
+\par     
+\par     def doItAll(self):
+\par         # here, junk arrives without the id, but not lstripped (s///)
+\par         id = self.id
+\par         
+\par         #TODO put pending comment on the previous command (h ;#comm)
+\par         if id == '#':
+\par             Debug('type: comment',3)
+\par             self.comment = self.id+self.junk
+\par             self.junk = ''
+\par             self.isok = 1
+\par         
+\par         elif id in sedcmds['solo']:
+\par             Debug('type: solo',3)
+\par             self.isok = 1
+\par         elif id in sedcmds['block']:
+\par             Debug('type: block',3)
+\par             self.isok = 1
+\par         elif id in sedcmds['text']:
+\par             Debug('type: text',3)
+\par             if self.junk[-1] != '\\\\': # if not \\ at end, finished
+\par                 # ensure \\LineSep at begining
+\par                 self.content = re.sub(
+\par                                r'^\\\\%s'%linesep, '', self.junk)
+\par                 self.content = '\\\\%s%s'%(linesep,self.content)
+\par                 self.isok = 1
+\par         
+\par         elif id in sedcmds['jump']:
+\par             Debug('type: jump',3)
+\par             self.junk = string.lstrip(self.junk)
+\par             m = re.match(patt['jump_label'], self.junk)
+\par             if m:
+\par                 self.content = m.group()
+\par                 self.junk = self.junk[m.end():]
+\par                 self.isok = 1
+\par         
+\par         elif id in sedcmds['file']:
+\par         #TODO deal with valid cmds like 'r bla;bla' and 'r bla ;#comm'
+\par         #TODO spaces and ; are valid as filename chars
+\par             Debug('type: file',3)
+\par             self.junk = string.lstrip(self.junk)
+\par             m = re.match(patt['filename'], self.junk)
+\par             if m:
+\par                 self.content = m.group()
+\par                 self.junk = self.junk[m.end():]
+\par                 self.isok = 1
+\par         
+\par         elif id in sedcmds['multi']:                  # s/// & y///
+\par             Debug('type: multi',3)
+\par             self.delimiter = self.junk[0]
+\par             ps = SedAddress(self.junk)
+\par             hs = ''
+\par             if ps.isok:
+\par                 self.pattern = ps.pattern
+\par                 self.junk = ps.rest
+\par                 # 'replace' opt to avoid openbracket check,
+\par                 # because 's/bla/[/' is ok
+\par                 hs = SedAddress(self.delimiter+self.junk,
+\par                                 'replace')
+\par                 if hs.isok:
+\par                     self.replace = hs.pattern
+\par                     self.junk = string.lstrip(hs.rest)
+\par                     
+\par                     # great, s/patt/rplc/ sucessfully taken
+\par             
+\par             if hs and hs.isok and self.junk:    # there are flags?
+\par                 Debug('possible s/// flag: %s'%self.junk,3)
+\par                 m = re.match('(%s\\s*)+'%patt['flag'],self.junk)
+\par                 if m:
+\par                     self.flag = m.group()
+\par                     self.junk = string.lstrip(
+\par                        self.junk[m.end():]) # del flag
+\par                     self.flag = re.sub(
+\par                        '\\s','',self.flag)  # del blanks@flag
+\par                     Debug('FOUND s/// flag: %s'%(
+\par                        string.strip(self.flag)))
+\par                     
+\par                     ### now we've got flags also
+\par                 
+\par                 if 'w' in self.flag:         # write file flag
+\par                     m = re.match(patt['filename'],self.junk)
+\par                     if m:
+\par                         self.content = m.group()
+\par                         Debug('FOUND s///w filename: %s'%self.content)
+\par                         self.junk = string.lstrip(
+\par                                     self.junk[m.end():])
+\par                         
+\par                         ### and now, s///w filename
+\par                         ### is saved also
+\par             
+\par             if hs and hs.isok: self.isok = 1
+\par         
+\par         else:
+\par             Error("invalid SED command '%s' at line %d"%(id,linenr))
+\par         
+\par         if self.isok:
+\par             self.full = composeSedCommand(vars(self))
+\par             self.full = string.replace(self.full, '\\n', linesep)
+\par             self.rest = string.lstrip(self.junk)
+\par             Debug('FOUND command: %s'%self.full)
+\par             Debug('rest left: %s'%self.rest,2)
+\par             
+\par             possiblecomment = self.rest
+\par             if possiblecomment and possiblecomment[0] == '#':
+\par                 self.comment = possiblecomment
+\par                 Debug('FOUND comment: %s'%self.comment)
+\par         Debug('SedCommand: %s'%vars(self),3)
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                 SedAddress class - Know All About Addresses
+\par #-------------------------------------------------------------------------------
+\par 
+\par #TIP an address is NOT multiline
+\par class SedAddress:
+\par     def __init__(self, abcde, context='addr'):
+\par         self.delimiter = ''
+\par         self.pattern = ''
+\par         self.flag = ''
+\par         self.full = ''
+\par         self.html = ''
+\par         
+\par         self.isline = 0
+\par         self.isok = 0
+\par         self.escape = ''
+\par         self.rest = self.junk = abcde
+\par         self.context = context
+\par         
+\par         self.setType()                           # numeric or pattern?
+\par         self.doItAll()
+\par         Debug('SedAddress: %s'%vars(self),3)
+\par     
+\par     def doItAll(self):
+\par         if self.isline: self.setLineAddr()
+\par         else          : self.setPattAddr()
+\par         
+\par         if self.isok:
+\par             self.full = '%s%s%s%s'%(
+\par                         self.escape,
+\par                         self.delimiter,
+\par                         self.pattern,
+\par                         self.delimiter)
+\par             if action == 'html':
+\par                 self.html = '%s%s%s%s'%(
+\par                    paintHtml('escape'   , self.escape   ),
+\par                    paintHtml('delimiter', self.delimiter),
+\par                    paintHtml('pattern'  , self.pattern  ),
+\par                    paintHtml('delimiter', self.delimiter))
+\par             Debug('FOUND addr: %s'%self.full)
+\par             
+\par             cutlen = len(self.full)+len(self.flag)
+\par             self.rest = self.rest[cutlen:]      # del junk's addr
+\par             self.flag = string.strip(self.flag) # del flag's blank
+\par             Debug('rest left: %s'%self.rest,2)
+\par         else:
+\par             Debug('OH NO! partial addr: %s'%self.rest)
+\par     
+\par     def setType(self):
+\par         id = self.junk[0]
+\par         if re.match('[0-9$]', id):        # numeric addr, easy!
+\par             self.isline = 1
+\par         else:                             # oh no, pattern
+\par             if id == '\\\\':                # strange delimiter (!/)
+\par                 self.escape = '\\\\'
+\par                 self.junk = self.junk[1:] # del escape
+\par             self.delimiter = self.junk[0] # set delimiter
+\par             self.junk = self.junk[1:]     # del delimiter@junk
+\par     
+\par     def setLineAddr(self):
+\par         m = re.match(r'[0-9]+|\\$', self.junk)
+\par         self.pattern = m.group(0)
+\par         self.isok = 1
+\par     
+\par     def setPattAddr(self):
+\par         ###
+\par         # similar to command finder:
+\par         # - split at pattern delimiter
+\par         # - if address not terminated, join with next split chunk (loop)
+\par         # - address found, return it
+\par         #
+\par         # We can deal with really catchy valid addresses like:
+\par         #   /\\/[/]\\\\/   and   \\;\\;[;;]\\\\;
+\par         incompleteaddr = ''
+\par         
+\par         Debug('addr delimiter: '+self.delimiter,2)
+\par         patterns = string.split(self.junk, self.delimiter)
+\par         Debug('addr patterns: %s'%patterns,2)
+\par         
+\par         while patterns:
+\par             possiblepatt = patterns.pop(0)
+\par             
+\par             # if address not terminated, join next
+\par             if incompleteaddr:
+\par                 possiblepatt = string.join(
+\par                                [incompleteaddr, possiblepatt],
+\par                                self.delimiter)
+\par                 incompleteaddr = ''
+\par             Debug('possiblepatt: '+possiblepatt,2)
+\par             
+\par             # maybe splitted at a (valid) escaped delimiter?
+\par             if re.search(r'\\\\+$', possiblepatt):
+\par                 m = re.search(r'\\\\+$', possiblepatt)
+\par                 if len(m.group(0))%2:
+\par                     Debug('address INCOMPLETE! - ends with \\\\ alone')
+\par                     incompleteaddr = possiblepatt
+\par                     continue
+\par             
+\par             if self.context != 'replace':
+\par                 # maybe splitted at a delimiter inside
+\par                 # char class []?
+\par                 # BUG: []/[] is not catched - WONTFIX
+\par                 if isOpenBracket(possiblepatt):
+\par                     Debug('address INCOMPLETE! - open bracket')
+\par                     incompleteaddr = possiblepatt
+\par                     continue
+\par             
+\par             break                          # it's an address!
+\par         
+\par         if patterns:                      # must have something left
+\par             if patterns[0]:                # the rest is a flag?
+\par                 Debug('possible addr flag: %s'%patterns[0],3)
+\par                 m = re.match('\\s*I\\s*', patterns[0])
+\par                 if m:                       # yes, a flag!
+\par                     self.flag = m.group()    # set addr flag
+\par                     Debug('FOUND addr flag: %s'%(
+\par                           string.strip(self.flag)))
+\par             self.pattern = possiblepatt
+\par             self.isok = 1
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                 Hardcore Address/Command Composer Functions
+\par #-------------------------------------------------------------------------------
+\par 
+\par def composeSedAddress(dict):
+\par     addr1 = ''
+\par     if action == 'html':
+\par         if dict['addr1']: addr1 = dict['addr1html']
+\par         if dict['addr2']: addr2 = dict['addr2html']
+\par     else:
+\par         addr1 = '%s%s'%(dict['addr1'],dict['addr1flag'])
+\par         if dict['addr2']:
+\par             addr2 = '%s%s'%(dict['addr2'],dict['addr2flag'])
+\par     
+\par     if dict['addr2']: addr = '%s,%s'%(addr1,addr2)
+\par     else: addr = addr1
+\par     
+\par     if addr: addr = '%s '%(addr)  # visual addr/cmd separation
+\par     return addr
+\par 
+\par def composeSedCommand(dict):
+\par     if dict['delimiter']:         # s///
+\par         if action != 'html':
+\par             cmd = '%s%s%s%s%s%s%s%s'%(
+\par                 dict['modifier'] ,dict['id'],
+\par                 dict['delimiter'],dict['pattern'],
+\par                 dict['delimiter'],dict['replace'],
+\par                 dict['delimiter'],dict['flag'])
+\par             if dict['content']:   # s///w filename
+\par                 cmd = cmd+' '+dict['content']
+\par         else:
+\par             cmd = """%s%s%s%s%s%s%s%s"""%(
+\par                 paintHtml('modifier' , dict['modifier'] ),
+\par                 paintHtml('id'       , dict['id']       ),
+\par                 paintHtml('delimiter', dict['delimiter']),
+\par                 paintHtml('pattern'  , dict['pattern']  ),
+\par                 paintHtml('delimiter', dict['delimiter']),
+\par                 paintHtml('replace'  , dict['replace']  ),
+\par                 paintHtml('delimiter', dict['delimiter']),
+\par                 paintHtml('flag'     , dict['flag']     ))
+\par             if dict['content']:   # s///w filename
+\par                 painted = paintHtml('content', dict['content'])
+\par                 cmd = '%s %s'%(cmd, painted)
+\par     else:
+\par         idsep=''
+\par         # spacer on r,w,b,t commands only
+\par         spaceme = sedcmds['file']+sedcmds['jump']
+\par         spaceme = string.replace(spaceme,':','') # : label (no space!)
+\par         if dict['id'] in spaceme: idsep=' '
+\par         cmd = '%s%s%s%s'%(
+\par               dict['modifier'],
+\par               dict['id'],
+\par               idsep,
+\par               dict['content'])
+\par         if action == 'html':
+\par             if   dict['id'] in sedcmds['text']:
+\par                 content_type = 'plaintext'
+\par             elif dict['id'] in 'bt':
+\par                 content_type = 'branch'
+\par             elif dict['id'] == ':':
+\par                 content_type = 'target'
+\par             else:
+\par                 content_type = 'content'
+\par             
+\par             cmd = '%s%s%s%s'%(
+\par                    paintHtml('modifier'  , dict['modifier']),
+\par                    paintHtml('id'        , dict['id']      ),
+\par                    idsep,
+\par                    paintHtml(content_type, dict['content'] ))
+\par     cmd = string.replace(cmd, linesep, '\\n')
+\par     return cmd
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                    The dump* Functions - They 4mat 4you!
+\par #-------------------------------------------------------------------------------
+\par 
+\par def dumpKeyValuePair(datalist):
+\par     "Shows field:value command data line by line (lots of lines!)"
+\par     for data in datalist[1:]:                         # skip headers at 0
+\par         if not data['id']: continue                   # blank line
+\par         for key in datalist[0]['fields']:
+\par             if key == 'replace':
+\par                 data[key] = string.replace(
+\par                             data[key],
+\par                             linesep,
+\par                             newlineshow)
+\par             print "%10s:%s"%(key,data[key])
+\par         print
+\par 
+\par # Format: line:ad1:ad1f:ad2:ad2f:mod:cmd:content:delim:patt:rplc:flag:comment
+\par def dumpOneliner(datalist, fancy=0):
+\par     "Shows a command per line, elements separated by : (looooong lines)"
+\par     r = n = ''
+\par     if fancy: r = '\\033[7m'; n = '\\033[m'
+\par     for data in datalist[1:]:                         # skip headers at 0
+\par         outline = data['linenr']
+\par         if data['id']:
+\par             for key in datalist[0]['fields'][1:]:     # skip linenr
+\par                 outline = '%s:%s%s%s'%(outline,r,data[key],n)
+\par         print outline
+\par 
+\par def dumpCute(datalist):
+\par     "Shows a strange representation of SED commands. Use --dumpcute."
+\par     r = color_REV; n = color_NO
+\par     for data in datalist[1:]:                         # skip headers at 0
+\par         if not data['id']:
+\par             print '%40s'%'[blank]'
+\par         elif data['id'] == '#' :
+\par             print data['comment']
+\par         else:
+\par             idsep=''
+\par             if data['id'] in 'bt': idsep=' '
+\par             cmd = '%s%s%s%s'%(
+\par                   data['modifier'],
+\par                   data['id'],
+\par                   idsep,
+\par                   data['content'])
+\par             if data['delimiter']:
+\par                 cmd = '%s%s%s%s%s%s%s'%(cmd,
+\par                     data['delimiter'],data['pattern'],
+\par                     data['delimiter'],data['replace'],
+\par                     data['delimiter'],data['flag'])
+\par             cmd = string.replace(cmd, linesep, n+newlineshow+r)
+\par             print '%s'%'-'*40
+\par             print 'adr: %s%s%s%s  :::  %s%s%s%s'%(
+\par                    r,data['addr1'],data['addr1flag'],n,
+\par                    r,data['addr2'],data['addr2flag'],n)
+\par             print 'cmd: %s%s%s   [%s]'%(r,cmd,n,data['comment'])
+\par 
+\par # dumpScript: This is a handy function, used by --indent AND --htmlize
+\par # It formats the SED script in a humam-friendly way, with one command
+\par # per line and adding spaces on the right places. If --htmlize, it
+\par # also adds the HTML code to the script.
+\par #
+\par def dumpScript(datalist, indent_prefix):
+\par     "Shows the indented script in plain text or HTML!"
+\par     indfmt = \{ 'string' : indent_prefix, 'initlevel'  : 0,
+\par                'addrsep': ',' , 'joinaddrcmd': 0 \}
+\par     outlist = []
+\par     adsep = indfmt['addrsep']
+\par     indent = indfmt['initlevel']
+\par     
+\par     if action == 'html': outlist.append(html_data['header'])
+\par     
+\par     for data in datalist[1:]:                         # skip headers at 0
+\par         if not data['id']:
+\par             outlist.append('\\n')
+\par             continue                                  # blank line
+\par         if data['id'] == '#' :
+\par             indentstr = indfmt['string']*indent
+\par             if action != 'html':
+\par                 outlist.append('%s%s\\n'%(
+\par                                indentstr,
+\par                                data['comment']))
+\par             else:
+\par                 outlist.append('%s%s\\n'%(
+\par                                indentstr,
+\par                                paintHtml('comment',
+\par                                          data['comment'])))
+\par         else:
+\par             if data['id'] == '\}': indent = indent - 1
+\par             # only indent++ after open \{
+\par             indentstr = indfmt['string']*indent
+\par             if data['id'] == '\{': indent = indent + 1
+\par             
+\par             cmd = composeSedCommand(data)
+\par             addr = composeSedAddress(data)
+\par             
+\par             # saving full line
+\par             comm = ''
+\par             if data['comment']: comm = ';'+data['comment']
+\par             cmd = '%s%s%s'%(indentstr,addr,cmd)
+\par             outlist.append('%-39s%s\\n'%(cmd,comm))
+\par     
+\par     if action == 'html':
+\par         outlist.append(html_data['footer'])
+\par     
+\par     for line in outlist: print line,                  # print the result
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                    doDebug - Here is where the fun begins
+\par #-------------------------------------------------------------------------------
+\par #
+\par ### doDebug
+\par #
+\par # This function performs the --debug action.
+\par #
+\par # After the SED script was parsed by the parsed (below), this function
+\par # is called with the script data found. It loops, shouts and screems,
+\par # inserting the nice DEBUG lines between the SED script commands.
+\par #
+\par # After all lines are composed, it call the system's SED to run the
+\par # script, and SED will do it's job, but this time showing you all the
+\par # secrets that the PATTERN SPACE and HOLD SPACE buffers holds.
+\par #
+\par def doDebug(datalist):
+\par     outlist = []
+\par     cmdlineopts = 'f'
+\par     t_count = 0
+\par     hideregisters = 0
+\par     
+\par     if datalist[0].has_key('topopts'):
+\par         cmdlineopts = datalist[0]['topopts']
+\par     
+\par     # If we have one or more t commands on the script, we need to save
+\par     # the t command status between debug commands. As they perform
+\par     # s/// commands, the t status of the "last substitution" is lost.
+\par     # So, we save the status doing a nice loop trick before *every*
+\par     # command (necessary overhead). This loops uses the :zzsetNNN and
+\par     # zzclrNNN labels, where NNN is the label count.
+\par     # TIP: t status resets: line read, t call
+\par     if datalist[0]['has_t']: t_count = 1
+\par     
+\par     for i in range(len(datalist)):
+\par         if i == 0: continue                         # skip headers at 0
+\par         data = datalist[i]
+\par         if not data['id']: continue                 # ignore blank line
+\par         if data['id'] == '#': outlist.append('%s\\n'%(data['comment']))
+\par         else:
+\par             cmd = composeSedCommand(data)
+\par             addr = composeSedAddress(data)
+\par             
+\par             cmdshow = string.replace(cmd, '\\n',
+\par                                      newlineshow+color_YLW)
+\par             cmdshow = escapeTextCommandsSpecials(addr+cmdshow)
+\par             showsedcmd = string.replace(showcomm, '\\a', cmdshow)
+\par             
+\par             registers = showpatt + showhold
+\par             if hideregisters: registers = ''
+\par             
+\par             showall = '%s%s'%(registers,showsedcmd)
+\par             
+\par             # Add the 't status' trick to commands.
+\par             # Exception: read-next-line commands (n,d,q)
+\par             # Exception: no PATT/HOLD registers to show (no s///)
+\par             if t_count and showall:
+\par                 if data['id'] not in 'ndq' and registers:
+\par                     tmp = string.replace(save_t, '\\a',
+\par                                          '%03d'%t_count)
+\par                     showall = string.replace(tmp, '#DEBUG#',
+\par                                              showall)
+\par                     t_count = t_count + 1
+\par             
+\par             # null cmd to restore last addr: /addr/y/!/!/
+\par             if data['lastaddr']:
+\par                 showall = showall+debug_prefix+\\
+\par                     data['lastaddr']+nullcomm+'\\n'
+\par             
+\par             # after jump or block commands don't show
+\par             # registers, because they're not affected.
+\par             # exception: after b or t without target
+\par             # (read next line)
+\par             hideregisters = 0
+\par             if data['id'] in sedcmds['jump'] and data['content']:
+\par                 hideregisters = 1
+\par             elif data['id'] in sedcmds['block']:
+\par                 hideregisters = 1
+\par             
+\par             outlist.append("%s#%s\\n%s\\n"%(showall,'-'*50,addr+cmd))
+\par     
+\par     outlist.append(showpatt + showhold)           # last line status
+\par     
+\par     # executing sed script
+\par     cmdextra = inputfiles = ''
+\par     if action_modifiers.count('_stdout-only'):
+\par         #cmdextra = "| egrep -v '^PATT|^HOLD|^COMM|\\$$|\\\\$'"  # sed
+\par         cmdextra = "-l 5000 | egrep -v '^PATT|^HOLD|^COMM'"   # gsed
+\par     for file in textfiles: inputfiles = '%s %s'%(inputfiles,file)
+\par     if dump_debug:
+\par         for line in map(lambda x:re.sub('\\n$','',x), outlist):
+\par             print line
+\par         print "\\n# Debugged SED script generated by %s-%s (%s)"%(
+\par             myname, myversion, myhome)
+\par     else:
+\par         tmpfile = tempfile.mktemp()
+\par         write_file(tmpfile, outlist)
+\par         os.system("%s -%s %s %s %s"%(
+\par                    sedbin, cmdlineopts, tmpfile, inputfiles, cmdextra))
+\par         os.remove(tmpfile)
+\par 
+\par 
+\par 
+\par ################################################################################
+\par #                                                                              #
+\par #                               SED Script Parser                              #
+\par #                           -------------------------                          #
+\par #                      Extract Every Info of Every Command                     #
+\par #                                                                              #
+\par ################################################################################
+\par #
+\par ### Global view of the parser:
+\par #
+\par # - Load the original sed script to a list, then let the file free
+\par # - Scan the list (line by line)
+\par # - As user can do more than one sed command on the same line, we split
+\par #   "possible valid commands" by ; (brute force method)
+\par # - Validate each splitted command
+\par # - If not valid, join next, and try to validate again (loop here)
+\par # - If hit EOL and still not valid, join next line, validate (loop here)
+\par # - Hit EOF, we've got all info at hand
+\par # - Generate a result list with all sed command found and its data, each
+\par #   command having it's own dictionary: \{addr1: '', addr2: '', cmd: ''\}
+\par # - ZZ is the list
+\par ###
+\par 
+\par 
+\par incompletecmd = ''
+\par incompleteaddr = ''
+\par incompletecmdline = ''
+\par addr1 = addr2 = ''
+\par lastaddr = ''
+\par lastsubref = ''
+\par has_t = 0
+\par cmdsep = ';'
+\par linesep = '@#linesep#@'
+\par newlineshow = '%s\\\\N%s'%(color_RED,color_NO)
+\par newlinemark = r']]\\([\\)'
+\par blanklines= []
+\par ZZ = []
+\par ZZ.append(\{\})  #for header
+\par 
+\par linenr = 0
+\par cmddict = \{\}
+\par for line in sedscript:
+\par     linenr = linenr + 1
+\par     
+\par     if linenr == 1:                            # 1st line #!/... finder
+\par         m= re.match(patt['topopts'], line)
+\par         if m:                                 # we have options!
+\par             ZZ[0]['topopts'] = m.group(1)     # saved on list header
+\par             del m
+\par     
+\par     if incompletecmdline:
+\par         line = string.join([incompletecmdline, line], linesep)
+\par     
+\par     if line and line[-1] == '\\n': line = line[:-1]    # s/\\n$//
+\par     if not string.strip(line):                        # blank line
+\par         blanklines.append(linenr)
+\par         ZZ.append(\{'linenr': linenr, 'id': ''\})
+\par         continue
+\par     
+\par     if DEBUG: print ; Debug('line:%d: %s'%(linenr,line))
+\par     
+\par     # bruteforce: split lines in ; char
+\par     # exceptions: comments and a,c,i text
+\par     if string.lstrip(line)[0] == '#':
+\par         linesplit = [string.lstrip(line)]           # comments
+\par     elif string.lstrip(line)[0] in sedcmds['text']:
+\par         linesplit = [line]                          # a, c, i
+\par     else:
+\par         linesplit = string.split(line, cmdsep)      # split lines at ;
+\par     
+\par     while linesplit:
+\par         possiblecmd = linesplit.pop(0)
+\par         if not incompletecmdline:
+\par             if incompletecmd:
+\par                 possiblecmd = string.join(
+\par                               [incompletecmd, possiblecmd],
+\par                               cmdsep)
+\par             if incompleteaddr:
+\par                 possiblecmd = string.join(
+\par                               [incompleteaddr, possiblecmd],
+\par                               cmdsep)
+\par         else:
+\par             incompletecmdline = ''
+\par         
+\par         if not possiblecmd: continue # ; at EOL or useless seq of ;;;;
+\par         
+\par         Debug('possiblecmd: '+possiblecmd,2)
+\par         possiblecmd = string.lstrip(possiblecmd) # del space at begin
+\par         cmdid = possiblecmd[0]                   # get 1st char(sed cmd)
+\par         
+\par         if cmdid == '\\\\' and len(possiblecmd) == 1:  # to get \\;addr;
+\par             incompleteaddr = cmdid
+\par             continue
+\par         
+\par         
+\par         ###----------- Get addresses routine ---------------
+\par         #
+\par         # To handle ranges, match addresses one by one:
+\par         # - Matched addr at ^   ? Get it and set addr1.
+\par         # - Next char is a comma? It's a range. Get & set addr2.
+\par         # - Addresses are cutted from command, continue.
+\par         #
+\par         # We're not using split cause it fails at /bla[,]bla/ address
+\par         #
+\par         while 1:
+\par             if not possiblecmd[0] in sedcmds['addr']: break # NOaddr
+\par             
+\par             addr = SedAddress(possiblecmd)            # get data
+\par             
+\par             if addr.isok:
+\par                 if not cmddict.has_key('addr1'):
+\par                     cmddict['linenr'] = linenr
+\par                     cmddict['addr1'] = addr.full
+\par                     cmddict['addr1flag'] = addr.flag
+\par                     cmddict['addr1html'] = addr.html
+\par                     if addr.pattern: lastaddr = addr.full
+\par                     else: cmddict['lastaddr'] = lastaddr
+\par                 else:
+\par                     cmddict['addr2'] = addr.full
+\par                     cmddict['addr2flag'] = addr.flag
+\par                     cmddict['addr2html'] = addr.html
+\par                     if addr.pattern: lastaddr = addr.full
+\par                     else: cmddict['lastaddr'] = lastaddr
+\par                 rest = addr.rest
+\par             else:
+\par                 incompleteaddr = addr.rest
+\par                 break                        # join more cmds
+\par             
+\par             # it's a range!
+\par             if not cmddict.has_key('addr2') and rest[0] == ',':
+\par                 # del comma and blanks
+\par                 possiblecmd = string.lstrip(rest[1:])
+\par                 continue                     # process again
+\par             else:
+\par                 incompleteaddr = ''
+\par                 possiblecmd = string.lstrip(rest)
+\par                 break                        # we're done!
+\par         
+\par         if incompleteaddr: continue                   # need more cmds!
+\par         for key in cmdfields[:6]:  # filling not set addr fields
+\par             if not cmddict.has_key(key): cmddict[key] = ''
+\par         
+\par         ###-------------------------------------------------
+\par         ### from here, address is no more
+\par         ###-------------------------------------------------
+\par         
+\par         if not incompletecmd:
+\par             if not possiblecmd:
+\par                 Error('missing command at line %d!'%linenr)
+\par             cmd = SedCommand(possiblecmd)
+\par             if not cmddict['linenr']:
+\par                 cmddict['linenr'] = linenr
+\par         else:
+\par             cutme = len(cmd.modifier+cmd.id)
+\par             cmd.rest = possiblecmd
+\par             cmd.junk = possiblecmd[cutme:]
+\par             cmd.doItAll()
+\par         
+\par         if cmd.isok:
+\par             for key in cmdfields[6:]:       # filling cmd entry data
+\par                 cmddict[key] = getattr(cmd, key)
+\par             
+\par             # saving last address content
+\par             if cmd.pattern:
+\par                 lastaddr = cmd.delimiter+\\
+\par                            cmd.pattern  +\\
+\par                            cmd.delimiter
+\par             elif cmd.delimiter:
+\par                 cmddict['lastaddr'] = lastaddr
+\par             
+\par             if cmd.id == 's':
+\par                 lastsubref = len(ZZ)    # saving s/// position
+\par             if cmd.id == 't':               # related s/// reference
+\par                 cmddict['extrainfo'] = lastsubref 
+\par                 has_t = 1
+\par             
+\par             ZZ.append(cmddict)              # saving full cmd entry
+\par             Debug('FULL entry: %s'%cmddict,3)
+\par             cmddict = \{\}                    # reset data holder
+\par             # reset incomplete holders
+\par             incompletecmd = incompletecmdline = ''
+\par             
+\par             if cmd.id   == '\{': linesplit.insert(0,cmd.rest)
+\par             if cmd.rest == '\}': linesplit.insert(0,cmd.rest)
+\par             # ^---  3\{p;d\} (gnu)
+\par             del cmd
+\par         else:
+\par             incompletecmd = cmd.rest       # not ok, will join next
+\par             Debug('INCOMPLETE cmd: %s'%incompletecmd)
+\par     
+\par     if incompletecmd:
+\par         incompletecmdline = incompletecmd
+\par 
+\par # populating list header
+\par ZZ[0]['blanklines'] = blanklines
+\par ZZ[0]['fields'] = cmdfields
+\par ZZ[0]['has_t'] = has_t
+\par 
+\par # Now the ZZ list is full.
+\par # It has every info that sedsed can extract from a SED script.
+\par # From now on, all functions and classes will manage this list.
+\par # If you are curious about it, just uncomment the line below and
+\par # prepare yourself for an ASCII nightmare ;)
+\par #print color_YLW + `ZZ` + color_NO ; sys.exit(0)
+\par 
+\par 
+\par 
+\par ################################################################################
+\par #                                                                              #
+\par #                               The SED Emulator!                              #
+\par #                           -------------------------                          #
+\par #                       Not 100% done, but already usable                      #
+\par #                                                                              #
+\par ################################################################################
+\par #
+\par # The emulator still don't support complex regexes and '$' as line address.
+\par # Use the --emu command line option to run the emulator.
+\par # If you don't have SED on your system, you can use --emu to have a SED-like
+\par # program!
+\par #
+\par # Example:
+\par #    $ echo 'foo bar' | sedsed --emu 's/.*/SED/'
+\par #    SED
+\par #
+\par 
+\par class emuSed:
+\par #TODO check for syntax errors
+\par #TODO convert regexes
+\par #TODO organize debug msgs
+\par #TODO make all this script a valid/callable python module
+\par     def __init__(self, datalist, textfile, debug=0):
+\par         self.inlist = ['']
+\par         self.outlist = []
+\par         self.cmdlist = []
+\par         self.labels = \{\}
+\par         self.blocks = \{\}
+\par         self.addr1 = self.addr2 = ''
+\par         self.linenr = 0
+\par         self.cmdnr = 0
+\par         self.holdspace = ''
+\par         self.line = ''
+\par         self.cmd = ''
+\par         
+\par         self.f_debug = debug
+\par         self.f_stdin = 0
+\par         self.rewindScript()
+\par         
+\par         # getting input data location (stdin or file)
+\par         if textfile == '-': self.f_stdin = 1
+\par         else: self.inlist.extend(read_file(textfile))
+\par         
+\par         # wipe null commands, save labels and block info
+\par         blockopen = []
+\par         for data in datalist[1:]:                # skip headers at 0
+\par             if not data['id'] or data['id'] == '#': continue
+\par             self.cmdlist.append(data)
+\par             cmdpos = len(self.cmdlist)-1
+\par             if   data['id'] == ':':
+\par                 self.labels[data['content']] = cmdpos
+\par             elif data['id'] == '\{':
+\par                 blockopen.append(cmdpos)
+\par             elif data['id'] == '\}':
+\par                 self.blocks[blockopen.pop()] = cmdpos
+\par         del blockopen
+\par         
+\par         self.run()
+\par     
+\par     def rewindScript(self):
+\par         self.EOS = 0     # end of script
+\par         self.EOF = 0     # end of file
+\par         self.cmdnr = -1
+\par         self.f_delme = 0
+\par         self.f_inrange = 0
+\par         self.f_joinme = 0
+\par     
+\par     def readNextLine(self):
+\par         self.linenr = self.linenr +1
+\par         #TODO $ matches everyline.
+\par         #TODO GNUsed retains stdout until next only if there is a $ addr
+\par         if self.f_stdin:                 # reading STDIN interactively
+\par             inputline = sys.stdin.readline()
+\par             if not inputline: self.EOF = 1 ; return
+\par             self.inlist.append(inputline[:-1])   # del \\n$
+\par         if self.linenr > len(self.inlist)-1:     # no more lines!
+\par             self.EOF = 1 ; return
+\par         next = self.inlist[self.linenr]
+\par         if self.f_joinme: self.line = self.line+'\\n'+next
+\par         else            : self.line = next
+\par         Debug('line readed:%d:%s'%(self.linenr,`self.line`), 1)
+\par     
+\par     def _getAddress(self, fulladdr):
+\par         addr = fulladdr                          # number
+\par         if   addr[0] == '/' : addr = addr[1:-1]  # del //
+\par         elif addr[0] == '\\\\': addr = addr[2:-1]  # del \\xx
+\par         return addr
+\par     
+\par     def _matchAddress(self, addr):
+\par         ok = 0
+\par         if addr[0] in '0123456789':              # 003 is valid
+\par             if self.linenr == int(addr): ok = 1
+\par         elif addr == '$':                        # last line
+\par             if self.linenr == len(self.inlist)-1: ok = 1
+\par         elif re.search(addr,self.line): ok = 1   # pattern
+\par         if ok: Debug('MATCHed addr:%s'%`addr`,2)
+\par         return ok
+\par     
+\par     def testAddress(self):
+\par         ok = 0 ; cmd = self.cmd ; PS = self.line
+\par         
+\par         if not cmd['addr1']:
+\par             ok = 1              # no address
+\par             Debug('NO address!', 3)
+\par         else:
+\par             self.addr1 = self._getAddress(cmd['addr1'])
+\par             Debug('addr1: '+self.addr1, 2)
+\par         
+\par         if cmd['addr2']:                         # range
+\par             self.addr2 = self._getAddress(cmd['addr2'])
+\par             Debug('addr2: '+self.addr2, 2)
+\par             if self.f_inrange: self.f_inrange = 0
+\par         
+\par         if not ok:
+\par             if self._matchAddress(self.addr1): ok = 1
+\par             
+\par             if self.addr2:                       # range
+\par                 if ok: self.f_inrange = 1        # start range
+\par                 elif self._matchAddress(self.addr2):
+\par                     ok = 1 ; self.f_inrange = 0  # end range
+\par                 elif self.f_inrange: ok = 1      # in range
+\par                 Debug('in range: %d'%self.f_inrange, 3)
+\par         
+\par         Debug('is hotline: %d'%ok, 3)
+\par         Debug('cmd: %s'%cmd['id'], 1)
+\par         return ok
+\par     
+\par     def _makeRawString(self,str):
+\par         raw = string.replace(str, '\\t', '\\\\t')
+\par         raw = string.replace(raw, '\\n', '\\\\n')
+\par         return raw +'$'
+\par     
+\par     def applyCmd(self):
+\par         cmd = self.cmd ; PS = self.line ; HS = self.holdspace
+\par         Debug('cmdnr: %d'%self.cmdnr, 3)
+\par         
+\par         #TODO ! r w //  
+\par         if   cmd['id'] == ':': pass
+\par         elif cmd['id'] == '=': print(self.linenr)
+\par         elif cmd['id'] == 'p': print(PS)
+\par         elif cmd['id'] == 'P': print(re.sub('\\n.*','', PS))
+\par         elif cmd['id'] == 'q': self.EOF = 1
+\par         elif cmd['id'] == 'h': HS = PS
+\par         elif cmd['id'] == 'H': HS = HS+'\\n'+PS
+\par         elif cmd['id'] == 'g': PS = HS
+\par         elif cmd['id'] == 'G': PS = PS+'\\n'+HS
+\par         elif cmd['id'] == 'x': PS, HS = HS, PS
+\par         elif cmd['id'] == 'y':
+\par             trtab = string.maketrans(cmd['pattern'], cmd['replace'])
+\par             PS = string.translate(PS, trtab)
+\par         elif cmd['id'] == 'l': print self._makeRawString(PS)
+\par         elif cmd['id'] == 'd':
+\par             self.f_delme = 1 ; self.EOS = 1   # d) forces next cicle
+\par         elif cmd['id'] == 'D':             # D) del till \\n, next cicle
+\par             cutted = re.sub('^.*?\\n', '', PS) # del till the 1st \\n
+\par             if cutted == PS: cutted = ''      # if no \\n, del all
+\par             PS = cutted
+\par             self.rewindScript()               # D forces rewind
+\par             if not PS:                    # no PS, start next cicle
+\par                 self.f_delme = 1 ; self.EOS = 1
+\par             print '------',PS
+\par         elif cmd['id'] == 'n':             # n) print patt, read line
+\par             print(PS)
+\par             self.readNextLine(); PS = self.line
+\par         elif cmd['id'] == 'N':             # N) join next, read line
+\par             self.f_joinme = 1
+\par             self.readNextLine(); PS = self.line
+\par         elif cmd['id'] in 'aic':           # aic) spill text
+\par             txt = re.sub(r'\\\\%s'%linesep, '\\n', cmd['content'])
+\par             txt = re.sub('^\\n', '', txt)     #  delete first escape
+\par             self.f_delme = 1
+\par             if cmd['id'] == 'a': print(PS)   #  line before
+\par             print(txt)                       #  put text
+\par             if cmd['id'] == 'i': print(PS)   #  line after
+\par         elif cmd['id'] in 'bt':            # jump to...
+\par             if not cmd['content']: self.EOS = 1            #...end
+\par             else: self.cmdnr = self.labels[cmd['content']] #...label
+\par         #TODO s///3 ; s//\\1/ ; s//&/
+\par         elif cmd['id'] == 's':
+\par             times = 1
+\par             patt = cmd['pattern']
+\par             repl = cmd['replace']
+\par             #TODO v----- test only, make function
+\par             patt = re.sub(r'\\\\\\(','(',patt)
+\par             patt = re.sub(r'\\\\\\)',')',patt)
+\par             repl = re.sub(r'^\\\\\\n','\\n',repl) # NL escaped on repl
+\par             if 'g' in cmd['flag']: times = 0           # global
+\par             if 'i' in cmd['flag']: patt = '(?i)'+patt  # ignore case
+\par             new = re.sub(patt, repl, PS, times)
+\par             if 'p' in cmd['flag'] and new != PS: print new
+\par             if 'w' in cmd['flag']:
+\par                 text = [new]   # w) open file truncating anyway
+\par                 # write patt only if s/// was ok
+\par                 if new == PS: text = ''
+\par                 write_file(cmd['content'], text)
+\par             PS = new
+\par         
+\par         if self.f_debug:
+\par             showreg = 1
+\par             fullcmd = "%s%s"%(composeSedAddress(cmd),
+\par                string.replace(composeSedCommand(cmd), '\\n',
+\par                               newlineshow+color_YLW))
+\par             print commid+color_YLW+fullcmd+color_NO
+\par             if cmd['id'] in ':bt' and cmd['content']: showreg = 0
+\par             if cmd['id'] in '\{\}': showreg = 0
+\par             if showreg:
+\par                 print pattid+self._makeRawString(PS)
+\par                 print holdid+self._makeRawString(HS)
+\par         
+\par         self.line = PS ; self.holdspace = HS # save registers
+\par     
+\par     
+\par     def run(self):
+\par         while not self.EOF:
+\par             self.rewindScript()
+\par             self.readNextLine()
+\par             if self.EOF: break
+\par             
+\par             if self.linenr == 1 and self.f_debug:   # debug info
+\par                 print pattid+self._makeRawString(self.line)
+\par                 print holdid+self._makeRawString(self.holdspace)
+\par             
+\par             while not self.EOS:
+\par                 if self.cmdnr == -1:  # 1st position
+\par                     self.cmdnr = 0
+\par                 self.cmd = self.cmdlist[self.cmdnr]
+\par                 if self.testAddress():
+\par                     self.applyCmd()
+\par                     if self.EOS or self.EOF: break
+\par                 elif self.cmd['id'] == '\{':
+\par                     self.cmdnr = self.blocks[self.cmdnr]
+\par                 
+\par                 self.cmdnr = self.cmdnr +1 # next command
+\par                 if self.cmdnr > len(self.cmdlist)-1: break
+\par             
+\par             # default print pattern behaviour
+\par             if not self.f_delme: print self.line
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #          Script Already Parsed, Now It's Time To Make Decisions
+\par #-------------------------------------------------------------------------------
+\par #
+\par # This is the crucial point where the program will perform the action
+\par # that you choose on the command line.
+\par # 
+\par # The ZZ list is full of data, and all the following functions know
+\par # how to handle it. Maybe we will indent, maybe debug? We'll see.
+\par #
+\par 
+\par if   action == 'indent'  : dumpScript(ZZ, indent_prefix)
+\par elif action == 'html'    : dumpScript(ZZ, indent_prefix)
+\par elif action == 'debug'   : doDebug(ZZ)
+\par elif action == 'token'   : dumpKeyValuePair(ZZ)
+\par elif action == 'dumpcute': dumpCute(ZZ)
+\par elif action in ['emu', 'emudebug']:
+\par     DEBUG = EMUDEBUG
+\par     if action == 'emudebug':
+\par         dodebug = 1
+\par     else:
+\par         dodebug = 0
+\par     for textfile in textfiles:
+\par         emuSed(ZZ, textfile, dodebug)
+\par 
+\par 
+\par #-------------------------------------------------------------------------------
+\par #                               - THE END -
+\par #-------------------------------------------------------------------------------
+\par 
+\par 
+\par #TODO commenter
+\par #TODO ignore l command line break?
+\par #TODO accept \\n as addr delimiter
+\par #TODO more comments, reformat some long lines or depth indent
+\par #TODO check if there's a SED command
+\par #TODO check if user script is syntax correct (!popen())
+\par #     ^---- how to close stdout on os.system() ?
+\par # vim:ts=8\par}

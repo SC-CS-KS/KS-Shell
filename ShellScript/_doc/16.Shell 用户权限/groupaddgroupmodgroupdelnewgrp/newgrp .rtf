@@ -1,0 +1,40 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid480755436
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs16\cf3}
+{\listlevel\levelnfc0\leveljc0\li1440\fi-360\jclisttab\tx1440\levelstartat1{\leveltext\'02\'01.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2160\fi-360\jclisttab\tx2160\levelstartat1{\leveltext\'02\'02.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2880\fi-360\jclisttab\tx2880\levelstartat1{\leveltext\'02\'03.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li3600\fi-360\jclisttab\tx3600\levelstartat1{\leveltext\'02\'04.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li4320\fi-360\jclisttab\tx4320\levelstartat1{\leveltext\'02\'05.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5040\fi-360\jclisttab\tx5040\levelstartat1{\leveltext\'02\'06.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5760\fi-360\jclisttab\tx5760\levelstartat1{\leveltext\'02\'07.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li6480\fi-360\jclisttab\tx6480\levelstartat1{\leveltext\'02\'08.;}{\levelnumbers\'01;}\f3\fs24}
+\listid1763486878}
+}
+{\*\listoverridetable
+{\listoverride\listid1763486878\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 newgrp 
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 newgrp\plain \f1\fs20  
+\par \plain \f1\fs20\cf1 \uc2\u26159 \'ca\'c7\u20999 \'c7\'d0\u25442 \'bb\'bb\u24403 \'b5\'b1\u21069 \'c7\'b0\u26377 \'d3\'d0\u25928 \'d0\'a7\u32452 \'d7\'e9\u30340 \'b5\'c4\u21629 \'c3\'fc\u20196 \'c1\'ee\u65292 \'a3\'ac\u20320 \'c4\'e3\u21482 \'d6\'bb\u33021 \'c4\'dc\u22312 \'d4\'da\u20320 \'c4\'e3\u29992 \'d3\'c3\u25143 \'bb\'a7\u25152 \'cb\'f9\u23646 \'ca\'f4\u30340 \'b5\'c4\u32452 \'d7\'e9\u20013 \'d6\'d0\u20999 \'c7\'d0\u25442 \'bb\'bb\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20 # useradd test1
+\par # useradd test2
+\par # usermod -G test2 test1
+\par # usermod -G test1 test2
+\par 
+\par # su - test1
+\par $ id
+\par uid=500(test1) gid=500(test1) groups=500(test1),501(test2)
+\par $ newgrp test2
+\par $ id
+\par uid=500(test1) gid=501(test2) groups=500(test1),501(test2)\~
+\par 
+\par # su - test2
+\par $ id
+\par uid=501(test2) gid=501(test2) groups=500(test1),501(test2)\~
+\par $ newgrp test1
+\par $ id
+\par uid=501(test2) gid=500(test1) groups=500(test1),501(test2)
+\par \plain \f1\fs20\cf2 ---------------------------------------------------------------------------------------------------------------------------------\par}

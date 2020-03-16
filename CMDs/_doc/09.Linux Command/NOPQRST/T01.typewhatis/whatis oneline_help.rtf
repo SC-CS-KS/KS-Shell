@@ -1,0 +1,115 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1149855471\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1799816370}
+{\list\listtemplateid1952932734\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid760131453}
+{\list\listtemplateid1626760565\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1356141904}
+{\list\listtemplateid632237717\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid823983851}
+{\list\listtemplateid1080208027\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1523189518}
+}
+{\*\listoverridetable
+{\listoverride\listid1799816370\listoverridecount0\ls1}
+{\listoverride\listid760131453\listoverridecount0\ls2}
+{\listoverride\listid1356141904\listoverridecount0\ls3}
+{\listoverride\listid823983851\listoverridecount0\ls4}
+{\listoverride\listid1523189518\listoverridecount0\ls5}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 whatis oneline_help
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 NAME
+\par       \plain \f1\fs20\cf1  whatis - display manual page descriptions
+\par \plain \f1\fs20 SYNOPSIS
+\par        \plain \f1\fs20\cf1 whatis [-dlhV] [-r|-w] [-s section] [-m system[,...]] [-M path] [-L locale] [-C file] name ...
+\par \plain \f1\fs20 DESCRIPTION
+\par        \plain \f1\fs20\cf1 Each  manual  page  has  a short description available within it.  whatis searches the manual page names and displays the
+\par        manual page descriptions of any name matched.
+\par \plain \f1\fs20 
+\par       \plain \f1\fs20\cf1  name may contain wildcards (-w) or be a regular expression (-r). \plain \f1\fs20  Using these options, it may be necessary to  quote  the
+\par        name or escape (\\) the special characters to stop the shell from interpreting them.
+\par 
+\par        index  databases  are used during the search, and are updated by the mandb program.  Depending on your installation, this
+\par        may be run by a periodic cron job, or may need to be run manually after new manual pages have been installed.  To produce
+\par        an old style text whatis database from the relative index database, issue the command:
+\par 
+\par        whatis -M manpath -w '*' | sort > manpath/whatis
+\par 
+\par        where manpath is a manual page hierarchy such as /usr/man.
+\par 
+\par OPTIONS
+\par        -d, --debug
+\par               Print debugging information.
+\par        -v, --verbose
+\par               Print verbose warning messages.
+\par \plain \f1\fs20\cf1        -r, --regex
+\par \plain \f1\fs20               Interpret  each  name  as  a regular expression.  If a name matches any part of a page name, a match will be made.
+\par               This option causes whatis to be somewhat slower due to the nature of database searches.
+\par \plain \f1\fs20\cf1        -w, --wildcard
+\par \plain \f1\fs20               Interpret each name as a pattern containing shell style wildcards.  For a match to be made, an expanded name  must
+\par               match  the  entire  page  name.   This  option  causes  whatis to be somewhat slower due to the nature of database
+\par               searches.
+\par        -l, --long
+\par               Do not trim output to the terminal width.  Normally, output will be truncated to the terminal width to avoid  ugly
+\par               results from poorly-written NAME sections.
+\par        -s section, --section section
+\par               Search only the given manual section.  If section is a simple section, for example "3", then the displayed list of
+\par               descriptions will include pages in sections "3", "3perl", "3x", and so on; while if section has an extension,  for
+\par               example "3perl", then the list will only include pages in that exact part of the manual section.
+\par        -m system[,...], --systems=system[,...]
+\par               If  this  system has access to other operating system's manual page names, they can be accessed using this option.
+\par               To search NewOS's manual page names, use the option -m NewOS.
+\par 
+\par               The system specified can be a combination of comma delimited operating system names.  To include a search  of  the
+\par               native operating system's manual page names, include the system name man in the argument string.  This option will
+\par               override the $SYSTEM environment variable.
+\par        -M path, --manpath=path
+\par               Specify an alternate set of colon-delimited manual page hierarchies to search.  By default, whatis uses the  $MAN-
+\par               PATH  environment  variable,  unless  it is empty or unset, in which case it will determine an appropriate manpath
+\par               based on your $PATH environment variable.  This option overrides the contents of $MANPATH.
+\par        -L locale, --locale=locale
+\par               whatis will normally determine your current locale by a call to the C  function  setlocale(3)  which  interrogates
+\par               various  environment variables, possibly including $LC_MESSAGES and $LANG.  To temporarily override the determined
+\par               value, use this option to supply a locale string directly to whatis.  Note that it will not take effect until  the
+\par               search  for  pages  actually  begins.   Output  such as the help message will always be displayed in the initially
+\par               determined locale.
+\par        -C file, --config-file=file
+\par               Use this user configuration file rather than the default of ~/.manpath.
+\par        -h, --help
+\par               Print a help message and exit.
+\par        -V, --version
+\par               Display version information.
+\par 
+\par EXIT STATUS
+\par \plain \f1\fs20\cf1        0      Successful program execution.
+\par        1      Usage, syntax or configuration file error.
+\par        2      Operational error.
+\par        16     Nothing was found that matched the criteria specified.
+\par \plain \f1\fs20 
+\par ENVIRONMENT
+\par        SYSTEM If $SYSTEM is set, it will have the same effect as if it had been specified as the argument to the -m option.
+\par 
+\par        MANPATH
+\par               If $MANPATH is set, its value is interpreted as the colon-delimited manual page hierarchy search path to use.
+\par 
+\par        MANWIDTH
+\par               If $MANWIDTH is set, its value is used as the terminal width (see the --long option).  If it is not set, the  ter-
+\par               minal  width will be calculated using an ioctl(2) if available, the value of $COLUMNS, or falling back to 80 char-
+\par               acters if all else fails.
+\par 
+\par FILES
+\par        /usr/share/man/index.(bt|db|dir|pag)
+\par               A traditional global index database cache.
+\par 
+\par        /var/cache/man/index.(bt|db|dir|pag)
+\par               An FHS compliant global index database cache.
+\par 
+\par        /usr/share/man/.../whatis
+\par               A traditional whatis text database.\par}

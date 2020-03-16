@@ -1,0 +1,85 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset0 Times New Roman;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid655830434
+{\listlevel\levelnfc0\leveljc0\li720\fi-360\jclisttab\tx720\levelstartat1{\leveltext\'02\'00.;}{\levelnumbers\'01;}\f3\fs16\cf3}
+{\listlevel\levelnfc0\leveljc0\li1440\fi-360\jclisttab\tx1440\levelstartat1{\leveltext\'02\'01.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2160\fi-360\jclisttab\tx2160\levelstartat1{\leveltext\'02\'02.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li2880\fi-360\jclisttab\tx2880\levelstartat1{\leveltext\'02\'03.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li3600\fi-360\jclisttab\tx3600\levelstartat1{\leveltext\'02\'04.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li4320\fi-360\jclisttab\tx4320\levelstartat1{\leveltext\'02\'05.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5040\fi-360\jclisttab\tx5040\levelstartat1{\leveltext\'02\'06.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li5760\fi-360\jclisttab\tx5760\levelstartat1{\leveltext\'02\'07.;}{\levelnumbers\'01;}\f3\fs24}
+{\listlevel\levelnfc0\leveljc0\li6480\fi-360\jclisttab\tx6480\levelstartat1{\leveltext\'02\'08.;}{\levelnumbers\'01;}\f3\fs24}
+\listid940551724}
+}
+{\*\listoverridetable
+{\listoverride\listid940551724\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 mktemp
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 MKTEMP(1)                        User Commands                       MKTEMP(1)
+\par 
+\par NAME
+\par     \plain \f1\fs20\cf1    mktemp - create a temporary file or directory
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        mktemp [OPTION]... [TEMPLATE]
+\par 
+\par DESCRIPTION
+\par        Create  a  temporary file or directory, safely, and print its name.  TEMPLATE must contain at least 3 consecutive
+\par        \lquote X\rquote s in last component.  If TEMPLATE is not specified, use tmp.XXXXXXXXXX, and --tmpdir is implied.
+\par 
+\par  \plain \f1\fs20\cf1       -d, --directory
+\par \plain \f1\fs20               create a directory, not a file
+\par 
+\par \plain \f1\fs20\cf1        -u, --dry-run
+\par \plain \f1\fs20               do not create anything; merely print a name (unsafe)
+\par \plain \f1\fs20\cf1 
+\par        -q, --quiet
+\par \plain \f1\fs20               suppress diagnostics about file/dir-creation failure
+\par 
+\par \plain \f1\fs20\cf1        --suffix=SUFF
+\par \plain \f1\fs20               append SUFF to TEMPLATE.  SUFF must not contain slash.  This option is implied if TEMPLATE does not end in
+\par               X.
+\par 
+\par        --tmpdir[=DIR]
+\par               interpret  TEMPLATE  relative  to DIR.  If DIR is not specified, use $TMPDIR if set, else /tmp.  With this
+\par               option, TEMPLATE must not be an absolute name.  Unlike with -t, TEMPLATE may contain slashes,  but  mktemp
+\par               creates only the final component.
+\par 
+\par  \plain \f1\fs20\cf1       -p DIR use DIR as a prefix; implies -t [deprecated]
+\par 
+\par \plain \f1\fs20\cf2        -t     interpret  TEMPLATE  as  a  single file name component, relative to a directory: $TMPDIR, if set; else the
+\par               directory specified via -p; else /tmp [deprecated]
+\par \plain \f1\fs20 
+\par        --help display this help and exit
+\par 
+\par        --version
+\par               output version information and exit
+\par 
+\par AUTHOR
+\par        Written by Jim Meyering and Eric Blake.
+\par 
+\par REPORTING BUGS
+\par        Report mktemp bugs to bug-coreutils@gnu.org
+\par        GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+\par        General help using GNU software: <http://www.gnu.org/gethelp/>
+\par        Report mktemp translation bugs to <http://translationproject.org/team/>
+\par 
+\par COPYRIGHT
+\par        Copyright  \u169 ?  2010  Free  Software  Foundation,  Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
+\par        <http://gnu.org/licenses/gpl.html>.
+\par        This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted
+\par        by law.
+\par 
+\par SEE ALSO
+\par        mkstemp(3), mkdtemp(3), mktemp(3)
+\par 
+\par        The full documentation for mktemp is maintained as a Texinfo manual.  If the info and mktemp programs  are  prop-
+\par        erly installed at your site, the command
+\par 
+\par               info coreutils 'mktemp invocation'
+\par 
+\par        should give you access to the complete manual.
+\par 
+\par GNU coreutils 8.4                  June 2012                         MKTEMP(1)\par}

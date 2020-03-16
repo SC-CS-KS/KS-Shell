@@ -1,0 +1,59 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green128\blue0;\red255\green0\blue0;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid604919764\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid2083866918}
+{\list\listtemplateid1744472514
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li2880\fi-360\jclisttab\tx2880{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li3240\fi-360\jclisttab\tx3240{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+{\listlevel\levelnfc23\leveljc0\li3240\fi-360\jclisttab\tx3240{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid554270417}
+}
+{\*\listoverridetable
+{\listoverride\listid2083866918\listoverridecount0\ls1}
+{\listoverride\listid554270417\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf5 02.ps -ef
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20\cf4  #ps -e | head -n 10
+\par \plain \f1\fs20\cf3   PID TTY          TIME CMD
+\par \plain \f1\fs20     1 ?        00:00:08 init
+\par     2 ?        00:00:00 kthreadd
+\par     3 ?        00:00:00 migration/0
+\par     4 ?        02:01:17 ksoftirqd/0
+\par     5 ?        00:00:00 migration/1
+\par     6 ?        02:53:29 ksoftirqd/1
+\par     7 ?        00:00:00 migration/2
+\par     8 ?        03:03:16 ksoftirqd/2
+\par     9 ?        00:00:00 migration/3
+\par \plain \f1\fs20\cf2 -------------------------------------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf4 #ps -f | head -n 10
+\par \plain \f1\fs20\cf3 UID        PID  PPID  C STIME TTY          TIME CMD
+\par \plain \f1\fs20 zxin10    2090 20638  0 Apr08 pts/0    00:00:00 ./fibonaci_main
+\par zxin10    2389 20638  0 Apr08 pts/0    00:00:00 ./fibonaci_main
+\par zxin10    3091 20638  0 Apr08 pts/0    00:00:00 ./fibonaci_main
+\par zxin10    3411 20638  0 09:35 pts/0    00:00:00 watch -n 1 ifconfig eth0 |grep bytes
+\par zxin10    3606 20638  0 09:36 pts/0    00:00:00 watch -n 1 ifconfig eth0
+\par zxin10    3839 20638  0 Apr08 pts/0    00:00:00 ./fibonaci_main
+\par zxin10    4585 20638  0 Apr08 pts/0    00:00:00 ./fibonaci_main
+\par zxin10    6107 20638  0 Apr08 pts/0    00:00:00 gdb verctor
+\par zxin10    6768 20638  0 Apr08 pts/0    00:00:00 gdb filet
+\par \plain \f1\fs20\cf2 -------------------------------------------------------------------------------------------------------------------------------------
+\par \plain \f1\fs20\cf4 #ps -ef | head -n 10
+\par \plain \f1\fs20\cf3 UID        PID  PPID  C STIME TTY          TIME CMD
+\par \plain \f1\fs20 root         1     0  0 Apr07 ?        00:00:08 init [5]  
+\par root         2     0  0 Apr07 ?        00:00:00 [kthreadd]
+\par root         3     2  0 Apr07 ?        00:00:00 [migration/0]
+\par root         4     2  2 Apr07 ?        02:01:17 [ksoftirqd/0]
+\par root         5     2  0 Apr07 ?        00:00:00 [migration/1]
+\par root         6     2  2 Apr07 ?        02:53:29 [ksoftirqd/1]
+\par root         7     2  0 Apr07 ?        00:00:00 [migration/2]
+\par root         8     2  3 Apr07 ?        03:03:20 [ksoftirqd/2]
+\par root         9     2  0 Apr07 ?        00:00:00 [migration/3]
+\par \plain \f1\fs20\cf2 -------------------------------------------------------------------------------------------------------------------------------------\par}

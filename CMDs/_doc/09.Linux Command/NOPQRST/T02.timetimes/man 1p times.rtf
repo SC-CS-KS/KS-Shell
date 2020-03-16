@@ -1,0 +1,67 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil Arial;}{\f5\fnil\fcharset0 Courier New;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red255\green0\blue0;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1105662419\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid559475494}
+{\list\listtemplateid288666563\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f4\fs24}
+\listid1020547281}
+{\list\listtemplateid1080155161\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1815803524}
+{\list\listtemplateid1617650840\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid851713279}
+{\list\listtemplateid80253184\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f4\fs24}
+\listid246617858}
+{\list\listtemplateid1903492878\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid2135488845}
+{\list\listtemplateid1466504837
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+\listid1289669280}
+{\list\listtemplateid1037891877\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid452211643}
+}
+{\*\listoverridetable
+{\listoverride\listid559475494\listoverridecount0\ls1}
+{\listoverride\listid1020547281\listoverridecount0\ls2}
+{\listoverride\listid1815803524\listoverridecount0\ls3}
+{\listoverride\listid851713279\listoverridecount0\ls4}
+{\listoverride\listid246617858\listoverridecount0\ls5}
+{\listoverride\listid2135488845\listoverridecount0\ls6}
+{\listoverride\listid1289669280\listoverridecount0\ls7}
+{\listoverride\listid452211643\listoverridecount0\ls8}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf4 man 1p times
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 PROLOG
+\par        This  manual  page is part of the POSIX Programmer's Manual.  The Linux implementation of this interface may differ (con-
+\par        sult the corresponding Linux manual page for details of Linux behavior), or the  interface  may  not  be  implemented  on
+\par        Linux.
+\par NAME
+\par \plain \f1\fs20\cf1        times - write process times
+\par \plain \f1\fs20 SYNOPSIS
+\par        times
+\par DESCRIPTION
+\par   \plain \f1\fs20\cf1      The  times utility shall write the accumulated user and system times for the shell and\plain \f1\fs20\cf3  for all of its child processes\plain \f1\fs20\cf1 , in
+\par        the following POSIX locale format:
+\par \plain \f1\fs20 
+\par         \plain \f1\fs20\cf1       "%dm%fs %dm%fs\\n%dm%fs %dm%fs\\n"
+\par \plain \f1\fs20               <shell user minutes><shell user seconds> <shell system minutes><shell system seconds>
+\par               <children user minutes><children user seconds> <children system minutes><children system seconds>
+\par 
+\par        The four pairs of times shall correspond to the members of the <sys/times.h> tms structure (defined in the  Base  Defini-
+\par        tions  volume of IEEE Std 1003.1-2001, Chapter 13, Headers) as returned by times(): \plain \f1\fs20\cf1 tms_utime, tms_stime, tms_cutime, and
+\par        tms_cstime, respectively.
+\par \plain \f1\fs20\cf2 -------------------------------------------------------------------------------------------------------------------------------\par}

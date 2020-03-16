@@ -1,0 +1,46 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1711154281\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid2081250833}
+}
+{\*\listoverridetable
+{\listoverride\listid2081250833\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 31.igawk
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 IGAWK(1)                       Utility Commands                       IGAWK(1)
+\par 
+\par NAME
+\par \plain \f1\fs20\cf1        igawk - gawk with include files
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        igawk [ all gawk options ] -f program-file [ -- ] file ...
+\par        igawk [ all gawk options ] [ -- ] program-text file ...
+\par 
+\par DESCRIPTION
+\par \plain \f1\fs20\cf1        Igawk is a simple shell script that adds the ability to have \lquote \lquote include files\rquote \rquote  to gawk(1).
+\par \plain \f1\fs20 
+\par        AWK programs for igawk are the same as for gawk, except that, in addition, you may have lines like
+\par 
+\par \plain \f1\fs20\cf1               @include getopt.awk
+\par \plain \f1\fs20 
+\par        in  your program to include the file getopt.awk from either the current directory or one of the other directories
+\par        in the search path.
+\par 
+\par OPTIONS
+\par        See gawk(1) for a full description of the AWK language and the options that gawk supports.
+\par 
+\par EXAMPLES
+\par \plain \f1\fs20\cf1        cat << EOF > test.awk
+\par        @include getopt.awk
+\par \plain \f1\fs20 
+\par        BEGIN \{
+\par             while (getopt(ARGC, ARGV, "am:q") != -1)
+\par                  ...
+\par        \}
+\par        EOF
+\par 
+\par \plain \f1\fs20\cf1        igawk -f test.awk
+\par \plain \f1\fs20 
+\par SEE ALSO\par}

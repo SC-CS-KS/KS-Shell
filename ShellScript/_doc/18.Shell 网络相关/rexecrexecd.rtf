@@ -1,0 +1,117 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil\fcharset0 Courier New;}{\f5\fnil\fcharset2 Wingdings;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid1865736025
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1440\fi-360\jclisttab\tx1440{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li1800\fi-360\jclisttab\tx1800{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2160\fi-360\jclisttab\tx2160{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f5\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+{\listlevel\levelnfc23\leveljc0\li2520\fi-360\jclisttab\tx2520{\leveltext\'01o;}{\levelnumbers;}\f4\fs24}
+\listid1040647876}
+{\list\listtemplateid868791769\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid2071704383}
+}
+{\*\listoverridetable
+{\listoverride\listid1040647876\listoverridecount0\ls1}
+{\listoverride\listid2071704383\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 rexec/rexecd
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 REXEC(1)                                                                                                                                  REXEC(1)
+\par 
+\par NAME
+\par        rexec -- \plain \f1\fs20\cf1 remote execution client for an exec server
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par        \plain \f1\fs20\cf1 rexec [ -abcdhns -l username -p password ] host command
+\par \plain \f1\fs20 
+\par DESCRIPTION
+\par        Rexec calls the rexec(3) routine to act as a client for the remote host's rexecd(8) server.
+\par 
+\par        It asks that ''command'' be run on the host computer, using username/password authentication. See rexec(3) and rexecd(8) for details of the
+\par        protocol.
+\par 
+\par OPTIONS
+\par        Rexec accepts several options, but only three are likely to be very useful:
+\par 
+\par        -l username
+\par 
+\par               Set the log-in name on the remote host to username.
+\par 
+\par        -p password
+\par 
+\par               Provide the password for the remote account.  The command line argument will be blanked after being parsed, to prevent it from being
+\par               seen  with  ps(1).   However, it is still not very secure to type the password on the command line.  In particular, be sure that the
+\par               shell's history file is protected.
+\par 
+\par        -n     Explicitly prompt for name and password, even if provided in the environment, in the $HOME/.netrc  file,  or  in  the  environmental
+\par               variables REXEC_USER and REXEC_PASS.
+\par 
+\par        Other options that might be useful with non-standard remote exec daemons, or to debug connections:
+\par 
+\par        -a     Do  not  set up an auxiliary channel for standard error from command; the remote standard error and output are then both returned on
+\par               the local standard output.  By default, rexec asks that a separate channel be set up for diagnostic output from the remote  command.
+\par 
+\par        -b     Use  signal handling as in BSD rsh(1).  Only the signals SIGINT, SIGQUIT, and SIGTERM are echoed to the remote process.  They do not
+\par               remain raised locally, so rexec waits for the remote command to shutdown its side of the socket.  Also, CNTRL-Z  will  only  suspend
+\par               execution locally--the remote command may continue to run.
+\par 
+\par        -c     Do  not  close  remote standard input when local standard input closes.  Normally the standard input to the remote command is closed
+\par               when the local standard input is closed.
+\par 
+\par        -d     Turn on debugging information. In particular the command sent to the remote host will be echoed.
+\par 
+\par        -h     Print a usage message.
+\par 
+\par        -s     Do not echo signals received by the rexec onto the remote process.  Normally, signals which can be trapped  are  passed  on  to  the
+\par               remote process; then, when you type CNTRL-C, the remote process terminates as well.
+\par 
+\par USERNAME AND PASSWORD
+\par        Rexec(1) searches for the username and password in the following order:
+\par 
+\par               1. If -n is given on the command line, the user will always be prompted for both, even if they are also given on the command line.
+\par 
+\par               2. The command line will be parsed
+\par 
+\par               3. If the environmental variables REXEC_USER or REXEC_PASS are defined, they will define the username or password.
+\par 
+\par               4. The $HOME/.netrc file will be searched.  See ftp(1) for a description of this file's format.
+\par 
+\par               5. Finally, the user will be prompted if either the username or password remains undefined.
+\par 
+\par SECURITY
+\par        Users  of this command should be aware that rexec(3) transmits their password to the remote host clear text, not encrypted.  If the network
+\par        is not secure to the remote host, the password can be comprimised.
+\par 
+\par SIGNALS
+\par        Without the -b option, all signals which can be handled are echoed to the remote process.  Afterwards, however, they remain raised  in  the
+\par        local  process.   Typically,  this means that rexec(1) will exit after receiving a fatal signal, even if the remote process has arranged to
+\par        handle or ignore it.
+\par 
+\par        Differing operating systems use differing signal numbers; for example AIX and SunOS use 18 for SIGTSTP (^Z), while Linux uses  20.   There-
+\par        fore,  it may have a different effect remotely than locally.  In particular, typing CNTL-Z may not suspend the execution of the remote pro-
+\par        cess.
+\par 
+\par EXAMPLE
+\par        rexec othermachine cat ">remote_file; date" <local_file
+\par 
+\par        will send local_file to the othermachine as remote_file.
+\par 
+\par BUGS
+\par        Please send bug reports, system incompatibilities, and job offers to the author.
+\par 
+\par SEE ALSO
+\par        rexec(3), rexecd(8), rsh(1)
+\par 
+\par AUTHOR
+\par        Michael Sadd
+\par        mas22@cornell.edu
+\par        http://www.tc.cornell.edu/~sadd/
+\par 
+\par        Thanks to Orange Gopher (2/10/97) and Johannes Plass (plass@dipmza.physik.uni-mainz.de, Oct. 17 1996) for useful suggestions.
+\par 
+\par                                                                  February 14, 1997                                                        REXEC(1)\par}

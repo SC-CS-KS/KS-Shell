@@ -1,0 +1,78 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red255\green255\blue255;}{\*\listtable{\list\listtemplateid912061697\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid909496586}
+}
+{\*\listoverridetable
+{\listoverride\listid909496586\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 9.1.3.1 More about \lquote \\\rquote  and \lquote &\rquote  with sub(), gsub(), and gensub()
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\b\fs20 9.1.3.1 More about \lquote \\\rquote  and \lquote &\rquote  with\~\plain \f1\fs20 sub(),\~gsub(), and\~gensub()
+\par \plain \f1\b\fs20 CAUTION:\plain \f1\fs20 \~This subsubsection has been reported to cause headaches. You might want to skip it upon first reading.
+\par When using\~sub(),\~gsub(), or\~gensub(), and trying to get literal backslashes and ampersands into the replacement text, 
+\par you need to remember that there are several levels of\~\plain \f1\i\fs20 escape processing\plain \f1\fs20 \~going on.
+\par 
+\par First, there is the\~\plain \f1\i\fs20 lexical\plain \f1\fs20 \~level, which is when\~awk\~reads your program and builds an internal copy of it to execute. 
+\par Then there is the runtime level, which is when\~awk\~actually scans the replacement string to determine what to generate.
+\par 
+\par {\*\bkmkstart index_Brian_Kernighan_0027s_awk_12}{\*\bkmkend index_Brian_Kernighan_0027s_awk_12}At both levels,\~awk\~looks for a defined set of characters that can come after a backslash. At the lexical level, it looks for the escape sequences listed in\~\plain \f1\ul\fs20\cf1 Escape Sequences\plain \f1\fs20 . Thus, for every \lquote \\\rquote  that\~awk\~processes at the runtime level, you must type two backslashes at the lexical level. When a character that is not valid for an escape sequence follows the \lquote \\\rquote , BWK\~awk\~and\~gawk\~both simply remove the initial \lquote \\\rquote  and put the next character into the string. Thus, for example,\~"a\\qb"\~is treated as\~"aqb".
+\par 
+\par At the runtime level, the various functions handle sequences of \lquote \\\rquote  and \lquote &\rquote  differently. 
+\par The situation is (sadly) somewhat complex. Historically, the\~sub()\~and\~gsub()\~functions treated the two-character sequence \lquote \\&\rquote  specially; this sequence was replaced in the generated text with a single \lquote &\rquote . Any other \lquote \\\rquote  within the\~replacement\~string that did not precede an \lquote &\rquote  was passed through unchanged. This is illustrated in\~\plain \f1\ul\fs20\cf1 Table 9.1\plain \f1\fs20 .
+\par {\*\bkmkstart table_002dsub_002descapes}{\*\bkmkend table_002dsub_002descapes}You type         sub() sees          sub() generates\'0a 
+\par  \emdash \emdash \endash          \emdash \emdash \emdash -          \emdash \emdash \emdash \emdash \emdash \'0a 
+\par      \\&              &            The matched text\'0a 
+\par     \\\\&             \\&            A literal \lquote &\rquote \'0a 
+\par    \\\\\\&             \\&            A literal \lquote &\rquote \'0a 
+\par   \\\\\\\\&            \\\\&            A literal \lquote \\&\rquote \'0a 
+\par  \\\\\\\\\\&            \\\\&            A literal \lquote \\&\rquote \'0a\\
+\par \\\\\\\\\\\\&           \\\\\\&            A literal \lquote \\\\&\rquote \'0a 
+\par     \\\\q             \\q            A literal \lquote \\q\rquote \'0a
+\par 
+\par \plain \f1\b\fs20 Table 9.1:\~\plain \f1\fs20 Historical escape sequence processing for\~sub()\~and\~gsub()
+\par This table shows the lexical-level processing, where an odd number of backslashes becomes an even number at the runtime level, as well as the runtime processing done by\~sub(). (For the sake of simplicity, the rest of the following tables only show the case of even numbers of backslashes entered at the lexical level.)
+\par The problem with the historical approach is that there is no way to get a literal \lquote \\\rquote  followed by the matched text.
+\par Several editions of the POSIX standard attempted to fix this problem but weren\rquote t successful. The details are irrelevant at this point in time.
+\par At one point, the\~gawk\~maintainer submitted proposed text for a revised standard that reverts to rules that correspond more closely to the original existing practice. The proposed rules have special cases that make it possible to produce a \lquote \\\rquote  preceding the matched text. This is shown in\~\plain \f1\ul\fs20\cf1 Table 9.2\plain \f1\fs20 .
+\par {\*\bkmkstart table_002dsub_002dproposed}{\*\bkmkend table_002dsub_002dproposed}You type         sub() sees         sub() generates\'0a 
+\par  \emdash \emdash \endash          \emdash \emdash \emdash -         \emdash \emdash \emdash \emdash \emdash \'0a\\
+\par \\\\\\\\\\\\&           \\\\\\&            A literal \lquote \\&\rquote \'0a 
+\par   \\\\\\\\&            \\\\&            A literal \lquote \\\rquote , followed by the matched text\'0a 
+\par     \\\\&             \\&            A literal \lquote &\rquote \'0a 
+\par     \\\\q             \\q            A literal \lquote \\q\rquote \'0a 
+\par    \\\\\\\\             \\\\            \\\\\'0a
+\par 
+\par \plain \f1\b\fs20 Table 9.2:\~\plain \f1\fs20 gawk\~rules for\~sub()\~and backslash
+\par In a nutshell, at the runtime level, there are now three special sequences of characters (\lquote \\\\\\&\rquote , \lquote \\\\&\rquote , and \lquote \\&\rquote ) whereas historically there was only one. However, as in the historical case, any \lquote \\\rquote  that is not part of one of these three sequences is not special and appears in the output literally.
+\par gawk\~3.0 and 3.1 follow these rules for\~sub()\~and\~gsub(). The POSIX standard took much longer to be revised than was expected. In addition, thegawk\~maintainer\rquote s proposal was lost during the standardization process. The final rules are somewhat simpler. The results are similar except for one case.
+\par {\*\bkmkstart index_POSIX_awk_002c_functions_and_002c_gsub_0028_0029_002fsub_0028_0029}{\*\bkmkend index_POSIX_awk_002c_functions_and_002c_gsub_0028_0029_002fsub_0028_0029}The POSIX rules state that \lquote \\&\rquote  in the replacement string produces a literal \lquote &\rquote , \lquote \\\\\rquote  produces a literal \lquote \\\rquote , and \lquote \\\rquote  followed by anything else is not special; the \lquote \\\rquote  is placed straight into the output. These rules are presented in\~\plain \f1\ul\fs20\cf1 Table 9.3\plain \f1\fs20 .
+\par {\*\bkmkstart table_002dposix_002dsub}{\*\bkmkend table_002dposix_002dsub}You type         sub() sees         sub() generates\'0a 
+\par  \emdash \emdash \endash          \emdash \emdash \emdash -         \emdash \emdash \emdash \emdash \emdash \'0a\\
+\par \\\\\\\\\\\\&           \\\\\\&            A literal \lquote \\&\rquote \'0a 
+\par   \\\\\\\\&            \\\\&            A literal \lquote \\\rquote , followed by the matched text\'0a 
+\par     \\\\&             \\&            A literal \lquote &\rquote \'0a 
+\par     \\\\q             \\q            A literal \lquote \\q\rquote \'0a 
+\par    \\\\\\\\             \\\\            \\\'0a
+\par 
+\par \plain \f1\b\fs20 Table 9.3:\~\plain \f1\fs20 POSIX rules for\~sub()\~and\~gsub()
+\par The only case where the difference is noticeable is the last one: \lquote \\\\\\\\\rquote  is seen as \lquote \\\\\rquote  and produces \lquote \\\rquote  instead of \lquote \\\\\rquote .
+\par Starting with version 3.1.4,\~gawk\~followed the POSIX rules when\~--posix\~was specified (see\~\plain \f1\ul\fs20\cf1 Options\plain \f1\fs20 ). Otherwise, it continued to follow the proposed rules, as that had been its behavior for many years.
+\par When version 4.0.0 was released, the\~gawk\~maintainer made the POSIX rules the default, breaking well over a decade\rquote s worth of backward compatibility.\plain \f1\ul\super\fs20\cf1 49\plain \f1\fs20 \~Needless to say, this was a bad idea, and as of version 4.0.1,\~gawk\~resumed its historical behavior, and only follows the POSIX rules when\~--posix\~is given.
+\par The rules for\~gensub()\~are considerably simpler. At the runtime level, whenever\~gawk\~sees a \lquote \\\rquote , if the following character is a digit, then the text that matched the corresponding parenthesized subexpression is placed in the generated output. Otherwise, no matter what character follows the \lquote \\\rquote , it appears in the generated text and the \lquote \\\rquote  does not, as shown in\~\plain \f1\ul\fs20\cf1 Table 9.4\plain \f1\fs20 .
+\par {\*\bkmkstart table_002dgensub_002descapes}{\*\bkmkend table_002dgensub_002descapes}You type          gensub() sees         gensub() generates\'0a 
+\par   \emdash \emdash \endash           \emdash \emdash \emdash \emdash -         \emdash \emdash \emdash \emdash \emdash \emdash \'0a 
+\par       &                    &            The matched text\'0a 
+\par     \\\\&                   \\&            A literal \lquote &\rquote \'0a 
+\par    \\\\\\\\                   \\\\            A literal \lquote \\\rquote \'0a 
+\par   \\\\\\\\&                  \\\\&            A literal \lquote \\\rquote , then the matched text\'0a\\
+\par \\\\\\\\\\\\&                 \\\\\\&            A literal \lquote \\&\rquote \'0a 
+\par     \\\\q                   \\q            A literal \lquote q\rquote \'0a
+\par 
+\par \plain \f1\b\fs20 Table 9.4:\~\plain \f1\fs20 Escape sequence processing for\~gensub()
+\par Because of the complexity of the lexical- and runtime-level processing and the special cases for\~sub()\~and\~gsub(), we recommend the use of\~gawk\~andgensub()\~when you have to do substitutions.
+\par \pard\plain\fs6\brdrb\brdrs\brdrw15\brdrcf0\par\pard
+\par \plain \f1\b\fs20 Footnotes
+\par \plain \f1\ul\fs20\cf1 (49)
+\par \plain \f1\fs20 This was rather naive of him, despite there being a note in this section indicating that the next major version would move to the POSIX rules.\par}

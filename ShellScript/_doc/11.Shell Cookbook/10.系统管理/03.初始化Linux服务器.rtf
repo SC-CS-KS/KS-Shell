@@ -1,0 +1,111 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}}{\colortbl;\red0\green0\blue255;\red0\green128\blue128;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1324454418\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1185278049}
+}
+{\*\listoverridetable
+{\listoverride\listid1185278049\listoverridecount0\ls1}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 03.\uc2\u21021 \'b3\'f5\u22987 \'ca\'bc\u21270 \'bb\'afLinux\u26381 \'b7\'fe\u21153 \'ce\'f1\u22120 \'c6\'f7\uc1
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 \uc2\u35813 \'b8\'c3Shell\u33050 \'bd\'c5\u26412 \'b1\'be\u20027 \'d6\'f7\u35201 \'d2\'aa\u29992 \'d3\'c3\u20110 \'d3\'da\u26032 \'d0\'c2\u23433 \'b0\'b2\u35013 \'d7\'b0Linux\u26381 \'b7\'fe\u21153 \'ce\'f1\u22120 \'c6\'f7\u31995 \'cf\'b5\u32479 \'cd\'b3\u30340 \'b5\'c4\u21021 \'b3\'f5\u22987 \'ca\'bc\u21270 \'bb\'af\u24037 \'b9\'a4\u20316 \'d7\'f7\u65292 \'a3\'ac\u20855 \'be\'df\u20307 \'cc\'e5\u21253 \'b0\'fc\u25324 \'c0\'a8\u65306 \'a3\'ba\uc1
+\par \plain \f1\fs20\cf1 \uc2\u20851 \'b9\'d8\u38381 \'b1\'d5IPv6\u27169 \'c4\'a3\u22359 \'bf\'e9\uc1
+\par \uc2\u20851 \'b9\'d8\u38381 \'b1\'d5SELinux\uc1
+\par \uc2\u35753 \'c8\'c3vim\u26174 \'cf\'d4\u31034 \'ca\'be\u39068 \'d1\'d5\u33394 \'c9\'ab\uc1
+\par \uc2\u35774 \'c9\'e8\u32622 \'d6\'c3\u31995 \'cf\'b5\u32479 \'cd\'b3\u35821 \'d3\'ef\u35328 \'d1\'d4\u32534 \'b1\'e0\u30721 \'c2\'eb\uc1
+\par \uc2\u20248 \'d3\'c5\u21270 \'bb\'af\u31995 \'cf\'b5\u32479 \'cd\'b3\u26381 \'b7\'fe\u21153 \'ce\'f1\uc1
+\par \uc2\u20869 \'c4\'da\u26680 \'ba\'cb\u21442 \'b2\'ce\u25968 \'ca\'fd\u20248 \'d3\'c5\u21270 \'bb\'af\u31561 \'b5\'c8\uc1
+\par \plain \f1\fs20 
+\par \uc2\u21487 \'bf\'c9\u20197 \'d2\'d4\u26681 \'b8\'f9\u25454 \'be\'dd\u33258 \'d7\'d4\u24049 \'bc\'ba\u30340 \'b5\'c4\u23454 \'ca\'b5\u38469 \'bc\'ca\u24773 \'c7\'e9\u20917 \'bf\'f6\u20462 \'d0\'de\u25913 \'b8\'c4\u65292 \'a3\'ac\u21487 \'bf\'c9\u29992 \'d3\'c3\u20110 \'d3\'da\u29983 \'c9\'fa\u20135 \'b2\'fa\u29615 \'bb\'b7\u22659 \'be\'b3\u12290 \'a1\'a3\u21407 \'d4\'ad\u20316 \'d7\'f7\u32773 \'d5\'df\u26159 \'ca\'c7NetSeek\u65292 \'a3\'ac\u26412 \'b1\'be\u20154 \'c8\'cb\u20570 \'d7\'f6\u20102 \'c1\'cb\u37096 \'b2\'bf\u20998 \'b7\'d6\u20462 \'d0\'de\u25913 \'b8\'c4\u12290 \'a1\'a3\uc1
+\par \plain \f1\fs20\cf2 -----------------------------------------------------------------------------------------------
+\par \plain \f1\fs20 #!/bin/sh
+\par # desc: lsm03624 modified by www.webnginx.com
+\par #-------------------cut begin-------------------------------------------
+\par #welcome
+\par cat << EOF
+\par +--------------------------------------------------------------+
+\par | === Welcome to Centos System init === |
+\par +--------------http://www.linuxtone.org------------------------+
+\par +----------------------Author:NetSeek--------------------------+
+\par EOF
+\par #disable ipv6
+\par cat << EOF
+\par +--------------------------------------------------------------+
+\par | === Welcome to Disable IPV6 === |
+\par +--------------------------------------------------------------+
+\par EOF
+\par echo "alias net-pf-10 off" >> /etc/modprobe.conf
+\par echo "alias ipv6 off" >> /etc/modprobe.conf
+\par /sbin/chkconfig --level 35 ip6tables off
+\par echo "ipv6 is disabled!"
+\par 
+\par #disable selinux
+\par sed -i '/SELINUX/s/enforcing/disabled/' /etc/selinux/config
+\par echo "selinux is disabled,you must reboot!"
+\par 
+\par #vim
+\par sed -i "8 s/^/alias vi='vim'/" /root/.bashrc
+\par echo 'syntax on' > /root/.vimrc
+\par 
+\par #zh_cn
+\par sed -i -e 's/^LANG=.*/LANG="zh_CN.UTF-8"/' /etc/sysconfig/i18n
+\par # configure file max to 52100
+\par echo "* soft nofile 52100
+\par * hard nofile 52100" >> /etc/security/limits.conf
+\par 
+\par #tunoff services
+\par #--------------------------------------------------------------------------------
+\par cat << EOF
+\par +--------------------------------------------------------------+
+\par | === Welcome to Tunoff services === |
+\par +--------------------------------------------------------------+
+\par EOF
+\par #---------------------------------------------------------------------------------
+\par for i in `ls /etc/rc3.d/S*`
+\par do
+\par CURSRV=`echo $i|cut -c 15-`
+\par 
+\par echo $CURSRV
+\par case $CURSRV in
+\par cpuspeed | crond | irqbalance | microcode_ctl | mysqld | network | nginx | php-fpm | sendmail | sshd | syslog )
+\par #\uc2\u36825 \'d5\'e2\u20010 \'b8\'f6\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u31995 \'cf\'b5\u32479 \'cd\'b3\u26381 \'b7\'fe\u21153 \'ce\'f1\u26681 \'b8\'f9\u25454 \'be\'dd\u20855 \'be\'df\u20307 \'cc\'e5\u30340 \'b5\'c4\u24212 \'d3\'a6\u29992 \'d3\'c3\u24773 \'c7\'e9\u20917 \'bf\'f6\u35774 \'c9\'e8\u32622 \'d6\'c3\u65292 \'a3\'ac\u20854 \'c6\'e4\u20013 \'d6\'d0network\u12289 \'a1\'a2sshd\u12289 \'a1\'a2syslog\u26159 \'ca\'c7\u19977 \'c8\'fd\u39033 \'cf\'ee\u24517 \'b1\'d8\u39035 \'d0\'eb\u35201 \'d2\'aa\u21551 \'c6\'f4\u21160 \'b6\'af\u30340 \'b5\'c4\u31995 \'cf\'b5\u32479 \'cd\'b3\u26381 \'b7\'fe\u21153 \'ce\'f1\u65281 \'a3\'a1\uc1
+\par echo "Base services, Skip!"
+\par ;;
+\par *)
+\par echo "change $CURSRV to off"
+\par chkconfig --level 235 $CURSRV off
+\par service $CURSRV stop
+\par ;;
+\par esac
+\par done
+\par 
+\par rm -rf /etc/sysctl.conf
+\par echo "net.ipv4.ip_forward = 0
+\par net.ipv4.conf.default.rp_filter = 1
+\par net.ipv4.conf.default.accept_source_route = 0
+\par kernel.sysrq = 0
+\par kernel.core_uses_pid = 1
+\par net.ipv4.tcp_syncookies = 1
+\par kernel.msgmnb = 65536
+\par kernel.msgmax = 65536
+\par kernel.shmmax = 68719476736
+\par kernel.shmall = 134217728
+\par net.ipv4.ip_local_port_range = 1024 65536
+\par net.core.rmem_max = 16777216
+\par net.core.wmem_max = 16777216
+\par net.ipv4.tcp_rmem = 4096 87380 16777216
+\par net.ipv4.tcp_wmem = 4096 65536 16777216
+\par net.ipv4.tcp_fin_timeout = 3
+\par net.ipv4.tcp_tw_recycle = 1
+\par net.core.netdev_max_backlog = 30000
+\par net.ipv4.tcp_no_metrics_save = 1
+\par net.core.somaxconn = 262144
+\par net.ipv4.tcp_syncookies = 0
+\par net.ipv4.tcp_max_orphans = 262144
+\par net.ipv4.tcp_max_syn_backlog = 262144
+\par net.ipv4.tcp_synack_retries = 2
+\par net.ipv4.tcp_syn_retries = 2
+\par vm.swappiness = 6" >> /etc/sysctl.conf
+\par echo "optimizited kernel configure was done!"
+\par \uc2\u32534 \'b1\'e0\u32773 \'d5\'df\u25353 \'b0\'b4\u65306 \'a3\'ba\u36825 \'d5\'e2\u20010 \'b8\'f6\u33050 \'bd\'c5\u26412 \'b1\'be\u21487 \'bf\'c9\u20197 \'d2\'d4\u37197 \'c5\'e4\u21512 \'ba\'cf\u20854 \'c6\'e4\u20182 \'cb\'fb\u30340 \'b5\'c4\u23433 \'b0\'b2\u20840 \'c8\'ab\u33050 \'bd\'c5\u26412 \'b1\'be\u12289 \'a1\'a2\u20248 \'d3\'c5\u21270 \'bb\'af\u33050 \'bd\'c5\u26412 \'b1\'be\u19968 \'d2\'bb\u36215 \'c6\'f0\u20351 \'ca\'b9\u29992 \'d3\'c3\u12290 \'a1\'a3\uc1\par}

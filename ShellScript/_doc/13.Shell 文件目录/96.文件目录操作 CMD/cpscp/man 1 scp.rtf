@@ -1,0 +1,172 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil\fcharset2 Symbol;}{\f4\fnil Arial;}{\f5\fnil\fcharset0 Courier New;}}{\colortbl;\red0\green0\blue255;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid1425550883\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid902281398}
+{\list\listtemplateid98367379\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f4\fs24}
+\listid1704256481}
+{\list\listtemplateid1886976873\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1129566996}
+{\list\listtemplateid1243738984\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1534600975}
+{\list\listtemplateid1979515727\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f4\fs24}
+\listid1646957202}
+{\list\listtemplateid184592607\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1360169565}
+{\list\listtemplateid1738877909
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+{\listlevel\levelnfc23\leveljc0\li1080\fi-360\jclisttab\tx1080{\leveltext\'01o;}{\levelnumbers;}\f5\fs24}
+\listid1133016368}
+{\list\listtemplateid1604292084\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f3\fs24\lang1024}
+\listid1056725963}
+}
+{\*\listoverridetable
+{\listoverride\listid902281398\listoverridecount0\ls1}
+{\listoverride\listid1704256481\listoverridecount0\ls2}
+{\listoverride\listid1129566996\listoverridecount0\ls3}
+{\listoverride\listid1534600975\listoverridecount0\ls4}
+{\listoverride\listid1646957202\listoverridecount0\ls5}
+{\listoverride\listid1360169565\listoverridecount0\ls6}
+{\listoverride\listid1133016368\listoverridecount0\ls7}
+{\listoverride\listid1056725963\listoverridecount0\ls8}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf2 man 1 scp
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 SCP(1)                                             BSD General Commands Manual                                            SCP(1)
+\par NAME
+\par \plain \f1\fs20\cf1      scp - secure copy (remote file copy program)
+\par \plain \f1\fs20 
+\par SYNOPSIS
+\par      scp [-1246BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file] [-l limit] [-o ssh_option] [-P port] [-S program]
+\par          [[user@]host1:]file1 ... [[user@]host2:]file2
+\par 
+\par DESCRIPTION
+\par      scp copies files between hosts on a network.  It uses ssh(1) for data transfer, and uses the same authentication and pro-
+\par      vides the same security as ssh(1).  Unlike rcp(1), scp will ask for passwords or passphrases if they are needed for authen-
+\par      tication.
+\par 
+\par      File names may contain a user and host specification to indicate that the file is to be copied to/from that host.  Local
+\par      file names can be made explicit using absolute or relative pathnames to avoid scp treating file names containing `:' as
+\par      host specifiers.  Copies between two remote hosts are also permitted.
+\par 
+\par      The options are as follows:
+\par 
+\par      -1      Forces scp to use protocol 1.
+\par 
+\par      -2      Forces scp to use protocol 2.
+\par 
+\par      -4      Forces scp to use IPv4 addresses only.
+\par 
+\par      -6      Forces scp to use IPv6 addresses only.
+\par 
+\par      -B      Selects batch mode (prevents asking for passwords or passphrases).
+\par 
+\par      -C      Compression enable.  Passes the -C flag to ssh(1) to enable compression.
+\par 
+\par      -c cipher
+\par              Selects the cipher to use for encrypting the data transfer.  This option is directly passed to ssh(1).
+\par 
+\par      -F ssh_config
+\par              Specifies an alternative per-user configuration file for ssh.  This option is directly passed to ssh(1).
+\par 
+\par      -i identity_file
+\par              Selects the file from which the identity (private key) for public key authentication is read.  This option is
+\par              directly passed to ssh(1).
+\par 
+\par      -l limit
+\par              Limits the used bandwidth, specified in Kbit/s.
+\par 
+\par      -o ssh_option
+\par              Can be used to pass options to ssh in the format used in ssh_config(5).  This is useful for specifying options for
+\par              which there is no separate scp command-line flag.  For full details of the options listed below, and their possible
+\par              values, see ssh_config(5).
+\par 
+\par                    AddressFamily
+\par                    BatchMode
+\par                    BindAddress
+\par                    ChallengeResponseAuthentication
+\par                    CheckHostIP
+\par                    Cipher
+\par                    Ciphers
+\par                    Compression
+\par                    CompressionLevel
+\par                    ConnectionAttempts
+\par                    ConnectTimeout
+\par                    ControlMaster
+\par                    ControlPath
+\par                    GlobalKnownHostsFile
+\par                    GSSAPIAuthentication
+\par                    GSSAPIDelegateCredentials
+\par                    HashKnownHosts
+\par                    Host
+\par                    HostbasedAuthentication
+\par                    HostKeyAlgorithms
+\par                    HostKeyAlias
+\par                    HostName
+\par                    IdentityFile
+\par                    IdentitiesOnly
+\par                    KbdInteractiveDevices
+\par                    LogLevel
+\par                    MACs
+\par                    NoHostAuthenticationForLocalhost
+\par                    NumberOfPasswordPrompts
+\par                    PasswordAuthentication
+\par                    Port
+\par                    PreferredAuthentications
+\par                    Protocol
+\par                    ProxyCommand
+\par                    PubkeyAuthentication
+\par                    RekeyLimit
+\par                    RhostsRSAAuthentication
+\par                    RSAAuthentication
+\par                    SendEnv
+\par                    ServerAliveInterval
+\par                    ServerAliveCountMax
+\par                    SmartcardDevice
+\par                    StrictHostKeyChecking
+\par                    TCPKeepAlive
+\par                    UsePrivilegedPort
+\par                    User
+\par                    UserKnownHostsFile
+\par                    VerifyHostKeyDNS
+\par 
+\par      -P port
+\par              Specifies the port to connect to on the remote host.  Note that this option is written with a capital `P', because
+\par              -p is already reserved for preserving the times and modes of the file in rcp(1).
+\par 
+\par      -p      Preserves modification times, access times, and modes from the original file.
+\par 
+\par      -q      Quiet mode: disables the progress meter as well as warning and diagnostic messages from ssh(1).
+\par 
+\par      -r      Recursively copy entire directories.  Note that scp follows symbolic links encountered in the tree traversal.
+\par 
+\par      -S program
+\par              Name of program to use for the encrypted connection.  The program must understand ssh(1) options.
+\par 
+\par      -v      Verbose mode.  Causes scp and ssh(1) to print debugging messages about their progress.  This is helpful in debug-
+\par              ging connection, authentication, and configuration problems.
+\par 
+\par      The scp utility exits 0 on success, and >0 if an error occurs.
+\par 
+\par SEE ALSO
+\par      rcp(1), sftp(1), ssh(1), ssh-add(1), ssh-agent(1), ssh-keygen(1), ssh_config(5), sshd(8)
+\par 
+\par HISTORY
+\par      scp is based on the rcp(1) program in BSD source code from the Regents of the University of California.
+\par 
+\par AUTHORS
+\par      Timo Rinne <tri@iki.fi>
+\par      Tatu Ylonen <ylo@cs.hut.fi>\par}

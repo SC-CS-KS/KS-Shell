@@ -1,0 +1,486 @@
+{\rtf1\fbidis\ansi\ansicpg0\uc1\deff0\deflang0\deflangfe0{\fonttbl{\f0\fnil \'cb\'ce\'cc\'e5;}{\f1\fnil \'ce\'a2\'c8\'ed\'d1\'c5\'ba\'da;}{\f2\fnil\fcharset134 \'cb\'ce\'cc\'e5;}{\f3\fnil Arial;}{\f4\fnil\fcharset2 Symbol;}}{\colortbl;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;\red235\green245\blue245;}{\*\listtable{\list\listtemplateid2006701376\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'00;}{\levelnumbers;}\f3\fs24}
+\listid1712123975}
+{\list\listtemplateid1818612071\listsimple1
+{\listlevel\levelnfc23\leveljc0\li720\fi-360\jclisttab\tx720{\leveltext\'01\uc2\u183 \'a1\'a4\uc1;}{\levelnumbers;}\f4\fs24\lang1024}
+\listid1832581386}
+}
+{\*\listoverridetable
+{\listoverride\listid1712123975\listoverridecount0\ls1}
+{\listoverride\listid1832581386\listoverridecount0\ls2}
+}
+
+
+\pard\fi0\li0\qc\ri0\sb0\sa0\itap0 \plain \f2\b\lang2052\fs24\cf3 10.man 1 tar
+\par \pard\fi0\li0\ql\ri0\sb0\sa0\itap0 
+\par \plain \f1\fs20 NAME
+\par \plain \f1\fs20\cf1        tar - The GNU version of the tar archiving utility
+\par \plain \f1\fs20 SYNOPSIS
+\par        tar [OPTION...] [FILE]...
+\par DESCRIPTION
+\par \plain \f1\fs20\cf1        GNU  `tar'  saves  many  files  together  into  a  single tape or disk archive, and can restore individual files from the
+\par        archive.
+\par \plain \f1\fs20 EXAMPLES
+\par \plain \f1\fs20\cf2        tar -cf archive.tar foo bar
+\par               # Create archive.tar from files foo and bar.
+\par 
+\par        tar -tvf archive.tar
+\par               # List all files in archive.tar verbosely.
+\par 
+\par        tar -xf archive.tar
+\par               # Extract all files from archive.tar.
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1     Main operation mode:
+\par \plain \f1\fs20        -A, --catenate, --concatenate
+\par               append tar files to an archive
+\par 
+\par \plain \f1\fs20\cf1        -c, --create
+\par               create a new archive
+\par \plain \f1\fs20 
+\par        \plain \f1\fs20\cf1 -d, --diff, --compare
+\par               find differences between archive and file system
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1        --delete
+\par               delete from the archive (not on mag tapes!)
+\par \plain \f1\fs20 
+\par     \plain \f1\fs20\cf1    -r, --append
+\par               append files to the end of an archive
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1        -t, --list
+\par               list the contents of an archive
+\par \plain \f1\fs20 
+\par        --test-label
+\par               test the archive volume label and exit
+\par 
+\par        -u, --update
+\par               only append files newer than copy in archive
+\par 
+\par \plain \f1\fs20\cf1        -x, --extract, --get
+\par               extract files from an archive
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1      Operation modifiers:
+\par \plain \f1\fs20        --check-device
+\par               check device numbers when creating incremental archives (default)
+\par 
+\par        -g, --listed-incremental=FILE
+\par               handle new GNU-format incremental backup
+\par 
+\par        -G, --incremental
+\par               handle old GNU-format incremental backup
+\par 
+\par        --ignore-failed-read
+\par               do not exit with nonzero on unreadable files
+\par 
+\par        -n, --seek
+\par               archive is seekable
+\par 
+\par        --no-check-device
+\par               do not check device numbers when creating incremental archives
+\par 
+\par        --occurrence[=NUMBER]
+\par               process only the NUMBERth occurrence of each file in the archive; this option is valid only  in  conjunction  with
+\par               one  of the subcommands --delete, --diff, --extract or --list and when a list of files is given either on the com-
+\par               mand line or via the -T option; NUMBER defaults to 1
+\par 
+\par        --sparse-version=MAJOR[.MINOR]
+\par               set version of the sparse format to use (implies --sparse)
+\par 
+\par        -S, --sparse
+\par               handle sparse files efficiently
+\par 
+\par               Overwrite control:
+\par 
+\par        -k, --keep-old-files
+\par               don't replace existing files when extracting
+\par 
+\par        --keep-newer-files
+\par               don't replace existing files that are newer than their archive copies
+\par 
+\par        --no-overwrite-dir
+\par               preserve metadata of existing directories
+\par 
+\par        --overwrite
+\par               overwrite existing files when extracting
+\par 
+\par        --overwrite-dir
+\par               overwrite metadata of existing directories when extracting (default)
+\par 
+\par        --recursive-unlink
+\par               empty hierarchies prior to extracting directory
+\par 
+\par        --remove-files
+\par               remove files after adding them to the archive
+\par 
+\par        -U, --unlink-first
+\par               remove each file prior to extracting over it
+\par 
+\par        -W, --verify
+\par               attempt to verify the archive after writing it
+\par 
+\par               Select output stream:
+\par 
+\par        --ignore-command-error ignore exit codes of children
+\par 
+\par        --no-ignore-command-error
+\par               treat non-zero exit codes of children as error
+\par 
+\par        -O, --to-stdout
+\par               extract files to standard output
+\par 
+\par        --to-command=COMMAND
+\par               pipe extracted files to another program
+\par 
+\par               Handling of file attributes:
+\par 
+\par        --atime-preserve[=METHOD]
+\par               preserve access times on dumped files, either by restoring the times after reading (METHOD='replace'; default)  or
+\par               by not setting the times in the first place (METHOD='system')
+\par 
+\par        --delay-directory-restore
+\par               delay setting modification times and permissions of extracted directories until the end of extraction
+\par 
+\par        --group=NAME
+\par               force NAME as group for added files
+\par 
+\par        --mode=CHANGES
+\par               force (symbolic) mode CHANGES for added files
+\par 
+\par        --mtime=DATE-OR-FILE
+\par               set mtime for added files from DATE-OR-FILE
+\par 
+\par        -m, --touch
+\par               don't extract file modified time
+\par 
+\par        --no-delay-directory-restore
+\par               cancel the effect of --delay-directory-restore option
+\par 
+\par        --no-same-owner
+\par               extract files as yourself
+\par 
+\par        --no-same-permissions
+\par               apply the user's umask when extracting permissions from the archive (default for ordinary users)
+\par 
+\par        --numeric-owner
+\par               always use numbers for user/group names
+\par 
+\par        --owner=NAME
+\par               force NAME as owner for added files
+\par \plain \f1\fs20\cf1 
+\par        -p, --preserve-permissions, --same-permissions
+\par               extract information about file permissions (default for superuser)
+\par \plain \f1\fs20 
+\par \plain \f1\fs20\cf1        --preserve
+\par               same as both -p and -s
+\par \plain \f1\fs20 
+\par        --same-owner
+\par               try extracting files with the same ownership
+\par 
+\par        -s, --preserve-order, --same-order
+\par               sort names to extract to match archive
+\par 
+\par               Device selection and switching:
+\par 
+\par        -f, --file=ARCHIVE
+\par               use archive file or device ARCHIVE
+\par 
+\par        --force-local
+\par               archive file is local even if it has a colon
+\par 
+\par        -F, --info-script=NAME, --new-volume-script=NAME
+\par               run script at end of each tape (implies -M)
+\par 
+\par        -L, --tape-length=NUMBER
+\par               change tape after writing NUMBER x 1024 bytes
+\par 
+\par        -M, --multi-volume
+\par               create/list/extract multi-volume archive
+\par 
+\par        --rmt-command=COMMAND
+\par               use given rmt COMMAND instead of rmt
+\par 
+\par        --rsh-command=COMMAND
+\par               use remote COMMAND instead of rsh
+\par 
+\par        --volno-file=FILE
+\par               use/update the volume number in FILE
+\par 
+\par               Device blocking:
+\par 
+\par        -b, --blocking-factor=BLOCKS
+\par               BLOCKS x 512 bytes per record
+\par 
+\par        -B, --read-full-records
+\par               reblock as we read (for 4.2BSD pipes)
+\par 
+\par        -i, --ignore-zeros
+\par               ignore zeroed blocks in archive (means EOF)
+\par 
+\par        --record-size=NUMBER
+\par               NUMBER of bytes per record, multiple of 512
+\par 
+\par               Archive format selection:
+\par 
+\par        -H, --format=FORMAT
+\par               create archive of the given format
+\par 
+\par               FORMAT is one of the following:
+\par 
+\par        gnu    GNU tar 1.13.x format
+\par 
+\par        oldgnu GNU format as per tar <= 1.12
+\par 
+\par        pax    POSIX 1003.1-2001 (pax) format
+\par 
+\par        posix  same as pax
+\par 
+\par        ustar  POSIX 1003.1-1988 (ustar) format
+\par 
+\par        v7     old V7 tar format
+\par 
+\par        --old-archive, --portability
+\par               same as --format=v7
+\par 
+\par        --pax-option=keyword[[:]=value][,keyword[[:]=value]]...
+\par               control pax keywords
+\par 
+\par        --posix
+\par               same as --format=posix
+\par 
+\par        -V, --label=TEXT
+\par               create archive with volume name TEXT; at list/extract time, use TEXT as a globbing pattern for volume name
+\par 
+\par               Compression options:
+\par 
+\par        -a, --auto-compress
+\par               use archive suffix to determine the compression program
+\par 
+\par        -j, --bzip2
+\par               filter the archive through bzip2
+\par 
+\par        --lzma filter the archive through lzma
+\par 
+\par        --use-compress-program=PROG
+\par               filter through PROG (must accept -d)
+\par 
+\par        -z, --gzip, --gunzip, --ungzip
+\par               filter the archive through gzip
+\par 
+\par        -Z, --compress, --uncompress
+\par               filter the archive through compress
+\par 
+\par               Local file selection:
+\par 
+\par        --add-file=FILE
+\par               add given FILE to the archive (useful if its name starts with a dash)
+\par 
+\par        --backup[=CONTROL]
+\par               backup before removal, choose version CONTROL
+\par 
+\par \plain \f1\fs20\cf2        -C, --directory=DIR
+\par               change to directory DIR
+\par \plain \f1\fs20 
+\par        --exclude=PATTERN
+\par               exclude files, given as a PATTERN
+\par 
+\par        --exclude-caches
+\par               exclude contents of directories containing CACHEDIR.TAG, except for the tag file itself
+\par 
+\par        --exclude-caches-all
+\par               exclude directories containing CACHEDIR.TAG
+\par 
+\par        --exclude-caches-under exclude everything under directories containing
+\par               CACHEDIR.TAG
+\par 
+\par        --exclude-tag=FILE
+\par               exclude contents of directories containing FILE, except for FILE itself
+\par 
+\par        --exclude-tag-all=FILE exclude directories containing FILE
+\par 
+\par        --exclude-tag-under=FILE
+\par               exclude everything under directories containing FILE
+\par 
+\par        --exclude-vcs
+\par               exclude version control system directories
+\par 
+\par        -h, --dereference
+\par               follow symlinks; archive and dump the files they point to
+\par 
+\par        --hard-dereference
+\par               follow hard links; archive and dump the files they refer to
+\par 
+\par        -K, --starting-file=MEMBER-NAME
+\par               begin at member MEMBER-NAME in the archive
+\par 
+\par        --newer-mtime=DATE
+\par               compare date and time when data changed only
+\par 
+\par        --no-recursion
+\par               avoid descending automatically in directories
+\par 
+\par        --no-unquote
+\par               do not unquote filenames read with -T
+\par 
+\par        --null                 -T reads null-terminated names, disable -C
+\par 
+\par        -N, --newer=DATE-OR-FILE, --after-date=DATE-OR-FILE
+\par               only store files newer than DATE-OR-FILE
+\par 
+\par        --one-file-system
+\par               stay in local file system when creating archive
+\par 
+\par        -P, --absolute-names
+\par               don't strip leading `/'s from file names
+\par 
+\par        --recursion
+\par               recurse into directories (default)
+\par 
+\par        --suffix=STRING
+\par               backup before removal, override usual suffix ('~' unless overridden by environment variable SIMPLE_BACKUP_SUFFIX)
+\par 
+\par        -T, --files-from=FILE
+\par               get names to extract or create from FILE
+\par 
+\par        --unquote
+\par               unquote filenames read with -T (default)
+\par 
+\par        -X, --exclude-from=FILE
+\par               exclude patterns listed in FILE
+\par 
+\par               File name transformations:
+\par 
+\par        --strip-components=NUMBER
+\par               strip NUMBER leading components from file names on extraction
+\par 
+\par        --transform=EXPRESSION use sed replace EXPRESSION to transform file
+\par               names
+\par 
+\par               File name matching options (affect both exclude and include patterns):
+\par 
+\par        --anchored
+\par               patterns match file name start
+\par 
+\par        --ignore-case
+\par               ignore case
+\par 
+\par        --no-anchored
+\par               patterns match after any `/' (default for exclusion)
+\par 
+\par        --no-ignore-case
+\par               case sensitive matching (default)
+\par 
+\par        --no-wildcards
+\par               verbatim string matching
+\par 
+\par        --no-wildcards-match-slash
+\par               wildcards do not match `/'
+\par 
+\par        --wildcards
+\par               use wildcards (default for exclusion)
+\par 
+\par        --wildcards-match-slash
+\par               wildcards match `/' (default for exclusion)
+\par 
+\par               Informative output:
+\par 
+\par        --checkpoint[=NUMBER]
+\par               display progress messages every NUMBERth record (default 10)
+\par 
+\par        --checkpoint-action=ACTION
+\par               execute ACTION on each checkpoint
+\par 
+\par        --index-file=FILE
+\par               send verbose output to FILE
+\par 
+\par        -l, --check-links
+\par               print a message if not all links are dumped
+\par 
+\par        --no-quote-chars=STRING
+\par               disable quoting for characters from STRING
+\par 
+\par        --quote-chars=STRING
+\par               additionally quote characters from STRING
+\par 
+\par        --quoting-style=STYLE
+\par               set name quoting style; see below for valid STYLE values
+\par 
+\par        -R, --block-number
+\par               show block number within archive with each message
+\par 
+\par        --show-defaults
+\par               show tar defaults
+\par 
+\par        --show-omitted-dirs
+\par               when listing or extracting, list each directory that does not match search criteria
+\par 
+\par        --show-transformed-names, --show-stored-names
+\par               show file or archive names after transformation
+\par 
+\par        --totals[=SIGNAL]
+\par               print  total  bytes  after processing the archive; with an argument - print total bytes when this SIGNAL is deliv-
+\par               ered; Allowed signals are: SIGHUP, SIGQUIT, SIGINT, SIGUSR1 and SIGUSR2; the names without  SIG  prefix  are  also
+\par               accepted
+\par 
+\par        --utc  print file modification dates in UTC
+\par 
+\par        -v, --verbose
+\par               verbosely list files processed
+\par 
+\par        -w, --interactive, --confirmation
+\par               ask for confirmation for every action
+\par 
+\par               Compatibility options:
+\par 
+\par        -o     when creating, same as --old-archive; when extracting, same as --no-same-owner
+\par 
+\par               Other options:
+\par 
+\par        -?, --help
+\par               give this help list
+\par 
+\par        --restrict
+\par               disable use of some potentially harmful options
+\par 
+\par        --usage
+\par               give a short usage message
+\par 
+\par        --version
+\par               print program version
+\par 
+\par        Mandatory or optional arguments to long options are also mandatory or optional for any corresponding short options.
+\par 
+\par        The backup suffix is `~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.  The version control may be set with --backup
+\par        or VERSION_CONTROL, values are:
+\par 
+\par        none, off
+\par               never make backups
+\par 
+\par        t, numbered
+\par               make numbered backups
+\par 
+\par        nil, existing
+\par               numbered if numbered backups exist, simple otherwise
+\par 
+\par        never, simple
+\par               always make simple backups
+\par 
+\par        Valid arguments for --quoting-style options are:
+\par 
+\par               literal shell shell-always c c-maybe escape locale clocale
+\par 
+\par        *This*  tar  defaults  to:  --format=gnu  -f-  -b20  --quoting-style=escape   --rmt-command=/usr/libexec/rmt   --rsh-com-
+\par        mand=/usr/bin/rsh
+\par 
+\par AUTHOR
+\par        Written by John Gilmore and Jay Fenlason.
+\par REPORTING BUGS
+\par        Report bugs to <bug-tar@gnu.org>.
+\par COPYRIGHT
+\par        Copyright   (C)   2008   Free   Software   Foundation,   Inc.    License   GPLv3+:   GNU   GPL   version   3   or   later
+\par        <http://gnu.org/licenses/gpl.html>
+\par        This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+\par SEE ALSO
+\par        The full documentation for tar is maintained as a Texinfo manual.  If the info and tar programs are properly installed at
+\par        your site, the command
+\par               info tar
+\par        should give you access to the complete manual.
+\par tar 1.20                                                   March 2010                                                     TAR(1)\par}
