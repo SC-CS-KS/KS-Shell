@@ -32,6 +32,3 @@ RS	记录分隔符(默认是一个换行符)
 RSTART	由match函数所匹配的字符串的第一个位置
 SUBSEP	数组下标分隔符(默认值是/034)
 ```
-
-# Reference
-* [awk](http://www.runoob.com/linux/linux-comm-awk.html)
