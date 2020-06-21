@@ -1,21 +1,23 @@
 # 20.IFS
 
-Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。
+Shell 脚本中有个变量叫 IFS(Internal Field Seprator) ，内部域分隔符。  
+
 完整定义是：
-The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, to delimit words for the read and set commands, when parsing output from command substitution, and when performing variable substitution.
+The shell uses the value stored in IFS, which is the space, tab, and newline characters by default, 
+to delimit words for the read and set commands, 
+when parsing output from command substitution, 
+and when performing variable substitution.  
 
 Shell 的环境变量分为 set, env 两种，其中 set 变量可以通过 export 工具导入到 env 变量中。
 其中，set 是显示设置shell变量，仅在本 shell 中有效；env 是显示设置用户环境变量 ，仅在当前会话中有效。
 换句话说，set 变量里包含了 env 变量，但 set 变量不一定都是 env 变量。
 这两种变量不同之处在于变量的作用域不同。显然，env 变量的作用域要大些，它可以在 subshell 中使用。
  
-而 IFS 是一种 set 变量，当 shell 处理"命令替换"和"参数替换"时，shell 根据 IFS 的值。
+而 IFS 是一种 set 变量，当 shell 处理"命令替换"和"参数替换"时，shell 根据 IFS 的值，
 默认是 space, tab, newline 来拆解读入的变量，然后对特殊字符进行处理，最后重新组合赋值给该变量。
-------------------------------------------------------------------------------------------------------------------------------
 
-## 01.IFS 的变量值
+## IFS 的变量值
 
-1.查看变量 IFS 的值。
 $ echo $IFS  
   
 $ echo "$IFS" | od -b  
@@ -23,15 +25,16 @@ $ echo "$IFS" | od -b
 0000004  
 直接输出IFS是看不到的，把它转化为二进制就可以看到了，"040"是空格，"011"是Tab，"012"是换行符"\n" 。
 最后一个 012 是因为 echo 默认是会换行的。
----------------------------------------------------------------------------------
 
-## 02.$* 和 $@ 的细微差别
+## $* 和 $@ 的细微差别
 
-2.$* 和 $@ 的细微差别
 从下面的例子中可以看出，如果是双用引号引起来，表示这个变量不用IFS替换！！所以可以看到这个变量的"原始值"。
-反之，如果不加引号，输出时会根据IFS的值来分割后合并输出！
-$* 是按照IFS中的第一个值来确定的！下面这两个例子还有细微的差别！
-$ IFS=:;                           #分隔符是冒号或者分号
+反之，如果不加引号，输出时会根据IFS的值来分割后合并输出！  
+
+```bash
+# $* 是按照IFS中的第一个值来确定的！下面这两个例子还有细微的差别！
+# 分隔符是冒号或者分号
+$ IFS=:;
 $ set x y z  
 $ echo $*  
 x y z  
@@ -42,7 +45,7 @@ x y z
 $ echo "$@"  
 x y z  
 
-上例 set 变量其实是3个参数，而下面这个例子实质是2个参数，即 set "x y z"  和 set x y z 是完全不同的。
+# 上例 set 变量其实是3个参数，而下面这个例子实质是2个参数，即 set "x y z"  和 set x y z 是完全不同的。
 $ IFS=:;            
 $ set "x" "y z"  
 $ echo $*  
@@ -59,12 +62,12 @@ $ echo $* |od -b
 $ echo "$*" |od -b  
 0000000 170 072 171 040 172 012  
 0000006  
-小结：$* 会根据 IFS 的不同来组合值，而 $@ 则会将值用" "来组合值！
----------------------------------------------------------------------------------
+# 小结：$* 会根据 IFS 的不同来组合值，而 $@ 则会将值用" "来组合值！
+```
 
-## 03.for 循环中的奇怪现象
+## for 循环中的奇怪现象  
 
-3.for 循环中的奇怪现象
+```bash
 $ IFS=:;            
 $ for x in $var ;do echo $x |od -b ;done  
 0000000 012  
@@ -77,8 +80,11 @@ $ for x in $var ;do echo $x |od -b ;done
 0000001  
 0000000 143 012  
 0000002  
+```
 
 先暂且不解释 for 循环的内容！看下面这个输出！IFS 的值同上！ 
+
+```bash
 $ IFS=:;            
 var=": a:b::c:"，
 $ echo $var |od -b  
@@ -87,14 +93,21 @@ $ echo $var |od -b
 $ echo "$var" |od -b  
 0000000 072 040 141 072 142 072 072 143 072 012  
 0000012  
+```
+
 "$var"的值应该没做替换，所以还是 ": a:b::c:" (注 "072" 表示冒号)，但是$var 则发生了变化！
 注意输出的最后一个冒号没有了，也没有替换为空格！Why？
 
-使用 $var 时是经历了这样一个过程！首先，按照这样的规则 [变量][IFS][变量][IFS]……根据原始 var 值中所有的分割符(此处是":")划分出变量。
-如果IFS的值是有多个字符组成，如IFS=":;"，那么此处的[IFS]指的是IFS中的任意一个字符($* 是按第一个字符来分隔！)，如 ":" 或者 ";" 。
+使用 $var 时是经历了这样一个过程！  
+首先，按照这样的规则 [变量][IFS][变量][IFS]……根据原始 var 值中所有的分割符(此处是":")划分出变量。  
+
+如果IFS的值是有多个字符组成，如IFS=":;"，  
+那么此处的[IFS]指的是IFS中的任意一个字符($* 是按第一个字符来分隔！)，如 ":" 或者 ";" 。  
 后面不再对[IFS]做类似说明！(注：[IFS]会有多个值，多亏 #blackold 的提醒)
 然后，得到类似这样的 list， ""   " a"   "b"  ""   "c"  。
-如果此时 echo $var，则需要在这些变量之间用空格隔开，也就是""  [space]   "  a"  [space]  "b" [space]  "" [space]  "c" ，忽略掉空值，最终输出是 [space][space]a[space]b[space][space]c ！
+如果此时 echo $var，则需要在这些变量之间用空格隔开，  
+也就是""  [space]   "  a"  [space]  "b" [space]  "" [space]  "c" ，  
+忽略掉空值，最终输出是 [space][space]a[space]b[space][space]c ！
 
 如果最后一个字符不是分隔符，如 var="a:b"，那么最后一个分隔符后的变量就是最后一个变量！
 这个地方要注意下！！
@@ -118,40 +131,53 @@ $ for x in "" " a" "b" "" "c" ;do echo $x |od -b ;done
 0000001  
 0000000 143 012  
 0000002  
-------------------------------------------------------------------------------------------------------------------------------
+
 ## 10.IFS 实例
 
 IFS的其他实例
-Example 1:
+
+* Example 1:  
+```bash
 $ IFS=:  
 $ var=ab::cd  
 $ echo $var  
 ab  cd  
 $ echo "$var"  
 ab::cd  
+```
+
 解释下：
 x 的值是 "ab::cd"，当进行到 echo $x 时，因为$符，所以会进行变量替换。
 Shell 根据 IFS 的值将 x 分解为 ab "" cd，然后echo，插入空隔，ab[space]""[space]cd，忽略""，输出  ab  cd 。
 
-Example 2 :
+* Example 2 :
+```bash
 $ read a  
        xy  z  
 $ echo $a  
 xy  z  
+```
+
 解释：这是 http://bbs.chinaunix.net/thread-207178-1-1.html 上的一个例子。
 此时IFS是默认值，本希望把所有的输入(包括空格)都放入变量a中，但是输出的a却把前面的空格给忽略了！！
 原因是：默认的 IFS 会按 space tab newline 来分割。
 这里需要注意的一点是，read 命令的实现过程，即在读入时已经替换了。
 解决办法是在开头加上一句 IFS=";" ，这里必须加上双引号，因为分号有特殊含义。
 
-Example 3 :
+* Example 3 :  
+
+```bash
 $ tmp="   xy z"  
 $ a=$tmp  
 $ echo $a  
 $ echo "$a"  
-解释：什么时候会根据 IFS 来"处理"呢？我觉得是，对于不加引号的变量，使用时都会参考IFS，但是要注意其原始值！
 
-Example 4 ：
+# 解释：什么时候会根据 IFS 来"处理"呢？我觉得是，对于不加引号的变量，使用时都会参考IFS，但是要注意其原始值！
+```
+
+* Example 4 ：  
+
+```bash
 #!/bin/bash  
 IFS_old=$IFS                          #将原IFS值保存，以便用完后恢复  
 IFS=$’\n’                           #更改IFS值为$’\n’ ，注意，以回车做为分隔符，IFS必须为：$’\n’  
@@ -160,23 +186,25 @@ do
     echo $i  
 done  
 IFS=$IFS_old                          #恢复原IFS值  
+```
 
 另外一个例子，把IP地址逆转输出：
-Example 5 :
-#!/bin/bash  
-  
-IP=220.112.253.111  
-IFS="."  
-TMPIP=$(echo $IP)  
-IFS=" "                                  # space  
-echo $TMPIP  
-for x in $TMPIP ;do   
-    Xip="${x}.$Xip"  
-done  
-echo ${Xip%.}  
 
-Complex_Example 1:  
-http://bbs.chinaunix.net/forum.php?mod=viewthread&tid=3660898&page=1#pid21798049
+* Example 5 :  
+```bash
+#!/bin/bash  
+
+IP=220.112.253.111
+IFS="."
+for x in $IP ;do
+    Xip="${x}.$Xip"
+done
+IFS=$'\n\t '
+```
+
+Complex_Example 1:    
+http://bbs.chinaunix.net/forum.php?mod=viewthread&tid=3660898&page=1#pid21798049  
+```bash
 function output_args_ifs(){  
     echo "=$*"  
     echo "="$*  
@@ -189,8 +217,9 @@ IFS=':'
 var='::a:b::c:::'  
 output_args_ifs $var  
 
-输出为：
-=::a:b::c::                          # 少了最后一个冒号！看前面就知道为什么了  
+# 输出为：
+
+=::a:b::c:: # 少了最后一个冒号！看前面就知道为什么了  
 =  a b  c   
 []  
 []  
@@ -199,9 +228,11 @@ output_args_ifs $var
 []  
 [c]  
 []  
+```
+
 由于 "output_args_ifs $var" 中 $var 没有加引号，所以根据IFS替换！
 根据IFS划分出变量： ""  ""  "a"  "b"  ""  "c" "" ""     
-(可以通过输出 $# 来测试参数的个数！)，重组的结果为
+(可以通过输出 $# 来测试参数的个数！)，重组的结果为  
 "$@" 的值是  "" [space] "" [space]  "a" [space]  "b"  [space] "" [space]  "c" [space] "" [space] ""，可以通过，echo==>"  a b  c   "
 "$*"  的值是   "" [IFS] "" [IFS]  "a" [IFS]  "b"  [IFS] "" [IFS]  "c" [IFS] "" [IFS] ""，忽略""，echo=>"::a:b::c::"
 

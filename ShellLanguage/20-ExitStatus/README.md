@@ -2,7 +2,7 @@
 
 每一条命令，不管是内置的、shell函数，还是外部的，当它退出是，都会返回一个小的整数给引用它的程序。
 这就是程序退出状态(exit status)
-----------------------------------------------------------------------------------------------------------
+
 POSIX的退出状态
 0        命令成功退出
 > 0      在重定向或单词展开(~、变量、命令、算术展开，以及单词切割)是失败，
@@ -13,13 +13,13 @@ POSIX的退出状态
 
 128未POSIX定义，仅要求表示某种失败。
 只有低位的8个位会返回给父进程，超过255的退出状态，都会返回除以256之后的余数。
-----------------------------------------------------------------------------------------------------------
+
 
 ## exit 命令
 
 exit命令
 exit命令用于退出当前shell，在shell脚本中可以终止当前脚本执行。
-----------------------------------------------------------------------------------------------------------
+
 常用参数
 格式：exit n
 （Cause the shell to exit with a status of n.）
@@ -30,7 +30,7 @@ exit命令用于退出当前shell，在shell脚本中可以终止当前脚本执
  
 格式：trap "commands" EXIT
 退出时执行commands指定的命令。（ A trap on EXIT is executed before the shell terminates.）
-----------------------------------------------------------------------------------------------------------
+
 exit帮助(man 3 exit)有如下叙述：
 The C standard specifies two constants, EXIT_SUCCESS and EXIT_FAILURE, that may be passed to exit() to indicate
 successful or unsuccessful termination, respectively.
@@ -64,7 +64,7 @@ C代码  
 #define EX_NOPERM       77      /* permission denied */  
 #define EX_CONFIG       78      /* configuration error */    
 #define EX__MAX         78      /* maximum listed value */  
-----------------------------------------------------------------------------------------------------------
+
 实例
 退出当前shell
 # exit 
@@ -91,8 +91,8 @@ EXCODE=$?  
 if [ "$EXCODE" == "0" ]; then  
   echo "O.K"  
 fi  
-----------------------------------------------------------------------------------------------------------
-man page
+
+## man page
 PROLOG
        This  manual  page is part of the POSIX Programmer's Manual.  The Linux implementation of this interface may differ (con-
        sult the corresponding Linux manual page for details of Linux behavior), or the  interface  may  not  be  implemented  on
@@ -106,4 +106,4 @@ DESCRIPTION
        specified, but its value is not between 0 and 255 inclusively, the exit status is undefined.
        A trap on EXIT shall be executed before the shell terminates, except when the  exit  utility  is  invoked  in  that  trap
        itself, in which case the shell shall exit immediately.
-----------------------------------------------------------------------------------------------------------
+
